@@ -2,14 +2,15 @@
 using System.IO;
 using System.Text;
 using BaseLibS.Graph;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit;
+using NUnit.Framework;
 
 namespace BaseLib.Test
 {
-    [TestClass]
+    [TestFixture]
     public class SvgGraphics
     {
-        [TestMethod]
+        [Test]
         public void TestMethod1()
         {
             var stream = new MemoryStream();

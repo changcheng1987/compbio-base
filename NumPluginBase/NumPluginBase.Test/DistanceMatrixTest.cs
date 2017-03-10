@@ -1,14 +1,15 @@
 ﻿using System;
 using BaseLibS.Num.Matrix;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using NumPluginBase.Distance;
+using NUnit.Framework;
 
 namespace NumPluginBase.Test
 {
-    [TestClass]
+    [TestFixture]
     public class DistanceMatrixTest
     {
-        [TestMethod]
+        [Test]
         public void TestGeneralDistanceMatrix()
         {
             var distance = new EuclideanDistance();

@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Runtime.Remoting;
+﻿using System.Linq;
 using BaseLibS.Api;
 using BaseLibS.Num.Cluster;
 using BaseLibS.Num.Matrix;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NumPluginBase.Distance;
+using NUnit.Framework;
 
 namespace BaseLibS.Test
 {
-    [TestClass]
+    [TestFixture]
     public class ClusteringTest
     {
-        [TestMethod]
+        [Test]
+        public void TestClustering()
+        {
+            Assert.Inconclusive("DeploymentItem is not available in NUnit");
+        }
+        /*
+        [Test]
         [DeploymentItem(@"Examples", "Examples")]
         public void TestClustering()
         {
@@ -27,8 +28,9 @@ namespace BaseLibS.Test
                 false, 1, 300, 1, 10,
                 (i) => { });
         }
+        */
 
-        [TestMethod]
+        [Test]
         public void TestClusterNodeFormat()
         {
              var hclust = new HierarchicalClustering();
@@ -45,7 +47,7 @@ namespace BaseLibS.Test
             CollectionAssert.AreEqual(colTree, colTreeR);
         }
 
-    [TestMethod]
+        [Test]
         public void TestKmedoidClustering()
         {
             var data = new FloatMatrixIndexer(new float[,]
