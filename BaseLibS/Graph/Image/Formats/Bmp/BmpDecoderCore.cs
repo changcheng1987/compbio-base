@@ -98,6 +98,9 @@ namespace BaseLibS.Graph.Image.Formats.Bmp{
 					int row = Invert(y, height, inverted);
 					int colOffset = x*ppb;
 					for (int shift = 0; shift < ppb && (colOffset + shift) < width; shift++){
+						if (offset >= data.Length){
+							continue;
+						}
 						int colorIndex = ((data[offset] >> (8 - bits - (shift*bits))) & mask)*4;
 						int arrayOffset = (row*width) + (colOffset + shift);
 
