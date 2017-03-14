@@ -32,12 +32,12 @@ namespace BaseLib.Forms{
 				t.SetValuesFromControl();
 			}
 			for (int i = 0; i < subSelectionControl.parameters.Count; i++){
-				g.RowStyles.Add(new RowStyle(SizeType.AutoSize,100));
+				g.RowStyles.Add(new RowStyle(SizeType.AutoSize, 100));
 			}
 			for (int i = 0; i < subSelectionControl.parameters.Count; i++){
 				ParameterPanel tb = new ParameterPanel();
 				tb.Init(subSelectionControl.parameters[i]);
-				g.Controls.Add(tb,0,i);
+				g.Controls.Add(tb, 0, i);
 			}
 			Controls.Add(g);
 		}

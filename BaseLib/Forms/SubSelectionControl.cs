@@ -226,29 +226,10 @@ namespace BaseLib.Forms{
 				return;
 			}
 			Point p = parameterButton.PointToScreen(new Point(0, 0));
-			FilterForm fw = new FilterForm(this){
-				Top = p.Y,
-				Left = p.X - 895,
-				Text = "Filter " + Text.ToLower() + " columns"
-			};
+			FilterForm fw = new FilterForm(this){Top = p.Y, Left = p.X - 895, Text = "Filter " + Text.ToLower() + " columns"};
 			fw.ShowDialog();
 		}
 
-		//TODO
-		//protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
-		//	switch (keyData) {
-		//		case Keys.Control | Keys.A:
-		//			System.Windows.Controls.Control c = GetChildAtPoint(System.Windows.Forms.Cursor.Position);
-		//			if (c != null) {
-		//				if (c.Equals(selectedListBox)) {
-		//					MultiListSelector.SelectAll(selectedListBox);
-		//				}
-		//			}
-		//			Invalidate(true);
-		//			break;
-		//	}
-		//	return base.ProcessCmdKey(ref msg, keyData);
-		//}
 		private void Select_OnClick(object sender, EventArgs e){
 			parameters.Clear();
 			object[] os = new object[MultiListSelectorControl.AllListBox.SelectedItems.Count];
