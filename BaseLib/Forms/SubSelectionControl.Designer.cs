@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.selectButton = new System.Windows.Forms.Button();
@@ -41,6 +42,7 @@
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
 			this.titleLabel = new System.Windows.Forms.Label();
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
@@ -91,6 +93,7 @@
 			this.selectButton.Size = new System.Drawing.Size(22, 22);
 			this.selectButton.TabIndex = 0;
 			this.selectButton.Text = ">";
+			this.toolTip1.SetToolTip(this.selectButton, "Select");
 			this.selectButton.UseVisualStyleBackColor = true;
 			// 
 			// deselectButton
@@ -102,6 +105,7 @@
 			this.deselectButton.Size = new System.Drawing.Size(22, 22);
 			this.deselectButton.TabIndex = 1;
 			this.deselectButton.Text = "<";
+			this.toolTip1.SetToolTip(this.deselectButton, "Deselect");
 			this.deselectButton.UseVisualStyleBackColor = true;
 			// 
 			// tableLayoutPanel3
@@ -136,6 +140,7 @@
 			this.topButton.Size = new System.Drawing.Size(22, 22);
 			this.topButton.TabIndex = 0;
 			this.topButton.Text = "↑↑";
+			this.toolTip1.SetToolTip(this.topButton, "Top");
 			this.topButton.UseVisualStyleBackColor = true;
 			// 
 			// upButton
@@ -147,6 +152,7 @@
 			this.upButton.Size = new System.Drawing.Size(22, 22);
 			this.upButton.TabIndex = 1;
 			this.upButton.Text = "↑";
+			this.toolTip1.SetToolTip(this.upButton, "Up");
 			this.upButton.UseVisualStyleBackColor = true;
 			// 
 			// downButton
@@ -158,6 +164,7 @@
 			this.downButton.Size = new System.Drawing.Size(22, 22);
 			this.downButton.TabIndex = 2;
 			this.downButton.Text = "↓";
+			this.toolTip1.SetToolTip(this.downButton, "Down");
 			this.downButton.UseVisualStyleBackColor = true;
 			// 
 			// bottomButton
@@ -169,6 +176,7 @@
 			this.bottomButton.Size = new System.Drawing.Size(22, 22);
 			this.bottomButton.TabIndex = 3;
 			this.bottomButton.Text = "↓↓";
+			this.toolTip1.SetToolTip(this.bottomButton, "Bottom");
 			this.bottomButton.UseVisualStyleBackColor = true;
 			// 
 			// parameterButton
@@ -180,6 +188,7 @@
 			this.parameterButton.Size = new System.Drawing.Size(22, 22);
 			this.parameterButton.TabIndex = 4;
 			this.parameterButton.Text = "F";
+			this.toolTip1.SetToolTip(this.parameterButton, "Filter");
 			this.parameterButton.UseVisualStyleBackColor = true;
 			this.parameterButton.Visible = false;
 			// 
@@ -251,5 +260,6 @@
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
 		private System.Windows.Forms.Label titleLabel;
 		private System.Windows.Forms.Button parameterButton;
+		private System.Windows.Forms.ToolTip toolTip1;
 	}
 }
