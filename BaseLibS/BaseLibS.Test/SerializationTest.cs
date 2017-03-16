@@ -14,6 +14,15 @@ namespace BaseLibS.Test
     public class SerializationTest
     {
         [TestMethod]
+        public void TestParamWithNullValue()
+        {
+            var sparam = new StringParam("myname", null);
+            var sparam2 = (StringParam)sparam.ToXmlAndBack();
+            Assert.AreEqual("", sparam2.Value); // "" default value for StringParam (contrived example)
+            Assert.AreEqual(sparam.Name, sparam2.Name);
+        }
+
+        [TestMethod]
         public void TestBoolParam()
         {
             var sparam = new BoolParam("myname", false);

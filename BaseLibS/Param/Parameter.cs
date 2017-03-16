@@ -108,9 +108,13 @@ namespace BaseLibS.Param{
 	    public override void ReadXml(XmlReader reader)
 	    {
             ReadBasicAttributes(reader);
+	        var valueExists = !reader.IsEmptyElement;
             reader.ReadStartElement();
-	        Value = (T) reader.ReadElementContentAs(Value.GetType(), null, "Value", "");
-            reader.ReadEndElement();
+	        if (valueExists)
+	        {
+	            Value = (T) reader.ReadElementContentAs(typeof(T), null, "Value", "");
+	            reader.ReadEndElement();
+	        }
 	    }
 
 	    protected void WriteBasicAttributes(XmlWriter writer)
@@ -122,9 +126,12 @@ namespace BaseLibS.Param{
 	    public override void WriteXml(XmlWriter writer)
 	    {
             WriteBasicAttributes(writer);
-            writer.WriteStartElement("Value");
-            writer.WriteValue(Value);
-            writer.WriteEndElement();
-	    }
+	        if (Value != null)
+	        {
+                writer.WriteStartElement("Value");
+                writer.WriteValue(Value);
+                writer.WriteEndElement();
+            }
+        }
 	}
 }
