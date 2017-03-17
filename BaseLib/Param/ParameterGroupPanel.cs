@@ -23,9 +23,11 @@ namespace BaseLib.Param{
 				float h = ParameterGroup[i].Visible ? ParameterGroup[i].Height : 0;
 				grid.RowStyles.Add(new RowStyle(SizeType.Absolute, h));
 			}
+			grid.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
 			for (int i = 0; i < nrows; i++){
 				AddParameter(ParameterGroup[i], i);
 			}
+			grid.Controls.Add(new Control(), 0, nrows);
 			Controls.Add(grid);
 			Name = "ParameterPanel";
 			Margin = new Padding(0, 3, 0, 3);
@@ -42,7 +44,6 @@ namespace BaseLib.Param{
 
 		private void AddParameter(Parameter p, int i){
 			Label txt1 = new Label{Text = p.Name};
-			//ToolTipService.SetShowDuration(txt1, 400000);
 			if (!string.IsNullOrEmpty(p.Help)){
 				toolTip1.SetToolTip(txt1, StringUtils.ReturnAtWhitespace(p.Help));
 			}
