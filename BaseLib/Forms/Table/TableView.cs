@@ -77,6 +77,7 @@ namespace BaseLib.Forms.Table{
 						userSf = 4f;
 						break;
 				}
+				tableView.Invalidate(true);
 			};
 		}
 
