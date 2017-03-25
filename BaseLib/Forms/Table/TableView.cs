@@ -150,6 +150,7 @@ namespace BaseLib.Forms.Table{
 			textButton.Margin = new Padding(0);
 			textButton.Name = "textButton";
 			textButton.Text = "↑";
+			textButton.Font = new Font("Microsoft Sans Serif", 7.1F * SfY);
 			textButton.Size = new Size(20, 20);
 			textButton.TabIndex = 1;
 			textButton.UseVisualStyleBackColor = true;
