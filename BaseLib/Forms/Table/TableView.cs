@@ -28,7 +28,6 @@ namespace BaseLib.Forms.Table{
 		private Label selectedLabel;
 		private Panel mainPanel;
 		private ComboBox scaleFactorComboBox;
-		private float userSf = 1;
 		public float SfX { get; }
 		public float SfY { get; }
 
@@ -56,25 +55,25 @@ namespace BaseLib.Forms.Table{
 			scaleFactorComboBox.SelectedIndexChanged += (sender, args) =>{
 				switch (scaleFactorComboBox.SelectedIndex){
 					case 0:
-						userSf = 0.2f;
+						tableViewWf.UserSf = 0.2f;
 						break;
 					case 1:
-						userSf = 0.5f;
+						tableViewWf.UserSf = 0.5f;
 						break;
 					case 2:
-						userSf = 0.7f;
+						tableViewWf.UserSf = 0.7f;
 						break;
 					case 3:
-						userSf = 1f;
+						tableViewWf.UserSf = 1f;
 						break;
 					case 4:
-						userSf = 1.5f;
+						tableViewWf.UserSf = 1.5f;
 						break;
 					case 5:
-						userSf = 2f;
+						tableViewWf.UserSf = 2f;
 						break;
 					case 6:
-						userSf = 4f;
+						tableViewWf.UserSf = 4f;
 						break;
 				}
 				tableView.Invalidate(true);
@@ -150,6 +149,7 @@ namespace BaseLib.Forms.Table{
 			textButton.Location = new Point(503, 0);
 			textButton.Margin = new Padding(0);
 			textButton.Name = "textButton";
+			textButton.Text = "↑";
 			textButton.Size = new Size(20, 20);
 			textButton.TabIndex = 1;
 			textButton.UseVisualStyleBackColor = true;
@@ -388,8 +388,10 @@ namespace BaseLib.Forms.Table{
 
 		private void TextButton_OnClick(object sender, EventArgs e){
 			if (textBoxVisible){
+				textButton.Text = "↑";
 				SwitchOffTextBox();
 			} else{
+				textButton.Text = "↓";
 				SwitchOnTextBox();
 			}
 			textBoxVisible = !textBoxVisible;

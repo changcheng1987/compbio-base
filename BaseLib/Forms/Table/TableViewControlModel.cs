@@ -58,6 +58,7 @@ namespace BaseLib.Forms.Table{
 		private bool sortable;
 		public Action<string> SetCellText { get; set; }
 		private ICompoundScrollableControl control;
+		internal float UserSf { get; set; } = 1;
 
 		public void Register(ICompoundScrollableControl control1){
 			control = control1;
@@ -67,7 +68,7 @@ namespace BaseLib.Forms.Table{
 			origColumnHeaderHeight = 26;
 			InitContextMenu();
 			float dpiScaleX = control.GetDpiScaleX();
-			defaultFont = new Font2("Arial", 9/dpiScaleX);
+			defaultFont = new Font2("Arial", 9*UserSf);
 			textFont = defaultFont;
 			headerFont = defaultFont;
 			control1.OnMouseIsDownMainView = e =>{
