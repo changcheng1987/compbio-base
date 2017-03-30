@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using BaseLibS.Num;
@@ -266,8 +267,10 @@ namespace BaseLibS.Parse.Misc{
 				if (!File.Exists(path)){
 					continue;
 				}
-				StreamReader reader = new StreamReader(path);
-				ParsePhosphoSite(reader, map);
+				try{
+					StreamReader reader = new StreamReader(path);
+					ParsePhosphoSite(reader, map);
+				} catch (Exception){}
 			}
 			return map;
 		}
