@@ -88,7 +88,7 @@ namespace BaseLibS.Table{
 			return nameMapping.ContainsKey(colName) ? nameMapping[colName] : -1;
 		}
 
-		public object GetEntry(int row, string colname){
+		public object GetEntry(long row, string colname){
 			int colInd = GetColumnIndex(colname);
 			return colInd < 0 ? null : GetEntry(row, colInd);
 		}
@@ -101,9 +101,9 @@ namespace BaseLibS.Table{
 			SetEntry(row, colInd, value);
 		}
 
-		public abstract int RowCount { get; }
-		public abstract object GetEntry(int row, int column);
-		public abstract void SetEntry(int row, int column, object value);
+		public abstract long RowCount { get; }
+		public abstract object GetEntry(long row, int column);
+		public abstract void SetEntry(long row, int column, object value);
 
 		public DataAnnotationRow NewAnnotationRow(){
 			return new DataAnnotationRow(columnNames.Count, nameMapping);

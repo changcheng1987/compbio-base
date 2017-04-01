@@ -14,7 +14,7 @@ namespace BaseLib.Forms.Table{
 		private readonly TableViewControlModel tableViewWf;
 		private readonly ICompoundScrollableControl tableView;
 		private readonly ITableModel tableModel;
-		private int searchRowIndView = -1;
+		private long searchRowIndView = -1;
 		private int[] multipleColumns = new int[0];
 		private readonly TableViewControlModel tableView1Wf;
 		public FindForm(TableViewControlModel tableViewWf, ICompoundScrollableControl tableView){
@@ -188,12 +188,12 @@ namespace BaseLib.Forms.Table{
 		private void FindUp(bool matchCase, bool matchWholeWord, string searchString, IEnumerable<int> colInds){
 			searchRowIndView--;
 			while (searchRowIndView >= 0){
-				int modelInd = tableViewWf.GetModelIndex(searchRowIndView);
+				int modelInd = tableViewWf.GetModelIndex((int) searchRowIndView);
 				int[] matchingCols;
 				if (MatchRow(modelInd, colInds, matchCase, matchWholeWord, searchString, out matchingCols)){
 					tableViewWf.ClearSelection();
-					tableViewWf.SetSelectedViewIndex(searchRowIndView);
-					tableViewWf.ScrollToRow(searchRowIndView);
+					tableViewWf.SetSelectedViewIndex((int) searchRowIndView);
+					tableViewWf.ScrollToRow((int) searchRowIndView);
 					return;
 				}
 				searchRowIndView--;
@@ -204,12 +204,12 @@ namespace BaseLib.Forms.Table{
 		private void FindDown(bool matchCase, bool matchWholeWord, string searchString, IEnumerable<int> colInds){
 			searchRowIndView++;
 			while (searchRowIndView < tableModel.RowCount){
-				int modelInd = tableViewWf.GetModelIndex(searchRowIndView);
+				int modelInd = tableViewWf.GetModelIndex((int) searchRowIndView);
 				int[] matchingCols;
 				if (MatchRow(modelInd, colInds, matchCase, matchWholeWord, searchString, out matchingCols)){
 					tableViewWf.ClearSelection();
-					tableViewWf.SetSelectedViewIndex(searchRowIndView);
-					tableViewWf.ScrollToRow(searchRowIndView);
+					tableViewWf.SetSelectedViewIndex((int) searchRowIndView);
+					tableViewWf.ScrollToRow((int) searchRowIndView);
 					return;
 				}
 				searchRowIndView++;

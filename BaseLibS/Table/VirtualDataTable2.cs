@@ -7,7 +7,7 @@ namespace BaseLibS.Table{
 	[Serializable]
 	public sealed class VirtualDataTable2 : TableModelImpl, ITable{
 		public Func<int, object[]> GetRowData { private get; set; }
-		private int rowInUse = -1;
+		private long rowInUse = -1;
 		private object[] rowDataInUse;
 		private readonly int rowCount;
 		private List<int> persistentColInds;
@@ -74,14 +74,14 @@ namespace BaseLibS.Table{
 			}
 		}
 
-		public override int RowCount => rowCount;
+		public override long RowCount => rowCount;
 
-		public override object GetEntry(int row, int col){
+		public override object GetEntry(long row, int col){
 			if (row >= RowCount || row < 0){
 				return null;
 			}
 			if (rowInUse != row){
-				rowDataInUse = GetRowDataImpl(row);
+				rowDataInUse = GetRowDataImpl((int)row);
 				rowInUse = row;
 			}
 			if (rowDataInUse == null){
@@ -90,7 +90,7 @@ namespace BaseLibS.Table{
 			return col >= rowDataInUse.Length ? null : rowDataInUse[col];
 		}
 
-		public override void SetEntry(int row, int column, object value){
+		public override void SetEntry(long row, int column, object value){
 			if (persistentTable == null){
 				throw new Exception("The table has no persistent columns.");
 			}

@@ -43,21 +43,21 @@ namespace BaseLibS.Table{
 		}
 
 		public void Close(){}
-		public override int RowCount => Rows.Count;
+		public override long RowCount => Rows.Count;
 
-		public override object GetEntry(int row, int column){
+		public override object GetEntry(long row, int column){
 			if (row < 0 || row >= Rows.Count){
 				return null;
 			}
 			try{
-				return Rows[row][column];
+				return Rows[(int)row][column];
 			} catch (Exception){
 				return null;
 			}
 		}
 
-		public override void SetEntry(int row, int column, object value){
-			Rows[row][column] = value;
+		public override void SetEntry(long row, int column, object value){
+			Rows[(int)row][column] = value;
 		}
 
 		public void RemoveRow(DataRow2 row){

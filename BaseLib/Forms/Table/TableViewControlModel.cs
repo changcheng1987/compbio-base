@@ -495,7 +495,7 @@ namespace BaseLib.Forms.Table{
 						int startInd = ArrayUtils.CeilIndex(columnWidthSums, x);
 						int endInd = ArrayUtils.FloorIndex(columnWidthSums, x + width);
 						if (startInd >= 0 && endInd >= 0){
-							int ymax = Math.Min(height, rowHeight*model.RowCount - y);
+							int ymax = (int) Math.Min(height, rowHeight*model.RowCount - y);
 							for (int i = startInd; i <= endInd; i++){
 								if (i >= columnWidthSums.Length || i < 0){
 									continue;
@@ -524,7 +524,7 @@ namespace BaseLib.Forms.Table{
 				}
 				return columnWidthSums[ind] + 5;
 			};
-			control1.TotalHeight = () => rowHeight*model?.RowCount + 5 ?? 0;
+			control1.TotalHeight = () => (int) (rowHeight*model?.RowCount + 5 ?? 0);
 			control1.DeltaX = () => 40;
 			control1.DeltaY = () => rowHeight;
 			control1.DeltaUpToSelection = () =>{
@@ -885,8 +885,8 @@ namespace BaseLib.Forms.Table{
 				control.VisibleX = 0;
 				control.VisibleY = 0;
 				modelRowSel = new bool[model.RowCount];
-				order = ArrayUtils.ConsecutiveInts(model.RowCount);
-				inverseOrder = ArrayUtils.ConsecutiveInts(model.RowCount);
+				order = ArrayUtils.ConsecutiveInts((int) model.RowCount);
+				inverseOrder = ArrayUtils.ConsecutiveInts((int) model.RowCount);
 				columnWidthSums = new int[model.ColumnCount];
 				if (model.ColumnCount > 0){
 					columnWidthSums[0] = model.GetColumnWidth(0);
@@ -895,12 +895,12 @@ namespace BaseLib.Forms.Table{
 					columnWidthSums[i] = columnWidthSums[i - 1] + model.GetColumnWidth(i);
 				}
 				if (model.AnnotationRowsCount > 0){
-					control.ColumnHeaderHeight = (origColumnHeaderHeight + model.AnnotationRowsCount*rowHeight);
+					control.ColumnHeaderHeight = origColumnHeaderHeight + model.AnnotationRowsCount*rowHeight;
 				}
 			}
 		}
 
-		public int RowCount => model?.RowCount ?? 0;
+		public int RowCount => (int) (model?.RowCount ?? 0);
 
 		public bool ViewRowIsSelected(int row){
 			if (modelRowSel == null){
@@ -1302,8 +1302,8 @@ namespace BaseLib.Forms.Table{
 				return;
 			}
 			if (order == null || order.Length != model.RowCount){
-				order = ArrayUtils.ConsecutiveInts(model.RowCount);
-				inverseOrder = ArrayUtils.ConsecutiveInts(model.RowCount);
+				order = ArrayUtils.ConsecutiveInts((int) model.RowCount);
+				inverseOrder = ArrayUtils.ConsecutiveInts((int) model.RowCount);
 				sortState = SortState.Unsorted;
 				sortCol = -1;
 			}
