@@ -86,7 +86,7 @@
 		}
 
 		public Size2 MeasureString(string text, Font2 font){
-			return g.MeasureString(text, font.Scale(s));
+			return g.MeasureString(text, font);
 		}
 
 		public void DrawString(string str, Font2 font, Brush2 brush, float x, float y){
@@ -118,7 +118,7 @@
 		}
 
 		public Size2 MeasureString(string text, Font2 font, float width){
-			return g.MeasureString(text, font.Scale(s), s*width);
+			return g.MeasureString(text, font, width);
 		}
 
 		public void FillClosedCurve(Brush2 brush, Point2[] points){
