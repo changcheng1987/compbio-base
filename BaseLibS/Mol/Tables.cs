@@ -102,7 +102,7 @@ namespace BaseLibS.Mol{
 			if (pr != null){
 				return pr;
 			}
-			return !Databases.ContainsKey(s) ? ">([^ ]*)" : Databases[s].IdentifierParseRule;
+			return !Databases.ContainsKey(s) ? ">(.*)" : Databases[s].IdentifierParseRule;
 		}
 
 		public static string GetDescriptionParseRule(string path){

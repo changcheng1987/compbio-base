@@ -149,6 +149,9 @@ namespace BaseLibS.Graph{
 			}
 			float winY = visibleWin.Y*overview.Height/totalSize.Height;
 			float winHeight = visibleWin.Height*overview.Height/totalSize.Height/zoomFactorY;
+			if (winY < 0){
+				winY = 0;
+			}
 			if (winHeight > overview.Height - winY){
 				winHeight = overview.Height - winY;
 			}
