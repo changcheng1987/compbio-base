@@ -14,7 +14,5 @@ namespace BaseLibS.Graph{
 		bool IsControlPressed();
 		bool IsShiftPressed();
 		void SetCursor(Cursors2 cursor);
-		float GetDpiScaleX();
-		float GetDpiScaleY();
 	}
 }

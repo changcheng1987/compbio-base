@@ -12,15 +12,5 @@ namespace BaseLib.Forms{
 			int dpiX = (int) dpiXProperty.GetValue(null, null);
 			return dpiX/96f;
 		}
-
-		public static float GetDpiScaleY(){
-			PropertyInfo dpiYProperty = typeof (SystemParameters).GetProperty("DpiY",
-				BindingFlags.NonPublic | BindingFlags.Static);
-			if (dpiYProperty == null){
-				return 1;
-			}
-			int dpiY = (int) dpiYProperty.GetValue(null, null);
-			return dpiY/96f;
-		}
 	}
 }

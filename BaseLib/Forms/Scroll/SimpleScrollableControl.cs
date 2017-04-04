@@ -270,14 +270,6 @@ namespace BaseLib.Forms.Scroll{
 			Cursor.Current = GraphUtils.ToCursor(cursor);
 		}
 
-		public float GetDpiScaleX(){
-			return WpfUtils.GetDpiScaleX();
-		}
-
-		public float GetDpiScaleY(){
-			return WpfUtils.GetDpiScaleY();
-		}
-
 		public void UpdateZoom(){
 			OnZoomChanged?.Invoke();
 		}

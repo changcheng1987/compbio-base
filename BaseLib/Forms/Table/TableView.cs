@@ -29,12 +29,10 @@ namespace BaseLib.Forms.Table{
 		private Panel mainPanel;
 		private ComboBox scaleFactorComboBox;
 		public float SfX { get; }
-		public float SfY { get; }
 
 		public TableView(){
 			InitializeComponent();
 			SfX = WpfUtils.GetDpiScaleX();
-			SfY = WpfUtils.GetDpiScaleX();
 			InitializeComponent2();
 			scaleFactorComboBox.SelectedIndex = 3;
 			tableView = new CompoundScrollableControl{Dock = DockStyle.Fill, Margin = new Padding(0)};
@@ -105,7 +103,7 @@ namespace BaseLib.Forms.Table{
 			tableLayoutPanel1.Name = "tableLayoutPanel1";
 			tableLayoutPanel1.RowCount = 2;
 			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F*SfY));
+			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F*SfX));
 			tableLayoutPanel1.Size = new Size(523, 538);
 			tableLayoutPanel1.TabIndex = 0;
 			// 
@@ -150,7 +148,7 @@ namespace BaseLib.Forms.Table{
 			textButton.Margin = new Padding(0);
 			textButton.Name = "textButton";
 			textButton.Text = "↑";
-			textButton.Font = new Font("Microsoft Sans Serif", 7.1F * SfY);
+			textButton.Font = new Font("Microsoft Sans Serif", 7.1F * SfX);
 			textButton.Size = new Size(20, 20);
 			textButton.TabIndex = 1;
 			textButton.UseVisualStyleBackColor = true;
@@ -163,7 +161,7 @@ namespace BaseLib.Forms.Table{
 			itemsLabel.Name = "itemsLabel";
 			itemsLabel.Size = new Size(1, 20);
 			itemsLabel.TabIndex = 2;
-			itemsLabel.Font = new Font("Microsoft Sans Serif", 8.1F*(float) Math.Pow(SfY, 0.33));
+			itemsLabel.Font = new Font("Microsoft Sans Serif", 8.1F*(float) Math.Pow(SfX, 0.33));
 			// 
 			// selectedLabel
 			// 
@@ -171,9 +169,9 @@ namespace BaseLib.Forms.Table{
 			selectedLabel.Dock = DockStyle.Fill;
 			selectedLabel.Location = new Point(9, 0);
 			selectedLabel.Name = "selectedLabel";
-			selectedLabel.Size = new Size(1, (int) (20*SfY));
+			selectedLabel.Size = new Size(1, (int) (20*SfX));
 			selectedLabel.TabIndex = 3;
-			selectedLabel.Font = new Font("Microsoft Sans Serif", 8.1F*(float) Math.Pow(SfY, 0.33));
+			selectedLabel.Font = new Font("Microsoft Sans Serif", 8.1F*(float) Math.Pow(SfX, 0.33));
 			// 
 			// mainPanel
 			// 
@@ -188,7 +186,7 @@ namespace BaseLib.Forms.Table{
 			// 
 			scaleFactorComboBox.Dock = DockStyle.Fill;
 			scaleFactorComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-			scaleFactorComboBox.Font = new Font("Microsoft Sans Serif", 7.1F*SfY);
+			scaleFactorComboBox.Font = new Font("Microsoft Sans Serif", 7.1F*SfX);
 			scaleFactorComboBox.FormattingEnabled = true;
 			scaleFactorComboBox.Items.AddRange(new object[]{"20 %", "50 %", "70 %", "100 %", "150 %", "200 %", "400 %"});
 			scaleFactorComboBox.Location = new Point(453, 0);

@@ -20,7 +20,15 @@ namespace BaseLib.Forms.Scroll{
 		}
 
 		public override void OnPaint(IGraphics g, int width, int height){
-			main.OnPaintMainView?.Invoke(main.ZoomFactor == 1f ? g : new ScaledGraphics(g, main.ZoomFactor), main.VisibleX,
+			float dpiScale = WpfUtils.GetDpiScaleX();
+			IGraphics g1;
+			if (main.ZoomFactor == 1 && dpiScale == 1){
+				g1 = g;
+			} else{
+				//TODO
+				g1 = new ScaledGraphics(g, main.ZoomFactor);
+			}
+			main.OnPaintMainView?.Invoke(g1, main.VisibleX,
 				main.VisibleY, width, height, false);
 			GraphUtil.PaintZoomButtons(g, width, height, state);
 			GraphUtil.PaintOverview(g, main.TotalSize, main.VisibleWin,
