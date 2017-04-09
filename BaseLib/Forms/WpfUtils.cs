@@ -6,6 +6,7 @@ using System.Windows;
 namespace BaseLib.Forms{
 	public static class WpfUtils{
 		public static float GetDpiScale(Graphics g){
+			return GetDpiScale1();
 			try{
 				return g.DpiX/96f;
 			} catch (Exception){
