@@ -1,4 +1,4 @@
-namespace BaseLib.Forms.Scroll{
+namespace BaseLibC.Forms.Scroll{
 	internal enum ScrollBarState{
 		Neutral,
 		HighlightFirstBox,

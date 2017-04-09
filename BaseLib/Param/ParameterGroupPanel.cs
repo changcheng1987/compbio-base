@@ -2,7 +2,7 @@
 using BaseLibS.Param;
 using BaseLibS.Util;
 
-namespace BaseLib.Param{
+namespace BaseLibC.Param{
 	public class ParameterGroupPanel : UserControl{
 		private readonly ToolTip toolTip1 = new ToolTip();
 		public ParameterGroup ParameterGroup { get; private set; }

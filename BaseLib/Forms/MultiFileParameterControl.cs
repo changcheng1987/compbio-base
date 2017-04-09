@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	public partial class MultiFileParameterControl : UserControl{
 		public MultiFileParameterControl(){
 			InitializeComponent();

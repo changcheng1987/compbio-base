@@ -1,8 +1,8 @@
 ﻿using System;
-using BaseLib.Forms;
+using BaseLibC.Forms;
 using BaseLibS.Param;
 
-namespace BaseLib.Param{
+namespace BaseLibC.Param{
 	[Serializable]
 	internal class FolderParamWf : FolderParam{
 		[NonSerialized] private FolderParameterControl control;

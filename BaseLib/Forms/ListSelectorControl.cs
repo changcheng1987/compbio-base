@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using BaseLib.Forms.Table;
+using BaseLibC.Forms.Table;
 using BaseLibS.Num;
 using BaseLibS.Util;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	public partial class ListSelectorControl : UserControl{
 		public event EventHandler SelectionChanged;
 		private Thread downThread;

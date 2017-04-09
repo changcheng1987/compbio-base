@@ -1,10 +1,10 @@
 using System;
 using System.Windows.Forms;
-using BaseLib.Graphic;
+using BaseLibC.Graphic;
 using BaseLibS.Graph;
 using BaseLibS.Graph.Base;
 
-namespace BaseLib.Forms.Base{
+namespace BaseLibC.Forms.Base{
 	public class BasicControl : ScrollableControl{
 		private ToolTip tip;
 		private bool mouseDown;

@@ -5,7 +5,7 @@ using BaseLibS.Graph;
 using BaseLibS.Graph.Base;
 using BaseLibS.Num;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	public enum Arrows{
 		None,
 		First,

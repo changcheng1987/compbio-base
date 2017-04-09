@@ -2,10 +2,9 @@
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using BaseLib.Properties;
 using BaseLibS.Util;
 
-namespace BaseLib.Forms.Table{
+namespace BaseLibC.Forms.Table{
 	public partial class HelpLabel : Control{
 		private bool helpActive;
 		private readonly ToolTip toolTip = new ToolTip();

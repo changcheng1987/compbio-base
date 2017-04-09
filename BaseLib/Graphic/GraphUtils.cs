@@ -5,7 +5,7 @@ using System.Drawing.Imaging;
 using System.Windows.Forms;
 using BaseLibS.Graph;
 
-namespace BaseLib.Graphic{
+namespace BaseLibC.Graphic{
 	public static class GraphUtils{
 		public static Bitmap ResizeImage(Image image, int width, int height){
 			Rectangle destRect = new Rectangle(0, 0, width, height);

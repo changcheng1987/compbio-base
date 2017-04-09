@@ -1,4 +1,4 @@
-﻿namespace BaseLib.Param
+﻿namespace BaseLibC.Param
 {
 	partial class ParameterForm
 	{
@@ -34,7 +34,7 @@
 			this.helpButton = new System.Windows.Forms.Button();
 			this.okButton = new System.Windows.Forms.Button();
 			this.helpPanel = new System.Windows.Forms.Panel();
-			this.parameterPanel1 = new BaseLib.Param.ParameterPanel();
+			this.parameterPanel1 = new ParameterPanel();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.SuspendLayout();

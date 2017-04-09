@@ -1,8 +1,8 @@
 using System.Windows.Forms;
-using BaseLib.Forms.Base;
+using BaseLibC.Forms.Base;
 using BaseLibS.Graph;
 
-namespace BaseLib.Graphic{
+namespace BaseLibC.Graphic{
 	public abstract class BaseDrawControl : BasicUserControl{
 	    protected BaseDrawControl(){
 			SetStyle(ControlStyles.ResizeRedraw, true);

@@ -1,4 +1,4 @@
-﻿namespace BaseLib.Forms.Table{
+﻿namespace BaseLibC.Forms.Table{
 	public interface ITableSelectionAgent{
 		string Title { get; }
 		void AddTable(TableView tableView);

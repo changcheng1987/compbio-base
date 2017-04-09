@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using BaseLibS.Graph;
 
-namespace BaseLib.Forms.Base{
+namespace BaseLibC.Forms.Base{
 	public static class Printing{
 		public static void Print(IPrintable printable, string filename, int width, int height){
 			filename = ShowDialog(filename);

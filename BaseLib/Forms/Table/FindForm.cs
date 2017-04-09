@@ -8,7 +8,7 @@ using BaseLibS.Num;
 using BaseLibS.Table;
 using BaseLibS.Util;
 
-namespace BaseLib.Forms.Table{
+namespace BaseLibC.Forms.Table{
 	internal partial class FindForm : Form{
 		private const int expandedHeight = 700;
 		private readonly TableViewControlModel tableViewWf;

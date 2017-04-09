@@ -5,7 +5,7 @@ using BaseLibS.Graph;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
-namespace BaseLib.Graphic{
+namespace BaseLibC.Graphic{
 	public class PdfGraphics : IGraphics, IPdfGraphics{
 		private float currentWidth;
 		private float currentHeight;

@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using BaseLibS.Table;
 
-namespace BaseLib.Forms.Table{
+namespace BaseLibC.Forms.Table{
 	public partial class TableViewSelectionAgentForm : Form{
 		public TableViewSelectionAgentForm(ITableModel tableModel){
 			InitializeComponent();

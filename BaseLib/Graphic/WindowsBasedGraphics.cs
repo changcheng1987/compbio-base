@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using BaseLib.Forms;
+using BaseLibC.Forms;
 using BaseLibS.Graph;
 
-namespace BaseLib.Graphic{
+namespace BaseLibC.Graphic{
 	//TODO: should not be exposed
 	public abstract class WindowsBasedGraphics : IGraphics{
 		protected Graphics gc;

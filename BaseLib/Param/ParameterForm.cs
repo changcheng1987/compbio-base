@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using BaseLib.Graphic;
+using BaseLibC.Graphic;
 using BaseLibS.Graph;
 using BaseLibS.Param;
 
-namespace BaseLib.Param{
+namespace BaseLibC.Param{
 	public partial class ParameterForm : Form{
 		private readonly Action helpAction;
 

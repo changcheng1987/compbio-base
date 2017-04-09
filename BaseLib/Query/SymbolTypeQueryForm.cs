@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using BaseLibS.Symbol;
 
-namespace BaseLib.Query{
+namespace BaseLibC.Query{
 	public partial class SymbolTypeQueryForm : Form{
 		private readonly bool hasNoSymbol;
 		public SymbolTypeQueryForm() : this(false){}

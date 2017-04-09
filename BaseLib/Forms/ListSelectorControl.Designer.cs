@@ -1,4 +1,4 @@
-﻿namespace BaseLib.Forms
+﻿namespace BaseLibC.Forms
 {
 	partial class ListSelectorControl
 	{

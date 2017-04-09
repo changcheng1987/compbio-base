@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	public partial class RegexMatchParamControl : UserControl{
 		internal Regex regex;
 		internal List<string> preview;

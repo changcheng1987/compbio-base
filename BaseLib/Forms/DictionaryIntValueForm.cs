@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using BaseLib.Param;
+using BaseLibC.Param;
 using BaseLibS.Param;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	public partial class DictionaryIntValueForm : Form{
 		public DictionaryIntValueForm(){
 			InitializeComponent();

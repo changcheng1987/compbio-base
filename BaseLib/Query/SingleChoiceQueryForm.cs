@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace BaseLib.Query{
+namespace BaseLibC.Query{
 	public partial class SingleChoiceQueryForm : Form{
 		public SingleChoiceQueryForm(IEnumerable<string> choice){
 			InitializeComponent();

@@ -4,10 +4,10 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
-using BaseLib.Forms.Base;
+using BaseLibC.Forms.Base;
 using BaseLibS.Graph;
 
-namespace BaseLib.Graphic{
+namespace BaseLibC.Graphic{
 	public static class ExportGraphics{
 		public static void ExportGraphic(Control control, string filename){
 			ExportGraphic(control, filename, true);

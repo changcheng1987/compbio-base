@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
-using BaseLib.Graphic;
+using BaseLibC.Graphic;
 using BaseLibS.Graph;
 using BaseLibS.Num;
 using BaseLibS.Util;
 
-namespace BaseLib.Forms.Base{
+namespace BaseLibC.Forms.Base{
 	public sealed class BasicImageFormat{
 		public static readonly BasicImageFormat pdf = new BasicImageFormat(new[]{".pdf"}, "PDF Portable Document Format",
 			(filename, width, height) => new PdfGraphics(filename, width, height));

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using BaseLibS.Mol;
 using BaseLibS.Num;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	public partial class Ms1LabelPanel : UserControl{
 		/// <summary>
 		/// Number of label states. Set by input argument to constructor.

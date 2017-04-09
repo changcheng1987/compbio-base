@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	internal partial class NumericAxisPropertiesForm : Form{
 		internal bool Ok { get; set; }
 

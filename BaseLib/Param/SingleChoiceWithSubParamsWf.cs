@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using BaseLibS.Param;
 
-namespace BaseLib.Param{
+namespace BaseLibC.Param{
 	[Serializable]
 	public class SingleChoiceWithSubParamsWf : SingleChoiceWithSubParams{
 		[NonSerialized] private TableLayoutPanel control;

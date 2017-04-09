@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
-using BaseLib.Graphic;
-using BaseLib.Param;
+using BaseLibC.Graphic;
+using BaseLibC.Param;
 using BaseLibS.Graph;
 using BaseLibS.Param;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	public partial class FilterForm : Form{
 		private readonly SubSelectionControl subSelectionControl;
 

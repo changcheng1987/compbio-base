@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using BaseLibS.Util;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	public class FormUtils{
 		public static float GetDpiScale(Graphics g){
 			return GetDpiScale1();

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace BaseLib.Query{
+namespace BaseLibC.Query{
 	public partial class IntQueryForm : Form{
 		public IntQueryForm(int value, int min, int max){
 			InitializeComponent();

@@ -1,7 +1,7 @@
 using System;
 using System.Drawing;
 
-namespace BaseLib.Forms.Base{
+namespace BaseLibC.Forms.Base{
 	public static class FormUtil{
 		private static readonly Color[] predefinedColors ={
 			Color.Blue, Color.FromArgb(255, 144, 144),

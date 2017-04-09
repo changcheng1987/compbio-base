@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	public partial class FolderParameterControl : UserControl{
 		public FolderParameterControl(){
 			InitializeComponent();

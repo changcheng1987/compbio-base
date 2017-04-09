@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace BaseLib.Query{
+namespace BaseLibC.Query{
 	public partial class FolderQueryForm : Form{
 		private bool hasRecursiveBox;
 		public FolderQueryForm() : this(""){}

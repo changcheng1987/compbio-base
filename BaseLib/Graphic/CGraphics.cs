@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace BaseLib.Graphic{
+namespace BaseLibC.Graphic{
 	//TODO: should not be exposed
 	public class CGraphics : WindowsBasedGraphics {
 		public CGraphics(Graphics g) : base(g) { }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace BaseLib.Query{
+namespace BaseLibC.Query{
 	public partial class IntMinMaxQueryForm : Form{
 		public IntMinMaxQueryForm(int value1, int value2, int min, int max){
 			InitializeComponent();

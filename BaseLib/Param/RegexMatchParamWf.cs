@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using BaseLib.Forms;
+using BaseLibC.Forms;
 using BaseLibS.Param;
 
-namespace BaseLib.Param{
+namespace BaseLibC.Param{
 	[Serializable]
 	public class RegexMatchParamWf : RegexMatchParam{
 		[NonSerialized] private RegexMatchParamControl control;

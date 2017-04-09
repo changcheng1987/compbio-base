@@ -2,7 +2,7 @@ using System;
 using System.Windows.Forms;
 using BaseLibS.Graph;
 
-namespace BaseLib.Forms.Base{
+namespace BaseLibC.Forms.Base{
 	[Obsolete]
 	public class BasicUserControl : UserControl {
 		private bool mouseDown;

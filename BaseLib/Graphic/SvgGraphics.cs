@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using BaseLibS.Graph;
 using BaseLibS.Util;
 
-namespace BaseLib.Graphic{
+namespace BaseLibC.Graphic{
 	public class SvgGraphics : IGraphics{
 		private readonly Svg svg;
 		private readonly Stream stream;

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using BaseLibC.Forms;
 using BaseLibS.Param;
-using BaseLib.Forms;
 
-namespace BaseLib.Param{
+namespace BaseLibC.Param{
 	[Serializable]
 	internal class RegexReplaceParamWf : RegexReplaceParam{
 		[NonSerialized] private RegexReplaceParamControl control;

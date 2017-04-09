@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	public partial class CheckedListBoxControl : UserControl{
 		public CheckedListBoxControl(){
 			InitializeComponent();

@@ -1,11 +1,11 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using BaseLib.Forms.Base;
+using BaseLibC.Forms.Base;
 using BaseLibS.Graph;
 using BaseLibS.Graph.Axis;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	public delegate void ColorChangeHandler();
 
 	public partial class ColorScale : UserControl{

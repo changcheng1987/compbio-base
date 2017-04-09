@@ -1,4 +1,4 @@
-﻿namespace BaseLib.Forms.Table
+﻿namespace BaseLibC.Forms.Table
 {
 	partial class TableView
 	{

@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using BaseLibS.Param;
 
-namespace BaseLib.Param{
+namespace BaseLibC.Param{
 	public class ParameterPanel : UserControl{
 		public Parameters Parameters { get; private set; }
 		private TableLayoutPanel grid;

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using BaseLibS.Num;
 using BaseLibS.Param;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	public partial class SubSelectionControl : UserControl{
 		private Thread downThread;
 		private Thread upThread;

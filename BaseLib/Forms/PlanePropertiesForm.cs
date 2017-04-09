@@ -1,11 +1,11 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using BaseLib.Graphic;
+using BaseLibC.Graphic;
 using BaseLibS.Graph;
 using BaseLibS.Graph.Base;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	public partial class PlanePropertiesForm : Form{
 		public PlanePropertiesForm(Color2 horizontalGridColor, Color2 verticalGridColor, GridType horizontalGrid,
 			GridType verticalGrid, int horizontalGridWidth, int verticalGridWidth, Color2 borderColor, Color2 backgroundColor,

@@ -1,8 +1,8 @@
 ﻿using System;
-using BaseLib.Forms;
+using BaseLibC.Forms;
 using BaseLibS.Param;
 
-namespace BaseLib.Param{
+namespace BaseLibC.Param{
 	[Serializable]
 	internal class Ms1LabelParamWf : Ms1LabelParam{
 		[NonSerialized] private Ms1LabelPanel control;

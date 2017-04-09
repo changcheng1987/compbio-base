@@ -2,7 +2,7 @@ using System;
 using System.Windows.Forms;
 using BaseLibS.Param;
 
-namespace BaseLib.Param{
+namespace BaseLibC.Param{
 	[Serializable]
 	internal class StringParamWf : StringParam{
 		[NonSerialized] private TextBox control;

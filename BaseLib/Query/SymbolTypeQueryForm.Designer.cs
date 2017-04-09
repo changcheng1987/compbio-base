@@ -1,4 +1,4 @@
-﻿namespace BaseLib.Query
+﻿namespace BaseLibC.Query
 {
 	partial class SymbolTypeQueryForm
 	{

@@ -1,7 +1,7 @@
 using BaseLibS.Graph;
 using BaseLibS.Graph.Base;
 
-namespace BaseLib.Forms.Scroll{
+namespace BaseLibC.Forms.Scroll{
 	internal sealed class ScrollableControlSmallCornerView : BasicView{
 		public override void OnPaintBackground(IGraphics g, int width, int height){
 			Brush2 b = new Brush2(Color2.FromArgb(236, 233, 216));

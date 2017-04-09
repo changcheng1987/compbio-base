@@ -1,12 +1,12 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using BaseLib.Forms.Base;
-using BaseLib.Graphic;
+using BaseLibC.Forms.Base;
+using BaseLibC.Graphic;
 using BaseLibS.Graph;
 using BaseLibS.Graph.Base;
 
-namespace BaseLib.Forms.Scroll{
+namespace BaseLibC.Forms.Scroll{
 	public sealed class CompoundScrollableControl : UserControl, ICompoundScrollableControl{
 		private int rowHeaderWidth = 40;
 		private int rowFooterWidth;

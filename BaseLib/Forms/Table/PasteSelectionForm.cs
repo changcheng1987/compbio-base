@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace BaseLib.Forms.Table{
+namespace BaseLibC.Forms.Table{
 	public partial class PasteSelectionForm : Form{
 		private readonly int ncols;
 		public bool Ok { get; set; }

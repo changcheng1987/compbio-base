@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace BaseLib.Query{
+namespace BaseLibC.Query{
 	public partial class DoubleQueryForm : Form{
 		public DoubleQueryForm(double value){
 			InitializeComponent();

@@ -1,4 +1,6 @@
-﻿namespace BaseLib.Forms
+﻿using BaseLibC.Param;
+
+namespace BaseLibC.Forms
 {
 	partial class DictionaryIntValueForm
 	{
@@ -32,7 +34,7 @@
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.okButton = new System.Windows.Forms.Button();
-			this.parameterPanel1 = new BaseLib.Param.ParameterPanel();
+			this.parameterPanel1 = new ParameterPanel();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.SuspendLayout();

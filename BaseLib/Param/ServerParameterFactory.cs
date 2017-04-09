@@ -1,7 +1,7 @@
 ﻿using System;
 using BaseLibS.Param;
 
-namespace BaseLib.Param{
+namespace BaseLibC.Param{
     /// <summary>
     /// Conversion to server parameters e.g. for Xml serialization
     /// </summary>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	public partial class FileParameterControl : UserControl{
 		private readonly string filter;
 		private readonly bool save;

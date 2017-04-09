@@ -1,7 +1,7 @@
 ﻿using System;
 using BaseLibS.Param;
 
-namespace BaseLib.Param{
+namespace BaseLibC.Param{
 	public static class WinFormsParameterFactory{
 		/// <summary>
 		/// Convert <see cref="BaseLibS.Param"/> to <see cref="BaseLib.Param"/>

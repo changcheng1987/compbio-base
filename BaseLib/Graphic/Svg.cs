@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace BaseLib.Graphic{
+namespace BaseLibC.Graphic{
 	/// <remarks/>
 	[Serializable, System.Diagnostics.DebuggerStepThrough,
 	 System.Xml.Serialization.XmlType(AnonymousType = true, Namespace = "http://www.w3.org/2000/svg"),

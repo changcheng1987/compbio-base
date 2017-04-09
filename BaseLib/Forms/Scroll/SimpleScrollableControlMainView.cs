@@ -1,9 +1,9 @@
 using System;
-using BaseLib.Graphic;
+using BaseLibC.Graphic;
 using BaseLibS.Graph;
 using BaseLibS.Graph.Base;
 
-namespace BaseLib.Forms.Scroll{
+namespace BaseLibC.Forms.Scroll{
 	internal sealed class SimpleScrollableControlMainView : BasicView{
 		private ZoomButtonState state = ZoomButtonState.Neutral;
 		private readonly SimpleScrollableControl main;

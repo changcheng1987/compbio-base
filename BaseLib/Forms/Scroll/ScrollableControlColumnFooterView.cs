@@ -1,7 +1,7 @@
 using System;
 using BaseLibS.Graph;
 
-namespace BaseLib.Forms.Scroll{
+namespace BaseLibC.Forms.Scroll{
 	internal sealed class ScrollableControlColumnFooterView : ScrollComponentView{
 		internal ScrollableControlColumnFooterView(CompoundScrollableControl main) : base(main) {}
 

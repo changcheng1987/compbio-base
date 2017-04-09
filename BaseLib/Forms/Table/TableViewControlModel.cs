@@ -9,7 +9,7 @@ using BaseLibS.Symbol;
 using BaseLibS.Table;
 using BaseLibS.Util;
 
-namespace BaseLib.Forms.Table{
+namespace BaseLibC.Forms.Table{
 	public class TableViewControlModel : ICompoundScrollableControlModel{
 		private const int rowHeight = 22;
 		private static readonly Pen2 gridPen = new Pen2(Color2.FromArgb(172, 168, 153));

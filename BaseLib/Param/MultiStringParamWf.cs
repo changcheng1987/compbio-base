@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using BaseLibS.Param;
 using BaseLibS.Util;
 
-namespace BaseLib.Param{
+namespace BaseLibC.Param{
 	[Serializable]
 	internal class MultiStringParamWf : MultiStringParam{
 		[NonSerialized] private TextBox control;

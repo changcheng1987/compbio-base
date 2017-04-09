@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace BaseLib.Graphic{
+namespace BaseLibC.Graphic{
 	public sealed class BitmapGraphics : WindowsBasedGraphics{
 		public Bitmap Bitmap { get; }
 		private readonly string filename;

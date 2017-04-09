@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using BaseLibS.Util;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	public partial class DictionaryIntValueControl : UserControl{
 		public DictionaryIntValueControl(){
 			InitializeComponent();

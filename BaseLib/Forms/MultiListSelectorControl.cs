@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using BaseLibS.Num;
 using BaseLibS.Param;
 
-namespace BaseLib.Forms{
+namespace BaseLibC.Forms{
 	public partial class MultiListSelectorControl : UserControl{
 		public event EventHandler SelectionChanged;
 		public IList<string> items;

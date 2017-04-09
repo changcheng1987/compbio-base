@@ -13,7 +13,7 @@ namespace BaseLib.Test
         public void TestMethod1()
         {
             var stream = new MemoryStream();
-            var svg = new BaseLib.Graphic.SvgGraphics("D:\\test.svg", 100, 100);
+            var svg = new BaseLibC.Graphic.SvgGraphics("D:\\test.svg", 100, 100);
             svg.DrawLine(new Pen2(Color2.Aqua), 0f, 0f, 1f, 1f);
             svg.Close();
             var x = stream.ToArray();

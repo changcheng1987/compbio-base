@@ -1,8 +1,8 @@
 using System;
-using BaseLib.Forms;
+using BaseLibC.Forms;
 using BaseLibS.Param;
 
-namespace BaseLib.Param{
+namespace BaseLibC.Param{
 	//TODO should be internal
 	[Serializable]
 	public class FileParamWf : FileParam{

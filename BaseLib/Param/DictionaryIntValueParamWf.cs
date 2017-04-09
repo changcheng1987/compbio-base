@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using BaseLib.Forms;
+using BaseLibC.Forms;
 using BaseLibS.Param;
 
-namespace BaseLib.Param{
+namespace BaseLibC.Param{
 	[Serializable]
 	internal class DictionaryIntValueParamWf : DictionaryIntValueParam{
 		[NonSerialized] private DictionaryIntValueControl control;

@@ -1,6 +1,6 @@
-﻿using BaseLib.Forms.Scroll;
+﻿using BaseLibC.Forms.Scroll;
 
-namespace BaseLib.Forms.Table {
+namespace BaseLibC.Forms.Table {
 	partial class FindForm {
 		/// <summary>
 		/// Required designer variable.

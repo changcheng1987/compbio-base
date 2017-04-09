@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace BaseLib.Forms.Table{
+namespace BaseLibC.Forms.Table{
 	public partial class SelectColumnsForm : Form{
 		public SelectColumnsForm(){
 			InitializeComponent();

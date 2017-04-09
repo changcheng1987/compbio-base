@@ -3,7 +3,7 @@ using System.Threading;
 using BaseLibS.Graph;
 using BaseLibS.Graph.Base;
 
-namespace BaseLib.Forms.Scroll{
+namespace BaseLibC.Forms.Scroll{
 	internal sealed class HorizontalScrollBarView : BasicView{
 		private readonly IScrollableControl main;
 		private ScrollBarState state = ScrollBarState.Neutral;

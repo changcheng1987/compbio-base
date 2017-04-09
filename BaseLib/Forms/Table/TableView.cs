@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using BaseLib.Forms.Scroll;
+using BaseLibC.Forms.Scroll;
 using BaseLibS.Num;
 using BaseLibS.Table;
 using BaseLibS.Util;
 
-namespace BaseLib.Forms.Table{
+namespace BaseLibC.Forms.Table{
 	public partial class TableView : UserControl{
 		internal static readonly List<ITableSelectionAgent> selectionAgents = new List<ITableSelectionAgent>();
 		public event EventHandler SelectionChanged;
