@@ -453,6 +453,6 @@ namespace BaseLib.Forms.Scroll{
 			Cursor.Current = GraphUtils.ToCursor(cursor);
 		}
 
-		public float DpiScale => WpfUtils.GetDpiScale(CreateGraphics());
+		public float DpiScale => FormUtils.GetDpiScale(CreateGraphics());
 	}
 }

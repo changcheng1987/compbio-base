@@ -276,7 +276,7 @@ namespace BaseLib.Graphic{
 
 		public abstract void Close();
 		public float GetDpiScale(){
-			return WpfUtils.GetDpiScale(gc);
+			return FormUtils.GetDpiScale(gc);
 		}
 
 		public static Pen GetPen(Pen2 p){

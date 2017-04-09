@@ -325,7 +325,6 @@
     <Compile Include="Forms\Table\TableViewSelectionAgentForm.Designer.cs">
       <DependentUpon>TableViewSelectionAgentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\WpfUtils.cs" />
     <EmbeddedResource Include="Forms\NumericAxisPropertiesForm.resx">
       <DependentUpon>NumericAxisPropertiesForm.cs</DependentUpon>
       <SubType>Designer</SubType>

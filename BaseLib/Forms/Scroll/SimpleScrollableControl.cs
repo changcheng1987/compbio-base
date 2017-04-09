@@ -210,7 +210,7 @@ namespace BaseLib.Forms.Scroll{
 			ExportGraphics.ExportGraphic(this, name, showDialog);
 		}
 
-		public float DpiScale => WpfUtils.GetDpiScale(CreateGraphics());
+		public float DpiScale => FormUtils.GetDpiScale(CreateGraphics());
 
 		public Tuple<int, int> GetOrigin(){
 			Point q = PointToScreen(new Point(0, 0));
