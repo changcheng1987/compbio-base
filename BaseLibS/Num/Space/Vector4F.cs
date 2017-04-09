@@ -81,5 +81,9 @@ namespace BaseLibS.Num.Space{
 			double dw = W - p1.W;
 			return (float) Math.Sqrt(dx*dx + dy*dy + dz*dz + dw*dw);
 		}
+
+		public string Escape(){
+			return "{" + X + " " + Y + " " + Z + " " + W + "}";
+		}
 	}
 }

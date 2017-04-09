@@ -21,9 +21,20 @@ namespace BaseLibS.Num.Space{
 			z = vec.z;
 		}
 
-		public float X { get { return x; } set { x = value; } }
-		public float Y { get { return y; } set { y = value; } }
-		public float Z { get { return z; } set { z = value; } }
+		public float X{
+			get { return x; }
+			set { x = value; }
+		}
+
+		public float Y{
+			get { return y; }
+			set { y = value; }
+		}
+
+		public float Z{
+			get { return z; }
+			set { z = value; }
+		}
 
 		public Vector3F(float a) : this(a, a, a){}
 
@@ -189,6 +200,10 @@ namespace BaseLibS.Num.Space{
 			double zz = x*v1.y - y*v1.x;
 			double cross = Math.Sqrt(xx*xx + yy*yy + zz*zz);
 			return (float) Math.Abs(Math.Atan2(cross, Dot(v1)));
+		}
+
+		public string Escape(){
+			return "{" + x + " " + y + " " + z + "}";
 		}
 	}
 }
