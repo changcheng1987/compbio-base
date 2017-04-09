@@ -26,13 +26,13 @@ namespace BaseLibS.Graph.Image.Formats.Png.Zlib{
 			}
 			rawStream.WriteByte((byte) cmf);
 			rawStream.WriteByte((byte) flg);
-			CompressionLevel level = CompressionLevel.Optimal;
-			if (compressionLevel >= 1 && compressionLevel <= 5){
-				level = CompressionLevel.Fastest;
-			} else if (compressionLevel == 0){
-				level = CompressionLevel.NoCompression;
-			}
-			deflateStream = new DeflateStream(rawStream, level, true);
+			//CompressionLevel level = CompressionLevel.Optimal;
+			//if (compressionLevel >= 1 && compressionLevel <= 5){
+			//	level = CompressionLevel.Fastest;
+			//} else if (compressionLevel == 0){
+			//	level = CompressionLevel.NoCompression;
+			//}
+			deflateStream = new DeflateStream(rawStream, CompressionMode.Compress, true);
 		}
 
 		public override bool CanRead => false;
