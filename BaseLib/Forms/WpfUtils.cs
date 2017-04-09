@@ -1,9 +1,19 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Drawing;
+using System.Reflection;
 using System.Windows;
 
 namespace BaseLib.Forms{
 	public static class WpfUtils{
-		public static float GetDpiScaleX(){
+		public static float GetDpiScale(Graphics g){
+			try{
+				return g.DpiX/96f;
+			} catch (Exception){
+				return 1f;
+			}
+		}
+
+		public static float GetDpiScale1(){
 			PropertyInfo dpiXProperty = typeof (SystemParameters).GetProperty("DpiX",
 				BindingFlags.NonPublic | BindingFlags.Static);
 			if (dpiXProperty == null){

@@ -240,6 +240,10 @@ namespace BaseLib.Graphic{
 			writer.Close();
 		}
 
+		public float GetDpiScale(){
+			return 1;
+		}
+
 		public void DrawString(string s, Font2 font, Brush2 brush, float x, float y){
 			StringFormat2 format = new StringFormat2{Alignment = StringAlignment2.Near, LineAlignment = StringAlignment2.Near};
 			DrawString(s, font, brush, new Rectangle2(new Point2(x, y), MeasureString(s, font)), format);

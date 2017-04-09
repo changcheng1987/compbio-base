@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using BaseLib.Forms;
 using BaseLibS.Graph;
 
 namespace BaseLib.Graphic{
@@ -274,6 +275,9 @@ namespace BaseLib.Graphic{
 		}
 
 		public abstract void Close();
+		public float GetDpiScale(){
+			return WpfUtils.GetDpiScale(gc);
+		}
 
 		public static Pen GetPen(Pen2 p){
 			return new Pen(Color.FromArgb(p.Color.A, p.Color.R, p.Color.G, p.Color.B), p.Width);

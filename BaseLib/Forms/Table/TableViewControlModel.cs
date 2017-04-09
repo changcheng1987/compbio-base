@@ -67,7 +67,6 @@ namespace BaseLib.Forms.Table{
 			control1.ColumnHeaderHeight = 26;
 			origColumnHeaderHeight = 26;
 			InitContextMenu();
-			float dpiScaleX = WpfUtils.GetDpiScaleX();
 			defaultFont = new Font2("Arial", 9*UserSf);
 			textFont = defaultFont;
 			headerFont = defaultFont;

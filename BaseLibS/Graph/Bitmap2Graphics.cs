@@ -144,5 +144,9 @@
 		public void Close(){
 			throw new System.NotImplementedException();
 		}
+
+		public float GetDpiScale(){
+			throw new System.NotImplementedException();
+		}
 	}
 }

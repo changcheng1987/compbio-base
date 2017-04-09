@@ -32,7 +32,7 @@ namespace BaseLib.Forms.Table{
 
 		public TableView(){
 			InitializeComponent();
-			SfX = WpfUtils.GetDpiScaleX();
+			SfX = WpfUtils.GetDpiScale(CreateGraphics());
 			InitializeComponent2();
 			scaleFactorComboBox.SelectedIndex = 3;
 			tableView = new CompoundScrollableControl{Dock = DockStyle.Fill, Margin = new Padding(0)};

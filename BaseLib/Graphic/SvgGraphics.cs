@@ -470,5 +470,9 @@ namespace BaseLib.Graphic{
 			XmlSerialization.WriteToStream(stream, svg);
 			stream.Close();
 		}
+
+		public float GetDpiScale(){
+			return 1;
+		}
 	}
 }

@@ -20,7 +20,7 @@ namespace BaseLib.Forms.Scroll{
 		}
 
 		public override void OnPaint(IGraphics g, int width, int height){
-			float dpiScale = WpfUtils.GetDpiScaleX();
+			float dpiScale = g.GetDpiScale();
 			IGraphics g1;
 			if (main.ZoomFactor == 1 && dpiScale == 1){
 				g1 = g;
