@@ -261,6 +261,9 @@
     <Compile Include="Num\NumRecipes.cs" />
     <Compile Include="Num\NumUtils.cs" />
     <Compile Include="Num\Random2.cs" />
+    <Compile Include="Num\Space\AxisVector3F.cs" />
+    <Compile Include="Num\Space\Matrix3x3F.cs" />
+    <Compile Include="Num\Space\Quat.cs" />
     <Compile Include="Num\Space\Vector2F.cs" />
     <Compile Include="Num\Space\Vector3D.cs" />
     <Compile Include="Num\Space\Vector3F.cs" />
