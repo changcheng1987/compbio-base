@@ -84,7 +84,7 @@ namespace BaseLibS.Param
 	        reader.ReadStartElement();
 	        if (!isEmpty)
 	        {
-                var serializer = new XmlSerializer(typeof(T));
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
 	            while (reader.NodeType == XmlNodeType.Element)
 	            {
 	                list.Add((T) serializer.Deserialize(reader));
@@ -138,7 +138,7 @@ namespace BaseLibS.Param
         /// <param name="childTag"></param>
         public static void WriteValues<T>(this XmlWriter writer, IList<T> values, string childTag = "Item")
         {
-	        foreach (var value in values)
+	        foreach (T value in values)
 	        {
                 writer.WriteStartElement(childTag);
                 writer.WriteValue(value);

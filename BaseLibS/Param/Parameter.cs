@@ -108,7 +108,7 @@ namespace BaseLibS.Param{
 	    public override void ReadXml(XmlReader reader)
 	    {
             ReadBasicAttributes(reader);
-	        var valueExists = !reader.IsEmptyElement;
+	        bool valueExists = !reader.IsEmptyElement;
             reader.ReadStartElement();
 	        if (valueExists)
 	        {

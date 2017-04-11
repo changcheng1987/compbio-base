@@ -69,7 +69,7 @@ namespace BaseLibS.Graph.Image.Formats.Jpg{
 
 			public HuffmanLut(HuffmanSpec s){
 				int maxValue = 0;
-				foreach (var v in s.values){
+				foreach (byte v in s.values){
 					if (v > maxValue){
 						maxValue = v;
 					}
@@ -98,7 +98,7 @@ namespace BaseLibS.Graph.Image.Formats.Jpg{
 		private JpegSubsample subsample;
 
 		private void WriteByte(byte b){
-			var data = new byte[1];
+			byte[] data = new byte[1];
 			data[0] = b;
 			outputStream.Write(data, 0, 1);
 		}
@@ -148,7 +148,7 @@ namespace BaseLibS.Graph.Image.Formats.Jpg{
 			FDCT.Transform(block);
 			int dc = Round(block[0], 8*quant[(int) index][0]);
 			EmitHuffRle((HuffIndex) (2*(int) index + 0), 0, dc - prevDc);
-			var h = (HuffIndex) (2*(int) index + 1);
+			HuffIndex h = (HuffIndex) (2*(int) index + 1);
 			int runLength = 0;
 			for (int zig = 1; zig < Block.blockSize; zig++){
 				int ac = Round(block[unzig[zig]], 8*quant[(int) index][zig]);
@@ -359,7 +359,7 @@ namespace BaseLibS.Graph.Image.Formats.Jpg{
 			if (nComponent == 1){
 				specs = new[]{theHuffmanSpec[0], theHuffmanSpec[1]};
 			}
-			foreach (var s in specs){
+			foreach (HuffmanSpec s in specs){
 				markerlen += 1 + 16 + s.values.Length;
 			}
 			WriteMarkerHeader(JpegConstants.Markers.DHT, markerlen);

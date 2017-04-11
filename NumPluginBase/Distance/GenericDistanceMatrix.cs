@@ -1,6 +1,7 @@
 ﻿using System;
 using BaseLibS.Api;
 using BaseLibS.Num.Matrix;
+using BaseLibS.Num.Vector;
 
 namespace NumPluginBase.Distance
 {
@@ -23,7 +24,7 @@ namespace NumPluginBase.Distance
 
         public double[,] AsQuadratic()
         {
-            var distances = new double[N, N];
+            double[,] distances = new double[N, N];
             for (int i = 0; i < N; i++)
             {
                 for (int j = 0; j < N; j++)
@@ -46,7 +47,7 @@ namespace NumPluginBase.Distance
             int k = 0;
             for (int i = 0; i < N; i++)
             {
-                var xi = data.GetRow(i);
+                BaseVector xi = data.GetRow(i);
                 for (int j = i+1; j < N; j++)
                 {
                     _distances[k++] = distance.Get(xi, data.GetRow(j));
@@ -72,7 +73,7 @@ namespace NumPluginBase.Distance
         {
             N = distances.GetLength(0);
             _distances = new double[N];
-            var k = 0;
+            int k = 0;
             for (int i = 1; i < N; i++)
             {
                 for (int j = i+1; j < N; j++)
@@ -86,7 +87,7 @@ namespace NumPluginBase.Distance
         {
             get
             {
-                var comp = i.CompareTo(j);
+                int comp = i.CompareTo(j);
                 if (comp == 0)
                 {
                     return 0.0;

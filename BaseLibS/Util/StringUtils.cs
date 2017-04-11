@@ -211,7 +211,7 @@ namespace BaseLibS.Util{
 				return "";
 			}
 			StringBuilder s = new StringBuilder();
-		    var _separator = ""; // empty separator for first element
+		    string _separator = ""; // empty separator for first element
 			foreach (T i in o){
 				string w = _separator + i;
 				s.Append(w);

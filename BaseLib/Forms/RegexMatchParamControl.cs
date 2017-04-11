@@ -38,14 +38,14 @@ namespace BaseLib.Forms{
 			string[] groupNames = regex.GetGroupNames().Skip(1).ToArray();
 			const string inputColumn = "Input";
 			table.Columns.Add(inputColumn);
-			foreach (var groupName in groupNames){
+			foreach (string groupName in groupNames){
 				table.Columns.Add(groupName);
 			}
 			foreach (string s in preview){
 				Match match = regex.Match(s);
 				DataRow row = table.NewRow();
 				row[inputColumn] = s;
-				foreach (var groupName in groupNames){
+				foreach (string groupName in groupNames){
 					row[groupName] = match.Groups[groupName];
 				}
 				table.Rows.Add(row);

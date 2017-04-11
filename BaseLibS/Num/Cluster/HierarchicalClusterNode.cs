@@ -45,8 +45,8 @@ namespace BaseLibS.Num.Cluster{
         {
             if (obj == null || GetType() != obj.GetType())
                 return false;
-            var other = (HierarchicalClusterNode) obj;
-            var sameOrFlipped = ((left == other.left) && (right == other.right)) || ((right == other.left) && (left == other.right));
+            HierarchicalClusterNode other = (HierarchicalClusterNode) obj;
+            bool sameOrFlipped = ((left == other.left) && (right == other.right)) || ((right == other.left) && (left == other.right));
             return sameOrFlipped && (Math.Abs(distance - other.distance) < 0.0001);
         }
         
@@ -59,8 +59,8 @@ namespace BaseLibS.Num.Cluster{
         /// <returns></returns>
 	    public static HierarchicalClusterNode[] FromRFormat(int[] left, int[] right, double[] distance)
 	    {
-	        var n = distance.Length;
-	        var nodes = new HierarchicalClusterNode[n];
+	        int n = distance.Length;
+	        HierarchicalClusterNode[] nodes = new HierarchicalClusterNode[n];
 	        for (int i = 0; i < n; i++)
 	        {
 	            nodes[i] = new HierarchicalClusterNode

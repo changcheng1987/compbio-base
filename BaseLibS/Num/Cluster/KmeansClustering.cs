@@ -42,11 +42,11 @@ namespace BaseLibS.Num.Cluster{
 
 		private static void ExtractUniqueRows(MatrixIndexer data,
 			out Dictionary<EquatableArray<double>, List<int>> rowIndexMap, out double[][] reducedData){
-			var uniqueRows = new List<double[]>();
+			List<double[]> uniqueRows = new List<double[]>();
 			rowIndexMap = new Dictionary<EquatableArray<double>, List<int>>();
 			for (int row = 0; row < data.RowCount; row++){
-				var rowArray = data.GetRow(row).ToArray();
-				var rowEqArray = new EquatableArray<double>(rowArray);
+				double[] rowArray = data.GetRow(row).ToArray();
+				EquatableArray<double> rowEqArray = new EquatableArray<double>(rowArray);
 				if (!rowIndexMap.ContainsKey(rowEqArray)){
 					rowIndexMap.Add(rowEqArray, new List<int>());
 					uniqueRows.Add(rowArray);
@@ -66,7 +66,7 @@ namespace BaseLibS.Num.Cluster{
 			if (npoints <= k){
 				clusterCenters = new float[npoints, nvars];
 				for (int i = 0; i < npoints; i++){
-					var rowData = data[i];
+					double[] rowData = data[i];
 					for (int j = 0; j < nvars; j++){
 						clusterCenters[i, j] = (float) rowData[j];
 					}
@@ -83,9 +83,9 @@ namespace BaseLibS.Num.Cluster{
 			// Multiple passes of k-means algorithm
 			//
 			var bestPass = Enumerable.Range(0, restarts).AsParallel().Select(pass =>{
-				var ct = SelectInitialCenters(data, npoints, nvars, k);
-				var localClusterIndices = UpdateCenterPositions(data, k, maxIter, restarts, progress, npoints, pass, nvars, ct);
-				var e = CalculateE(data, localClusterIndices, npoints, nvars, ct);
+				double[,] ct = SelectInitialCenters(data, npoints, nvars, k);
+				int[] localClusterIndices = UpdateCenterPositions(data, k, maxIter, restarts, progress, npoints, pass, nvars, ct);
+				double e = CalculateE(data, localClusterIndices, npoints, nvars, ct);
 				return new{ct, localClusterIndices, e};
 			}).Aggregate((best, current) => best.e > current.e ? best : current);
 			clusterCenters = ArrayUtils.ToFloats(bestPass.ct);
@@ -96,7 +96,7 @@ namespace BaseLibS.Num.Cluster{
 		private static double CalculateE(double[][] data, int[] clusterIndices, int npoints, int nvars, double[,] ct){
 			double e = 0;
 			for (int i = 0; i < npoints; i++){
-				var rowData = data[i];
+				double[] rowData = data[i];
 				double v = 0.0;
 				double c = 0;
 				for (int l = 0; l < nvars; l++){
@@ -114,11 +114,11 @@ namespace BaseLibS.Num.Cluster{
 
 		private static int[] UpdateCenterPositions(double[][] data, int k, int maxIter, int restarts, Action<int> progress,
 			int npoints, int pass, int nvars, double[,] ct){
-			var cbusy = new bool[k];
+			bool[] cbusy = new bool[k];
 			for (int i = 0; i < k; i++){
 				cbusy[i] = false;
 			}
-			var clusterIndices = new int[npoints];
+			int[] clusterIndices = new int[npoints];
 			for (int i = 0; i < npoints; i++){
 				clusterIndices[i] = -1;
 			}
@@ -127,7 +127,7 @@ namespace BaseLibS.Num.Cluster{
 				// assign items to clusters
 				bool wereChanges = false;
 				for (int i = 0; i < npoints; i++){
-					var rowData = data[i];
+					double[] rowData = data[i];
 					int cclosest = -1;
 					double dclosest = double.MaxValue;
 					for (int j = 0; j < k; j++){
@@ -160,7 +160,7 @@ namespace BaseLibS.Num.Cluster{
 				}
 				int[,] counts = new int[k, nvars];
 				for (int i = 0; i < npoints; i++){
-					var rowData = data[i];
+					double[] rowData = data[i];
 					int cind = clusterIndices[i];
 					if (cind < 0){
 						continue;
@@ -203,7 +203,7 @@ namespace BaseLibS.Num.Cluster{
 		}
 
 		private static double[,] SelectInitialCenters(double[][] xy, int npoints, int nvars, int k){
-			var busycenters = new bool[npoints];
+			bool[] busycenters = new bool[npoints];
 			for (int i = 0; i < k; i++){
 				busycenters[i] = false;
 			}
@@ -215,7 +215,7 @@ namespace BaseLibS.Num.Cluster{
 			int k){
 			int[] perm = randy.NextPermutation(npoints);
 			for (int cc = 0; cc < k; cc++){
-				var row = xy[perm[cc]];
+				double[] row = xy[perm[cc]];
 				if (!busycenters[cc]){
 					for (int i = 0; i < nvars; i++){
 						centers[cc, i] = row[i];

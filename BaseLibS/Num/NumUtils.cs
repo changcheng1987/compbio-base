@@ -1313,11 +1313,11 @@ namespace BaseLibS.Num{
 		/// <returns>Rank array</returns>
 		private static double[] Rank(List<double> x, out List<int> sumDuplicates){
 			sumDuplicates = new List<int>();
-			var xx = x.Select((a, b) => new KeyValuePair<double, int>(a, b)).OrderBy(a => a.Key).ToList();
-			var xSortedIndex = xx.Select(a => a.Value).ToArray();
-			var xSorted = xx.Select(a => a.Key).ToArray();
-			var n = xSorted.Length;
-			var result = new double[n];
+			List<KeyValuePair<double, int>> xx = x.Select((a, b) => new KeyValuePair<double, int>(a, b)).OrderBy(a => a.Key).ToList();
+			int[] xSortedIndex = xx.Select(a => a.Value).ToArray();
+			double[] xSorted = xx.Select(a => a.Key).ToArray();
+			int n = xSorted.Length;
+			double[] result = new double[n];
 			int duplicates = 0, sumRank = 0, i;
 			for (i = 0; i < n; i++){
 				sumRank += i;

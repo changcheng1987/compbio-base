@@ -60,7 +60,7 @@ namespace BaseLib.Forms
             {
                 try
                 {
-                    var pattern = new Regex(value);
+                    Regex pattern = new Regex(value);
                     if (_pattern != pattern)
                     {
                         _pattern = pattern;

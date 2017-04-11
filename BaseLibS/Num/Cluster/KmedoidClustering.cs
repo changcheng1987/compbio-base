@@ -32,15 +32,15 @@ namespace BaseLibS.Num.Cluster
         /// <returns>Array of length n. <code>assignment[i]</code> returns the index of the cluster medoid in the data matrix.</returns>
         public static int[] GenerateClusters(MatrixIndexer data, IDistanceMatrix distance, int k)
         {
-            var n = data.RowCount;
-            var medoids = SelectInitialMedoids(distance, k, n);
-            var assignments = AssignClusters(distance, medoids, n);
-            var cost = CalculateCost(distance, assignments);
+            int n = data.RowCount;
+            int[] medoids = SelectInitialMedoids(distance, k, n);
+            int[] assignments = AssignClusters(distance, medoids, n);
+            double cost = CalculateCost(distance, assignments);
             while (true)
             {
                 medoids = SelectMedoids(distance, assignments);
                 assignments = AssignClusters(distance, medoids, n);
-                var newCost = CalculateCost(distance, assignments);
+                double newCost = CalculateCost(distance, assignments);
                 if (Math.Abs(newCost - cost) < 1E-10)
                 {
                     break;
@@ -52,18 +52,18 @@ namespace BaseLibS.Num.Cluster
 
         internal static int[] SelectMedoids(IDistanceMatrix distance, int[] assignments)
         {
-            var medoids = new List<int>();
-            var clusters = assignments.Select((x, i) => new {Value = x, Index = i})
+            List<int> medoids = new List<int>();
+            int[][] clusters = assignments.Select((x, i) => new {Value = x, Index = i})
                 .GroupBy(obj => obj.Value)
                 .Select(grp => grp.Select(obj => obj.Index).ToArray()).ToArray();
-            foreach (var cluster in clusters)
+            foreach (int[] cluster in clusters)
             {
-                var withinClusterDistance = double.PositiveInfinity;
-                var medoid = 0;
-                foreach (var newMedoid in cluster)
+                double withinClusterDistance = double.PositiveInfinity;
+                int medoid = 0;
+                foreach (int newMedoid in cluster)
                 {
-                    var newWithinClusterDistance = 0.0;
-                    foreach (var point in cluster)
+                    double newWithinClusterDistance = 0.0;
+                    foreach (int point in cluster)
                     {
                         newWithinClusterDistance += distance[newMedoid, point];
                     }
@@ -80,7 +80,7 @@ namespace BaseLibS.Num.Cluster
 
         internal static double CalculateCost(IDistanceMatrix distance, int[] assignments)
         {
-            var cost = 0.0;
+            double cost = 0.0;
             for (int i = 0; i < assignments.Length; i++)
             {
                 cost += distance[i, assignments[i]];
@@ -90,14 +90,14 @@ namespace BaseLibS.Num.Cluster
 
         internal static int[] AssignClusters(IDistanceMatrix distance, int[] medoids, int n)
         {
-            var assignments = new int[n];
+            int[] assignments = new int[n];
             for (int point = 0; point < n; point++)
             {
-                var d = double.PositiveInfinity;
-                var assigned = 0;
-                foreach (var medoid in medoids)
+                double d = double.PositiveInfinity;
+                int assigned = 0;
+                foreach (int medoid in medoids)
                 {
-                    var dNew = distance[point, medoid];
+                    double dNew = distance[point, medoid];
                     if (dNew < d)
                     {
                         d = dNew;
@@ -111,33 +111,33 @@ namespace BaseLibS.Num.Cluster
 
         internal static int[] SelectInitialMedoids(IDistanceMatrix distance, int k, int n)
         {
-            var sumD = new double[n];
+            double[] sumD = new double[n];
             for (int i = 0; i < n; i++)
             {
-                var sumDil = 0.0;
+                double sumDil = 0.0;
                 for (int l = 0; l < n; l++)
                 {
                     sumDil += distance[i, l];
                 }
                 sumD[i] = sumDil;
             }
-            var v = new double[n];
+            double[] v = new double[n];
             for (int j = 0; j < n; j++)
             {
-                var vj = 0.0;
+                double vj = 0.0;
                 for (int i = 0; i < n; i++)
                 {
                     vj += distance[i, j]/sumD[i];
                 }
                 v[j] = vj;
             }
-            var idx = new int[n];
+            int[] idx = new int[n];
             for (int i = 0; i < n; i++)
             {
                 idx[i] = i;
             }
             Array.Sort(v, idx);
-            var medoids = new int[k];
+            int[] medoids = new int[k];
             Array.Copy(idx, medoids, k);
             return medoids;
         }

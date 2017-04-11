@@ -19,7 +19,7 @@ namespace BaseLibS.Graph.Image.Formats.Png.Zlib{
 			if ((cmf & 0x0f) != 8){
 				throw new Exception($"Bad compression method for ZLIB header: cmf={cmf}");
 			}
-			var fdict = (flag & 32) != 0;
+			bool fdict = (flag & 32) != 0;
 			if (fdict){
 				byte[] dictId = new byte[4];
 				for (int i = 0; i < 4; i++){

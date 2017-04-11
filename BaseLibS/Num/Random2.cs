@@ -144,7 +144,7 @@ namespace BaseLibS.Num{
 			for (int i = 0; i < nsampling; i++){
 				int[] perm = NextPermutation(n);
 				const int start = 0;
-				var end = (int) Math.Round(n/(double) nfold);
+				int end = (int) Math.Round(n/(double) nfold);
 				test[i] = ArrayUtils.SubArray(perm, start, end);
 				train[i] = ArrayUtils.SubArray(perm, end, perm.Length);
 			}

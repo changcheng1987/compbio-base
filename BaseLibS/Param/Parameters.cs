@@ -204,7 +204,7 @@ namespace BaseLibS.Param{
 
 	    public void ReadXml(XmlReader reader)
 	    {
-	        var serializer = new XmlSerializer(typeof(ParameterGroup));
+	        XmlSerializer serializer = new XmlSerializer(typeof(ParameterGroup));
 	        bool isEmpty = reader.IsEmptyElement;
 	        reader.ReadStartElement();
 	        if (!isEmpty)
@@ -219,9 +219,9 @@ namespace BaseLibS.Param{
 
 	    public void WriteXml(XmlWriter writer)
 	    {
-	        foreach (var paramGrp in paramGroups)
+	        foreach (ParameterGroup paramGrp in paramGroups)
 	        {
-                var paramSerializer = new XmlSerializer(paramGrp.GetType());
+                XmlSerializer paramSerializer = new XmlSerializer(paramGrp.GetType());
 	            paramSerializer.Serialize(writer, paramGrp);
 	        }
 	    }

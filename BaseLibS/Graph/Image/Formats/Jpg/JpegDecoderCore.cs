@@ -70,7 +70,7 @@ namespace BaseLibS.Graph.Image.Formats.Jpg{
 
 		private void EnsureNBits(int n){
 			while (true){
-				var c = ReadByteStuffedByte();
+				byte c = ReadByteStuffedByte();
 				bits.a = (bits.a << 8) | c;
 				bits.n += 8;
 				if (bits.m == 0){
@@ -813,7 +813,7 @@ namespace BaseLibS.Graph.Image.Formats.Jpg{
 								if (zig <= zigEnd && eobRun > 0){
 									eobRun--;
 								} else{
-									var huffv = huff[acTable, scan[i].ta];
+									Huffman huffv = huff[acTable, scan[i].ta];
 									for (; zig <= zigEnd; zig++){
 										byte value = DecodeHuffman(huffv);
 										byte val0 = (byte) (value >> 4);
@@ -930,7 +930,7 @@ namespace BaseLibS.Graph.Image.Formats.Jpg{
 				for (; zig <= zigEnd; zig++){
 					bool done = false;
 					int z = 0;
-					var val = DecodeHuffman(h);
+					byte val = DecodeHuffman(h);
 					int val0 = val >> 4;
 					int val1 = val & 0x0f;
 					switch (val1){
@@ -997,14 +997,14 @@ namespace BaseLibS.Graph.Image.Formats.Jpg{
 
 		private void MakeImg(int mxx, int myy){
 			if (nComp == 1){
-				var m = new GrayImage(8*mxx, 8*myy);
+				GrayImage m = new GrayImage(8*mxx, 8*myy);
 				grayImage = m.subimage(0, 0, width, height);
 			} else{
-				var h0 = comp[0].h;
-				var v0 = comp[0].v;
-				var hRatio = h0/comp[1].h;
-				var vRatio = v0/comp[1].v;
-				var ratio = YCbCrImage.YCbCrSubsampleRatio.YCbCrSubsampleRatio444;
+				int h0 = comp[0].h;
+				int v0 = comp[0].v;
+				int hRatio = h0/comp[1].h;
+				int vRatio = v0/comp[1].v;
+				YCbCrImage.YCbCrSubsampleRatio ratio = YCbCrImage.YCbCrSubsampleRatio.YCbCrSubsampleRatio444;
 				switch ((hRatio << 4) | vRatio){
 					case 0x11:
 						ratio = YCbCrImage.YCbCrSubsampleRatio.YCbCrSubsampleRatio444;
@@ -1025,7 +1025,7 @@ namespace BaseLibS.Graph.Image.Formats.Jpg{
 						ratio = YCbCrImage.YCbCrSubsampleRatio.YCbCrSubsampleRatio410;
 						break;
 				}
-				var m = new YCbCrImage(8*h0*mxx, 8*v0*myy, ratio);
+				YCbCrImage m = new YCbCrImage(8*h0*mxx, 8*v0*myy, ratio);
 				ycbcrImage = m.Subimage(0, 0, width, height);
 			}
 		}
@@ -1118,7 +1118,7 @@ namespace BaseLibS.Graph.Image.Formats.Jpg{
 			}
 
 			public YCbCrImage Subimage(int x, int y, int w, int h){
-				var ret = new YCbCrImage{
+				YCbCrImage ret = new YCbCrImage{
 					w = w,
 					h = h,
 					pix_y = pix_y,
@@ -1174,7 +1174,7 @@ namespace BaseLibS.Graph.Image.Formats.Jpg{
 			}
 
 			public GrayImage subimage(int x, int y, int w, int h){
-				var ret = new GrayImage{w = w, h = h, pixels = pixels, stride = stride, offset = y*stride + x};
+				GrayImage ret = new GrayImage{w = w, h = h, pixels = pixels, stride = stride, offset = y*stride + x};
 				return ret;
 			}
 

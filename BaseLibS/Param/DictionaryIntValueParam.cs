@@ -70,13 +70,13 @@ namespace BaseLibS.Param{
 	    public override void WriteXml(XmlWriter writer)
 	    {
             WriteBasicAttributes(writer);
-            var value = new SerializableDictionary<string, int>(Value);
-            var serializer = new XmlSerializer(value.GetType());
+            SerializableDictionary<string, int> value = new SerializableDictionary<string, int>(Value);
+            XmlSerializer serializer = new XmlSerializer(value.GetType());
             writer.WriteStartElement("Value");
             serializer.Serialize(writer, value);
             writer.WriteEndElement();
             writer.WriteStartElement("Keys");
-	        foreach (var key in Keys)
+	        foreach (string key in Keys)
 	        {
 	            writer.WriteElementString("Key", key);
 	        }
@@ -86,7 +86,7 @@ namespace BaseLibS.Param{
 	    public override void ReadXml(XmlReader reader)
 	    {
 	        ReadBasicAttributes(reader);
-            var serializer = new XmlSerializer(typeof(SerializableDictionary<string, int>));
+            XmlSerializer serializer = new XmlSerializer(typeof(SerializableDictionary<string, int>));
             reader.ReadStartElement();
             reader.ReadStartElement("Value");
 	        Value = ((SerializableDictionary<string, int>) serializer.Deserialize(reader)).ToDictionary();

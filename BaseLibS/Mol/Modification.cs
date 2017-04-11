@@ -61,7 +61,7 @@ namespace BaseLibS.Mol{
 			set{
 				sites = value;
 				sitesMap = new Dictionary<char, ModificationSite>();
-				foreach (var modificationSite in sites){
+				foreach (ModificationSite modificationSite in sites){
 					sitesMap.Add(modificationSite.Aa, modificationSite);
 				}
 			}

@@ -2365,7 +2365,7 @@ namespace BaseLibS.Num{
 			int validCount;
 			double stddev;
 			double mean = MeanAndStddev(vals, out stddev, out validCount, useMedian);
-			var result = new float[vals.Count];
+			float[] result = new float[vals.Count];
 			if (validCount < 3){
 				for (int i = 0; i < result.Length; i++){
 					result[i] = float.NaN;
@@ -2431,7 +2431,7 @@ namespace BaseLibS.Num{
 
 		public static double MeanAbsoluteDeviation(IList<double> x){
 			double median = Median(x);
-			var w = new List<double>();
+			List<double> w = new List<double>();
 			foreach (double t in x){
 				w.Add(Math.Abs(median - t));
 			}
@@ -2439,7 +2439,7 @@ namespace BaseLibS.Num{
 		}
 
 		public static HashSet<T> ToHashSet<T>(IEnumerable<T> x){
-			var result = new HashSet<T>();
+			HashSet<T> result = new HashSet<T>();
 			foreach (T t in x){
 				result.Add(t);
 			}
@@ -2447,7 +2447,7 @@ namespace BaseLibS.Num{
 		}
 
 		private static int[] SplitIndices(int n, int k){
-			var result = new int[k + 1];
+			int[] result = new int[k + 1];
 			for (int i = 0; i < k + 1; i++){
 				result[i] = (int) Math.Round(i/(double) k*n);
 			}

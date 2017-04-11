@@ -51,8 +51,8 @@ namespace BaseLibS.Param{
 	    {
 	        reader.ReadStartElement();
 	        reader.ReadStartElement("Value");
-	        var regex = new Regex(reader.ReadElementContentAsString());
-	        var replace = reader.ReadElementContentAsString();
+	        Regex regex = new Regex(reader.ReadElementContentAsString());
+	        string replace = reader.ReadElementContentAsString();
 	        Value = Tuple.Create(regex, replace);
 	        reader.ReadEndElement();
 	    }
@@ -67,7 +67,7 @@ namespace BaseLibS.Param{
             writer.WriteEndElement();
             // Previews
             writer.WriteStartElement("Previews");
-	        foreach (var preview in Previews)
+	        foreach (string preview in Previews)
 	        {
                 writer.WriteElementString("Preview", preview);
 	        }

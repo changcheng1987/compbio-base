@@ -66,7 +66,7 @@ namespace BaseLibS.Param{
 	        ReadBasicAttributes(reader);
             reader.ReadStartElement();
 	        Value = reader.ReadElementContentAsBoolean("Value", "");
-            var serializer = new XmlSerializer(SubParamsFalse.GetType());
+            XmlSerializer serializer = new XmlSerializer(SubParamsFalse.GetType());
             reader.ReadStartElement("SubParamsFalse");
 	        SubParamsFalse = (Parameters) serializer.Deserialize(reader);
             reader.ReadEndElement();
@@ -82,7 +82,7 @@ namespace BaseLibS.Param{
             writer.WriteStartElement("Value");
             writer.WriteValue(Value);
             writer.WriteEndElement();
-            var serializer = new XmlSerializer(SubParamsTrue.GetType());
+            XmlSerializer serializer = new XmlSerializer(SubParamsTrue.GetType());
             writer.WriteStartElement("SubParamsFalse");
             serializer.Serialize(writer, SubParamsFalse);
             writer.WriteEndElement();

@@ -11,8 +11,8 @@ namespace NumPluginBase.Test
         [TestMethod]
         public void TestGeneralDistanceMatrix()
         {
-            var distance = new EuclideanDistance();
-            var distanceMatrix = new GenericDistanceMatrix(new FloatMatrixIndexer(new float[,] { {0,0}, {1,0}, {3,0} }), distance);
+            EuclideanDistance distance = new EuclideanDistance();
+            GenericDistanceMatrix distanceMatrix = new GenericDistanceMatrix(new FloatMatrixIndexer(new float[,] { {0,0}, {1,0}, {3,0} }), distance);
             Assert.AreEqual(0, distanceMatrix[0,0]);
             Assert.AreEqual(0, distanceMatrix[2,2]);
             Assert.AreEqual(distanceMatrix[1,2], distanceMatrix[2,1]);

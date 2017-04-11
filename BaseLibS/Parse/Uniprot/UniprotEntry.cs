@@ -262,11 +262,11 @@ namespace BaseLibS.Parse.Uniprot{
         public List<UniprotEntry> ResolveIsoforms(Dictionary<string, List<string>> isoformToEnsembl){
             DbReferenceType dbRefType = DbReferenceType.ensembl;
             List<UniprotEntry> isoforms = new List<UniprotEntry>();
-            foreach (var isofToEnsembl in isoformToEnsembl){
+            foreach (KeyValuePair<string, List<string>> isofToEnsembl in isoformToEnsembl){
                 UniprotEntry modEntry = CopyEntry();
                 modEntry.dbEntries.Remove(dbRefType);
                 Dictionary<string, UniprotDbReference> enstToData = new Dictionary<string, UniprotDbReference>();
-                foreach (var enst in isofToEnsembl.Value){
+                foreach (string enst in isofToEnsembl.Value){
                     enstToData.Add(enst, dbEntries[dbRefType][enst]);
                 }
                 modEntry.dbEntries.Add(dbRefType, enstToData);
@@ -284,7 +284,7 @@ namespace BaseLibS.Parse.Uniprot{
                 foreach (string id in dbRefIDs){
                     newEntry.AddDbEntry(refType.UniprotName, id);
                     foreach (KeyValuePair<string, List<string>> property in dbEntries[refType][id].properties){
-                        foreach (var propertyValue in property.Value){
+                        foreach (string propertyValue in property.Value){
                             newEntry.AddDbEntryProperty(refType.UniprotName, id, property.Key, propertyValue);
                         }
                     }

@@ -99,10 +99,10 @@ namespace BaseLibS.Param{
 	    {
             WriteBasicAttributes(writer);
             writer.WriteStartElement("Value");
-	        foreach (var labels in Value)
+	        foreach (int[] labels in Value)
 	        {
                 writer.WriteStartElement("Items");
-	            foreach (var label in labels)
+	            foreach (int label in labels)
 	            {
 	                writer.WriteStartElement("Item");
                     writer.WriteValue(label);

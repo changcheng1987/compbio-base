@@ -121,8 +121,8 @@ namespace BaseLibS.Param{
 			reader.ReadStartElement();
 			if (!isEmpty){
 				while (reader.NodeType == XmlNodeType.Element){
-					var type = Type.GetType(reader.GetAttribute("Type"));
-					var param = (Parameter) new XmlSerializer(type).Deserialize(reader);
+					Type type = Type.GetType(reader.GetAttribute("Type"));
+					Parameter param = (Parameter) new XmlSerializer(type).Deserialize(reader);
 					parameters.Add(param);
 				}
 				reader.ReadEndElement();
@@ -134,7 +134,7 @@ namespace BaseLibS.Param{
 			writer.WriteStartAttribute("CollapsedDefault");
 			writer.WriteValue(CollapsedDefault);
 			writer.WriteEndAttribute();
-			foreach (var parameter in parameters){
+			foreach (Parameter parameter in parameters){
 				new XmlSerializer(parameter.GetType()).Serialize(writer, parameter);
 			}
 		}

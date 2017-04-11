@@ -52,7 +52,7 @@ namespace BaseLibS.Param{
             writer.WriteValue(Value.ToString());
             writer.WriteEndElement();
             writer.WriteStartElement("Previews");
-	        foreach (var preview in Previews)
+	        foreach (string preview in Previews)
 	        {
 	            writer.WriteElementString("Preview", preview);
 	        }

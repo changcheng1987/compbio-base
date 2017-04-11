@@ -112,9 +112,9 @@ namespace BaseLibS.Param{
             writer.WriteValue(Value);
             writer.WriteEndElement();
             writer.WriteValues("Values", Values);
-            var serializer = new XmlSerializer(typeof(Parameters));
+            XmlSerializer serializer = new XmlSerializer(typeof(Parameters));
             writer.WriteStartElement("SubParams");
-	        foreach (var parameters in SubParams)
+	        foreach (Parameters parameters in SubParams)
 	        {
 	            serializer.Serialize(writer, parameters);
 	        }
