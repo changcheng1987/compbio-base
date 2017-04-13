@@ -6,8 +6,6 @@
       <sourceFolder url="file://$MODULE_DIR$/../../BaseLibS" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../NumPluginBase" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../NumPluginSvm" isTestSource="false" />
-      <excludeFolder url="file://$MODULE_DIR$/../../BaseLib/BaseLib.Test/bin" />
-      <excludeFolder url="file://$MODULE_DIR$/../../BaseLib/BaseLib.Test/obj" />
       <excludeFolder url="file://$MODULE_DIR$/../../BaseLib/bin" />
       <excludeFolder url="file://$MODULE_DIR$/../../BaseLib/obj" />
       <excludeFolder url="file://$MODULE_DIR$/../../BaseLibS/BaseLibS.Test/bin" />
