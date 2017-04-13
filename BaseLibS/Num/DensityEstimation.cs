@@ -156,7 +156,7 @@ namespace BaseLibS.Num{
 				for (int ii = Math.Max(xind - dx, 0); ii <= Math.Min(xind + dx, xCount - 1); ii++){
 					for (int jj = Math.Max(yind - dy, 0); jj <= Math.Min(yind + dy, yCount - 1); jj++){
 						for (int kk = Math.Max(zind - dz, 0); kk <= Math.Min(zind + dz, zCount - 1); kk++){
-							double[] w = new double[]{ii - xind, jj - yind, kk - zind};
+							double[] w = {ii - xind, jj - yind, kk - zind};
 							double[] b = NumUtils.MatrixTimesVector(hinv, w);
 							vals[ii, jj, kk] += (float) NumUtils.StandardGaussian(b);
 						}

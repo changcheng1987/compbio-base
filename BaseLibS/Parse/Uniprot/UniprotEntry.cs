@@ -75,7 +75,7 @@ namespace BaseLibS.Parse.Uniprot{
 		public string[] UniprotNames { get; set; }
 		public bool IsTrembl { get; set; }
 
-		private static readonly DbReferenceType[] ensemblTypes = new[]{
+		private static readonly DbReferenceType[] ensemblTypes = {
 			DbReferenceType.ensembl, DbReferenceType.ensemblBacteria, DbReferenceType.ensemblFungi,
 			DbReferenceType.ensemblMetazoa, DbReferenceType.ensemblPlants, DbReferenceType.ensemblProtists
 		};

@@ -550,7 +550,7 @@ namespace BaseLibS.Util{
 		/// Contains all the invalid characters of strings for R. These can be replaced
 		/// with the appropriate values with the function <see cref="Replace(string,string[][])"/>.
 		/// </summary>
-		public static readonly string[][] invalidR = new[]{new[]{"\t", ";"}, new[]{"\"", ""}, new[]{"'", ""}, new[]{"?", ""}};
+		public static readonly string[][] invalidR = {new[]{"\t", ";"}, new[]{"\"", ""}, new[]{"'", ""}, new[]{"?", ""}};
 
 		/// <summary>
 		/// Replaces the occurances in the given string of the chs[][0] vector with the chs[][1]. Predefined
