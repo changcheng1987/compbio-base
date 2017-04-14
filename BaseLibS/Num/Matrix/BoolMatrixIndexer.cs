@@ -9,7 +9,7 @@ namespace BaseLibS.Num.Matrix {
 			this.vals = vals;
 		}
 
-		public BoolMatrixIndexer() {}
+		public BoolMatrixIndexer() { }
 
 		public void Init(int nrows, int ncols) {
 			vals = new bool[nrows, ncols];
@@ -75,8 +75,8 @@ namespace BaseLibS.Num.Matrix {
 		public int ColumnCount => vals.GetLength(1);
 
 		public bool this[int i, int j] {
-			get { return vals[i, j]; }
-			set { vals[i, j] = value; }
+			get => vals[i, j];
+			set => vals[i, j] = value;
 		}
 
 		public void Dispose() {

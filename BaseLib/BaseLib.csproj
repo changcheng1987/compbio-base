@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -221,6 +222,7 @@
     <Compile Include="Forms\Table\TableViewSelectionAgentForm.Designer.cs">
       <DependentUpon>TableViewSelectionAgentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UnsafeBitmap.cs" />
     <Compile Include="Graphic\BaseDrawControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
