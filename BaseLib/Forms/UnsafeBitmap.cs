@@ -3,12 +3,12 @@ using System.Drawing;
 using System.Drawing.Imaging;
 
 namespace BaseLib.Forms{
-	internal struct PixelData{
+	public struct PixelData{
 		public byte blue;
 		public byte green;
 		public byte red;
 	}
-	internal unsafe class UnsafeBitmap{
+	public unsafe class UnsafeBitmap{
 		private readonly Graphics graphics;
 		private readonly int bitmapHeight;
 		private readonly int bitmapWidth;
