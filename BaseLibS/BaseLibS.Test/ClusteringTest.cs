@@ -15,18 +15,6 @@ namespace BaseLibS.Test
     [TestClass]
     public class ClusteringTest
     {
-        [TestMethod]
-        [DeploymentItem(@"Examples", "Examples")]
-        public void TestClustering()
-        {
-            HierarchicalClustering hclust = new HierarchicalClustering();
-            float[,] vals = TestUtils.ReadMatrix("Examples/clustering_array_copy_error.txt.gz");
-            FloatMatrixIndexer data = new FloatMatrixIndexer(vals);
-            EuclideanDistance distance = new EuclideanDistance();
-            hclust.TreeClusterKmeans(data, MatrixAccess.Columns, distance, HierarchicalClusterLinkage.Average, false,
-                false, 1, 300, 1, 10,
-                (i) => { });
-        }
 
         [TestMethod]
         public void TestClusterNodeFormat()
