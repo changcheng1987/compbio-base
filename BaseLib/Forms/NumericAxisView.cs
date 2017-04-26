@@ -183,7 +183,7 @@ namespace BaseLib.Forms{
 		}
 
 		public void UpdateRange(double min, double max, bool fullZoom){
-			Boolean changed = false;
+			bool changed = false;
 			if (double.IsNaN(TotalMin)){
 				TotalMin = min;
 				changed = true;
@@ -286,7 +286,7 @@ namespace BaseLib.Forms{
 					x0 = width - 1;
 					g.DrawLine(forePen, xm + x0, ym, xm + x0, ym + height);
 					if (IsValid() && tics != null){
-						int previousstringEnd = -Sign*Int32.MaxValue;
+						int previousstringEnd = -Sign*int.MaxValue;
 						for (int i = 0; i < tics[0].Length; i++){
 							y0 = ModelToView(tics[0][i], width, height);
 							g.DrawLine(majorTicPen, xm + x0, ym + y0, xm + x0 - MajorTickLength, ym + y0);
@@ -320,7 +320,7 @@ namespace BaseLib.Forms{
 					y0 = 0;
 					g.DrawLine(forePen, xm, ym + y0, xm + width, ym + y0);
 					if (IsValid() && tics != null){
-						int previousstringEnd = -Sign*Int32.MaxValue;
+						int previousstringEnd = -Sign*int.MaxValue;
 						for (int i = 0; i < tics[0].Length; i++){
 							x0 = ModelToView(tics[0][i], width, height);
 							g.DrawLine(majorTicPen, xm + x0, ym + y0, xm + x0, ym + y0 + MajorTickLength);
@@ -346,7 +346,7 @@ namespace BaseLib.Forms{
 					x0 = 0;
 					g.DrawLine(forePen, xm + x0, ym, xm + x0, ym + height);
 					if (IsValid() && tics != null){
-						int previousstringEnd = -Sign*Int32.MaxValue;
+						int previousstringEnd = -Sign*int.MaxValue;
 						for (int i = 0; i < tics[0].Length; i++){
 							y0 = ModelToView(tics[0][i], width, height);
 							g.DrawLine(majorTicPen, xm + x0, ym + y0, xm + x0 + MajorTickLength, ym + y0);

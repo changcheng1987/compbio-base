@@ -169,7 +169,7 @@ namespace BaseLibS.Num.Space{
 			Set(v1.y*v2.z - v1.z*v2.y, v1.z*v2.x - v1.x*v2.z, v1.x*v2.y - v1.y*v2.x);
 		}
 
-		public override bool Equals(Object t1){
+		public override bool Equals(object t1){
 			if (!(t1 is Vector3F)){
 				return false;
 			}

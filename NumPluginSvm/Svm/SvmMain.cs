@@ -5,9 +5,9 @@ using BaseLibS.Num.Vector;
 
 namespace NumPluginSvm.Svm{
 	public class SvmMain{
-		public static Random rand = new Random();
+		public static Random rand = new Random(7);
 
-		internal static void Info(String s){
+		internal static void Info(string s){
 			Console.Write(s);
 		}
 

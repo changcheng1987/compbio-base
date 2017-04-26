@@ -1418,11 +1418,11 @@ namespace BaseLibS.Num{
 					validCount++;
 				}
 				if (validCount == 0){
-					stddev = Double.NaN;
-					return Double.NaN;
+					stddev = double.NaN;
+					return double.NaN;
 				}
 				if (validCount == 1){
-					stddev = Double.NaN;
+					stddev = double.NaN;
 					return mean;
 				}
 				mean /= validCount;

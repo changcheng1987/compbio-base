@@ -15,7 +15,7 @@ namespace BaseLib.Forms {
 		private readonly int bitmapWidth;
 		private int width;
 		private BitmapData bitmapData;
-		private Byte* pBase = null;
+		private byte* pBase = null;
 		public Bitmap Bitmap { get; }
 
 		public UnsafeBitmap(Image bitmap) {
@@ -55,7 +55,7 @@ namespace BaseLib.Forms {
 				width = 4 * (width / 4 + 1);
 			}
 			bitmapData = Bitmap.LockBits(bounds, ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-			pBase = (Byte*) bitmapData.Scan0.ToPointer();
+			pBase = (byte*) bitmapData.Scan0.ToPointer();
 		}
 
 		public PixelData GetPixel(int x, int y) {

@@ -291,7 +291,7 @@ namespace BaseLibS.Util{
 			int len = str.Length;
 			for (int i = 0; i < len; i++){
 				char c = str[i];
-				if (!Char.IsWhiteSpace(c)){
+				if (!char.IsWhiteSpace(c)){
 					s.Append(c);
 				}
 			}
@@ -306,7 +306,7 @@ namespace BaseLibS.Util{
 			int len = str.Length;
 			for (int i = 0; i < len; i++){
 				char c = str[i];
-				if (!Char.IsWhiteSpace(c)){
+				if (!char.IsWhiteSpace(c)){
 					s.Append(c);
 				} else{
 					s.Append(replaceBy);
@@ -509,7 +509,7 @@ namespace BaseLibS.Util{
 			return s.ToString();
 		}
 
-		public static string GetFileSizeString(String filename){
+		public static string GetFileSizeString(string filename){
 			FileInfo info = new FileInfo(filename);
 			// ReSharper disable PossibleLossOfFraction
 			double len = info.Length/1024;
