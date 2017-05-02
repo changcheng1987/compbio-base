@@ -11,6 +11,7 @@ namespace BaseLib.Forms{
 		public FileParameterControl(string fileName, string filter, Func<string, string> processFileName, bool save){
 			InitializeComponent();
 			FileName = fileName;
+		    textBox1.Text = fileName;
 			this.filter = filter;
 			this.processFileName = processFileName;
 			this.save = save;
