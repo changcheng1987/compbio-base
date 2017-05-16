@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing.Drawing2D;
 using System.IO;
 using BaseLibS.Graph;
@@ -326,31 +327,24 @@ namespace BaseLib.Graphic{
 			template.SetFontAndSize(f.BaseFont, font.Size);
 		}
 
-		private static iTextSharp.text.Font GetFont(Font2 font){
-			iTextSharp.text.Font f = FontFactory.GetFont("c:/windows/fonts/arial.ttf", BaseFont.CP1252, BaseFont.EMBEDDED,
-				font.Size*0.667f, font.Bold ? 1 : 0);
-			try{
-				string file;
-				switch (font.Name){
-					case "Lucida Sans Unicode":
-						file = "c:/windows/fonts/L_10646.TTF";
-						f = FontFactory.GetFont(file, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, font.Size*0.667f, font.Bold ? 1 : 0);
-						break;
-					case "Arial Unicode MS":
-						file = "c:/windows/fonts/ARIALUNI.TTF";
-						f = FontFactory.GetFont(file, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, font.Size*0.667f, font.Bold ? 1 : 0);
-						break;
-					default:
-						file = $"c:/windows/fonts/{font.Name}.ttf";
-						if (File.Exists(file)){
-							f = FontFactory.GetFont(file, BaseFont.CP1252, BaseFont.EMBEDDED, font.Size*0.667f, font.Bold ? 1 : 0);
-						}
-						break;
-				}
-			} catch (Exception){
-				// do nothing
-			}
-			return f;
+
+		private static readonly HashSet<string> ConstFontsSet = new HashSet<string> {
+			BaseFont.COURIER, BaseFont.COURIER_BOLD, BaseFont.COURIER_BOLDOBLIQUE, BaseFont.COURIER_OBLIQUE,
+			BaseFont.HELVETICA, BaseFont.HELVETICA_BOLD, BaseFont.HELVETICA_BOLDOBLIQUE, BaseFont.HELVETICA_OBLIQUE,
+			BaseFont.TIMES_ROMAN, BaseFont.TIMES_BOLD, BaseFont.TIMES_BOLDITALIC, BaseFont.TIMES_ITALIC
+		};
+
+		//https://www.mikesdotnetting.com/article/81/itextsharp-working-with-fonts
+		private static Font GetFont(Font2 font) {
+			//BaseFont.IDENTITY_H is not compatible with some BaseFont
+			return new Font(
+				BaseFont.CreateFont(
+					ConstFontsSet.Contains(font.Name) ? font.Name : BaseFont.HELVETICA,
+					BaseFont.CP1252,
+					BaseFont.EMBEDDED),
+				font.Size * 0.667f,
+				font.Bold ? 1 : 0
+				);
 		}
 
 		private void SetPen(Pen2 pen){
