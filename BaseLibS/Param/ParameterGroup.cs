@@ -134,7 +134,7 @@ namespace BaseLibS.Param{
 			writer.WriteStartAttribute("CollapsedDefault");
 			writer.WriteValue(CollapsedDefault);
 			writer.WriteEndAttribute();
-			foreach (Parameter parameter in parameters){
+			foreach (Parameter parameter in parameters.ToArray()){
 				new XmlSerializer(parameter.GetType()).Serialize(writer, parameter);
 			}
 		}
