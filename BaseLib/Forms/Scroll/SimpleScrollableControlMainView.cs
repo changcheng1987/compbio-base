@@ -16,7 +16,11 @@ namespace BaseLib.Forms.Scroll{
 		private Bitmap2 CreateOverviewBitmap(int overviewWidth, int overviewHeight){
 			BitmapGraphics bg = new BitmapGraphics(Math.Min(main.TotalWidth(), 15000), Math.Min(main.TotalHeight(), 15000));
 			main.OnPaintMainView?.Invoke(bg, 0, 0, main.TotalWidth(), main.TotalHeight(), true);
-			return GraphUtils.ToBitmap2(GraphUtils.ResizeImage(bg.Bitmap, overviewWidth, overviewHeight));
+			try {
+				return GraphUtils.ToBitmap2(GraphUtils.ResizeImage(bg.Bitmap, overviewWidth, overviewHeight));
+			} catch (Exception) {
+				return GraphUtils.ToBitmap2(bg.Bitmap);
+			}
 		}
 
 		public override void OnPaint(IGraphics g, int width, int height){
