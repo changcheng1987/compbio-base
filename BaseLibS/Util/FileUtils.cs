@@ -27,11 +27,11 @@ namespace BaseLibS.Util{
 		public static string executablePath = Path.GetDirectoryName(executableFile);
 
 		public static string GetConfigPath(){
-			return Path.Combine(Path.GetDirectoryName(executableFile), "conf");
+			return Path.Combine(executablePath, "conf");
 		}
 
 		public static string GetImgPath(){
-			return Path.Combine(Path.GetDirectoryName(executableFile), "img");
+			return Path.Combine(executablePath, "img");
 		}
 
 		public static string GetContaminantFilePath(){
@@ -134,7 +134,7 @@ namespace BaseLibS.Util{
 		/// <param name="filenames">File names with wild-cards</param>
 		/// <param name="onlyActive">Check if <code>INamedListItem.IsActive</code> is set</param>
 		/// <returns></returns>
-		public static T[] GetPlugins<T>(string[] filenames, bool onlyActive) where T : INamedListItem{
+		public static T[] GetPlugins<T>(string[] filenames, bool onlyActive) where T : INamedListItem {
 			IEnumerable<string> pluginFiles = GetPluginFiles(filenames);
 			List<T> result = new List<T>();
 			foreach (string pluginFile in pluginFiles){
@@ -142,7 +142,7 @@ namespace BaseLibS.Util{
 				Assembly ass = Assembly.Load(name);
 				IEnumerable<T> types =
 					GetLoadableTypes(ass).Where(
-						type => typeof (T).IsAssignableFrom(type) && (type.GetConstructor(Type.EmptyTypes) != null)).Select(
+						type => typeof (T).IsAssignableFrom(type) && type.GetConstructor(Type.EmptyTypes) != null).Select(
 							type => (T) Activator.CreateInstance(type));
 				if (onlyActive){
 					types = types.Where(obj => obj.IsActive);
