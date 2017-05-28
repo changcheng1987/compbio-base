@@ -398,15 +398,15 @@ namespace BaseLibS.Util{
 			if (filePath.Contains("/")){
 				return filePath.Substring(0, filePath.LastIndexOf("/", StringComparison.InvariantCulture));
 			}
-			return filePath.Contains("\\")
-				? filePath.Substring(0, filePath.LastIndexOf("\\", StringComparison.InvariantCulture))
+			return filePath.Contains(Path.DirectorySeparatorChar)
+				? filePath.Substring(0, filePath.LastIndexOf(""+Path.DirectorySeparatorChar, StringComparison.InvariantCulture))
 				: "";
 		}
 
 		public static string GetRandomFilename(){
 			string tmpFolder = GetTempFolder();
 			while (true){
-				string filename = tmpFolder + "\\" + random.Next(0, int.MaxValue);
+				string filename = tmpFolder + Path.DirectorySeparatorChar + random.Next(0, int.MaxValue);
 				if (!File.Exists(filename)){
 					return filename;
 				}
@@ -473,7 +473,7 @@ namespace BaseLibS.Util{
 				DirectoryInfo sourceInfo = new DirectoryInfo(sourceFolder);
 				DirectoryInfo destInfo = new DirectoryInfo(destFolder);
 				if (!sourceInfo.Name.Equals(destInfo.Name)){
-					destFolder = destFolder + "\\" + sourceInfo.Name;
+					destFolder = destFolder + Path.DirectorySeparatorChar + sourceInfo.Name;
 				}
 				if (!Directory.Exists(destFolder)){
 					Directory.CreateDirectory(destFolder);
@@ -558,7 +558,7 @@ namespace BaseLibS.Util{
 				DirectoryInfo sourceInfo = new DirectoryInfo(srcFolder);
 				DirectoryInfo destInfo = new DirectoryInfo(destFolder);
 				if (!sourceInfo.Name.Equals(destInfo.Name)){
-					destFolder = destFolder + "\\" + sourceInfo.Name;
+					destFolder = destFolder + Path.DirectorySeparatorChar + sourceInfo.Name;
 				}
 				if (!Directory.Exists(destFolder)){
 					Directory.CreateDirectory(destFolder);

@@ -35,7 +35,7 @@ namespace BaseLibS.Util{
 		/// <param name="path">The path where the lock-file is to be written.</param>
 		public LockFile(string path){
 			handle = null;
-			lockFilePath = path + "\\" + ".lock";
+			lockFilePath = path + Path.DirectorySeparatorChar + ".lock";
 			random = new Random();
 			Directory.CreateDirectory(path);
 		}

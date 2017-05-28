@@ -92,12 +92,12 @@ namespace BaseLibS.Mol{
 		}
 
 		public static bool ContainsDatabase(string path){
-			string s = path.Contains("\\") ? path.Substring(path.LastIndexOf('\\') + 1) : path;
+			string s = path.Contains(Path.DirectorySeparatorChar) ? path.Substring(path.LastIndexOf(Path.DirectorySeparatorChar) + 1) : path;
 			return Databases.ContainsKey(s);
 		}
 
 		public static string GetIdentifierParseRule(string path){
-			string s = path.Contains("\\") ? path.Substring(path.LastIndexOf('\\') + 1) : path;
+			string s = path.Contains(Path.DirectorySeparatorChar) ? path.Substring(path.LastIndexOf(Path.DirectorySeparatorChar) + 1) : path;
 			string pr = ReadParseRuleFromFile(path);
 			if (pr != null){
 				return pr;
@@ -106,27 +106,27 @@ namespace BaseLibS.Mol{
 		}
 
 		public static string GetDescriptionParseRule(string path){
-			string s = path.Contains("\\") ? path.Substring(path.LastIndexOf('\\') + 1) : path;
+			string s = path.Contains(Path.DirectorySeparatorChar) ? path.Substring(path.LastIndexOf(Path.DirectorySeparatorChar) + 1) : path;
 			return !Databases.ContainsKey(s) ? "" : Databases[s].DescriptionParseRule;
 		}
 
 		public static string GetTaxonomyParseRule(string path){
-			string s = path.Contains("\\") ? path.Substring(path.LastIndexOf('\\') + 1) : path;
+			string s = path.Contains(Path.DirectorySeparatorChar) ? path.Substring(path.LastIndexOf(Path.DirectorySeparatorChar) + 1) : path;
 			return !Databases.ContainsKey(s) ? "" : Databases[s].TaxonomyParseRule;
 		}
 
 		public static string GetVariationParseRule(string path){
-			string s = path.Contains("\\") ? path.Substring(path.LastIndexOf('\\') + 1) : path;
+			string s = path.Contains(Path.DirectorySeparatorChar) ? path.Substring(path.LastIndexOf(Path.DirectorySeparatorChar) + 1) : path;
 			return !Databases.ContainsKey(s) ? "" : Databases[s].VariationParseRule;
 		}
 
 		public static string GetModificationParseRule(string path){
-			string s = path.Contains("\\") ? path.Substring(path.LastIndexOf('\\') + 1) : path;
+			string s = path.Contains(Path.DirectorySeparatorChar) ? path.Substring(path.LastIndexOf(Path.DirectorySeparatorChar) + 1) : path;
 			return !Databases.ContainsKey(s) ? "" : Databases[s].ModificationParseRule;
 		}
 
 		public static string GetTaxonomyId(string path){
-			string s = path.Contains("\\") ? path.Substring(path.LastIndexOf('\\') + 1) : path;
+			string s = path.Contains(Path.DirectorySeparatorChar) ? path.Substring(path.LastIndexOf(Path.DirectorySeparatorChar) + 1) : path;
 			return !Databases.ContainsKey(s) ? "" : Databases[s].Taxid;
 		}
 

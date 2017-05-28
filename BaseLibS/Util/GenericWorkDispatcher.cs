@@ -1,4 +1,6 @@
-﻿namespace BaseLibS.Util{
+﻿using System.IO;
+
+namespace BaseLibS.Util{
 	public abstract class GenericWorkDispatcher : WorkDispatcher{
 		protected readonly bool externalCalculations;
 
@@ -8,7 +10,7 @@
 		}
 
 		protected sealed override string GetCommandFilename(){
-			return "\"" + FileUtils.executablePath + "\\" + Executable64Bit + "\"";
+			return "\"" + FileUtils.executablePath + Path.DirectorySeparatorChar + Executable64Bit + "\"";
 		}
 
 		protected abstract string Executable64Bit { get; }
