@@ -279,8 +279,31 @@ namespace BaseLib.Graphic{
 			return FormUtils.GetDpiScale(gc);
 		}
 
-		public static Pen GetPen(Pen2 p){
-			return new Pen(Color.FromArgb(p.Color.A, p.Color.R, p.Color.G, p.Color.B), p.Width);
+	    private static DashStyle ConvertDashStyle(DashStyle2 style)
+	    {
+            switch (style)
+            {
+                case DashStyle2.Custom:
+                    return DashStyle.Custom;
+                case DashStyle2.Dash:
+                    return DashStyle.Dash;
+                case DashStyle2.DashDot:
+                    return DashStyle.DashDot;
+                case DashStyle2.DashDotDot:
+                    return DashStyle.DashDotDot;
+                case DashStyle2.Dot:
+                    return DashStyle.Dot;
+                case DashStyle2.Solid:
+                    return DashStyle.Solid;
+            }
+            throw new NotImplementedException($"Cannot convert {style}");
+        }
+
+        public static Pen GetPen(Pen2 p){
+			return new Pen(Color.FromArgb(p.Color.A, p.Color.R, p.Color.G, p.Color.B), p.Width)
+			{
+			    DashStyle = ConvertDashStyle(p.DashStyle),
+			};
 		}
 
 		private static Brush GetBrush(Brush2 b){
