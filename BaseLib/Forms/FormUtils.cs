@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
@@ -7,12 +8,15 @@ using BaseLibS.Util;
 namespace BaseLib.Forms{
 	public class FormUtils{
 		public static float GetDpiScale(Graphics g){
-			return GetDpiScale1();
-			//try{
-			//	return g.DpiX/96f;
-			//} catch (Exception){
-			//	return 1f;
-			//}
+			try {
+				return g.DpiX / 96f;
+			} catch (Exception) {
+				try {
+					return GetDpiScale1();
+				} catch (Exception) {
+					return 1f;
+				}
+			}
 		}
 
 		private static float GetDpiScale1(){
