@@ -839,5 +839,11 @@ namespace BaseLibS.Util{
 			}
 			return result;
 		}
+
+		public static bool IsUnix() {
+			OperatingSystem os = Environment.OSVersion;
+			PlatformID pid = os.Platform;
+			return pid == PlatformID.Unix || pid == PlatformID.MacOSX;
+		}
 	}
 }
