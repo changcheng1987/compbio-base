@@ -6,7 +6,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading;
-using System.Windows.Forms;
 
 namespace BaseLibS.Util {
 	public abstract class WorkDispatcher {
@@ -88,12 +87,9 @@ namespace BaseLibS.Util {
 		}
 
 		public virtual void ProcessSingleRunExternal(int taskIndex, int threadIndex) {
-			OperatingSystem os = Environment.OSVersion;
-			PlatformID pid = os.Platform;
-			bool isUnix = pid == PlatformID.Unix || pid == PlatformID.MacOSX;
+			bool isUnix = FileUtils.IsUnix();
 			string cmd = GetCommandFilename();
 			string args = GetLogArgs(taskIndex, taskIndex) + GetCommandArguments(taskIndex);
-			//MessageBox.Show(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), cmd + " " + args));
 			ProcessStartInfo psi = isUnix
 				? new ProcessStartInfo("mono",
 					Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), cmd + " " + args))
