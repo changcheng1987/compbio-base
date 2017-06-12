@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading;
 
@@ -26,7 +25,7 @@ namespace BaseLibS.Util {
 			}
 		}
 
-		public virtual void Abort() {
+		public void Abort() {
 			if (allWorkThreads != null) {
 				foreach (Thread t in allWorkThreads.Where(t => t != null)) {
 					t.Abort();
@@ -34,7 +33,7 @@ namespace BaseLibS.Util {
 			}
 		}
 
-		public virtual void Start() {
+		public void Start() {
 			currentIndices = new HashSet<int>();
 			toBeProcessed = new Stack<int>();
 			for (int index = nTasks - 1; index >= 0; index--) {
@@ -78,7 +77,7 @@ namespace BaseLibS.Util {
 			}
 		}
 
-		protected virtual void DoWork(int taskIndex, int threadIndex) {
+		protected void DoWork(int taskIndex, int threadIndex) {
 			if (ExternalCalculation()) {
 				ProcessSingleRunExternal(taskIndex, threadIndex);
 			} else {
@@ -86,14 +85,14 @@ namespace BaseLibS.Util {
 			}
 		}
 
-		public virtual void ProcessSingleRunExternal(int taskIndex, int threadIndex) {
+		public void ProcessSingleRunExternal(int taskIndex, int threadIndex) {
 			bool isUnix = FileUtils.IsUnix();
 			string cmd = GetCommandFilename();
 			string args = GetLogArgs(taskIndex, taskIndex) + GetCommandArguments(taskIndex);
-			ProcessStartInfo psi = isUnix
-				? new ProcessStartInfo("mono",
-					Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), cmd + " " + args))
-				: new ProcessStartInfo(cmd, args);
+			ProcessStartInfo psi = isUnix ? new ProcessStartInfo("mono", cmd + " " + args) : new ProcessStartInfo(cmd, args);
+			if (isUnix) {
+				psi.WorkingDirectory = Directory.GetDirectoryRoot(cmd);
+			}
 			psi.WindowStyle = ProcessWindowStyle.Hidden;
 			externalProcesses[threadIndex] = new Process {StartInfo = psi};
 			psi.CreateNoWindow = true;
@@ -131,7 +130,7 @@ namespace BaseLibS.Util {
 
 		private string GetLogArgs(int taskIndex, int id) {
 			return
-				$"\"{infoFolder}\" \"{GetFilename()}\" \"{id}\" \"{GetName(taskIndex)}\" \"{GetComment(taskIndex)}\" \"{"Process"}\" ";
+				$"\"{infoFolder}\" \"{GetFilename()}\" \"{id}\" \"{GetName(taskIndex)}\" \"{GetComment(taskIndex)}\" \"Process\" ";
 		}
 
 		protected string GetFilename() {
