@@ -25,8 +25,8 @@ namespace BaseLib.Forms{
 					ofd.Filter = filter;
 				}
 				if (ofd.ShowDialog() == DialogResult.OK){
-					FileName = ofd.FileName;
-					textBox1.Text = ofd.FileName;
+					FileName = System.IO.Path.GetFullPath(ofd.FileName);
+					textBox1.Text = System.IO.Path.GetFullPath(ofd.FileName);
 				}
 			} else{
 				OpenFileDialog ofd = new OpenFileDialog();
