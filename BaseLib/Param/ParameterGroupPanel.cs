@@ -67,5 +67,15 @@ namespace BaseLib.Param{
 		public void Disable(){
 			grid.Enabled = false;
 		}
+
+		private void InitializeComponent() {
+			this.SuspendLayout();
+			// 
+			// ParameterGroupPanel
+			// 
+			this.Name = "ParameterGroupPanel";
+			this.ResumeLayout(false);
+
+		}
 	}
 }
