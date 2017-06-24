@@ -7,6 +7,7 @@ namespace BaseLibS.Graph{
 	public static class GraphUtil{
 		public const bool isJavaScript = false;
 		public const int scrollBarWidth = 18;
+		public const int minBarSize = 5;
 		public const int zoomButtonSize = 14;
 		public const float zoomStep = 1.2f;
 		public const int maxOverviewSize = 100;

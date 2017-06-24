@@ -1,39 +1,12 @@
 using System;
 using System.Threading;
 using BaseLibS.Graph;
-using BaseLibS.Graph.Base;
 
 namespace BaseLib.Forms.Scroll {
-	internal sealed class HorizontalScrollBarView : BasicView {
-		private readonly IScrollableControl main;
-		private readonly float sfx;
-		private ScrollBarState state = ScrollBarState.Neutral;
-		private Bitmap2 firstMark;
-		private Bitmap2 firstMarkHighlight;
-		private Bitmap2 firstMarkPress;
-		private Bitmap2 secondMark;
-		private Bitmap2 secondMarkHighlight;
-		private Bitmap2 secondMarkPress;
-		private Bitmap2 bar;
-		private Bitmap2 barHighlight;
-		private Bitmap2 barPress;
-		private int dragStart = -1;
-		private int visibleDragStart = -1;
+	internal sealed class HorizontalScrollBarView : ScrollBarView {
 		private Thread leftThread;
 		private Thread rightThread;
-
-		private int ScrollBarWidth {
-			get { return (int)(GraphUtil.scrollBarWidth *sfx); }
-		}
-
-		internal HorizontalScrollBarView(IScrollableControl main, float sfx) {
-			this.main = main;
-			this.sfx = sfx;
-		}
-
-		public override void OnResize(EventArgs e, int width, int height) {
-			bar = null;
-		}
+		internal HorizontalScrollBarView(IScrollableControl main, float sfx) : base(main, sfx) { }
 
 		public override void OnPaintBackground(IGraphics g, int width, int height) {
 			Pen2 p = new Pen2(Color2.FromArgb(172, 168, 153));
@@ -131,7 +104,7 @@ namespace BaseLib.Forms.Scroll {
 				return ScrollBarWidth - 1;
 			}
 			int w = (int) Math.Round(hx * (main.VisibleX / (double) (main.TotalWidth() - 1)));
-			w = Math.Min(w, hx - 5);
+			w = Math.Min(w, hx - MinBarSize);
 			return Math.Max(0, w) + ScrollBarWidth - 1;
 		}
 
@@ -147,10 +120,7 @@ namespace BaseLib.Forms.Scroll {
 
 		private int CalcBarSize(int width) {
 			int hx = width - 2 * ScrollBarWidth + 2;
-			if (hx <= 0) {
-				return 5;
-			}
-			return Math.Max(5, CalcBarEnd(width) - CalcBarStart(width));
+			return hx <= 0 ? MinBarSize : Math.Max(MinBarSize, CalcBarEnd(width) - CalcBarStart(width));
 		}
 
 		private void CreateFirstMark(int scrollBarWid) {
