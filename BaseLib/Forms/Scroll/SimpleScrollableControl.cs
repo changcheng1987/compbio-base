@@ -28,7 +28,9 @@ namespace BaseLib.Forms.Scroll{
 		public float ZoomFactor { get; set; } = 1;
 		internal Bitmap2 overviewBitmap;
 		public event ZoomChangeHandler2 OnZoomChanged;
+		private readonly float sfx;
 		public SimpleScrollableControl(){
+			sfx = FormUtils.GetDpiScale(CreateGraphics());
 			InitializeComponent2();
 			ResizeRedraw = true;
 			DoubleBuffered = true;
@@ -161,14 +163,14 @@ namespace BaseLib.Forms.Scroll{
 		private void InitializeComponent2(){
 			TableLayoutPanel tableLayoutPanel1 = new TableLayoutPanel();
 			mainView = new SimpleScrollableControlMainView(this);
-			horizontalScrollBar = new HorizontalScrollBarView(this);
-			verticalScrollBar = new VerticalScrollBarView(this);
+			horizontalScrollBar = new HorizontalScrollBarView(this, sfx);
+			verticalScrollBar = new VerticalScrollBarView(this, sfx);
 			smallCornerView = new ScrollableControlSmallCornerView();
 			tableLayoutPanel1.SuspendLayout();
 			SuspendLayout();
 			tableLayoutPanel1.ColumnCount = 2;
 			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, GraphUtil.scrollBarWidth));
+			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, sfx*GraphUtil.scrollBarWidth));
 			mainControl = BasicControl.CreateControl(mainView);
 			tableLayoutPanel1.Controls.Add(mainControl, 0, 0);
 			tableLayoutPanel1.Controls.Add(BasicControl.CreateControl(horizontalScrollBar), 0, 1);
@@ -180,7 +182,7 @@ namespace BaseLib.Forms.Scroll{
 			tableLayoutPanel1.Name = "tableLayoutPanel1";
 			tableLayoutPanel1.RowCount = 2;
 			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, GraphUtil.scrollBarWidth));
+			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, sfx*GraphUtil.scrollBarWidth));
 			tableLayoutPanel1.Size = new Size(409, 390);
 			tableLayoutPanel1.TabIndex = 0;
 			AutoScaleDimensions = new SizeF(6F, 13F);

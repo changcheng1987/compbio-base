@@ -6,6 +6,7 @@ using BaseLibS.Graph.Base;
 namespace BaseLib.Forms.Scroll{
 	internal sealed class VerticalScrollBarView : BasicView{
 		private readonly IScrollableControl main;
+		private readonly float sfx;
 		private ScrollBarState state = ScrollBarState.Neutral;
 		private Bitmap2 firstMark;
 		private Bitmap2 firstMarkHighlight;
@@ -21,8 +22,13 @@ namespace BaseLib.Forms.Scroll{
 		private Thread downThread;
 		private Thread upThread;
 
-		internal VerticalScrollBarView(IScrollableControl main){
+		private int ScrollBarWidth {
+			get { return (int)(GraphUtil.scrollBarWidth * sfx); }
+		}
+
+		internal VerticalScrollBarView(IScrollableControl main, float sfx) {
 			this.main = main;
+			this.sfx = sfx;
 		}
 
 		public override void OnResize(EventArgs e, int width, int height){
@@ -32,8 +38,8 @@ namespace BaseLib.Forms.Scroll{
 		public override void OnPaintBackground(IGraphics g, int width, int height){
 			Pen2 p = new Pen2(Color2.FromArgb(172, 168, 153));
 			g.DrawLine(p, width - 1, 0, width - 1, height);
-			int[][] rgbs = GraphUtil.InterpolateRgb(243, 241, 236, 254, 254, 251, GraphUtil.scrollBarWidth - 2);
-			for (int i = 0; i < GraphUtil.scrollBarWidth - 2; i++){
+			int[][] rgbs = GraphUtil.InterpolateRgb(243, 241, 236, 254, 254, 251, ScrollBarWidth - 2);
+			for (int i = 0; i < ScrollBarWidth - 2; i++){
 				p = new Pen2(Color2.FromArgb(rgbs[0][i], rgbs[1][i], rgbs[2][i]));
 				g.DrawLine(p, i + 1, 0, i + 1, height);
 			}
@@ -43,9 +49,9 @@ namespace BaseLib.Forms.Scroll{
 		}
 
 		public override void OnPaint(IGraphics g, int width, int height){
-			PaintFirstMark(g, GraphUtil.scrollBarWidth);
-			PaintSecondMark(g, GraphUtil.scrollBarWidth, height);
-			PaintBar(g, GraphUtil.scrollBarWidth, height);
+			PaintFirstMark(g, ScrollBarWidth);
+			PaintSecondMark(g, ScrollBarWidth, height);
+			PaintBar(g, ScrollBarWidth, height);
 		}
 
 		private void PaintBar(IGraphics g, int scrollBarWid, int height){
@@ -120,26 +126,26 @@ namespace BaseLib.Forms.Scroll{
 		}
 
 		private int CalcBarStart(int height){
-			int hx = height - 2*GraphUtil.scrollBarWidth + 2;
+			int hx = height - 2*ScrollBarWidth + 2;
 			if (hx <= 0){
-				return GraphUtil.scrollBarWidth - 1;
+				return ScrollBarWidth - 1;
 			}
 			int w = (int) Math.Round(hx*(main.VisibleY / (double) (main.TotalHeight() - 1)));
 			w = Math.Min(w, hx - 5);
-			return Math.Max(0, w) + GraphUtil.scrollBarWidth - 1;
+			return Math.Max(0, w) + ScrollBarWidth - 1;
 		}
 
 		private int CalcBarEnd(int height){
-			int hx = height - 2*GraphUtil.scrollBarWidth + 2;
+			int hx = height - 2*ScrollBarWidth + 2;
 			if (hx <= 0){
-				return GraphUtil.scrollBarWidth - 1;
+				return ScrollBarWidth - 1;
 			}
 			return Math.Min(hx, (int) Math.Round(hx*((main.VisibleY + main.VisibleHeight/main.ZoomFactor)/(double) (main.TotalHeight() - 1)))) +
-					GraphUtil.scrollBarWidth - 1;
+					ScrollBarWidth - 1;
 		}
 
 		private int CalcBarSize(int height){
-			int hx = height - 2*GraphUtil.scrollBarWidth + 2;
+			int hx = height - 2*ScrollBarWidth + 2;
 			return hx <= 0 ? 5 : Math.Max(5, CalcBarEnd(height) - CalcBarStart(height));
 		}
 
@@ -169,9 +175,9 @@ namespace BaseLib.Forms.Scroll{
 
 		public override void OnMouseMoved(BasicMouseEventArgs e){
 			ScrollBarState newState = ScrollBarState.Neutral;
-			if (e.Y < GraphUtil.scrollBarWidth - 1){
+			if (e.Y < ScrollBarWidth - 1){
 				newState = ScrollBarState.HighlightFirstBox;
-			} else if (e.Y > e.Height - GraphUtil.scrollBarWidth){
+			} else if (e.Y > e.Height - ScrollBarWidth){
 				newState = ScrollBarState.HighlightSecondBox;
 			} else if (HasBar){
 				int s = CalcBarStart(e.Height);
@@ -189,7 +195,7 @@ namespace BaseLib.Forms.Scroll{
 		public override void OnMouseIsDown(BasicMouseEventArgs e){
 			ScrollBarState newState = ScrollBarState.Neutral;
 			bool ctrl = e.ControlPressed;
-			if (e.Y < GraphUtil.scrollBarWidth - 1){
+			if (e.Y < ScrollBarWidth - 1){
 				if (ctrl){
 					newState = ScrollBarState.PressFirstBox;
 					MoveUp(main.DeltaUpToSelection());
@@ -199,7 +205,7 @@ namespace BaseLib.Forms.Scroll{
 					upThread = new Thread(() => WalkUp(main.DeltaY()));
 					upThread.Start();
 				}
-			} else if (e.Y > e.Height - GraphUtil.scrollBarWidth){
+			} else if (e.Y > e.Height - ScrollBarWidth){
 				if (ctrl){
 					newState = ScrollBarState.PressSecondBox;
 					MoveDown(main.DeltaDownToSelection());
@@ -266,7 +272,7 @@ namespace BaseLib.Forms.Scroll{
 			if (state != ScrollBarState.PressBar){
 				return;
 			}
-			int hx = e.Height - 2*GraphUtil.scrollBarWidth + 2;
+			int hx = e.Height - 2*ScrollBarWidth + 2;
 			int y = visibleDragStart + (int) Math.Round((e.Y - dragStart)/(double) hx*main.TotalHeight());
 			y = Math.Max(0, y);
 			y = (int)Math.Min(main.TotalHeight() - main.VisibleHeight / main.ZoomFactor, y);

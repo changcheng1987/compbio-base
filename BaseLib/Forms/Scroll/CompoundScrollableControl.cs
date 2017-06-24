@@ -165,8 +165,9 @@ namespace BaseLib.Forms.Scroll{
 		public Action<IGraphics> OnPaintCornerView { get; set; }
 		public Action<IGraphics> OnPaintMiddleCornerView { get; set; }
 		private readonly ToolTip columnViewToolTip = new ToolTip();
-
+		private readonly float sfx;
 		public CompoundScrollableControl(){
+			sfx = FormUtils.GetDpiScale(CreateGraphics());
 			InitializeComponent2();
 			ResizeRedraw = true;
 			DoubleBuffered = true;
@@ -302,8 +303,8 @@ namespace BaseLib.Forms.Scroll{
 		public Func<int> DeltaY { get; set; }
 		public Func<int> DeltaUpToSelection { get; set; }
 		public Func<int> DeltaDownToSelection { get; set; }
-		public int VisibleWidth => Width - RowHeaderWidth - RowFooterWidth - GraphUtil.scrollBarWidth;
-		public int VisibleHeight => Height - ColumnHeaderHeight - ColumnFooterHeight - GraphUtil.scrollBarWidth;
+		public int VisibleWidth => Width - RowHeaderWidth - RowFooterWidth - (int)(sfx * GraphUtil.scrollBarWidth);
+		public int VisibleHeight => Height - ColumnHeaderHeight - ColumnFooterHeight - (int)(sfx *GraphUtil.scrollBarWidth);
 		public int TotalClientWidth => TotalWidth() + RowHeaderWidth + RowFooterWidth;
 		public int TotalClientHeight => TotalHeight() + ColumnHeaderHeight + ColumnFooterHeight;
 		public float ZoomFactor => 1f;
@@ -355,23 +356,23 @@ namespace BaseLib.Forms.Scroll{
 			columnHeaderView = new ScrollableControlColumnHeaderView(this);
 			columnFooterView = new ScrollableControlColumnFooterView(this);
 			columnSpacerView = new ScrollableControlColumnSpacerView(this);
-			horizontalScrollBarView = new HorizontalScrollBarView(this);
-			verticalScrollBarView = new VerticalScrollBarView(this);
+			horizontalScrollBarView = new HorizontalScrollBarView(this, sfx);
+			verticalScrollBarView = new VerticalScrollBarView(this, sfx);
 			cornerView = new ScrollableControlCornerView(this);
 			middleCornerView = new ScrollableControlMiddleCornerView(this);
 			smallCornerView = new ScrollableControlSmallCornerView();
 			SuspendLayout();
 			tableLayoutPanel1.ColumnStyles.Add(new BasicColumnStyle(BasicSizeType.Percent, 100F));
-			tableLayoutPanel1.ColumnStyles.Add(new BasicColumnStyle(BasicSizeType.Absolute, GraphUtil.scrollBarWidth));
+			tableLayoutPanel1.ColumnStyles.Add(new BasicColumnStyle(BasicSizeType.Absolute, sfx * GraphUtil.scrollBarWidth));
 			tableLayoutPanel1.Add(tableLayoutPanel2, 0, 0);
 			tableLayoutPanel1.Add(horizontalScrollBarView, 0, 1);
 			tableLayoutPanel1.Add(verticalScrollBarView, 1, 0);
 			tableLayoutPanel1.Add(smallCornerView, 1, 1);
 			tableLayoutPanel1.RowStyles.Add(new BasicRowStyle(BasicSizeType.Percent, 100F));
-			tableLayoutPanel1.RowStyles.Add(new BasicRowStyle(BasicSizeType.Absolute, GraphUtil.scrollBarWidth));
-			tableLayoutPanel2.ColumnStyles.Add(new BasicColumnStyle(BasicSizeType.AbsoluteResizeable, rowHeaderWidth));
+			tableLayoutPanel1.RowStyles.Add(new BasicRowStyle(BasicSizeType.Absolute, sfx * GraphUtil.scrollBarWidth));
+			tableLayoutPanel2.ColumnStyles.Add(new BasicColumnStyle(BasicSizeType.AbsoluteResizeable, sfx * rowHeaderWidth));
 			tableLayoutPanel2.ColumnStyles.Add(new BasicColumnStyle(BasicSizeType.Percent, 100F));
-			tableLayoutPanel2.ColumnStyles.Add(new BasicColumnStyle(BasicSizeType.AbsoluteResizeable, rowFooterWidth));
+			tableLayoutPanel2.ColumnStyles.Add(new BasicColumnStyle(BasicSizeType.AbsoluteResizeable, sfx * rowFooterWidth));
 			tableLayoutPanel2.Add(mainView, 1, 1);
 			tableLayoutPanel2.Add(rowHeaderView, 0, 1);
 			tableLayoutPanel2.Add(rowFooterView, 2, 1);
@@ -381,9 +382,9 @@ namespace BaseLib.Forms.Scroll{
 			tableLayoutPanel2.Add(columnSpacerView, 2, 0);
 			tableLayoutPanel2.Add(cornerView, 0, 0);
 			tableLayoutPanel2.Add(middleCornerView, 2, 2);
-			tableLayoutPanel2.RowStyles.Add(new BasicRowStyle(BasicSizeType.AbsoluteResizeable, columnHeaderHeight));
+			tableLayoutPanel2.RowStyles.Add(new BasicRowStyle(BasicSizeType.AbsoluteResizeable, sfx * columnHeaderHeight));
 			tableLayoutPanel2.RowStyles.Add(new BasicRowStyle(BasicSizeType.Percent, 100F));
-			tableLayoutPanel2.RowStyles.Add(new BasicRowStyle(BasicSizeType.AbsoluteResizeable, columnFooterHeight));
+			tableLayoutPanel2.RowStyles.Add(new BasicRowStyle(BasicSizeType.AbsoluteResizeable, sfx * columnFooterHeight));
 			AutoScaleDimensions = new SizeF(6F, 13F);
 			AutoScaleMode = AutoScaleMode.Font;
 			tableLayoutControl = BasicControl.CreateControl(tableLayoutPanel1);
