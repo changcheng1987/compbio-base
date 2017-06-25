@@ -251,7 +251,7 @@ namespace BaseLib.Forms.Table {
 			// 
 			// tableView1
 			// 
-			this.tableView1.ColumnHeaderHeight=(26);
+			this.tableView1.ColumnHeaderHeight = 26;
 			this.tableView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableView1.Location = new System.Drawing.Point(3, 199);
 			this.tableView1.Name = "tableView1";

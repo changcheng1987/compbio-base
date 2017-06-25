@@ -65,6 +65,10 @@ namespace BaseLib.Forms.Table {
 			get { return (int) (rowHeight * sfx * UserSf); }
 		}
 
+		private int ColumnHeaderHeight {
+			get { return (int)(control.ColumnHeaderHeight * sfx * UserSf); }
+		}
+
 		public void UpdateScaling() {
 			defaultFont = new Font2("Arial", (float) (9 * (UserSf * sfx)));
 			textFont = defaultFont;
@@ -364,21 +368,21 @@ namespace BaseLib.Forms.Table {
 				if (model == null) {
 					return;
 				}
-				g.FillRectangle(headerBrush, 0, 0, width, control1.ColumnHeaderHeight - 1);
+				g.FillRectangle(headerBrush, 0, 0, width, ColumnHeaderHeight - 1);
 				g.DrawLine(gridPen, 0, 0, width, 0);
-				g.DrawLine(gridPen, 0, control1.ColumnHeaderHeight - 1, width, control1.ColumnHeaderHeight - 1);
+				g.DrawLine(gridPen, 0, ColumnHeaderHeight - 1, width, ColumnHeaderHeight - 1);
 				g.DrawLine(Pens2.White, 0, 1, width, 1);
-				g.DrawLine(shadow1Pen, 0, control1.ColumnHeaderHeight - 2, width, control1.ColumnHeaderHeight - 2);
-				g.DrawLine(shadow2Pen, 0, control1.ColumnHeaderHeight - 3, width, control1.ColumnHeaderHeight - 3);
-				g.DrawLine(shadow3Pen, 0, control1.ColumnHeaderHeight - 4, width, control1.ColumnHeaderHeight - 4);
+				g.DrawLine(shadow1Pen, 0, ColumnHeaderHeight - 2, width, ColumnHeaderHeight - 2);
+				g.DrawLine(shadow2Pen, 0, ColumnHeaderHeight - 3, width, ColumnHeaderHeight - 3);
+				g.DrawLine(shadow3Pen, 0, ColumnHeaderHeight - 4, width, ColumnHeaderHeight - 4);
 				if (columnWidthSums != null) {
 					int startInd = ArrayUtils.CeilIndex(columnWidthSums, x);
 					int endInd = ArrayUtils.FloorIndex(columnWidthSums, x + width);
 					if (startInd >= 0) {
 						for (int i = startInd; i <= endInd; i++) {
 							int x1 = columnWidthSums[i] - x;
-							g.DrawLine(headerGridPen, x1, 5, x1, control1.ColumnHeaderHeight - 6);
-							g.DrawLine(Pens2.White, x1 + 1, 5, x1 + 1, control1.ColumnHeaderHeight - 6);
+							g.DrawLine(headerGridPen, x1, 5, x1, ColumnHeaderHeight - 6);
+							g.DrawLine(Pens2.White, x1 + 1, 5, x1 + 1, ColumnHeaderHeight - 6);
 						}
 					}
 				}
@@ -430,10 +434,10 @@ namespace BaseLib.Forms.Table {
 				if (model == null) {
 					return;
 				}
-				g.FillRectangle(headerBrush, 0, 0, control1.RowHeaderWidth - 1, control1.ColumnHeaderHeight - 1);
-				g.DrawRectangle(gridPen, 0, 0, control1.RowHeaderWidth - 1, control1.ColumnHeaderHeight - 1);
+				g.FillRectangle(headerBrush, 0, 0, control1.RowHeaderWidth - 1, ColumnHeaderHeight - 1);
+				g.DrawRectangle(gridPen, 0, 0, control1.RowHeaderWidth - 1, ColumnHeaderHeight - 1);
 				g.DrawLine(Pens2.White, 1, 1, control1.RowHeaderWidth - 2, 1);
-				g.DrawLine(Pens2.White, 1, 1, 1, control1.ColumnHeaderHeight - 2);
+				g.DrawLine(Pens2.White, 1, 1, 1, ColumnHeaderHeight - 2);
 				if (matrixHelp) {
 					g.DrawImage(Bitmap2.GetImage("question12.png"), 7, 7, 10, 10);
 				}
@@ -702,7 +706,7 @@ namespace BaseLib.Forms.Table {
 				Tuple<int, int> p = control.GetContextMenuPosition();
 				Tuple<int, int> q = control.GetOrigin();
 				int cx = p.Item1 - q.Item1 - control.RowHeaderWidth;
-				int cy = p.Item2 - q.Item2 - control.ColumnHeaderHeight;
+				int cy = p.Item2 - q.Item2 - ColumnHeaderHeight;
 				int x1 = control.VisibleX + cx;
 				if (columnWidthSums == null) {
 					return;

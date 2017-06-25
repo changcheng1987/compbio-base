@@ -162,7 +162,7 @@ namespace BaseLib.Forms.Table{
 			itemsLabel.Name = "itemsLabel";
 			itemsLabel.Size = new Size(1, 20);
 			itemsLabel.TabIndex = 2;
-			itemsLabel.Font = new Font("Microsoft Sans Serif", 8.1F*(float) Math.Pow(sfx, 0.33));
+			itemsLabel.Font = new Font("Microsoft Sans Serif", 8.1F*sfx);
 			// 
 			// selectedLabel
 			// 
@@ -172,7 +172,7 @@ namespace BaseLib.Forms.Table{
 			selectedLabel.Name = "selectedLabel";
 			selectedLabel.Size = new Size(1, (int) (20*sfx));
 			selectedLabel.TabIndex = 3;
-			selectedLabel.Font = new Font("Microsoft Sans Serif", 8.1F*(float) Math.Pow(sfx, 0.33));
+			selectedLabel.Font = new Font("Microsoft Sans Serif", 8.1F*sfx);
 			// 
 			// mainPanel
 			// 
@@ -187,13 +187,13 @@ namespace BaseLib.Forms.Table{
 			// 
 			scaleFactorComboBox.Dock = DockStyle.Fill;
 			scaleFactorComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-			scaleFactorComboBox.Font = new Font("Microsoft Sans Serif", 7.1F*sfx);
+			scaleFactorComboBox.Font = new Font("Microsoft Sans Serif", 7.0F*sfx);
 			scaleFactorComboBox.FormattingEnabled = true;
 			scaleFactorComboBox.Items.AddRange(new object[]{"20 %", "50 %", "70 %", "100 %", "150 %", "200 %", "400 %"});
 			scaleFactorComboBox.Location = new Point(453, 0);
 			scaleFactorComboBox.Margin = new Padding(0);
 			scaleFactorComboBox.Name = "scaleFactorComboBox";
-			scaleFactorComboBox.Size = new Size(50, 20);
+			scaleFactorComboBox.Size = new Size(60, 20);
 			scaleFactorComboBox.TabIndex = 4;
 			// 
 			// TableView
@@ -284,12 +284,10 @@ namespace BaseLib.Forms.Table{
 		public int RowCount => tableViewWf.RowCount;
 
 		public int RowHeaderWidth{
-			get { return tableView.RowHeaderWidth; }
 			set { tableView.RowHeaderWidth = value; }
 		}
 
 		public int ColumnHeaderHeight{
-			get { return tableView.ColumnHeaderHeight; }
 			set{
 				tableViewWf.origColumnHeaderHeight = value;
 				tableView.ColumnHeaderHeight = value;
