@@ -313,7 +313,7 @@ namespace BaseLib.Forms.Scroll{
 		public ICompoundScrollableControlModel Client{
 			set{
 				client = value;
-				value.Register(this);
+				value.Register(this, sfx);
 			}
 		}
 

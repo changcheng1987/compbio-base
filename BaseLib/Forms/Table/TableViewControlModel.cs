@@ -59,8 +59,11 @@ namespace BaseLib.Forms.Table{
 		public Action<string> SetCellText { get; set; }
 		private ICompoundScrollableControl control;
 		internal float UserSf { get; set; } = 1;
+		private float sfx = 1;
+		private int RowHeight { get { return (int)(rowHeight * sfx * UserSf); } }
 
-		public void Register(ICompoundScrollableControl control1){
+		public void Register(ICompoundScrollableControl control1, float sfx) {
+			this.sfx = sfx;
 			control = control1;
 			sortable = true;
 			control1.RowHeaderWidth = 70;
@@ -76,7 +79,7 @@ namespace BaseLib.Forms.Table{
 				}
 				if (e.IsMainButton){
 					try{
-						int row = (control1.VisibleY + e.Y)/rowHeight;
+						int row = (control1.VisibleY + e.Y)/RowHeight;
 						if (model == null || row >= model.RowCount || row < 0){
 							return;
 						}
@@ -99,7 +102,7 @@ namespace BaseLib.Forms.Table{
 					} catch (Exception){}
 					SelectionChanged?.Invoke(this, new EventArgs());
 					if (SetCellText != null){
-						int row = (control1.VisibleY + e.Y)/rowHeight;
+						int row = (control1.VisibleY + e.Y)/RowHeight;
 						if (model == null || row >= model.RowCount || row < 0){
 							return;
 						}
@@ -132,7 +135,7 @@ namespace BaseLib.Forms.Table{
 					if (modelRowSel == null){
 						return;
 					}
-					int row = (control1.VisibleY + e.Y)/rowHeight;
+					int row = (control1.VisibleY + e.Y)/RowHeight;
 					if (row >= modelRowSel.Length || row < 0){
 						return;
 					}
@@ -170,7 +173,7 @@ namespace BaseLib.Forms.Table{
 			};
 			control1.OnMouseDoubleClickMainView = e =>{
 				if (e.IsMainButton){
-					int row = (control1.VisibleY + e.Y)/rowHeight;
+					int row = (control1.VisibleY + e.Y)/RowHeight;
 					if (model == null || row >= model.RowCount || row < 0){
 						return;
 					}
@@ -318,17 +321,17 @@ namespace BaseLib.Forms.Table{
 				g.DrawLine(shadow1Pen, control1.RowHeaderWidth - 2, 0, control1.RowHeaderWidth - 2, height);
 				g.DrawLine(shadow2Pen, control1.RowHeaderWidth - 3, 0, control1.RowHeaderWidth - 3, height);
 				g.DrawLine(shadow3Pen, control1.RowHeaderWidth - 4, 0, control1.RowHeaderWidth - 4, height);
-				int offset = -y%rowHeight;
-				for (int y1 = offset - rowHeight; y1 < height; y1 += rowHeight){
-					int row = (y + y1)/rowHeight;
+				int offset = -y%RowHeight;
+				for (int y1 = offset - RowHeight; y1 < height; y1 += RowHeight){
+					int row = (y + y1)/RowHeight;
 					if (model == null || row > model.RowCount){
 						break;
 					}
 					g.DrawLine(headerGridPen, 5, y1 - 1, control1.RowHeaderWidth - 6, y1 - 1);
 					g.DrawLine(Pens2.White, 5, y1, control1.RowHeaderWidth - 6, y1);
 				}
-				for (int y1 = offset - rowHeight; y1 < height; y1 += rowHeight){
-					int row = (y + y1)/rowHeight;
+				for (int y1 = offset - RowHeight; y1 < height; y1 += RowHeight){
+					int row = (y + y1)/RowHeight;
 					if (row < 0){
 						continue;
 					}
@@ -337,13 +340,13 @@ namespace BaseLib.Forms.Table{
 					}
 					if (ViewRowIsSelected(row)){
 						g.DrawLine(selectHeader1Pen, 2, y1 + 1, control1.RowHeaderWidth - 2, y1 + 1);
-						g.DrawLine(selectHeader1Pen, 2, y1 + rowHeight, control1.RowHeaderWidth - 2, y1 + rowHeight);
-						g.DrawLine(selectHeader1Pen, control1.RowHeaderWidth - 2, y1 + 1, control1.RowHeaderWidth - 2, y1 + rowHeight);
+						g.DrawLine(selectHeader1Pen, 2, y1 + RowHeight, control1.RowHeaderWidth - 2, y1 + RowHeight);
+						g.DrawLine(selectHeader1Pen, control1.RowHeaderWidth - 2, y1 + 1, control1.RowHeaderWidth - 2, y1 + RowHeight);
 						g.DrawLine(selectHeader2Pen, 2, y1 + 2, control1.RowHeaderWidth - 3, y1 + 2);
-						g.DrawLine(selectHeader2Pen, 2, y1 + 2, 2, y1 + rowHeight - 1);
+						g.DrawLine(selectHeader2Pen, 2, y1 + 2, 2, y1 + RowHeight - 1);
 						g.DrawLine(selectHeader3Pen, 3, y1 + 3, control1.RowHeaderWidth - 3, y1 + 3);
-						g.DrawLine(selectHeader3Pen, 3, y1 + 3, 3, y1 + rowHeight - 1);
-						g.FillRectangle(selectHeader4Brush, 4, y1 + 4, control1.RowHeaderWidth - 6, rowHeight - 4);
+						g.DrawLine(selectHeader3Pen, 3, y1 + 3, 3, y1 + RowHeight - 1);
+						g.FillRectangle(selectHeader4Brush, 4, y1 + 4, control1.RowHeaderWidth - 6, RowHeight - 4);
 					}
 					g.DrawString("" + (row + 1), textFont, Brushes2.Black, 5, y1 + 4);
 				}
@@ -402,7 +405,7 @@ namespace BaseLib.Forms.Table{
 								int x1 = (i > 0 ? columnWidthSums[i - 1] : 0) - x;
 								int x2 = (i >= 0 ? columnWidthSums[i] : 0) - x;
 								for (int k = 0; k < model.AnnotationRowsCount; k++){
-									int y1 = origColumnHeaderHeight + k*rowHeight;
+									int y1 = origColumnHeaderHeight + k*RowHeight;
 									g.DrawLine(headerGridPen, x1 + 5, y1 - 1, x2 - 6, y1 - 1);
 									g.DrawLine(Pens2.White, x1 + 5, y1, x2 - 6, y1);
 									string s = (string) model.GetAnnotationRowValue(k, i);
@@ -428,7 +431,7 @@ namespace BaseLib.Forms.Table{
 				}
 				if (model != null && model.AnnotationRowsCount > 0){
 					for (int i = 0; i < model.AnnotationRowsCount; i++){
-						int y1 = origColumnHeaderHeight + i*rowHeight;
+						int y1 = origColumnHeaderHeight + i*RowHeight;
 						g.DrawLine(headerGridPen, 5, y1 - 1, control1.RowHeaderWidth - 6, y1 - 1);
 						g.DrawLine(Pens2.White, 5, y1, control1.RowHeaderWidth - 6, y1);
 						string s = model.GetAnnotationRowName(i);
@@ -446,14 +449,14 @@ namespace BaseLib.Forms.Table{
 				try{
 					CheckSizes();
 					g.FillRectangle(Brushes2.White, 0, 0, width, height);
-					int offset = -y%rowHeight;
+					int offset = -y%RowHeight;
 					if (columnWidthSums == null || columnWidthSums.Length == 0){
 						return;
 					}
-					for (int y1 = offset; y1 < height; y1 += rowHeight){
+					for (int y1 = offset; y1 < height; y1 += RowHeight){
 						int xmax = Math.Min(width, columnWidthSums[columnWidthSums.Length - 1] - x);
 						g.DrawLine(gridPen, 0, y1, xmax, y1);
-						int row = (y + y1)/rowHeight;
+						int row = (y + y1)/RowHeight;
 						if (row < 0){
 							continue;
 						}
@@ -462,9 +465,9 @@ namespace BaseLib.Forms.Table{
 						}
 						bool sel = ViewRowIsSelected(row);
 						if (sel){
-							g.FillRectangle(selectBgBrush, 0, y1 + 1, xmax, rowHeight - 1);
+							g.FillRectangle(selectBgBrush, 0, y1 + 1, xmax, RowHeight - 1);
 						} else if (row%2 == 1){
-							g.FillRectangle(oddBgBrush, 0, y1 + 1, xmax, rowHeight - 1);
+							g.FillRectangle(oddBgBrush, 0, y1 + 1, xmax, RowHeight - 1);
 						}
 						int startInd = Math.Max(0, ArrayUtils.CeilIndex(columnWidthSums, x) - 1);
 						int endInd = Math.Min(columnWidthSums.Length - 1, ArrayUtils.FloorIndex(columnWidthSums, x + width) + 1);
@@ -494,7 +497,7 @@ namespace BaseLib.Forms.Table{
 						int startInd = ArrayUtils.CeilIndex(columnWidthSums, x);
 						int endInd = ArrayUtils.FloorIndex(columnWidthSums, x + width);
 						if (startInd >= 0 && endInd >= 0){
-							int ymax = (int) Math.Min(height, rowHeight*model.RowCount - y);
+							int ymax = (int) Math.Min(height, RowHeight*model.RowCount - y);
 							for (int i = startInd; i <= endInd; i++){
 								if (i >= columnWidthSums.Length || i < 0){
 									continue;
@@ -523,46 +526,46 @@ namespace BaseLib.Forms.Table{
 				}
 				return columnWidthSums[ind] + 5;
 			};
-			control1.TotalHeight = () => (int) (rowHeight*model?.RowCount + 5 ?? 0);
+			control1.TotalHeight = () => (int) (RowHeight*model?.RowCount + 5 ?? 0);
 			control1.DeltaX = () => 40;
-			control1.DeltaY = () => rowHeight;
+			control1.DeltaY = () => RowHeight;
 			control1.DeltaUpToSelection = () =>{
 				int[] inds = GetSelectedRowsView();
 				if (inds.Length == 0){
 					return control1.VisibleY;
 				}
-				int visRow = (control1.VisibleY + rowHeight - 1)/rowHeight;
+				int visRow = (control1.VisibleY + RowHeight - 1)/RowHeight;
 				int ind = Array.BinarySearch(inds, visRow);
 				if (ind >= 0){
 					if (ind < 1){
 						return control1.VisibleY;
 					}
-					return (visRow - inds[ind - 1])*rowHeight;
+					return (visRow - inds[ind - 1])*RowHeight;
 				}
 				ind = -1 - ind;
 				if (ind < 1){
 					return control1.VisibleY;
 				}
-				return (visRow - inds[ind - 1])*rowHeight;
+				return (visRow - inds[ind - 1])*RowHeight;
 			};
 			control1.DeltaDownToSelection = () =>{
 				int[] inds = GetSelectedRowsView();
 				if (inds.Length == 0){
 					return control1.TotalHeight() - control1.VisibleY - control1.VisibleHeight;
 				}
-				int visRow = (control1.VisibleY + rowHeight - 1)/rowHeight;
+				int visRow = (control1.VisibleY + RowHeight - 1)/RowHeight;
 				int ind = Array.BinarySearch(inds, visRow);
 				if (ind >= 0){
 					if (ind >= inds.Length - 1){
 						return control1.TotalHeight() - control1.VisibleY - control1.VisibleHeight;
 					}
-					return (inds[ind + 1] - visRow)*rowHeight;
+					return (inds[ind + 1] - visRow)*RowHeight;
 				}
 				ind = -1 - ind;
 				if (ind >= inds.Length){
 					return control1.TotalHeight() - control1.VisibleY - control1.VisibleHeight;
 				}
-				return (inds[ind] - visRow)*rowHeight;
+				return (inds[ind] - visRow)*RowHeight;
 			};
 		}
 
@@ -697,7 +700,7 @@ namespace BaseLib.Forms.Table{
 					return;
 				}
 				int ind = ArrayUtils.CeilIndex(columnWidthSums, x1);
-				int row = (control.VisibleY + cy)/rowHeight;
+				int row = (control.VisibleY + cy)/RowHeight;
 				if (model == null || row >= model.RowCount || row < 0){
 					return;
 				}
@@ -894,7 +897,7 @@ namespace BaseLib.Forms.Table{
 					columnWidthSums[i] = columnWidthSums[i - 1] + model.GetColumnWidth(i);
 				}
 				if (model.AnnotationRowsCount > 0){
-					control.ColumnHeaderHeight = origColumnHeaderHeight + model.AnnotationRowsCount*rowHeight;
+					control.ColumnHeaderHeight = origColumnHeaderHeight + model.AnnotationRowsCount*RowHeight;
 				}
 			}
 		}
@@ -939,18 +942,18 @@ namespace BaseLib.Forms.Table{
 		}
 
 		public void ScrollToRow(int row){
-			if ((RowCount - row)*rowHeight < control.VisibleHeight){
+			if ((RowCount - row)*RowHeight < control.VisibleHeight){
 				ScrollToEnd();
 			} else{
-				control.VisibleY = row*rowHeight;
+				control.VisibleY = row*RowHeight;
 			}
 		}
 
 		public void ScrollToEnd(){
-			if (RowCount*rowHeight < control.VisibleHeight){
+			if (RowCount*RowHeight < control.VisibleHeight){
 				control.VisibleY = 0;
 			} else{
-				control.VisibleY = (RowCount - (int) (control.VisibleHeight/(double) rowHeight))*rowHeight;
+				control.VisibleY = (RowCount - (int) (control.VisibleHeight/(double) RowHeight))*RowHeight;
 			}
 		}
 
@@ -1463,7 +1466,7 @@ namespace BaseLib.Forms.Table{
 					}
 				}
 			} catch (Exception){}
-			currentRow = y1/rowHeight;
+			currentRow = y1/RowHeight;
 		}
 
 		public void Dispose(){
@@ -1495,7 +1498,7 @@ namespace BaseLib.Forms.Table{
 							modelRowSel[order[selection[selection.Length - 1]]] = false;
 						}
 						SetSelectedViewIndex(selection[selection.Length - 1] + 1);
-						control.MoveDown(rowHeight);
+						control.MoveDown(RowHeight);
 						control.Invalidate(true);
 					}
 				}
@@ -1508,7 +1511,7 @@ namespace BaseLib.Forms.Table{
 							modelRowSel[order[selection[0]]] = false;
 						}
 						SetSelectedViewIndex(selection[0] - 1);
-						control.MoveUp(rowHeight);
+						control.MoveUp(RowHeight);
 						control.Invalidate(true);
 					}
 				}
