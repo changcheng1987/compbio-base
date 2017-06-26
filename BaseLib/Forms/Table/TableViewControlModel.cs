@@ -52,7 +52,6 @@ namespace BaseLib.Forms.Table {
 		private int colDragX = -1;
 		private int deltaDragX;
 		private bool hasShowInPerseus;
-		private FindForm findForm;
 		public int origColumnHeaderHeight;
 		private const int maxColHeaderStringSplits = 3;
 		private bool sortable;
@@ -684,7 +683,7 @@ namespace BaseLib.Forms.Table {
 				control.Invalidate(true);
 			});
 			control.AddContextMenuItem("Monospace font", (sender, args) => {
-				textFont = new Font2("Courier", 9);
+				textFont = new Font2("Courier New", 9);
 				control.Invalidate(true);
 			});
 			control.AddContextMenuItem("Default font", (sender, args) => {
@@ -1069,14 +1068,10 @@ namespace BaseLib.Forms.Table {
 			if (model == null) {
 				return;
 			}
-			if (findForm == null) {
-				findForm = new FindForm(this, control);
-			}
-			findForm.Visible = false;
-			findForm.BringToFront();
-			findForm.Show();
-			findForm.FocusInputField();
-			findForm.Activate();
+		    using (var findForm = new FindForm(this, control))
+		    {
+                findForm.ShowDialog();
+		    }
 		}
 
 		public void BringSelectionToTop() {
@@ -1492,13 +1487,6 @@ namespace BaseLib.Forms.Table {
 				}
 			} catch (Exception) { }
 			currentRow = y1 / RowHeight;
-		}
-
-		public void Dispose() {
-			if (findForm != null) {
-				findForm.Close();
-				findForm.Dispose();
-			}
 		}
 
 		public void ProcessCmdKey(Keys2 keyData) {

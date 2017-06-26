@@ -78,8 +78,11 @@ namespace BaseLib.Graphic{
 			return new Font(f.Name, f.Size, ToFontStyle(f.Style));
 		}
 
-		public static Font2 ToFont2(Font f){
-			return new Font2(f.OriginalFontName, f.Size, ToFontStyle2(f.Style));
+		public static Font2 ToFont2(Font f)
+		{
+            // winforms FontDialog does not assign 'OriginalFontName'
+		    var name = string.IsNullOrEmpty(f.OriginalFontName) ? f.Name : f.OriginalFontName;
+			return new Font2(name, f.Size, ToFontStyle2(f.Style));
 		}
 
 		public static SmoothingMode ToSmoothingMode(SmoothingMode2 mode){
