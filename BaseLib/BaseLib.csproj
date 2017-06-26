@@ -58,6 +58,12 @@
     <Compile Include="Forms\CheckedListBoxControl.Designer.cs">
       <DependentUpon>CheckedListBoxControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CheckedListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CheckedListControl.Designer.cs">
+      <DependentUpon>CheckedListControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ColorScale.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -326,6 +332,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Forms\CheckedListBoxControl.resx">
       <DependentUpon>CheckedListBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CheckedListControl.resx">
+      <DependentUpon>CheckedListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ColorScale.resx">
       <DependentUpon>ColorScale.cs</DependentUpon>

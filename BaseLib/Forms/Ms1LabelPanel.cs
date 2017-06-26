@@ -23,7 +23,7 @@ namespace BaseLib.Forms{
 		/// each containing the full list of labels given as an argument to the constructor.
 		/// Set by InitializeComponent1(), called by constructor.
 		/// </summary>
-		private CheckedListBoxControl[] labelsListBoxes;
+		private CheckedListControl[] labelsListBoxes;
 
 		/// <summary>
 		/// Display names of the label states, e.g., "Light labels" and "Heavy labels". 
@@ -44,7 +44,7 @@ namespace BaseLib.Forms{
 			InitializeComponent1();
 			LabelModification[] x = ToLabelMods(labels);
 			deselectionMap = CreateDeselectionMap(x);
-			foreach (CheckedListBoxControl box in labelsListBoxes.Where(box => box != null)){
+			foreach (CheckedListControl box in labelsListBoxes.Where(box => box != null)){
 				box.ItemCheck += LabelsListBoxItemCheck;
 			}
 		}
@@ -67,17 +67,15 @@ namespace BaseLib.Forms{
 		/// Sets textLabels and labelsListBoxes.
 		/// </summary>
 		private void InitializeComponent1(){
-			labelsListBoxes = new CheckedListBoxControl[n];
+			labelsListBoxes = new CheckedListControl[n];
 			textLabels = new Label[n];
 			for (int i = 0; i < n; i++){
-				labelsListBoxes[i] = new CheckedListBoxControl();
-				foreach (string label in labels){
-					labelsListBoxes[i].Add(label);
-				}
+				labelsListBoxes[i] = new CheckedListControl();
+				labelsListBoxes[i].AddRange(labels);
 				textLabels[i] = new Label{Text = GetLabelText(i, n)};
 			}
-			// grid1 has one row to show "Light labels", "Medium levels", etc., and one row for the boxes to select 
-			// the relevant labels. It has one column for each label state.
+			// grid1 has one row to show "Light labels", "Medium levels", etc., and one row for the boxes 
+			// to select the relevant labels. It has one column for each label state.
 			TableLayoutPanel grid1 = new TableLayoutPanel();
 			grid1.RowStyles.Add(new RowStyle(SizeType.Absolute, 24));
 			grid1.RowStyles.Add(new RowStyle(SizeType.AutoSize, 100));
@@ -91,17 +89,10 @@ namespace BaseLib.Forms{
 			grid1.AutoScroll = true;
 			grid1.VerticalScroll.Enabled = false;
 			grid1.Dock = DockStyle.Fill;
-			//ScrollViewer sv = new ScrollViewer{
-			//	HorizontalAlignment = HorizontalAlignment.Left,
-			//	VerticalScrollBarVisibility = ScrollBarVisibility.Disabled,
-			//	HorizontalScrollBarVisibility = ScrollBarVisibility.Auto,
-			//	Content = grid1
-			//};
 			Controls.Add(grid1);
 			Name = "Ms1LabelPanel";
 			Width = 540;
 			Height = 147;
-			//VisualStyleElement.TrayNotify.Background = Brushes.White;
 		}
 
 		/// <summary>
@@ -117,7 +108,7 @@ namespace BaseLib.Forms{
 				return "";
 			}
 			if (m == 1){ // only one label state
-				return "Labels";
+				return "";
 			}
 			if (m == 2){ // two lable states: light and heavy
 				return i == 0 ? "Light labels" : "Heavy labels";
@@ -140,7 +131,7 @@ namespace BaseLib.Forms{
 			return LabelsFromBox(labelsListBoxes[ind]);
 		}
 
-		private static string[] LabelsFromBox(CheckedListBoxControl box){
+		private static string[] LabelsFromBox(CheckedListControl box){
 			List<string> result = new List<string>();
 			foreach (string x in box.CheckedItems){
 				LabelModification sl = LabelModification.GetLabelByName(x);
@@ -154,11 +145,17 @@ namespace BaseLib.Forms{
 
 		public void SetLabels(LabelModification[] sls){
 			deselectionMap = CreateDeselectionMap(sls);
-			foreach (CheckedListBoxControl box in labelsListBoxes){
-				foreach (LabelModification sl in sls){
-					box.Add(sl.Name);
-				}
+			foreach (CheckedListControl box in labelsListBoxes){
+				box.AddRange(ToS(sls));
 			}
+		}
+
+		private static string[] ToS(LabelModification[] sls) {
+			string[] result = new string[sls.Length];
+			for (int i = 0; i < result.Length; i++) {
+				result[i] = sls[i].Name;
+			}
+			return result;
 		}
 
 		private static Dictionary<int, int[]> CreateDeselectionMap(IList<LabelModification> sls){
