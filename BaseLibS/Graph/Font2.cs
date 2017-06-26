@@ -17,5 +17,10 @@
 		public Font2 Scale(float s){
 			return new Font2(Name, Size*s, Style);
 		}
+
+	    public override string ToString()
+	    {
+	        return $"Name = \"{Name}\" Size={Size}";
+	    }
 	}
 }

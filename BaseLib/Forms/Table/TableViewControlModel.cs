@@ -683,7 +683,7 @@ namespace BaseLib.Forms.Table {
 				control.Invalidate(true);
 			});
 			control.AddContextMenuItem("Monospace font", (sender, args) => {
-				textFont = new Font2("Courier", 9);
+				textFont = new Font2("Courier New", 9);
 				control.Invalidate(true);
 			});
 			control.AddContextMenuItem("Default font", (sender, args) => {
