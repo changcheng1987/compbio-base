@@ -58,7 +58,7 @@ namespace BaseLib.Forms.Table {
 		private bool sortable;
 		public Action<string> SetCellText { get; set; }
 		private ICompoundScrollableControl control;
-		internal float UserSf { get; set; } = 1;
+		public float UserSf { get; set; } = 1;
 		private float sfx = 1;
 
 		private int RowHeight {
@@ -66,14 +66,23 @@ namespace BaseLib.Forms.Table {
 		}
 
 		private int ColumnHeaderHeight {
-			get { return (int)(control.ColumnHeaderHeight * sfx * UserSf); }
+			get { return (int) (control.ColumnHeaderHeight * sfx * UserSf); }
+		}
+
+		private int RowHeaderWidth {
+			get { return (int) (control.RowHeaderWidth * sfx * UserSf); }
 		}
 
 		public void UpdateScaling() {
-			defaultFont = new Font2("Arial", (float) (9 * (UserSf * sfx)));
+			bool isUnix = FileUtils.IsUnix();
+			defaultFont = new Font2("Arial", (isUnix ? 5 : 9) * UserSf * sfx);
 			textFont = defaultFont;
 			headerFont = defaultFont;
 			SetColumnWidthSums();
+			control.RowHeaderWidth = control.RowHeaderWidth;
+			control.RowFooterWidth = control.RowFooterWidth;
+			control.ColumnHeaderHeight = control.ColumnHeaderHeight;
+			control.ColumnFooterHeight = control.ColumnFooterHeight;
 		}
 
 		public void Register(ICompoundScrollableControl control1, float sfx1) {
@@ -327,21 +336,21 @@ namespace BaseLib.Forms.Table {
 				if (model == null) {
 					return;
 				}
-				g.FillRectangle(headerBrush, 0, 0, control1.RowHeaderWidth - 1, height);
+				g.FillRectangle(headerBrush, 0, 0, RowHeaderWidth - 1, height);
 				g.DrawLine(gridPen, 0, 0, 0, height);
-				g.DrawLine(gridPen, control1.RowHeaderWidth - 1, 0, control1.RowHeaderWidth - 1, height);
+				g.DrawLine(gridPen, RowHeaderWidth - 1, 0, RowHeaderWidth - 1, height);
 				g.DrawLine(Pens2.White, 1, 0, 1, height);
-				g.DrawLine(shadow1Pen, control1.RowHeaderWidth - 2, 0, control1.RowHeaderWidth - 2, height);
-				g.DrawLine(shadow2Pen, control1.RowHeaderWidth - 3, 0, control1.RowHeaderWidth - 3, height);
-				g.DrawLine(shadow3Pen, control1.RowHeaderWidth - 4, 0, control1.RowHeaderWidth - 4, height);
+				g.DrawLine(shadow1Pen, RowHeaderWidth - 2, 0, RowHeaderWidth - 2, height);
+				g.DrawLine(shadow2Pen, RowHeaderWidth - 3, 0, RowHeaderWidth - 3, height);
+				g.DrawLine(shadow3Pen, RowHeaderWidth - 4, 0, RowHeaderWidth - 4, height);
 				int offset = -y % RowHeight;
 				for (int y1 = offset - RowHeight; y1 < height; y1 += RowHeight) {
 					int row = (y + y1) / RowHeight;
 					if (model == null || row > model.RowCount) {
 						break;
 					}
-					g.DrawLine(headerGridPen, 5, y1 - 1, control1.RowHeaderWidth - 6, y1 - 1);
-					g.DrawLine(Pens2.White, 5, y1, control1.RowHeaderWidth - 6, y1);
+					g.DrawLine(headerGridPen, 5, y1 - 1, RowHeaderWidth - 6, y1 - 1);
+					g.DrawLine(Pens2.White, 5, y1, RowHeaderWidth - 6, y1);
 				}
 				for (int y1 = offset - RowHeight; y1 < height; y1 += RowHeight) {
 					int row = (y + y1) / RowHeight;
@@ -352,14 +361,14 @@ namespace BaseLib.Forms.Table {
 						break;
 					}
 					if (ViewRowIsSelected(row)) {
-						g.DrawLine(selectHeader1Pen, 2, y1 + 1, control1.RowHeaderWidth - 2, y1 + 1);
-						g.DrawLine(selectHeader1Pen, 2, y1 + RowHeight, control1.RowHeaderWidth - 2, y1 + RowHeight);
-						g.DrawLine(selectHeader1Pen, control1.RowHeaderWidth - 2, y1 + 1, control1.RowHeaderWidth - 2, y1 + RowHeight);
-						g.DrawLine(selectHeader2Pen, 2, y1 + 2, control1.RowHeaderWidth - 3, y1 + 2);
+						g.DrawLine(selectHeader1Pen, 2, y1 + 1, RowHeaderWidth - 2, y1 + 1);
+						g.DrawLine(selectHeader1Pen, 2, y1 + RowHeight, RowHeaderWidth - 2, y1 + RowHeight);
+						g.DrawLine(selectHeader1Pen, RowHeaderWidth - 2, y1 + 1, RowHeaderWidth - 2, y1 + RowHeight);
+						g.DrawLine(selectHeader2Pen, 2, y1 + 2, RowHeaderWidth - 3, y1 + 2);
 						g.DrawLine(selectHeader2Pen, 2, y1 + 2, 2, y1 + RowHeight - 1);
-						g.DrawLine(selectHeader3Pen, 3, y1 + 3, control1.RowHeaderWidth - 3, y1 + 3);
+						g.DrawLine(selectHeader3Pen, 3, y1 + 3, RowHeaderWidth - 3, y1 + 3);
 						g.DrawLine(selectHeader3Pen, 3, y1 + 3, 3, y1 + RowHeight - 1);
-						g.FillRectangle(selectHeader4Brush, 4, y1 + 4, control1.RowHeaderWidth - 6, RowHeight - 4);
+						g.FillRectangle(selectHeader4Brush, 4, y1 + 4, RowHeaderWidth - 6, RowHeight - 4);
 					}
 					g.DrawString("" + (row + 1), textFont, Brushes2.Black, 5, y1 + 4 * sfx * UserSf);
 				}
@@ -395,7 +404,7 @@ namespace BaseLib.Forms.Table {
 							int w = i == 0 ? columnWidthSums[0] : columnWidthSums[i] - columnWidthSums[i - 1];
 							string[] q = GetStringHeader(g, i, w, headerFont);
 							for (int j = 0; j < q.Length; j++) {
-								g.DrawString(q[j], headerFont, Brushes2.Black, x1 + 3, 4 + 11 * j);
+								g.DrawString(q[j], headerFont, Brushes2.Black, x1 + 3, (4 + 11 * j) * sfx * UserSf);
 							}
 						}
 						if (sortCol != -1 && sortState != SortState.Unsorted) {
@@ -434,9 +443,9 @@ namespace BaseLib.Forms.Table {
 				if (model == null) {
 					return;
 				}
-				g.FillRectangle(headerBrush, 0, 0, control1.RowHeaderWidth - 1, ColumnHeaderHeight - 1);
-				g.DrawRectangle(gridPen, 0, 0, control1.RowHeaderWidth - 1, ColumnHeaderHeight - 1);
-				g.DrawLine(Pens2.White, 1, 1, control1.RowHeaderWidth - 2, 1);
+				g.FillRectangle(headerBrush, 0, 0, RowHeaderWidth - 1, ColumnHeaderHeight - 1);
+				g.DrawRectangle(gridPen, 0, 0, RowHeaderWidth - 1, ColumnHeaderHeight - 1);
+				g.DrawLine(Pens2.White, 1, 1, RowHeaderWidth - 2, 1);
 				g.DrawLine(Pens2.White, 1, 1, 1, ColumnHeaderHeight - 2);
 				if (matrixHelp) {
 					g.DrawImage(Bitmap2.GetImage("question12.png"), 7, 7, 10, 10);
@@ -444,12 +453,11 @@ namespace BaseLib.Forms.Table {
 				if (model != null && model.AnnotationRowsCount > 0) {
 					for (int i = 0; i < model.AnnotationRowsCount; i++) {
 						int y1 = origColumnHeaderHeight + i * RowHeight;
-						g.DrawLine(headerGridPen, 5, y1 - 1, control1.RowHeaderWidth - 6, y1 - 1);
-						g.DrawLine(Pens2.White, 5, y1, control1.RowHeaderWidth - 6, y1);
+						g.DrawLine(headerGridPen, 5, y1 - 1, RowHeaderWidth - 6, y1 - 1);
+						g.DrawLine(Pens2.White, 5, y1, RowHeaderWidth - 6, y1);
 						string s = model.GetAnnotationRowName(i);
 						if (s != null) {
-							g.DrawString("" + GetStringValue(g, s, control1.RowHeaderWidth - 6, headerFont), textFont, Brushes2.Black, 3,
-								y1 + 3);
+							g.DrawString("" + GetStringValue(g, s, RowHeaderWidth - 6, headerFont), textFont, Brushes2.Black, 3, y1 + 3);
 						}
 					}
 				}
@@ -705,7 +713,7 @@ namespace BaseLib.Forms.Table {
 				}
 				Tuple<int, int> p = control.GetContextMenuPosition();
 				Tuple<int, int> q = control.GetOrigin();
-				int cx = p.Item1 - q.Item1 - control.RowHeaderWidth;
+				int cx = p.Item1 - q.Item1 - RowHeaderWidth;
 				int cy = p.Item2 - q.Item2 - ColumnHeaderHeight;
 				int x1 = control.VisibleX + cx;
 				if (columnWidthSums == null) {
@@ -725,7 +733,7 @@ namespace BaseLib.Forms.Table {
 				}
 				Tuple<int, int> p = control.GetContextMenuPosition();
 				Tuple<int, int> q = control.GetOrigin();
-				int cx = p.Item1 - q.Item1 - control.RowHeaderWidth;
+				int cx = p.Item1 - q.Item1 - RowHeaderWidth;
 				int x1 = control.VisibleX + cx;
 				if (columnWidthSums == null) {
 					return;
@@ -749,7 +757,7 @@ namespace BaseLib.Forms.Table {
 				}
 				Tuple<int, int> p = control.GetContextMenuPosition();
 				Tuple<int, int> q = control.GetOrigin();
-				int cx = p.Item1 - q.Item1 - control.RowHeaderWidth;
+				int cx = p.Item1 - q.Item1 - RowHeaderWidth;
 				int x1 = control.VisibleX + cx;
 				if (columnWidthSums == null) {
 					return;

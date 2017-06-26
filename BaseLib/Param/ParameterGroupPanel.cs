@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using BaseLib.Forms;
 using BaseLibS.Param;
 using BaseLibS.Util;
 
@@ -13,14 +14,16 @@ namespace BaseLib.Param{
 		}
 
 		public void Init(ParameterGroup parameters1, float paramNameWidth, int totalWidth){
+			float sfx = FormUtils.GetDpiScale(CreateGraphics());
 			ParameterGroup = parameters1;
 			int nrows = ParameterGroup.Count;
 			grid = new TableLayoutPanel();
 			grid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, paramNameWidth));
 			grid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, totalWidth - paramNameWidth));
 			grid.Margin = new Padding(0);
-			for (int i = 0; i < nrows; i++){
-				float h = ParameterGroup[i].Visible ? ParameterGroup[i].Height : 0;
+			for (int i = 0; i < nrows; i++) {
+				Parameter p = ParameterGroup[i];
+				float h = p.Visible ? p.Height * sfx : 0;
 				grid.RowStyles.Add(new RowStyle(SizeType.Absolute, h));
 			}
 			grid.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
@@ -66,16 +69,6 @@ namespace BaseLib.Param{
 
 		public void Disable(){
 			grid.Enabled = false;
-		}
-
-		private void InitializeComponent() {
-			this.SuspendLayout();
-			// 
-			// ParameterGroupPanel
-			// 
-			this.Name = "ParameterGroupPanel";
-			this.ResumeLayout(false);
-
 		}
 	}
 }

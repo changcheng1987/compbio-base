@@ -53,7 +53,7 @@ namespace BaseLib.Forms.Table{
 			scaleFactorComboBox.SelectedIndexChanged += (sender, args) =>{
 				switch (scaleFactorComboBox.SelectedIndex){
 					case 0:
-						tableViewWf.UserSf = 0.2f;
+						tableViewWf.UserSf = 0.25f;
 						break;
 					case 1:
 						tableViewWf.UserSf = 0.5f;
@@ -80,6 +80,7 @@ namespace BaseLib.Forms.Table{
 		}
 
 		private void InitializeComponent2(){
+			bool isUnix = FileUtils.IsUnix();
 			tableLayoutPanel1 = new TableLayoutPanel();
 			tableLayoutPanel2 = new TableLayoutPanel();
 			selectionAgentButton = new Button();
@@ -187,9 +188,9 @@ namespace BaseLib.Forms.Table{
 			// 
 			scaleFactorComboBox.Dock = DockStyle.Fill;
 			scaleFactorComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-			scaleFactorComboBox.Font = new Font("Microsoft Sans Serif", 7.0F*sfx);
+			scaleFactorComboBox.Font = new Font("Microsoft Sans Serif", (isUnix ? 4 : 7) * sfx);
 			scaleFactorComboBox.FormattingEnabled = true;
-			scaleFactorComboBox.Items.AddRange(new object[]{"20 %", "50 %", "70 %", "100 %", "150 %", "200 %", "400 %"});
+			scaleFactorComboBox.Items.AddRange(new object[]{"25 %", "50 %", "70 %", "100 %", "150 %", "200 %", "400 %"});
 			scaleFactorComboBox.Location = new Point(453, 0);
 			scaleFactorComboBox.Margin = new Padding(0);
 			scaleFactorComboBox.Name = "scaleFactorComboBox";

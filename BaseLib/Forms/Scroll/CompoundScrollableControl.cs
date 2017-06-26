@@ -269,7 +269,7 @@ namespace BaseLib.Forms.Scroll{
 			get { return rowHeaderWidth; }
 			set{
 				rowHeaderWidth = value;
-				tableLayoutPanel2.ColumnStyles[0] = new BasicColumnStyle(BasicSizeType.AbsoluteResizeable, value);
+				tableLayoutPanel2.ColumnStyles[0] = new BasicColumnStyle(BasicSizeType.AbsoluteResizeable, value *sfx * client?.UserSf ?? 1);
 			}
 		}
 
@@ -277,7 +277,7 @@ namespace BaseLib.Forms.Scroll{
 			get { return rowFooterWidth; }
 			set{
 				rowFooterWidth = value;
-				tableLayoutPanel2.ColumnStyles[2] = new BasicColumnStyle(BasicSizeType.AbsoluteResizeable, value);
+				tableLayoutPanel2.ColumnStyles[2] = new BasicColumnStyle(BasicSizeType.AbsoluteResizeable, value * sfx * client?.UserSf ?? 1);
 			}
 		}
 
@@ -285,7 +285,7 @@ namespace BaseLib.Forms.Scroll{
 			get { return columnHeaderHeight; }
 			set{
 				columnHeaderHeight = value;
-				tableLayoutPanel2.RowStyles[0] = new BasicRowStyle(BasicSizeType.AbsoluteResizeable, value);
+				tableLayoutPanel2.RowStyles[0] = new BasicRowStyle(BasicSizeType.AbsoluteResizeable, value * sfx * client?.UserSf ?? 1);
 			}
 		}
 
@@ -293,7 +293,7 @@ namespace BaseLib.Forms.Scroll{
 			get { return columnFooterHeight; }
 			set{
 				columnFooterHeight = value;
-				tableLayoutPanel2.RowStyles[2] = new BasicRowStyle(BasicSizeType.AbsoluteResizeable, value);
+				tableLayoutPanel2.RowStyles[2] = new BasicRowStyle(BasicSizeType.AbsoluteResizeable, value * sfx * client?.UserSf ?? 1);
 			}
 		}
 
