@@ -78,7 +78,7 @@ namespace BaseLib.Forms{
 			// to select the relevant labels. It has one column for each label state.
 			TableLayoutPanel grid1 = new TableLayoutPanel();
 			grid1.RowStyles.Add(new RowStyle(SizeType.Absolute, 24));
-			grid1.RowStyles.Add(new RowStyle(SizeType.AutoSize, 100));
+			grid1.RowStyles.Add(new RowStyle(SizeType.Absolute, 126));
 			for (int i = 0; i < n; i++){
 				grid1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150));
 			}
@@ -89,10 +89,13 @@ namespace BaseLib.Forms{
 			grid1.AutoScroll = true;
 			grid1.VerticalScroll.Enabled = false;
 			grid1.Dock = DockStyle.Fill;
+			grid1.Width = 540;
+			grid1.Height = 300;
 			Controls.Add(grid1);
 			Name = "Ms1LabelPanel";
 			Width = 540;
-			Height = 147;
+			Height = 150;
+			ResumeLayout(true);
 		}
 
 		/// <summary>
@@ -223,7 +226,7 @@ namespace BaseLib.Forms{
 		}
 
 		private void LabelsListBoxItemCheck(object sender, ItemCheckEventArgs e){
-			CheckedListBoxControl box = (CheckedListBoxControl) sender;
+			CheckedListControl box = (CheckedListControl) sender;
 			if (e.NewValue != CheckState.Checked){
 				return;
 			}

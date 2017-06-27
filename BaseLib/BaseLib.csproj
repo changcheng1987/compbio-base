@@ -52,12 +52,6 @@
     </Compile>
     <Compile Include="Forms\Base\FormUtil.cs" />
     <Compile Include="Forms\Base\Printing.cs" />
-    <Compile Include="Forms\CheckedListBoxControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\CheckedListBoxControl.Designer.cs">
-      <DependentUpon>CheckedListBoxControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\CheckedListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -330,9 +324,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\CheckedListBoxControl.resx">
-      <DependentUpon>CheckedListBoxControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CheckedListControl.resx">
       <DependentUpon>CheckedListControl.cs</DependentUpon>
     </EmbeddedResource>

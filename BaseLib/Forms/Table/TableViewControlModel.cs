@@ -1068,10 +1068,9 @@ namespace BaseLib.Forms.Table {
 			if (model == null) {
 				return;
 			}
-		    using (var findForm = new FindForm(this, control))
-		    {
-                findForm.ShowDialog();
-		    }
+			using (var findForm = new FindForm(this, control)) {
+				findForm.ShowDialog();
+			}
 		}
 
 		public void BringSelectionToTop() {

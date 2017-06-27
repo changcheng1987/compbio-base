@@ -14,14 +14,10 @@ namespace BaseLib.Forms {
 		}
 
 		public void AddRange(string[] text) {
+			float sfx = FormUtils.GetDpiScale(CreateGraphics());
 			Controls.Clear();
 			checkBoxes.Clear();
-			tableLayoutPanel1 = new TableLayoutPanel();
-			SuspendLayout();
-			// 
-			// tableLayoutPanel1
-			// 
-			tableLayoutPanel1.ColumnCount = 1;
+			tableLayoutPanel1 = new TableLayoutPanel {ColumnCount = 1};
 			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
 			tableLayoutPanel1.Dock = DockStyle.Fill;
 			tableLayoutPanel1.Location = new Point(0, 0);
@@ -29,11 +25,12 @@ namespace BaseLib.Forms {
 			tableLayoutPanel1.Name = "tableLayoutPanel1";
 			tableLayoutPanel1.RowCount = text.Length;
 			for (int i = 0; i < text.Length; i++) {
-				tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+				tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, sfx * 23F));
 			}
-			tableLayoutPanel1.Size = new Size(260, 50 * text.Length);
+			tableLayoutPanel1.Size = new Size(260, (int)(sfx * 23 * text.Length));
 			tableLayoutPanel1.TabIndex = 0;
 			tableLayoutPanel1.AutoScroll = true;
+			tableLayoutPanel1.VerticalScroll.Visible = true;
 			// 
 			// CheckedListControl
 			// 
@@ -41,8 +38,7 @@ namespace BaseLib.Forms {
 			AutoScaleMode = AutoScaleMode.Font;
 			Controls.Add(tableLayoutPanel1);
 			Name = "CheckedListControl";
-			Size = new Size(329, 300);
-			ResumeLayout(false);
+			Size = new Size(222, 276);
 			for (int index = 0; index < text.Length; index++) {
 				string s = text[index];
 				CheckBox cb = new CheckBox {Text = s};
