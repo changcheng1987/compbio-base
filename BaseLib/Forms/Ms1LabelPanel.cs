@@ -88,7 +88,7 @@ namespace BaseLib.Forms{
 			}
 			grid1.AutoScroll = true;
 			grid1.VerticalScroll.Enabled = false;
-			grid1.Dock = DockStyle.Fill;
+			grid1.Dock = DockStyle.Top;
 			grid1.Width = 540;
 			grid1.Height = 300;
 			Controls.Add(grid1);

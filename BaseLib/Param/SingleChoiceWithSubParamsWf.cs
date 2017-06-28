@@ -65,18 +65,20 @@ namespace BaseLib.Param {
 			grid.RowStyles.Add(new RowStyle(SizeType.Absolute, sfx * panelHeight));
 			cb.Dock = DockStyle.Fill;
 			grid.Controls.Add(cb, 0, 0);
-			for (int i = 0; i < panels.Length; i++) {
-				panels[i].Visible = (i == Value);
-				panels[i].Dock = DockStyle.Fill;
-				grid.Controls.Add(panels[i], 0, 1);
+			Panel placeholder = new Panel {Margin = new Padding(0), Dock = DockStyle.Fill};
+			grid.Controls.Add(placeholder, 0, 1);
+			foreach (ParameterPanel t in panels) {
+				t.Dock = DockStyle.Top;
 			}
+			placeholder.Controls.Add(panels[Value]);
 			cb.SelectedIndexChanged += (sender, e) => {
-				for (int i = 0; i < panels.Length; i++) {
-					panels[i].Visible = i == cb.SelectedIndex;
+				placeholder.Controls.Clear();
+				if (cb.SelectedIndex >= 0) {
+					placeholder.Controls.Add(panels[cb.SelectedIndex]);
 				}
 			};
 			grid.Width = (int) TotalWidth;
-			grid.Dock = DockStyle.Fill;
+			grid.Dock = DockStyle.Top;
 			control = grid;
 			return control;
 		}

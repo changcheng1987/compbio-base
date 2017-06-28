@@ -23,7 +23,7 @@ namespace BaseLib.Param{
 			grid.Margin = new Padding(0);
 			for (int i = 0; i < nrows; i++) {
 				Parameter p = ParameterGroup[i];
-				float h = p.Visible ? p.Height * sfx : 0;
+				float h = p.Height * sfx;
 				grid.RowStyles.Add(new RowStyle(SizeType.Absolute, h));
 			}
 			grid.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
