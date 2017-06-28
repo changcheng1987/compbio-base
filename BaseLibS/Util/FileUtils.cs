@@ -23,8 +23,8 @@ namespace BaseLibS.Util{
 			"JPG JPEG (*.jpg,*jif,*jpe,*jpeg)|*.jpg;*jif;*jpe;*jpeg|PNG Portable Network Graphics (*.png)|*.png";
 
 		private static readonly Random random = new Random();
-	    public static string executableFile => Assembly.GetEntryAssembly().Location;
-		public static string executablePath => Path.GetDirectoryName(executableFile);
+	    public static string executableFile = Assembly.GetEntryAssembly()?.Location ?? typeof(FileUtils).Assembly.Location;
+	    public static string executablePath = Path.GetDirectoryName(executableFile);
 
 		public static string GetConfigPath(){
 			return Path.Combine(executablePath, "conf");
