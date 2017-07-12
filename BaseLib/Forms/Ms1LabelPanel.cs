@@ -74,7 +74,7 @@ namespace BaseLib.Forms{
 				labelsListBoxes[i].AddRange(labels);
 				textLabels[i] = new Label{Text = GetLabelText(i, n)};
 			}
-			// grid1 has one row to show "Light labels", "Medium levels", etc., and one row for the boxes 
+			// grid1 has one row to show "Light labels", "Medium labels", etc., and one row for the boxes 
 			// to select the relevant labels. It has one column for each label state.
 			TableLayoutPanel grid1 = new TableLayoutPanel();
 			grid1.RowStyles.Add(new RowStyle(SizeType.Absolute, 24));

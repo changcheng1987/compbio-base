@@ -14,7 +14,9 @@ namespace BaseLib.Forms {
 		}
 
 		public void AddRange(string[] text) {
-			float sfx = FormUtils.GetDpiScale(CreateGraphics());
+			//TODO
+			float sfx = 1;
+			//float sfx = FormUtils.GetDpiScale(CreateGraphics());
 			Controls.Clear();
 			checkBoxes.Clear();
 			tableLayoutPanel1 = new TableLayoutPanel {ColumnCount = 1};
