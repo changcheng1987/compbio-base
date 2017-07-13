@@ -35,8 +35,8 @@ namespace BaseLib.Forms.Scroll{
 			ResizeRedraw = true;
 			DoubleBuffered = true;
 			OnPaintMainView = (g, x, y, width, height, isOverview) => { };
-			TotalWidth = () => 200;
-			TotalHeight = () => 200;
+			TotalWidth = () => ClientSize.Width;
+			TotalHeight = () => ClientSize.Height;
 			DeltaX = () => Width/20;
 			DeltaY = () => Height/20;
 			DeltaUpToSelection = () => 0;
