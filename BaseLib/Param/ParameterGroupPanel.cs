@@ -14,7 +14,8 @@ namespace BaseLib.Param{
 		}
 
 		public void Init(ParameterGroup parameters1, float paramNameWidth, int totalWidth){
-			float sfx = FormUtils.GetDpiScale(CreateGraphics());
+			//float sfx = FormUtils.GetDpiScale(CreateGraphics());
+			float sfx = 1;
 			ParameterGroup = parameters1;
 			int nrows = ParameterGroup.Count;
 			grid = new TableLayoutPanel();

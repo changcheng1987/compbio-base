@@ -43,7 +43,7 @@ namespace BaseLib.Param{
 			Name = "ParameterPanel";
 			Width = totalWidth;
 			Height = totalHeight;
-			PerformLayout();
+			//PerformLayout();
 			return totalHeight;
 		}
 
