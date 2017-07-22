@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using BaseLib.Forms;
 using BaseLibS.Param;
 
 namespace BaseLib.Param {
@@ -71,7 +70,9 @@ namespace BaseLib.Param {
 			foreach (ParameterPanel t in panels) {
 				t.Dock = DockStyle.Top;
 			}
-			placeholder.Controls.Add(panels[Value]);
+			if (Value >= 0 && panels.Length > 0) {
+				placeholder.Controls.Add(panels[Value]);
+			}
 			cb.SelectedIndexChanged += (sender, e) => {
 				placeholder.Controls.Clear();
 				if (cb.SelectedIndex >= 0) {
