@@ -785,6 +785,19 @@ namespace BaseLibS.Util{
 			}
 		}
 
+		public static bool IsDigit(char c) {
+			return c >= '0' && c <= '9';
+		}
+
+		public static bool AreDigits(string s) {
+			foreach (char c in s) {
+				if (!IsDigit(c)) {
+					return false;
+				}
+			}
+			return true;
+		}
+
 		private static string GetNext(string s){
 			if (!HasNumberExtension(s)){
 				return s + "_1";
