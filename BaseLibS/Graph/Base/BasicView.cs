@@ -10,6 +10,7 @@ namespace BaseLibS.Graph.Base{
 		public Action invalidate;
 		public Action resetCursor;
 		public Action<Cursors2> setCursor;
+		public bool Debug { get; set; } = false;
 
 		public BasicView(){
 			BackColor = Color2.White;
@@ -33,7 +34,7 @@ namespace BaseLibS.Graph.Base{
 		}
 
 		public Cursors2 Cursor{
-			set { setCursor?.Invoke(value); }
+			set => setCursor?.Invoke(value);
 		}
 
 		public virtual void OnPaint(IGraphics g, int width, int height){}

@@ -84,7 +84,7 @@ namespace BaseLib.Forms{
 
 		//TODO: why is this not visible?
 		public override string Text{
-			get { return axis.Text; }
+			get => axis.Text;
 			set{
 				axis.Text = value;
 				axis.Invalidate();
@@ -96,17 +96,17 @@ namespace BaseLib.Forms{
 		}
 
 		public AxisPositioning Positioning{
-			get { return axis.Positioning; }
-			set { axis.Positioning = value; }
+			get => axis.Positioning;
+			set => axis.Positioning = value;
 		}
 
 		public bool Reverse{
-			get { return axis.Reverse; }
-			set { axis.Reverse = value; }
+			get => axis.Reverse;
+			set => axis.Reverse = value;
 		}
 
 		public bool IsLogarithmic{
-			get { return axis.IsLogarithmic; }
+			get => axis.IsLogarithmic;
 			set{
 				bool oldValue = axis.IsLogarithmic;
 				if (oldValue != value){
@@ -126,7 +126,7 @@ namespace BaseLib.Forms{
 		}
 
 		public double Min{
-			get { return IsLogarithmic ? Math.Exp(axis.ZoomMin) : axis.ZoomMin; }
+			get => IsLogarithmic ? Math.Exp(axis.ZoomMin) : axis.ZoomMin;
 			set{
 				double v = IsLogarithmic ? Math.Log(value) : value;
 				axis.TotalMin = v;
@@ -136,7 +136,7 @@ namespace BaseLib.Forms{
 		}
 
 		public double Max{
-			get { return IsLogarithmic ? Math.Exp(axis.ZoomMax) : axis.ZoomMax; }
+			get => IsLogarithmic ? Math.Exp(axis.ZoomMax) : axis.ZoomMax;
 			set{
 				double v = IsLogarithmic ? Math.Log(value) : value;
 				axis.TotalMax = v;
@@ -206,7 +206,7 @@ namespace BaseLib.Forms{
 		}
 
 		public override Color BackColor{
-			get { return base.BackColor; }
+			get => base.BackColor;
 			set{
 				base.BackColor = value;
 				axis.BackColor = Color2.FromArgb(value.A, value.R, value.G, value.B);

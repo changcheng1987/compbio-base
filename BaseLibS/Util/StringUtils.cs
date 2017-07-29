@@ -211,11 +211,11 @@ namespace BaseLibS.Util{
 				return "";
 			}
 			StringBuilder s = new StringBuilder();
-		    string _separator = ""; // empty separator for first element
+		    string separator1 = ""; // empty separator for first element
 			foreach (T i in o){
-				string w = _separator + i;
+				string w = separator1 + i;
 				s.Append(w);
-			    _separator = separator;
+			    separator1 = separator;
 			}
 			return s.ToString();
 		}
