@@ -172,6 +172,9 @@ namespace BaseLib.Forms{
 		}
 
 		public void AdjustMax(float[,] values){
+			if (values == null) {
+				return;
+			}
 			float max = 0;
 			for (int i = 0; i < values.GetLength(0); i++){
 				for (int j = 0; j < values.GetLength(1); j++){
@@ -185,6 +188,9 @@ namespace BaseLib.Forms{
 		}
 
 		public void Adjust(float[,] values){
+			if (values == null) {
+				return;
+			}
 			float min = float.MaxValue;
 			float max = -float.MaxValue;
 			for (int i = 0; i < values.GetLength(0); i++){
