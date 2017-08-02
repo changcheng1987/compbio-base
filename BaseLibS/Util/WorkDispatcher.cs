@@ -11,30 +11,31 @@ namespace BaseLibS.Util {
 		protected HashSet<int> currentIndices = new HashSet<int>();
 		public int nThreads;
 		public int nTasks;
-		protected Thread[] allWorkThreads;
+		protected Thread[] workThreads;
 		protected Process[] externalProcesses;
 		protected Stack<int> toBeProcessed;
 		protected readonly string infoFolder;
 		protected readonly bool externalCalculations;
 
-		protected WorkDispatcher(int nThreads, int nTasks, string infoFolder, bool externalCalculations) : this(
-			nThreads, nTasks, infoFolder) {
-			this.externalCalculations = externalCalculations;
-		}
-
-		protected WorkDispatcher(int nThreads, int nTasks, string infoFolder) {
+		protected WorkDispatcher(int nThreads, int nTasks, string infoFolder, bool externalCalculations) {
 			this.nThreads = Math.Min(nThreads, nTasks);
 			this.nTasks = nTasks;
 			this.infoFolder = infoFolder;
 			if (!string.IsNullOrEmpty(infoFolder) && !Directory.Exists(infoFolder)) {
 				Directory.CreateDirectory(infoFolder);
 			}
+			this.externalCalculations = externalCalculations;
 		}
 
 		public void Abort() {
-			if (allWorkThreads != null) {
-				foreach (Thread t in allWorkThreads.Where(t => t != null)) {
+			if (workThreads != null) {
+				foreach (Thread t in workThreads.Where(t => t != null)) {
 					t.Abort();
+				}
+			}
+			if (ExternalCalculation() && externalProcesses != null) {
+				foreach (Process process in externalProcesses) {
+					process.Kill();
 				}
 			}
 		}
@@ -45,17 +46,17 @@ namespace BaseLibS.Util {
 			for (int index = nTasks - 1; index >= 0; index--) {
 				toBeProcessed.Push(index);
 			}
-			allWorkThreads = new Thread[nThreads];
+			workThreads = new Thread[nThreads];
 			externalProcesses = new Process[nThreads];
 			for (int i = 0; i < nThreads; i++) {
-				allWorkThreads[i] = new Thread(Work) {Name = "Thread " + i + " of " + GetType().Name};
-				allWorkThreads[i].Start(i);
+				workThreads[i] = new Thread(Work) {Name = "Thread " + i + " of " + GetType().Name};
+				workThreads[i].Start(i);
 			}
 			while (true) {
 				Thread.Sleep(1000);
 				bool busy = false;
 				for (int i = 0; i < nThreads; i++) {
-					if (allWorkThreads[i].IsAlive) {
+					if (workThreads[i].IsAlive) {
 						busy = true;
 						break;
 					}
@@ -103,9 +104,9 @@ namespace BaseLibS.Util {
 			psi.CreateNoWindow = true;
 			psi.UseShellExecute = false;
 			externalProcesses[threadIndex].Start();
+			int processid = externalProcesses[threadIndex].Id;
 			externalProcesses[threadIndex].WaitForExit();
 			int exitcode = externalProcesses[threadIndex].ExitCode;
-			int processid = externalProcesses[threadIndex].Id;
 			externalProcesses[threadIndex].Close();
 			if (exitcode != 0) {
 				throw new Exception("Exception during execution of external process: " + processid);
