@@ -35,7 +35,7 @@ namespace BaseLibS.Util {
 			}
 			if (ExternalCalculation() && externalProcesses != null) {
 				foreach (Process process in externalProcesses) {
-					process.Kill();
+					process?.Kill();
 				}
 			}
 		}
