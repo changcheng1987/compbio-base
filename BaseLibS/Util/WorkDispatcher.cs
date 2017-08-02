@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -15,6 +15,12 @@ namespace BaseLibS.Util {
 		protected Process[] externalProcesses;
 		protected Stack<int> toBeProcessed;
 		protected readonly string infoFolder;
+		protected readonly bool externalCalculations;
+
+		protected WorkDispatcher(int nThreads, int nTasks, string infoFolder, bool externalCalculations) : this(
+			nThreads, nTasks, infoFolder) {
+			this.externalCalculations = externalCalculations;
+		}
 
 		protected WorkDispatcher(int nThreads, int nTasks, string infoFolder) {
 			this.nThreads = Math.Min(nThreads, nTasks);
@@ -61,7 +67,6 @@ namespace BaseLibS.Util {
 		}
 
 		public void Work(object threadIndex) {
-			//Please no catching here. Important for debugging.
 			while (toBeProcessed.Count > 0) {
 				int x;
 				lock (this) {
@@ -85,7 +90,7 @@ namespace BaseLibS.Util {
 			}
 		}
 
-		public void ProcessSingleRunExternal(int taskIndex, int threadIndex) {
+		private void ProcessSingleRunExternal(int taskIndex, int threadIndex) {
 			bool isUnix = FileUtils.IsUnix();
 			string cmd = GetCommandFilename();
 			string args = GetLogArgs(taskIndex, taskIndex) + GetCommandArguments(taskIndex);
@@ -138,14 +143,51 @@ namespace BaseLibS.Util {
 		}
 
 		public virtual bool IsFallbackPosition => true;
-		protected abstract string GetCommandArguments(int taskIndex);
-		protected abstract string GetCommandFilename();
-		protected abstract void InternalCalculation(int taskIndex);
-		protected abstract bool ExternalCalculation();
-		public abstract string GetMessagePrefix();
 
 		protected virtual string GetComment(int taskIndex) {
 			return "";
 		}
+
+		protected string GetCommandFilename() {
+			return "\"" + FileUtils.executablePath + Path.DirectorySeparatorChar + Executable64Bit + "\"";
+		}
+
+		protected abstract string Executable64Bit { get; }
+
+		protected bool ExternalCalculation() {
+			return externalCalculations;
+		}
+
+		protected string GetCommandArguments(int taskIndex) {
+			object[] o = GetArguments(taskIndex);
+			string[] args = new string[o.Length + 1];
+			args[0] = $"\"{Id}\"";
+			for (int i = 0; i < o.Length; i++) {
+				args[i + 1] = $"\"{o[i]}\"";
+			}
+			return StringUtils.Concat(" ", args);
+		}
+
+		protected void InternalCalculation(int taskIndex) {
+			Calculation(GetStringArgs(taskIndex));
+		}
+
+		public string GetMessagePrefix() {
+			return MessagePrefix + " ";
+		}
+
+		private string[] GetStringArgs(int taskIndex) {
+			object[] o = GetArguments(taskIndex);
+			string[] args = new string[o.Length];
+			for (int i = 0; i < o.Length; i++) {
+				args[i] = $"{o[i]}";
+			}
+			return args;
+		}
+
+		public abstract void Calculation(string[] args);
+		protected abstract object[] GetArguments(int taskIndex);
+		protected abstract int Id { get; }
+		protected abstract string MessagePrefix { get; }
 	}
 }
