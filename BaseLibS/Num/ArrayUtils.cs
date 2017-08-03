@@ -1656,7 +1656,12 @@ namespace BaseLibS.Num {
 			return -1 - a;
 		}
 
-		public static void Revert<T>(IList<T> x) {
+        /// <summary>
+        /// Reverses the order of the values in the array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="x"></param>
+		public static void Revert<T>(IList<T> x){
 			int n = x.Count;
 			for (int i = 0; i < n / 2; i++) {
 				T tmp = x[i];
