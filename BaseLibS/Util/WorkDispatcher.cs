@@ -35,10 +35,24 @@ namespace BaseLibS.Util {
 			}
 			if (ExternalCalculation() && externalProcesses != null) {
 				foreach (Process process in externalProcesses) {
-					process?.Kill();
+					if (process != null && IsRunning(process)) {
+						process.Kill();
+					}
 				}
 			}
 		}
+		public static bool IsRunning(Process process) {
+			if (process == null)
+				return false;
+
+			try {
+				Process.GetProcessById(process.Id);
+			} catch (ArgumentException) {
+				return false;
+			}
+			return true;
+		}
+
 
 		public void Start() {
 			currentIndices = new HashSet<int>();
