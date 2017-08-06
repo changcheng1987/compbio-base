@@ -177,7 +177,11 @@
     <Compile Include="Mol\TaxonomyRank.cs" />
     <Compile Include="Mol\TaxonomyRanks.cs" />
     <Compile Include="Mol\TerminalLabel.cs" />
+    <Compile Include="Ms\CentroidApproach.cs" />
+    <Compile Include="Ms\IntensityDetermination.cs" />
     <Compile Include="Ms\MsDataType.cs" />
+    <Compile Include="Ms\MsInstrument.cs" />
+    <Compile Include="Ms\Spectrum.cs" />
     <Compile Include="Num\Cluster\HierarchicalClusterConstraint.cs" />
     <Compile Include="Num\Cluster\HierarchicalClustering.cs" />
     <Compile Include="Num\Cluster\HierarchicalClusterLinkage.cs" />
