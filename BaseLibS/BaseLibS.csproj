@@ -182,6 +182,7 @@
     <Compile Include="Ms\InfoLists.cs" />
     <Compile Include="Ms\IntensityDetermination.cs" />
     <Compile Include="Ms\MassAnalyzerEnum.cs" />
+    <Compile Include="Ms\MassGridInfo.cs" />
     <Compile Include="Ms\Ms1Lists.cs" />
     <Compile Include="Ms\Ms2Lists.cs" />
     <Compile Include="Ms\Ms3Lists.cs" />
@@ -189,7 +190,11 @@
     <Compile Include="Ms\MsInstrument.cs" />
     <Compile Include="Ms\MsLevel.cs" />
     <Compile Include="Ms\PasefFrameMsMsInfo.cs" />
+    <Compile Include="Ms\RawFile.cs" />
+    <Compile Include="Ms\RawFileLayer.cs" />
+    <Compile Include="Ms\RawFileUtils.cs" />
     <Compile Include="Ms\ScanInfo.cs" />
+    <Compile Include="Ms\SignalType.cs" />
     <Compile Include="Ms\Spectrum.cs" />
     <Compile Include="Num\Cluster\HierarchicalClusterConstraint.cs" />
     <Compile Include="Num\Cluster\HierarchicalClustering.cs" />
