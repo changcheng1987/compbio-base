@@ -228,7 +228,7 @@ namespace BaseLib.Forms.Table{
 		}
 
 		public bool HasSelectionAgent{
-			get { return hasSelectionAgent; }
+			get => hasSelectionAgent;
 			set{
 				hasSelectionAgent = value;
 				if (hasSelectionAgent && selectionAgents.Count > 0){
@@ -242,7 +242,7 @@ namespace BaseLib.Forms.Table{
 		/// Use <code>Dispatcher.Invoke(() => view.TableModel ... )</code> to access this property for a non-GUI thread
 		/// </summary>
 		public ITableModel TableModel{
-			get { return tableViewWf.TableModel; }
+			get => tableViewWf.TableModel;
 			set{
 				tableViewWf.TableModel = value;
 				itemsLabel.Text = value != null ? "" + StringUtils.WithDecimalSeparators(value.RowCount) + " items" : "";
@@ -273,19 +273,19 @@ namespace BaseLib.Forms.Table{
 		}
 
 		public bool MultiSelect{
-			get { return tableViewWf.MultiSelect; }
-			set { tableViewWf.MultiSelect = value; }
+			get => tableViewWf.MultiSelect;
+			set => tableViewWf.MultiSelect = value;
 		}
 
 		public bool Sortable{
-			get { return tableViewWf.Sortable; }
-			set { tableViewWf.Sortable = value; }
+			get => tableViewWf.Sortable;
+			set => tableViewWf.Sortable = value;
 		}
 
 		public int RowCount => tableViewWf.RowCount;
 
 		public int RowHeaderWidth{
-			set { tableView.RowHeaderWidth = value; }
+			set => tableView.RowHeaderWidth = value;
 		}
 
 		public int ColumnHeaderHeight{
@@ -296,13 +296,13 @@ namespace BaseLib.Forms.Table{
 		}
 
 		public int VisibleX{
-			get { return tableView.VisibleX; }
-			set { tableView.VisibleX = value; }
+			get => tableView.VisibleX;
+			set => tableView.VisibleX = value;
 		}
 
 		public int VisibleY{
-			get { return tableView.VisibleY; }
-			set { tableView.VisibleY = value; }
+			get => tableView.VisibleY;
+			set => tableView.VisibleY = value;
 		}
 
 		public void SetSelectedRow(int row){

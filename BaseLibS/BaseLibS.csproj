@@ -177,6 +177,7 @@
     <Compile Include="Mol\TaxonomyRank.cs" />
     <Compile Include="Mol\TaxonomyRanks.cs" />
     <Compile Include="Mol\TerminalLabel.cs" />
+    <Compile Include="Ms\MsDataType.cs" />
     <Compile Include="Num\Cluster\HierarchicalClusterConstraint.cs" />
     <Compile Include="Num\Cluster\HierarchicalClustering.cs" />
     <Compile Include="Num\Cluster\HierarchicalClusterLinkage.cs" />

@@ -60,17 +60,10 @@ namespace BaseLib.Forms.Table {
 		public float UserSf { get; set; } = 1;
 		private float sfx = 1;
 
-		private int RowHeight {
-			get { return (int) (rowHeight * sfx * UserSf); }
-		}
+		private int RowHeight => (int) (rowHeight * sfx * UserSf);
 
-		private int ColumnHeaderHeight {
-			get { return (int) (control.ColumnHeaderHeight * sfx * UserSf); }
-		}
-
-		private int RowHeaderWidth {
-			get { return (int) (control.RowHeaderWidth * sfx * UserSf); }
-		}
+		private int ColumnHeaderHeight => (int) (control.ColumnHeaderHeight * sfx * UserSf);
+		private int RowHeaderWidth => (int) (control.RowHeaderWidth * sfx * UserSf);
 
 		public void UpdateScaling() {
 			bool isUnix = FileUtils.IsUnix();
@@ -589,7 +582,7 @@ namespace BaseLib.Forms.Table {
 		}
 
 		public bool Sortable {
-			get { return sortable; }
+			get => sortable;
 			set {
 				sortable = value;
 				InitContextMenu();
@@ -597,7 +590,7 @@ namespace BaseLib.Forms.Table {
 		}
 
 		public bool HasShowInPerseus {
-			get { return hasShowInPerseus; }
+			get => hasShowInPerseus;
 			set {
 				hasShowInPerseus = value;
 				InitContextMenu();
@@ -792,7 +785,7 @@ namespace BaseLib.Forms.Table {
 		}
 
 		public bool MultiSelect {
-			get { return multiSelect; }
+			get => multiSelect;
 			set {
 				multiSelect = value;
 				InitContextMenu();
@@ -897,7 +890,7 @@ namespace BaseLib.Forms.Table {
 		}
 
 		public ITableModel TableModel {
-			get { return model; }
+			get => model;
 			set {
 				model = value;
 				if (model == null) {

@@ -47,7 +47,7 @@ namespace BaseLibS.Util {
 
 			try {
 				Process.GetProcessById(process.Id);
-			} catch (ArgumentException) {
+			} catch (Exception) {
 				return false;
 			}
 			return true;
