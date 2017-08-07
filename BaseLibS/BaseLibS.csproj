@@ -196,6 +196,7 @@
     <Compile Include="Ms\ScanInfo.cs" />
     <Compile Include="Ms\SignalType.cs" />
     <Compile Include="Ms\Spectrum.cs" />
+    <Compile Include="Num\ByteArray.cs" />
     <Compile Include="Num\Cluster\HierarchicalClusterConstraint.cs" />
     <Compile Include="Num\Cluster\HierarchicalClustering.cs" />
     <Compile Include="Num\Cluster\HierarchicalClusterLinkage.cs" />
@@ -387,6 +388,7 @@
     <Compile Include="Util\ComparableList.cs" />
     <Compile Include="Util\DocumentType.cs" />
     <Compile Include="Util\FileUtils.cs" />
+    <Compile Include="Util\StreamBackwardReader.cs" />
     <Compile Include="Util\WorkDispatcher.cs" />
     <Compile Include="Util\GlobalConstants.cs" />
     <Compile Include="Util\LockFile.cs" />
