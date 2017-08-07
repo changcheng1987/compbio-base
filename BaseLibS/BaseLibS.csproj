@@ -390,6 +390,7 @@
     <Compile Include="Util\FileUtils.cs" />
     <Compile Include="Util\Loc.cs" />
     <Compile Include="Util\StreamBackwardReader.cs" />
+    <Compile Include="Util\TwoLetterLanguageCode.cs" />
     <Compile Include="Util\WorkDispatcher.cs" />
     <Compile Include="Util\GlobalConstants.cs" />
     <Compile Include="Util\LockFile.cs" />

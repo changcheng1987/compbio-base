@@ -1,30 +1,8 @@
 ﻿using System.Globalization;
 
 namespace BaseLibS.Util {
-	public static class Loc {
-		public const string arabic = "ar";
-		public const string chinese = "zh";
-		public const string czech = "cs";
-		public const string danish = "da";
-		public const string dutch = "nl";
-		public const string english = "en";
-		public const string finnish = "fi";
-		public const string french = "fr";
-		public const string german = "de";
-		public const string greek = "el";
-		public const string hebrew = "he";
-		public const string hindi = "hi";
-		public const string italian = "it";
-		public const string japanese = "ja";
-		public const string korean = "ko";
-		public const string norwegian = "no";
-		public const string polish = "pl";
-		public const string portuguese = "pt";
-		public const string russian = "ru";
-		public const string spanish = "es";
-		public const string swedish = "sv";
-		public const string tamil = "ta";
-		public const string turkish = "tr";
+	public class Loc : TwoLetterLanguageCode {
+		protected Loc() { }
 		private static CultureInfo cultureInfo;
 
 		public static CultureInfo CultureInfo {
@@ -37,7 +15,7 @@ namespace BaseLibS.Util {
 
 		private static string twoLettName;
 
-		private static string TwoLettName {
+		protected static string TwoLettName {
 			get {
 				if (string.IsNullOrEmpty(twoLettName)) {
 					twoLettName = CultureInfo.TwoLetterISOLanguageName;
@@ -72,6 +50,36 @@ namespace BaseLibS.Util {
 					case tamil: return "தயவுசெய்து உறுதிப்படுத்தவும்...";
 					case turkish: return "Lütfen onaylayın...";
 					default: return "Please confirm...";
+				}
+			}
+		}
+
+		public static string Start {
+			get {
+				switch (TwoLettName) {
+					case arabic: return "بداية";
+					case chinese: return "开始";
+					case czech: return "Start";
+					case danish: return "Start";
+					case dutch: return "Begin";
+					case finnish: return "Alkaa";
+					case french: return "Début";
+					case german: return "Start";
+					case greek: return "Αρχή";
+					case hebrew: return "הַתחָלָה";
+					case hindi: return "प्रारंभ";
+					case italian: return "Inizio";
+					case japanese: return "開始";
+					case korean: return "스타트";
+					case norwegian: return "Start";
+					case polish: return "Początek";
+					case portuguese: return "Começar";
+					case russian: return "Начало";
+					case spanish: return "Comienzo";
+					case swedish: return "Start";
+					case tamil: return "தொடக்கம்";
+					case turkish: return "Başlama";
+					default: return "Start";
 				}
 			}
 		}
