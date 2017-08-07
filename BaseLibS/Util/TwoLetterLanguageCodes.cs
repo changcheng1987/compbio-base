@@ -21,6 +21,7 @@
 		public const string russian = "ru";
 		public const string spanish = "es";
 		public const string swedish = "sv";
+		public const string tamil = "ta";
 		public const string turkish = "tr";
 	}
 }

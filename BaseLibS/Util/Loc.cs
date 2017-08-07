@@ -39,6 +39,7 @@ namespace BaseLibS.Util {
 					case TwoLetterLanguageCodes.russian: return "Пожалуйста подтвердите...";
 					case TwoLetterLanguageCodes.spanish: return "Por favor confirmar...";
 					case TwoLetterLanguageCodes.swedish: return "Var god bekräfta...";
+					case TwoLetterLanguageCodes.tamil: return "தயவுசெய்து உறுதிப்படுத்தவும்...";
 					case TwoLetterLanguageCodes.turkish: return "Lütfen onaylayın...";
 					default: return "Please confirm...";
 				}
@@ -67,6 +68,7 @@ namespace BaseLibS.Util {
 					case TwoLetterLanguageCodes.russian: return "Стоп";
 					case TwoLetterLanguageCodes.spanish: return "Detener";
 					case TwoLetterLanguageCodes.swedish: return "Sluta";
+					case TwoLetterLanguageCodes.tamil: return "நிறுத்து";
 					case TwoLetterLanguageCodes.turkish: return "Durdur";
 					default: return "Stop";
 				}
