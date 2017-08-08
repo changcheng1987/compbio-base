@@ -24,6 +24,31 @@ namespace BaseLibS.Util {
 			}
 		}
 
+		public static string Andromeda {
+			get {
+				switch (TwoLettName) {
+					default: return "Andromeda";
+				}
+			}
+		}
+
+		public static string MaxQuant {
+			get {
+				switch (TwoLettName) {
+					case hebrew: return "מקסימום";
+					default: return "MaxQuant";
+				}
+			}
+		}
+
+		public static string Perseus {
+			get {
+				switch (TwoLettName) {
+					default: return "Perseus";
+				}
+			}
+		}
+
 		public static string PleaseConfirm {
 			get {
 				switch (TwoLettName) {
