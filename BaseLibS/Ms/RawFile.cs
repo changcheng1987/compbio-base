@@ -86,7 +86,11 @@ namespace BaseLibS.Ms{
 		/// </summary>
 		public int Ms1Count => posLayer.Ms1Count + negLayer.Ms1Count;
 		public virtual int PasefMsmsCount => 0;
-		public virtual PasefFrameMsMsInfo GetPasefMsmsInfo(int index){
+		public virtual PasefFrameMsMsInfo GetPasefMsmsInfo(int index) {
+			return null;
+		}
+		public virtual int PasefPrecursorCount => 0;
+		public virtual PasefPrecursorInfo GetPasefPrecursorInfo(int index) {
 			return null;
 		}
 		public float StartTime => Math.Min(posLayer.StartTime, negLayer.StartTime);

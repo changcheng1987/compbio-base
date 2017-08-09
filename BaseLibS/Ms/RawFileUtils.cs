@@ -140,5 +140,21 @@ namespace BaseLibS.Ms {
 			}
 			throw new Exception("Never get here.");
 		}
+		public static double[] GetMzGrid(double minMz, double maxMz, float resolution, float nsigma) {
+			if (resolution == 0) {
+				resolution = 30000;
+			}
+			const float ff = 0.5f;
+			double dm1 = 0.5 * minMz / resolution;
+			double dm2 = 0.5 * maxMz / resolution;
+			double mzLower = minMz - nsigma * dm1;
+			double mzUpper = maxMz + nsigma * dm2;
+			List<double> result = new List<double>();
+			for (double mx = mzLower; mx <= mzUpper; mx += 0.5 * mx / resolution * ff) {
+				result.Add(mx);
+			}
+			return result.ToArray();
+		}
+
 	}
 }

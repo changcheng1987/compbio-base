@@ -27,6 +27,28 @@ namespace BaseLibS.Util {
 		public static string Andromeda {
 			get {
 				switch (TwoLettName) {
+					case arabic: return "أندروميدا";
+					case chinese: return "仙女星座";
+					case czech: return "Andromeda";
+					case danish: return "Andromeda";
+					case dutch: return "Andromeda";
+					case finnish: return "Andromeda";
+					case french: return "Andromeda";
+					case german: return "Andromeda";
+					case greek: return "Ανδρομέδα";
+					case hebrew: return "אנדרומדה";
+					case hindi: return "एंड्रोमेडा";
+					case italian: return "Andromeda";
+					case japanese: return "アンドロメダ";
+					case korean: return "안드로메다";
+					case norwegian: return "Andromeda";
+					case polish: return "Andromeda";
+					case portuguese: return "Andrômeda";
+					case russian: return "Андромеда";
+					case spanish: return "Andrómeda";
+					case swedish: return "Andromeda";
+					case tamil: return "ஆந்த்ரோமெடா";
+					case turkish: return "Andromeda";
 					default: return "Andromeda";
 				}
 			}
@@ -44,6 +66,28 @@ namespace BaseLibS.Util {
 		public static string Perseus {
 			get {
 				switch (TwoLettName) {
+					case arabic: return "الغول";
+					case chinese: return "英仙座";
+					case czech: return "Perseus";
+					case danish: return "Perseus";
+					case dutch: return "Perseus";
+					case finnish: return "Perseus";
+					case french: return "Perseus";
+					case german: return "Perseus";
+					case greek: return "Περσεύς";
+					case hebrew: return "פרסאוס";
+					case hindi: return "Perseus";
+					case italian: return "Perseo";
+					case japanese: return "ペルセウス";
+					case korean: return "페르세우스";
+					case norwegian: return "Perseus";
+					case polish: return "Perseusz";
+					case portuguese: return "Perseu";
+					case russian: return "Персей";
+					case spanish: return "Perseo";
+					case swedish: return "Perseus";
+					case tamil: return "பெர்ஸியல்";
+					case turkish: return "Perseus";
 					default: return "Perseus";
 				}
 			}

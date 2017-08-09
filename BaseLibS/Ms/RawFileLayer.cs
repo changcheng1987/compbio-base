@@ -8,20 +8,13 @@ using BaseLibS.Util;
 namespace BaseLibS.Ms {
 	/// <summary>
 	/// A "layer" is the information of a raw data file for only the positive or only the negative ions.
-	/// The fields are set by a call to SetData(InfoLists infoLists, float maxIntensity), 
-	/// which is called from RawFile.InitFromRawFileImpl.
 	/// </summary>
 	public class RawFileLayer : IDisposable {
-		/// <summary>
-		/// The RawFile object containing this RawFileLayer.
-		/// </summary>
 		private RawFile rawFile;
 		private readonly bool positive;
-		// scalars set in SetMs1Data
 		public double Ms1MassMin { get; protected internal set; }
 		public double Ms1MassMax { get; protected internal set; }
 		public int Ms1MaxNumIms { get; protected internal set; }
-		// arrays set in SetMs1Data
 		public int[] Ms1ScanNumbers { get; protected internal set; }
 		public int[] Ms1NumIms { get; protected internal set; }
 		public float[] Ms1Rt { get; protected internal set; }
@@ -41,11 +34,9 @@ namespace BaseLibS.Ms {
 		public double[] Ms1EmIntenseComp { get; protected internal set; }
 		public double[] Ms1RawOvFtT { get; protected internal set; }
 		public float[] Ms1AgcFill { get; protected internal set; }
-		// scalars set in SetMs2Data
 		public double Ms2MassMin { get; protected internal set; }
 		public double Ms2MassMax { get; protected internal set; }
 		public int Ms2MaxNumIms { get; protected internal set; }
-		// arrays set in SetMs2Data
 		public int[] Ms2PrevMs1Index { get; protected internal set; }
 		public int[][] Ms2DependentMs3Inds { get; protected internal set; }
 		public int[] Ms2ScanNumbers { get; protected internal set; }
@@ -72,10 +63,8 @@ namespace BaseLibS.Ms {
 		public double[] Ms2EmIntenseComp { get; protected internal set; }
 		public double[] Ms2RawOvFtT { get; protected internal set; }
 		public float[] Ms2AgcFill { get; protected internal set; }
-		// scalars set in SetMs3Data
 		public double Ms3MassMin { get; protected internal set; }
 		public double Ms3MassMax { get; protected internal set; }
-		// arrays set in SetMs3Data
 		public int[] Ms3PrevMs2Index { get; protected internal set; }
 		public int[] Ms3ScanNumbers { get; protected internal set; }
 		public float[] Ms3Rt { get; protected internal set; }
@@ -101,10 +90,8 @@ namespace BaseLibS.Ms {
 		public double[] Ms3EmIntenseComp { get; protected internal set; }
 		public double[] Ms3RawOvFtT { get; protected internal set; }
 		public float[] Ms3AgcFill { get; protected internal set; }
-		// scalars set (directly) in SetData
 		public int Ms1MassRangeCount { get; protected internal set; }
 		public float MaxIntensity { get; protected internal set; }
-		// array set (directly) in SetData
 		public double[] massRangesMin;
 		protected internal RawFileLayer(RawFile rawFile, bool positive) {
 			this.rawFile = rawFile;
@@ -809,11 +796,6 @@ namespace BaseLibS.Ms {
 			rawOvFtT = index >= 0 && index < Ms2RawOvFtT.Length ? Ms2RawOvFtT[index] : double.NaN;
 			agcFill = index >= 0 && index < Ms2AgcFill.Length ? Ms2AgcFill[index] : float.NaN;
 		}
-		/// <summary>
-		/// Write this object to IndexFilename of RawFile. Called only from RawFile.WriteIndex,
-		/// which is called only from Init, which is called only from CreateRawFile.
-		/// </summary>
-		/// <param name="writer"></param>
 		internal void Write(BinaryWriter writer) {
 			FileUtils.Write(Ms1ScanNumbers, writer);
 			FileUtils.Write(Ms1NumIms, writer);
@@ -1196,6 +1178,10 @@ namespace BaseLibS.Ms {
 		public int PasefMsmsCount => positive ? rawFile.PasefMsmsCount : 0;
 		public PasefFrameMsMsInfo GetPasefMsmsInfo(int index) {
 			return positive ? rawFile.GetPasefMsmsInfo(index) : null;
+		}
+		public int PasefPrecursorCount => positive ? rawFile.PasefPrecursorCount : 0;
+		public PasefPrecursorInfo GetPasefPrecursorInfo(int index) {
+			return positive ? rawFile.GetPasefPrecursorInfo(index) : null;
 		}
 		public int[][] GetDiaMs2Indices() {
 			if (Ms2Count == 0) {
