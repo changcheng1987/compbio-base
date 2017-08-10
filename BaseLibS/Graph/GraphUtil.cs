@@ -193,6 +193,11 @@ namespace BaseLibS.Graph {
 			}
 			g.DrawRectangle(Pens2.Black, xpos, ypos - 1, overview.Width, overview.Height);
 			g.DrawRectangle(Pens2.Blue, xpos + win.X, ypos - 1 + win.Y, win.Width, win.Height);
+			if (win.Width < 5 && win.Height < 5) {
+				g.DrawLine(Pens2.Red, xpos + win.X, ypos + win.Y, xpos + win.X + 5, ypos + win.Y);
+				g.DrawLine(Pens2.Red, xpos + win.X, ypos + win.Y, xpos + win.X, ypos + win.Y + 5);
+				g.DrawLine(Pens2.Red, xpos + win.X, ypos + win.Y, xpos + win.X + 7, ypos + win.Y + 7);
+			}
 		}
 
 		public static Size2 CalcOverviewSize(int width, int height, int totalWidth, int totalHeight) {
