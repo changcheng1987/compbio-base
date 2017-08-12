@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using BaseLibS.Parse.Misc;
 using BaseLibS.Parse.Uniprot;
@@ -149,7 +150,7 @@ namespace BaseLibS.Mol{
 					for (int i = 0; i < modificationsPsp.Length; i++){
 						string[] w = modificationsPsp[i].Split(',');
 						modTypesPsp[i] = w[0];
-						bool success = int.TryParse(w[1], out modPosPsp[i]);
+						bool success = int.TryParse(w[1], NumberStyles.Any, CultureInfo.InvariantCulture, out modPosPsp[i]);
 						if (!success){
 							modPosPsp[i] = -1;
 						}

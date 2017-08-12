@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Globalization;
 using BaseLibS.Ms;
 using BaseLibS.Num;
 using BaseLibS.Util;
@@ -220,13 +221,11 @@ namespace PluginRawMzXml{
 				} else if (xmlReader.IsStartElement("precursorMz")){
 					// hack
 					scanHeader.ScanType = "MS2";
-						// crap 'MSConvert from proteowizard' incorrectly sets ScanType to Full for _all_ scans
+					// 'MSConvert from proteowizard' incorrectly sets ScanType to Full for _all_ scans
 					// hack
-					int precursorCharge;
-					int.TryParse(xmlReader.GetAttribute("precursorCharge"), out precursorCharge);
+					int.TryParse(xmlReader.GetAttribute("precursorCharge"), NumberStyles.Any, CultureInfo.InvariantCulture, out int precursorCharge);
 					scanHeader.PrecursorCharge = precursorCharge;
-					float precursorIntensity;
-					float.TryParse(xmlReader.GetAttribute("precursorIntensity"), out precursorIntensity);
+					float.TryParse(xmlReader.GetAttribute("precursorIntensity"), NumberStyles.Any, CultureInfo.InvariantCulture, out float precursorIntensity);
 					scanHeader.PrecursorIntensity = precursorIntensity;
 					string fragmentation = xmlReader.GetAttribute("activationMethod");
 					if (fragmentation.Equals("CID")){

@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Globalization;
+using System.Windows.Forms;
 
 namespace BaseLib.Forms{
 	internal partial class NumericAxisPropertiesForm : Form{
@@ -25,7 +26,7 @@ namespace BaseLib.Forms{
 		internal double MinValue{
 			get{
 				double x;
-				bool s = double.TryParse(minValueTextBox.Text, out x);
+				bool s = double.TryParse(minValueTextBox.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out x);
 				if (!s){
 					return double.NaN;
 				}
@@ -36,7 +37,7 @@ namespace BaseLib.Forms{
 		internal double MaxValue{
 			get{
 				double x;
-				bool s = double.TryParse(maxValueTextBox.Text, out x);
+				bool s = double.TryParse(maxValueTextBox.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out x);
 				if (!s){
 					return double.NaN;
 				}

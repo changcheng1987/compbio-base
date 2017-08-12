@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Windows.Forms;
 using BaseLibS.Param;
 
@@ -11,7 +12,7 @@ namespace BaseLib.Param{
 
 		public override void SetValueFromControl(){
 			double val;
-			bool success = double.TryParse(control.Text, out val);
+			bool success = double.TryParse(control.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out val);
 			val = success ? val : double.NaN;
 			Value = val;
 		}

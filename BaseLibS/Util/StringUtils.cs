@@ -815,7 +815,7 @@ namespace BaseLibS.Util{
 			}
 			string s1 = s.Substring(x + 1);
 			int num;
-			bool succ = int.TryParse(s1, out num);
+			bool succ = int.TryParse(s1, NumberStyles.Any, CultureInfo.InvariantCulture, out num);
 			return succ;
 		}
 

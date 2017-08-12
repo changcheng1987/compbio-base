@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using BaseLibS.Properties;
@@ -169,7 +170,7 @@ namespace BaseLibS.Mol{
 
 		public static string GetTaxonomyIdOfRank(string taxonomyId, TaxonomyRank rank){
 			int id;
-			if (!int.TryParse(taxonomyId, out id)){
+			if (!int.TryParse(taxonomyId, NumberStyles.Any, CultureInfo.InvariantCulture, out id)){
 				return taxonomyId;
 			}
 			if (!taxId2Item.ContainsKey(id)){
