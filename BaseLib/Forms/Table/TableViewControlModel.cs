@@ -107,7 +107,7 @@ namespace BaseLib.Forms.Table {
 							return;
 						}
 						modelRowSel[ox] = !ctrl || !modelRowSel[ox];
-						if (multiSelect && shift && selectStart != -1) {
+						if (!ctrl && multiSelect && shift && selectStart != -1) {
 							SelectRange(selectStart, row);
 						} else {
 							selectStart = row;
@@ -149,13 +149,18 @@ namespace BaseLib.Forms.Table {
 					if (modelRowSel == null) {
 						return;
 					}
+					bool ctrl = control1.IsControlPressed();
+					if (ctrl) {
+						return;
+					}
 					int row = (control1.VisibleY + e.Y) / RowHeight;
 					if (row >= modelRowSel.Length || row < 0) {
 						return;
 					}
-					modelRowSel[order[row]] = true;
+					//modelRowSel[order[row]] = true;
+					SelectRange(selectStart, row);
 					if (selectStart != row) {
-						selectStart = row;
+						//selectStart = row;
 						control1.Invalidate(true);
 						SelectionChanged?.Invoke(this, new EventArgs());
 					}

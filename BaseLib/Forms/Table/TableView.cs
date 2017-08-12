@@ -82,7 +82,7 @@ namespace BaseLib.Forms.Table {
 			}
 			long c = tableViewWf.SelectedCount;
 			long t = tableViewWf.RowCount;
-			selectedLabel.Text = c > 0 && MultiSelect ? "" + StringUtils.WithDecimalSeparators(c) + " " + Loc.Selected : "";
+			selectedLabel.Text = c > 0 && MultiSelect ? StringUtils.WithDecimalSeparators(c) + " " + Loc.Selected : "";
 			itemsLabel.Text = "" + StringUtils.WithDecimalSeparators(t) + @" " + (t == 1 ? Loc.Item : Loc.Items);
 		}
 
