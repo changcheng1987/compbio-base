@@ -157,10 +157,8 @@ namespace BaseLib.Forms.Table {
 					if (row >= modelRowSel.Length || row < 0) {
 						return;
 					}
-					//modelRowSel[order[row]] = true;
 					SelectRange(selectStart, row);
 					if (selectStart != row) {
-						//selectStart = row;
 						control1.Invalidate(true);
 						SelectionChanged?.Invoke(this, new EventArgs());
 					}
