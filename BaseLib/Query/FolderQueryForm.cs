@@ -25,7 +25,7 @@ namespace BaseLib.Query{
 		}
 
 		public bool HasRecursiveBox{
-			get { return hasRecursiveBox; }
+			get => hasRecursiveBox;
 			set{
 				hasRecursiveBox = value;
 				recursiveCheckBox.Width = value ? 90 : 0;

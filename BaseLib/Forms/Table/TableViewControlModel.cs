@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -1302,10 +1303,12 @@ namespace BaseLib.Forms.Table {
 
 		private static string GetStringValue(IGraphics g, object o, int width, Font2 font) {
 			if (o is double) {
-				double x = (double) o;
-				if (double.IsNaN(x)) {
-					o = "NaN";
-				}
+				double x = (double)o;
+				o = double.IsNaN(x) ? "NaN" : x.ToString(CultureInfo.InvariantCulture);
+			}
+			if (o is float) {
+				float x = (float)o;
+				o = float.IsNaN(x) ? "NaN" : x.ToString(CultureInfo.InvariantCulture);
 			}
 			string s = "" + o;
 			return GraphUtil.GetStringValue(g, s, width, font);

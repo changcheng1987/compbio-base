@@ -1620,7 +1620,7 @@
             <neutralloss name="OHexNAc" shortname="H13 C8 N O5" composition="H(13) C(8) N O(5)" />
          </neutralloss_collection>
          <diagnostic_collection>
-            <diagnostic name="OHexNAc" shortname="H14 C8 N O5" composition="H(14) C(8) N O(5)" />
+            <diagnostic name="OHexNAc" shortname="H13 C8 N O5" composition="H(13) C(8) N O(5)" />
          </diagnostic_collection>
       </modification_site>
       <modification_site site="S">

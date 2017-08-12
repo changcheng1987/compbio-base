@@ -515,14 +515,14 @@ namespace BaseLibS.Util{
 			double len = info.Length/1024;
 			// ReSharper restore PossibleLossOfFraction
 			if (len < 1024){
-				return "" + ((int) (10*len))/10.0 + " KB";
+				return "" + ((int) (10*len)/10.0).ToString(CultureInfo.InvariantCulture) + " KB";
 			}
 			len /= 1024;
 			if (len < 1024){
-				return "" + ((int) (10*len))/10.0 + " MB";
+				return "" + ((int) (10*len)/10.0).ToString(CultureInfo.InvariantCulture) + " MB";
 			}
 			len /= 1024;
-			return "" + ((int) (10*len))/10.0 + " GB";
+			return "" + ((int) (10*len)/10.0).ToString(CultureInfo.InvariantCulture) + " GB";
 		}
 
 		public static string[] SplitWithBrackets(string line, char separator){

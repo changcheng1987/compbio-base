@@ -2,6 +2,7 @@
 	public class TwoLetterLanguageCode {
 		protected TwoLetterLanguageCode() { }
 		protected const string arabic = "ar";
+		protected const string bulgarian = "bg";
 		protected const string chinese = "zh";
 		protected const string czech = "cs";
 		protected const string danish = "da";
@@ -17,8 +18,10 @@
 		protected const string japanese = "ja";
 		protected const string korean = "ko";
 		protected const string norwegian = "no";
+		protected const string persian = "fa";
 		protected const string polish = "pl";
 		protected const string portuguese = "pt";
+		protected const string romanian = "ro";
 		protected const string russian = "ru";
 		protected const string spanish = "es";
 		protected const string swedish = "sv";
