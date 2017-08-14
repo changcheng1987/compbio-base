@@ -8,6 +8,7 @@
 		protected const string danish = "da";
 		protected const string dutch = "nl";
 		protected const string english = "en";
+		protected const string estonian = "et";
 		protected const string finnish = "fi";
 		protected const string french = "fr";
 		protected const string german = "de";
@@ -17,6 +18,8 @@
 		protected const string italian = "it";
 		protected const string japanese = "ja";
 		protected const string korean = "ko";
+		protected const string latvian = "lv";
+		protected const string lithuanian = "lt";
 		protected const string norwegian = "no";
 		protected const string persian = "fa";
 		protected const string polish = "pl";
