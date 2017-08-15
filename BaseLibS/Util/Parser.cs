@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 
 namespace BaseLibS.Util {
 	public static class Parser {
@@ -51,6 +52,14 @@ namespace BaseLibS.Util {
 		}
 
 		public static string ToString(bool x) {
+			return x.ToString(CultureInfo.InvariantCulture);
+		}
+
+		public static string ToString(DateTime x) {
+			return x.ToString(CultureInfo.InvariantCulture);
+		}
+
+		public static string ToString(char x) {
 			return x.ToString(CultureInfo.InvariantCulture);
 		}
 	}
