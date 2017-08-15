@@ -5,6 +5,7 @@ using System.Linq;
 using BaseLibS.Data;
 using BaseLibS.Num.Func;
 using BaseLibS.Num.Test;
+using BaseLibS.Util;
 
 namespace BaseLibS.Num{
 	public static class NumUtils{
@@ -154,7 +155,7 @@ namespace BaseLibS.Num{
 				return "0";
 			}
 			if (double.IsNaN(x) || double.IsInfinity(x)){
-				return x.ToString(CultureInfo.InvariantCulture);
+				return Parser.ToString(x);
 			}
 			try{
 				string prefix = x < 0 ? "-" : "";

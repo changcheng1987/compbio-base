@@ -1,5 +1,5 @@
-﻿using System.Globalization;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using BaseLibS.Util;
 
 namespace BaseLib.Forms{
 	internal partial class NumericAxisPropertiesForm : Form{
@@ -22,28 +22,30 @@ namespace BaseLib.Forms{
 			Close();
 		}
 
-		internal string Title { get { return titleTextBox.Text; } set { titleTextBox.Text = value; } }
+		internal string Title { get => titleTextBox.Text;
+			set => titleTextBox.Text = value;
+		}
 		internal double MinValue{
 			get{
 				double x;
-				bool s = double.TryParse(minValueTextBox.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out x);
+				bool s = Parser.TryDouble(minValueTextBox.Text, out x);
 				if (!s){
 					return double.NaN;
 				}
 				return double.IsInfinity(x) ? double.NaN : x;
 			}
-			set { minValueTextBox.Text = "" + value; }
+			set => minValueTextBox.Text = "" + value;
 		}
 		internal double MaxValue{
 			get{
 				double x;
-				bool s = double.TryParse(maxValueTextBox.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out x);
+				bool s = Parser.TryDouble(maxValueTextBox.Text, out x);
 				if (!s){
 					return double.NaN;
 				}
 				return double.IsInfinity(x) ? double.NaN : x;
 			}
-			set { maxValueTextBox.Text = "" + value; }
+			set => maxValueTextBox.Text = "" + value;
 		}
 	}
 }

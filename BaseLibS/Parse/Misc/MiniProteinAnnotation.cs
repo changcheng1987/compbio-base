@@ -29,8 +29,8 @@ namespace BaseLibS.Parse.Misc{
 				string[] w = pfams[i].Split(',');
 				PfamIds[i] = w[0];
 				PfamNames[i] = w[1];
-				PfamStart[i] = int.Parse(w[3], NumberStyles.Any, CultureInfo.InvariantCulture);
-				PfamEnd[i] = int.Parse(w[4], NumberStyles.Any, CultureInfo.InvariantCulture);
+				PfamStart[i] = Parser.Int(w[3]);
+				PfamEnd[i] = Parser.Int(w[4]);
 			}
 			Pdbs = pdbs;
 			Features = features;

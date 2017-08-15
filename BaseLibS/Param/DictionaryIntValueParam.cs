@@ -41,7 +41,7 @@ namespace BaseLibS.Param{
 			Dictionary<string, int> result = new Dictionary<string, int>();
 			foreach (string s1 in s.Split('\r')){
 				string[] w = s1.Trim().Split('\t');
-				result.Add(w[0], int.Parse(w[1], NumberStyles.Any, CultureInfo.InvariantCulture));
+				result.Add(w[0], Parser.Int(w[1]));
 			}
 			return result;
 		}

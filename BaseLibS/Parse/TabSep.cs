@@ -30,7 +30,7 @@ namespace BaseLibS.Parse {
 			for (int i = 0; i < d.Length; i++) {
 				d[i] = new double[x[i].Length];
 				for (int j = 0; j < d[i].Length; j++) {
-					d[i][j] = double.TryParse(x[i][j], NumberStyles.Any, CultureInfo.InvariantCulture, out double w)
+					d[i][j] = Parser.TryDouble(x[i][j], out double w)
 						? w
 						: defaultValue;
 				}
@@ -51,7 +51,7 @@ namespace BaseLibS.Parse {
 			string[] x = GetColumn(columnName, filename, nskip, separator);
 			double[] d = new double[x.Length];
 			for (int i = 0; i < d.Length; i++) {
-				d[i] = double.TryParse(x[i], NumberStyles.Any, CultureInfo.InvariantCulture, out double w) ? w : defaultValue;
+				d[i] = Parser.TryDouble(x[i], out double w) ? w : defaultValue;
 			}
 			return d;
 		}
@@ -67,7 +67,7 @@ namespace BaseLibS.Parse {
 			for (int i = 0; i < d.Length; i++) {
 				d[i] = new float[x[i].Length];
 				for (int j = 0; j < d[i].Length; j++) {
-					d[i][j] = float.TryParse(x[i][j], NumberStyles.Any, CultureInfo.InvariantCulture, out float w) ? w : defaultValue;
+					d[i][j] = Parser.TryFloat(x[i][j], out float w) ? w : defaultValue;
 				}
 			}
 			return d;
@@ -79,7 +79,7 @@ namespace BaseLibS.Parse {
 			float[,] d = new float[x[0].Length, x.Length];
 			for (int i = 0; i < d.GetLength(0); i++) {
 				for (int j = 0; j < d.GetLength(1); j++) {
-					d[i, j] = float.TryParse(x[j][i], NumberStyles.Any, CultureInfo.InvariantCulture, out float w) ? w : defaultValue;
+					d[i, j] = Parser.TryFloat(x[j][i], out float w) ? w : defaultValue;
 				}
 			}
 			return d;
@@ -98,7 +98,7 @@ namespace BaseLibS.Parse {
 			string[] x = GetColumn(columnName, filename, nskip, separator);
 			float[] d = new float[x.Length];
 			for (int i = 0; i < d.Length; i++) {
-				d[i] = float.TryParse(x[i], NumberStyles.Any, CultureInfo.InvariantCulture, out float w) ? w : defaultValue;
+				d[i] = Parser.TryFloat(x[i], out float w) ? w : defaultValue;
 			}
 			return d;
 		}
@@ -111,7 +111,7 @@ namespace BaseLibS.Parse {
 			string[] x = GetColumn(columnName, filename, nskip, separator);
 			int[] d = new int[x.Length];
 			for (int i = 0; i < d.Length; i++) {
-				d[i] = int.TryParse(x[i], NumberStyles.Any, CultureInfo.InvariantCulture, out int w) ? w : defaultValue;
+				d[i] = Parser.TryInt(x[i], out int w) ? w : defaultValue;
 			}
 			return d;
 		}
@@ -247,7 +247,7 @@ namespace BaseLibS.Parse {
 			string[] x = GetColumnIfContains(columnName, controlColumn, controlValue, filename, inverse, nskip, separator);
 			double[] d = new double[x.Length];
 			for (int i = 0; i < d.Length; i++) {
-				d[i] = double.TryParse(x[i], NumberStyles.Any, CultureInfo.InvariantCulture, out double w) ? w : double.NaN;
+				d[i] = Parser.TryDouble(x[i], out double w) ? w : double.NaN;
 			}
 			return d;
 		}

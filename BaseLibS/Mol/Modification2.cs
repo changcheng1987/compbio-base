@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
+using BaseLibS.Util;
 
 namespace BaseLibS.Mol {
 	public class Modification2 {
@@ -28,8 +28,8 @@ namespace BaseLibS.Mol {
 				Fill(m);
 			} else if (modName.StartsWith("Mass:")) {
 				int ind = modName.LastIndexOf(':');
-				DeltaMass = double.Parse(modName.Substring(7, ind - 7), NumberStyles.Any, CultureInfo.InvariantCulture);
-				int modInd = int.Parse(modName.Substring(ind + 1), NumberStyles.Any, CultureInfo.InvariantCulture);
+				DeltaMass = Parser.Double(modName.Substring(7, ind - 7));
+				int modInd = Parser.Int(modName.Substring(ind + 1));
 				Index = (ushort) (ushort.MaxValue - modInd - 1);
 				Position = ModificationPosition.anywhere;
 				IsProteinTerminal = false;

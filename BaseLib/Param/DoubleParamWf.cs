@@ -1,7 +1,7 @@
 using System;
-using System.Globalization;
 using System.Windows.Forms;
 using BaseLibS.Param;
+using BaseLibS.Util;
 
 namespace BaseLib.Param{
 	[Serializable]
@@ -11,7 +11,7 @@ namespace BaseLib.Param{
 		public override ParamType Type => ParamType.WinForms;
 
 		public override void SetValueFromControl(){
-			bool success = double.TryParse(control.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out double val);
+			bool success = Parser.TryDouble(control.Text, out double val);
 			val = success ? val : double.NaN;
 			Value = val;
 		}
@@ -20,11 +20,11 @@ namespace BaseLib.Param{
 			if (control == null){
 				return;
 			}
-			control.Text = Value.ToString(CultureInfo.InvariantCulture);
+			control.Text = Parser.ToString(Value);
 		}
 
 		public override object CreateControl(){
-			control = new TextBox{Text = Value.ToString(CultureInfo.InvariantCulture) };
+			control = new TextBox{Text = Parser.ToString(Value) };
 			control.TextChanged += (sender, e) =>{
 				SetValueFromControl();
 				ValueHasChanged();

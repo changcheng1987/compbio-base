@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Xml;
 using System.Xml.Serialization;
+using BaseLibS.Util;
 
 namespace BaseLibS.Param{
 	[Serializable]
@@ -27,8 +28,8 @@ namespace BaseLibS.Param{
 		}
 
 		public override string StringValue{
-			get { return Value.ToString(CultureInfo.InvariantCulture); }
-			set { Value = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture); }
+			get { return Parser.ToString(Value); }
+			set { Value = Parser.Int(value); }
 		}
 
 		public override void ResetSubParamValues(){

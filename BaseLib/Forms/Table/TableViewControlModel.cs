@@ -1307,11 +1307,11 @@ namespace BaseLib.Forms.Table {
 		private static string GetStringValue(IGraphics g, object o, int width, Font2 font) {
 			if (o is double) {
 				double x = (double)o;
-				o = double.IsNaN(x) ? "NaN" : x.ToString(CultureInfo.InvariantCulture);
+				o = double.IsNaN(x) ? "NaN" : Parser.ToString(x);
 			}
 			if (o is float) {
 				float x = (float)o;
-				o = float.IsNaN(x) ? "NaN" : x.ToString(CultureInfo.InvariantCulture);
+				o = float.IsNaN(x) ? "NaN" : Parser.ToString(x);
 			}
 			string s = "" + o;
 			return GraphUtil.GetStringValue(g, s, width, font);

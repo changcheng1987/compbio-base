@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Globalization;
 using System.Windows.Forms;
+using BaseLibS.Util;
 
 namespace BaseLib.Query {
 	public partial class DoubleQueryForm : Form {
@@ -9,12 +9,12 @@ namespace BaseLib.Query {
 			StartPosition = FormStartPosition.Manual;
 			okButton.Click += OkButtonOnClick;
 			cancelButton.Click += CancelButtonOnClick;
-			textBox1.Text = value.ToString(CultureInfo.InvariantCulture);
+			textBox1.Text = Parser.ToString(value);
 			textBox1.KeyDown += TextBox1OnKeyDown;
 			ActiveControl = textBox1;
 		}
 
-		public double Value => double.TryParse(textBox1.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out double val)
+		public double Value => Parser.TryDouble(textBox1.Text, out double val)
 			? val
 			: double.NaN;
 

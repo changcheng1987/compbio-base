@@ -383,7 +383,7 @@ namespace BaseLibS.Mol{
 		}
 
 		public string UshortToString(ushort u){
-			return u == ushort.MaxValue ? "A" : u.ToString(CultureInfo.InvariantCulture);
+			return u == ushort.MaxValue ? "A" : u.ToString();
 		}
 
 		public static PeptideModificationState FillFixedModifications(string sequence, IDictionary<char, ushort> fmods){

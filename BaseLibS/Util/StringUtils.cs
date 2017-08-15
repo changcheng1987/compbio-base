@@ -36,7 +36,7 @@ namespace BaseLibS.Util{
 			StringBuilder result = new StringBuilder();
 			try{
 				n = Math.Abs(n);
-				string nn = n.ToString(CultureInfo.InvariantCulture);
+				string nn = Parser.ToString(n);
 				if (explicitBracket){
 					result.Append("\u207D");
 				}
@@ -69,7 +69,7 @@ namespace BaseLibS.Util{
 			bool isNegative = n < 0;
 			bool isPositive = n > 0;
 			n = Math.Abs(n);
-			string nn = n.ToString(CultureInfo.InvariantCulture);
+			string nn = Parser.ToString(n);
 			StringBuilder result = new StringBuilder();
 			if (isNegative){
 				result.Append('\u208B');
@@ -127,7 +127,7 @@ namespace BaseLibS.Util{
 			for (int i = 0; i < x.Length; i++){
 				result[i] = new int[x[i].Length];
 				for (int j = 0; j < x[i].Length; j++){
-					result[i][j] = int.Parse(x[i][j], NumberStyles.Any, CultureInfo.InvariantCulture);
+					result[i][j] = Parser.Int(x[i][j]);
 				}
 			}
 			return result;
@@ -515,14 +515,14 @@ namespace BaseLibS.Util{
 			double len = info.Length/1024;
 			// ReSharper restore PossibleLossOfFraction
 			if (len < 1024){
-				return "" + ((int) (10*len)/10.0).ToString(CultureInfo.InvariantCulture) + " KB";
+				return "" + Parser.ToString((int)(10 * len) / 10.0) + " KB";
 			}
 			len /= 1024;
 			if (len < 1024){
-				return "" + ((int) (10*len)/10.0).ToString(CultureInfo.InvariantCulture) + " MB";
+				return "" + Parser.ToString((int)(10 * len) / 10.0) + " MB";
 			}
 			len /= 1024;
-			return "" + ((int) (10*len)/10.0).ToString(CultureInfo.InvariantCulture) + " GB";
+			return "" + Parser.ToString((int)(10 * len) / 10.0) + " GB";
 		}
 
 		public static string[] SplitWithBrackets(string line, char separator){
@@ -804,7 +804,7 @@ namespace BaseLibS.Util{
 			}
 			int x = s.LastIndexOf('_');
 			string s1 = s.Substring(x + 1);
-			int num = int.Parse(s1, NumberStyles.Any, CultureInfo.InvariantCulture);
+			int num = Parser.Int(s1);
 			return s.Substring(0, x + 1) + (num + 1);
 		}
 
@@ -815,7 +815,7 @@ namespace BaseLibS.Util{
 			}
 			string s1 = s.Substring(x + 1);
 			int num;
-			bool succ = int.TryParse(s1, NumberStyles.Any, CultureInfo.InvariantCulture, out num);
+			bool succ = Parser.TryInt(s1, out num);
 			return succ;
 		}
 

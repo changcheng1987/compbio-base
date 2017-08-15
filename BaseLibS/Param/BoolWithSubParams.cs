@@ -2,6 +2,7 @@ using System;
 using System.Globalization;
 using System.Xml;
 using System.Xml.Serialization;
+using BaseLibS.Util;
 
 namespace BaseLibS.Param{
 	[Serializable]
@@ -25,8 +26,8 @@ namespace BaseLibS.Param{
 		}
 
 		public override string StringValue{
-			get { return Value.ToString(CultureInfo.InvariantCulture); }
-			set { Value = bool.Parse(value); }
+			get => Parser.ToString(Value);
+			set => Value = bool.Parse(value);
 		}
 
 		public override void ResetSubParamValues(){

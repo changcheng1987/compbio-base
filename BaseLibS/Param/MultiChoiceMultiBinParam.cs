@@ -46,7 +46,7 @@ namespace BaseLibS.Param{
 					string[] r = q[i].Trim().Split();
 					Value[i] = new int[r.Length];
 					for (int j = 0; j < r.Length; j++){
-						Value[i][j] = int.Parse(r[j], NumberStyles.Any, CultureInfo.InvariantCulture);
+						Value[i][j] = Parser.Int(r[j]);
 					}
 				}
 			}

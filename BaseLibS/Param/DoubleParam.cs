@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using BaseLibS.Util;
 
 namespace BaseLibS.Param{
 	[Serializable]
@@ -15,8 +16,8 @@ namespace BaseLibS.Param{
 		}
 
 		public override string StringValue{
-			get => Value.ToString(CultureInfo.InvariantCulture);
-			set => Value = double.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
+			get => Parser.ToString(Value);
+			set => Value = Parser.Double(value);
 		}
 
 		public override void Clear(){

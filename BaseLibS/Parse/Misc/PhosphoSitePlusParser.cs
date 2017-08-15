@@ -284,7 +284,7 @@ namespace BaseLibS.Parse.Misc{
 				string accession = w[1];
 				string type = w[4];
 				string residue = w[5];
-				int position = int.Parse(residue.Substring(1), NumberStyles.Any, CultureInfo.InvariantCulture);
+				int position = Parser.Int(residue.Substring(1));
 				if (map.ContainsKey(accession)){
 					map[accession] += ";" + type + "," + position;
 				} else{

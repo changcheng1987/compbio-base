@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using BaseLibS.Properties;
+using BaseLibS.Util;
 
 namespace BaseLibS.Mol{
 	public static class TaxonomyItems{
@@ -20,12 +21,12 @@ namespace BaseLibS.Mol{
 			name2Item = new Dictionary<string, TaxonomyItem>();
 			while ((line = reader.ReadLine()) != null){
 				string[] w = line.Split(new[]{"\t|\t"}, StringSplitOptions.None);
-				int taxId = int.Parse(w[0], NumberStyles.Any, CultureInfo.InvariantCulture);
-				int parentTaxId = int.Parse(w[1], NumberStyles.Any, CultureInfo.InvariantCulture);
+				int taxId = Parser.Int(w[0]);
+				int parentTaxId = Parser.Int(w[1]);
 				TaxonomyRank rank = GetRank(w[2]);
-				int divisionId = int.Parse(w[4], NumberStyles.Any, CultureInfo.InvariantCulture);
-				int geneticCodeId = int.Parse(w[6], NumberStyles.Any, CultureInfo.InvariantCulture);
-				int mitoGeneticCodeId = int.Parse(w[8], NumberStyles.Any, CultureInfo.InvariantCulture);
+				int divisionId = Parser.Int(w[4]);
+				int geneticCodeId = Parser.Int(w[6]);
+				int mitoGeneticCodeId = Parser.Int(w[8]);
 				TaxonomyItem ti = new TaxonomyItem(taxId, parentTaxId, rank, divisionId, geneticCodeId, mitoGeneticCodeId);
 				result.Add(ti);
 				if (!counts.ContainsKey(rank)){
@@ -37,7 +38,7 @@ namespace BaseLibS.Mol{
 			reader = GetReader(Resources.names_dmp);
 			while ((line = reader.ReadLine()) != null){
 				string[] w = line.Split(new[]{"\t|\t"}, StringSplitOptions.None);
-				int taxId = int.Parse(w[0], NumberStyles.Any, CultureInfo.InvariantCulture);
+				int taxId = Parser.Int(w[0]);
 				string name = w[1];
 				TaxonomyNameType nameType = GetNameType(w[3].Substring(0, w[3].Length - 2));
 				TaxonomyItem item = taxId2Item[taxId];
@@ -170,7 +171,7 @@ namespace BaseLibS.Mol{
 
 		public static string GetTaxonomyIdOfRank(string taxonomyId, TaxonomyRank rank){
 			int id;
-			if (!int.TryParse(taxonomyId, NumberStyles.Any, CultureInfo.InvariantCulture, out id)){
+			if (!Parser.TryInt(taxonomyId, out id)){
 				return taxonomyId;
 			}
 			if (!taxId2Item.ContainsKey(id)){
