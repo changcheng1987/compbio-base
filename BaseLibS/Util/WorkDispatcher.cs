@@ -111,7 +111,7 @@ namespace BaseLibS.Util {
 			bool isUnix = FileUtils.IsUnix();
 			string cmd = GetCommandFilename();
 			string args = GetLogArgs(taskIndex, taskIndex) + GetCommandArguments(taskIndex);
-			ProcessStartInfo psi = isUnix ? new ProcessStartInfo("mono", cmd + " " + args) : new ProcessStartInfo(cmd, args);
+			ProcessStartInfo psi = IsRunningOnMono() ? new ProcessStartInfo("mono", cmd + " " + args) : new ProcessStartInfo(cmd, args);
 			if (isUnix) {
 				psi.WorkingDirectory = Directory.GetDirectoryRoot(cmd);
 			}
@@ -129,7 +129,12 @@ namespace BaseLibS.Util {
 			}
 		}
 
-		private string GetName(int taskIndex) {
+	    /// <summary>
+	    /// http://www.mono-project.com/docs/gui/winforms/porting-winforms-applications/
+	    /// </summary>
+	    private static bool IsRunningOnMono() => Type.GetType ("Mono.Runtime") != null;
+
+	    private string GetName(int taskIndex) {
 			return GetFilename() + " (" + IntString(taskIndex + 1, nTasks) + "/" + nTasks + ")";
 		}
 
