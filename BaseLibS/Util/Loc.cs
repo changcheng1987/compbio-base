@@ -60,6 +60,42 @@ namespace BaseLibS.Util {
 			}
 		}
 
+		public static string DoYouReallyWantToExit {
+			get {
+				switch (TwoLettName) {
+					case arabic: return "هل حقا تريد الخروج؟";
+					case bulgarian: return "Наистина ли искате да излезете?";
+					case chinese: return "你真的想退出吗？";
+					case czech: return "Opravdu chcete opustit?";
+					case danish: return "Vil du virkelig afslutte?";
+					case dutch: return "Wil je echt verlaten?";
+					case estonian: return "Kas sa tõesti tahad väljuda?";
+					case finnish: return "Haluatko todella poistua?";
+					case french: return "Voulez-vous vraiment sortir?";
+					case german: return "Wollen Sie wirklich aussteigen?";
+					case greek: return "Θέλετε πραγματικά να βγείτε;";
+					case hebrew: return "האם אתה באמת רוצה לצאת?";
+					case hindi: return "क्या आप वास्तव में बाहर निकलना चाहते हैं?";
+					case italian: return "Vuoi veramente uscire?";
+					case japanese: return "本当に退場したいですか？";
+					case korean: return "정말로 나가고 싶니?";
+					case latvian: return "Vai tiešām vēlaties iziet?";
+					case lithuanian: return "Ar tikrai norite išeiti?";
+					case norwegian: return "Vil du virkelig avslutte?";
+					case persian: return "آیا واقعا می خواهید خروج کنید؟";
+					case polish: return "Czy naprawdę chcesz wyjść?";
+					case portuguese: return "Você realmente quer sair?";
+					case romanian: return "Chiar vrei să ieși?";
+					case russian: return "Вы действительно хотите выйти?";
+					case spanish: return "¿Realmente quieres salir?";
+					case swedish: return "Vill du verkligen avsluta?";
+					case tamil: return "நீங்கள் உண்மையில் வெளியேற விரும்புகிறீர்களா?";
+					case turkish: return "Gerçekten çıkmak istiyor musun?";
+					default: return "Do you really want to exit?";
+				}
+			}
+		}
+
 		public static string File {
 			get {
 				switch (TwoLettName) {
