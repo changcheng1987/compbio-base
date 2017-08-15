@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
@@ -40,7 +41,7 @@ namespace BaseLibS.Param{
 			Dictionary<string, int> result = new Dictionary<string, int>();
 			foreach (string s1 in s.Split('\r')){
 				string[] w = s1.Trim().Split('\t');
-				result.Add(w[0], int.Parse(w[1]));
+				result.Add(w[0], int.Parse(w[1], NumberStyles.Any, CultureInfo.InvariantCulture));
 			}
 			return result;
 		}

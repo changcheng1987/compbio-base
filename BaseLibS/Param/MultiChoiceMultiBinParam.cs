@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
@@ -45,7 +46,7 @@ namespace BaseLibS.Param{
 					string[] r = q[i].Trim().Split();
 					Value[i] = new int[r.Length];
 					for (int j = 0; j < r.Length; j++){
-						Value[i][j] = int.Parse(r[j]);
+						Value[i][j] = int.Parse(r[j], NumberStyles.Any, CultureInfo.InvariantCulture);
 					}
 				}
 			}

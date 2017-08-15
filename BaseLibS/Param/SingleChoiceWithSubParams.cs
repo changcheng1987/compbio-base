@@ -28,7 +28,7 @@ namespace BaseLibS.Param{
 
 		public override string StringValue{
 			get { return Value.ToString(CultureInfo.InvariantCulture); }
-			set { Value = int.Parse(value); }
+			set { Value = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture); }
 		}
 
 		public override void ResetSubParamValues(){

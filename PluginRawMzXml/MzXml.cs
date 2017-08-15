@@ -133,11 +133,13 @@ namespace PluginRawMzXml {
 			XmlTextReader xmlHeader = new XmlTextReader(new StringReader(headerData));
 			while (xmlHeader.Read()) {
 				if (xmlHeader.IsStartElement("msRun")) {
-					header.ScanCount = int.Parse(xmlHeader.GetAttribute("scanCount"));
+					header.ScanCount = int.Parse(xmlHeader.GetAttribute("scanCount"), NumberStyles.Any, CultureInfo.InvariantCulture);
 					string str = xmlHeader.GetAttribute("startTime");
-					header.StartTime = double.Parse(str.Substring(2, str.IndexOf('S') - 2)) / 60.0;
+					header.StartTime = double.Parse(str.Substring(2, str.IndexOf('S') - 2), NumberStyles.Any,
+						                   CultureInfo.InvariantCulture) / 60.0;
 					str = xmlHeader.GetAttribute("endTime");
-					header.EndTime = double.Parse(str.Substring(2, str.IndexOf('S') - 2)) / 60.0;
+					header.EndTime = double.Parse(str.Substring(2, str.IndexOf('S') - 2), NumberStyles.Any,
+						                 CultureInfo.InvariantCulture) / 60.0;
 				} else if (xmlHeader.IsStartElement("parentFile")) {
 					header.ParentFile = xmlHeader.GetAttribute("fileName");
 					header.ParentFileSha1 = xmlHeader.GetAttribute("fileSha1");
@@ -147,7 +149,7 @@ namespace PluginRawMzXml {
 						header.SignalType = SignalType.Centroid;
 					}
 				} else if (xmlHeader.IsStartElement("msResolution")) {
-					header.Resolution = int.Parse(xmlHeader.GetAttribute("value"));
+					header.Resolution = int.Parse(xmlHeader.GetAttribute("value"), NumberStyles.Any, CultureInfo.InvariantCulture);
 				} else if (xmlHeader.IsStartElement("msModel")) {
 					header.MachineModel = xmlHeader.GetAttribute("value");
 				} else if (xmlHeader.IsStartElement("msManufacturer")) {
@@ -164,7 +166,7 @@ namespace PluginRawMzXml {
 				if (!xmlIndex.IsStartElement("offset")) {
 					continue;
 				}
-				int scannumber = int.Parse(xmlIndex.GetAttribute("id"));
+				int scannumber = int.Parse(xmlIndex.GetAttribute("id"), NumberStyles.Any, CultureInfo.InvariantCulture);
 				minScanNumber = Math.Min(minScanNumber, scannumber);
 				maxScanNumber = Math.Max(maxScanNumber, scannumber);
 				scanNumberToFilePos.Add(scannumber, xmlIndex.ReadElementContentAsLong());
@@ -227,19 +229,24 @@ namespace PluginRawMzXml {
 			while (xmlReader.Read()) {
 				xmlReader.MoveToElement();
 				if (xmlReader.IsStartElement("scan")) {
-					scanHeader.MsLevel = int.Parse(xmlReader.GetAttribute("msLevel"));
-					scanHeader.ScanNumber = int.Parse(xmlReader.GetAttribute("num"));
-					scanHeader.PeaksCount = int.Parse(xmlReader.GetAttribute("peaksCount"));
-					scanHeader.LowMz = double.Parse(xmlReader.GetAttribute("lowMz"));
-					scanHeader.HighMz = double.Parse(xmlReader.GetAttribute("highMz"));
-					scanHeader.BasePeakMz = double.Parse(xmlReader.GetAttribute("basePeakMz"));
-					scanHeader.BasePeakIntensity = float.Parse(xmlReader.GetAttribute("basePeakIntensity"));
-					scanHeader.TotalIonCurrent = float.Parse(xmlReader.GetAttribute("totIonCurrent"));
+					scanHeader.MsLevel = int.Parse(xmlReader.GetAttribute("msLevel"), NumberStyles.Any, CultureInfo.InvariantCulture);
+					scanHeader.ScanNumber = int.Parse(xmlReader.GetAttribute("num"), NumberStyles.Any, CultureInfo.InvariantCulture);
+					scanHeader.PeaksCount = int.Parse(xmlReader.GetAttribute("peaksCount"), NumberStyles.Any,
+						CultureInfo.InvariantCulture);
+					scanHeader.LowMz = double.Parse(xmlReader.GetAttribute("lowMz"), NumberStyles.Any, CultureInfo.InvariantCulture);
+					scanHeader.HighMz = double.Parse(xmlReader.GetAttribute("highMz"), NumberStyles.Any, CultureInfo.InvariantCulture);
+					scanHeader.BasePeakMz = double.Parse(xmlReader.GetAttribute("basePeakMz"), NumberStyles.Any,
+						CultureInfo.InvariantCulture);
+					scanHeader.BasePeakIntensity = float.Parse(xmlReader.GetAttribute("basePeakIntensity"), NumberStyles.Any,
+						CultureInfo.InvariantCulture);
+					scanHeader.TotalIonCurrent = float.Parse(xmlReader.GetAttribute("totIonCurrent"), NumberStyles.Any,
+						CultureInfo.InvariantCulture);
 					string str = xmlReader.GetAttribute("retentionTime");
-					scanHeader.RetentionTime = float.Parse(str.Substring(2, str.IndexOf('S') - 2)) / 60.0f;
+					scanHeader.RetentionTime = float.Parse(str.Substring(2, str.IndexOf('S') - 2), NumberStyles.Any,
+						                           CultureInfo.InvariantCulture) / 60.0f;
 					str = xmlReader.GetAttribute("collisionEnergy");
 					if (str != null) {
-						scanHeader.CollisionEnergy = float.Parse(str);
+						scanHeader.CollisionEnergy = float.Parse(str, NumberStyles.Any, CultureInfo.InvariantCulture);
 					}
 					scanHeader.ScanType = xmlReader.GetAttribute("scanType");
 					scanHeader.Polarity = xmlReader.GetAttribute("polarity");
@@ -299,7 +306,7 @@ namespace PluginRawMzXml {
 				if (!xmlReader.IsStartElement("peaks")) {
 					continue;
 				}
-				precision = int.Parse(xmlReader.GetAttribute("precision"));
+				precision = int.Parse(xmlReader.GetAttribute("precision"), NumberStyles.Any, CultureInfo.InvariantCulture);
 				byteOrder = xmlReader.GetAttribute("byteOrder");
 				contentType = xmlReader.GetAttribute("contentType");
 				if (string.IsNullOrEmpty(contentType)) {
@@ -307,7 +314,9 @@ namespace PluginRawMzXml {
 				}
 				compressionType = xmlReader.GetAttribute("compressionType");
 				string sCompressedLen = xmlReader.GetAttribute("compressedLen");
-				compressedLength = string.IsNullOrEmpty(sCompressedLen) ? -1 : int.Parse(sCompressedLen);
+				compressedLength = string.IsNullOrEmpty(sCompressedLen)
+					? -1
+					: int.Parse(sCompressedLen, NumberStyles.Any, CultureInfo.InvariantCulture);
 				data = xmlReader.ReadElementContentAsString();
 			}
 			if (byteOrder == null || contentType == null || data == null) {
@@ -420,7 +429,8 @@ namespace PluginRawMzXml {
 				line += s.ReadLine();
 			}
 			s.Close();
-			long indexOffset = uint.Parse(regexInteger.Match(line).Groups[1].ToString());
+			long indexOffset = uint.Parse(regexInteger.Match(line).Groups[1].ToString(), NumberStyles.Any,
+				CultureInfo.InvariantCulture);
 			// load the offset table
 			StreamReader stream = new StreamReader(filename);
 			stream.BaseStream.Seek(indexOffset, SeekOrigin.Begin);

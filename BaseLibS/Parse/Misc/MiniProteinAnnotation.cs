@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using BaseLibS.Parse.Uniprot;
 using BaseLibS.Util;
@@ -28,8 +29,8 @@ namespace BaseLibS.Parse.Misc{
 				string[] w = pfams[i].Split(',');
 				PfamIds[i] = w[0];
 				PfamNames[i] = w[1];
-				PfamStart[i] = int.Parse(w[3]);
-				PfamEnd[i] = int.Parse(w[4]);
+				PfamStart[i] = int.Parse(w[3], NumberStyles.Any, CultureInfo.InvariantCulture);
+				PfamEnd[i] = int.Parse(w[4], NumberStyles.Any, CultureInfo.InvariantCulture);
 			}
 			Pdbs = pdbs;
 			Features = features;

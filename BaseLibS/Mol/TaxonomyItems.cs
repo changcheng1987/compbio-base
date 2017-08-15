@@ -20,12 +20,12 @@ namespace BaseLibS.Mol{
 			name2Item = new Dictionary<string, TaxonomyItem>();
 			while ((line = reader.ReadLine()) != null){
 				string[] w = line.Split(new[]{"\t|\t"}, StringSplitOptions.None);
-				int taxId = int.Parse(w[0]);
-				int parentTaxId = int.Parse(w[1]);
+				int taxId = int.Parse(w[0], NumberStyles.Any, CultureInfo.InvariantCulture);
+				int parentTaxId = int.Parse(w[1], NumberStyles.Any, CultureInfo.InvariantCulture);
 				TaxonomyRank rank = GetRank(w[2]);
-				int divisionId = int.Parse(w[4]);
-				int geneticCodeId = int.Parse(w[6]);
-				int mitoGeneticCodeId = int.Parse(w[8]);
+				int divisionId = int.Parse(w[4], NumberStyles.Any, CultureInfo.InvariantCulture);
+				int geneticCodeId = int.Parse(w[6], NumberStyles.Any, CultureInfo.InvariantCulture);
+				int mitoGeneticCodeId = int.Parse(w[8], NumberStyles.Any, CultureInfo.InvariantCulture);
 				TaxonomyItem ti = new TaxonomyItem(taxId, parentTaxId, rank, divisionId, geneticCodeId, mitoGeneticCodeId);
 				result.Add(ti);
 				if (!counts.ContainsKey(rank)){
@@ -37,7 +37,7 @@ namespace BaseLibS.Mol{
 			reader = GetReader(Resources.names_dmp);
 			while ((line = reader.ReadLine()) != null){
 				string[] w = line.Split(new[]{"\t|\t"}, StringSplitOptions.None);
-				int taxId = int.Parse(w[0]);
+				int taxId = int.Parse(w[0], NumberStyles.Any, CultureInfo.InvariantCulture);
 				string name = w[1];
 				TaxonomyNameType nameType = GetNameType(w[3].Substring(0, w[3].Length - 2));
 				TaxonomyItem item = taxId2Item[taxId];

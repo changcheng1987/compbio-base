@@ -127,7 +127,7 @@ namespace BaseLibS.Util{
 			for (int i = 0; i < x.Length; i++){
 				result[i] = new int[x[i].Length];
 				for (int j = 0; j < x[i].Length; j++){
-					result[i][j] = int.Parse(x[i][j]);
+					result[i][j] = int.Parse(x[i][j], NumberStyles.Any, CultureInfo.InvariantCulture);
 				}
 			}
 			return result;
@@ -804,7 +804,7 @@ namespace BaseLibS.Util{
 			}
 			int x = s.LastIndexOf('_');
 			string s1 = s.Substring(x + 1);
-			int num = int.Parse(s1);
+			int num = int.Parse(s1, NumberStyles.Any, CultureInfo.InvariantCulture);
 			return s.Substring(0, x + 1) + (num + 1);
 		}
 

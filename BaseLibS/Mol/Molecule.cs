@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -188,7 +189,7 @@ namespace BaseLibS.Mol{
 				while (formula[index] >= '0' && formula[index] <= '9'){
 					index++;
 				}
-				factor = int.Parse(formula.Substring(0, index));
+				factor = int.Parse(formula.Substring(0, index), NumberStyles.Any, CultureInfo.InvariantCulture);
 				formula = formula.Substring(index);
 			}
 			int[] counts = new int[ChemElements.Elements.Length];
@@ -226,7 +227,7 @@ namespace BaseLibS.Mol{
 			if (index == 0){
 				amount = 1;
 			} else{
-				amount = int.Parse(formula.Substring(0, index));
+				amount = int.Parse(formula.Substring(0, index), NumberStyles.Any, CultureInfo.InvariantCulture);
 				formula = formula.Substring(index);
 			}
 			counts[i] += amount;
