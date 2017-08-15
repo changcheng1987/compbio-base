@@ -6,8 +6,11 @@ namespace BaseLibS.Num {
 	/// Class containing utility methods for generating pseudo random numbers.
 	/// </summary>
 	public class Random2 {
+		private readonly RandomType type;
+		private long seed;
+
 		/// <summary>
-		/// Intrinsic random number generator used for generating uniformly distributed random numbers.
+		/// Intrinsic random number generator used for samping from uniform distribion.
 		/// </summary>
 		private readonly Random random;
 
@@ -26,16 +29,26 @@ namespace BaseLibS.Num {
 		/// </summary>
 		/// <param name="seed">A number used to calculate a starting value for the pseudo-random number 
 		/// sequence. If a negative number is specified, the absolute value of the number is used.</param>
-		public Random2(int seed) {
-			random = new Random(seed);
+		/// <param name="type"></param>
+		public Random2(int seed, RandomType type) {
+			this.type = type;
+			this.seed = seed;
+			if (type == RandomType.Csharp) {
+				random = new Random(seed);
+			}
 		}
+
+		public Random2(int seed) : this(seed, RandomType.Knuth) { }
 
 		/// <summary>
 		/// Returns a random floating-point number that is greater than or equal to 0.0, and less than 1.0.
 		/// </summary>
 		/// <returns>A double-precision floating point number that is greater than or equal to 0.0, and less than 1.0.</returns>
 		public double NextDouble() {
-			return random.NextDouble();
+			if (type == RandomType.Csharp) {
+				return random.NextDouble();
+			}
+			return Ran3(ref seed);
 		}
 
 		/// <summary>
@@ -183,7 +196,7 @@ namespace BaseLibS.Num {
 			}
 		}
 
-		public void RandomSubsamplingIndeces(int n, int nfold, int nsampling, out int[][] train, out int[][] test) {
+		public void RandomSubsamplingIndices(int n, int nfold, int nsampling, out int[][] train, out int[][] test) {
 			if (nfold > n) {
 				nfold = n;
 			}
@@ -208,10 +221,10 @@ namespace BaseLibS.Num {
 					v2 = 2.0 * random.NextDouble() - 1.0;
 					rsq = v1 * v1 + v2 * v2;
 				} while (rsq >= 1.0 || rsq == 0.0);
-				double fac = Math.Sqrt(-2.0 * Math.Log(rsq) / rsq);
-				gset = v1 * fac;
+				double fac1 = Math.Sqrt(-2.0 * Math.Log(rsq) / rsq);
+				gset = v1 * fac1;
 				iset = true;
-				return v2 * fac;
+				return v2 * fac1;
 			}
 			iset = false;
 			return gset;
@@ -383,6 +396,48 @@ namespace BaseLibS.Num {
 			// get the last one
 			destination[i] = n;
 			return destination;
+		}
+
+		private const long mbig = 1000000000;
+		private const long mseed = 161803398;
+		private const long mz = 0;
+		private const float fac = 1.0f / mbig;
+		private static int inext, inextp;
+		private static readonly long[] ma = new long[56];
+		private static int iff;
+
+		private static float Ran3(ref long idum) {
+			long mj;
+			if (idum < 0 || iff == 0) {
+				iff = 1;
+				mj = mseed - (idum < 0 ? -idum : idum);
+				mj %= mbig;
+				ma[55] = mj;
+				long mk = 1;
+				int i;
+				for (i = 1; i <= 54; i++) {
+					int ii = (21 * i) % 55;
+					ma[ii] = mk;
+					mk = mj - mk;
+					if (mk < mz) mk += mbig;
+					mj = ma[ii];
+				}
+				int k;
+				for (k = 1; k <= 4; k++)
+				for (i = 1; i <= 55; i++) {
+					ma[i] -= ma[1 + (i + 30) % 55];
+					if (ma[i] < mz) ma[i] += mbig;
+				}
+				inext = 0;
+				inextp = 31;
+				idum = 1;
+			}
+			if (++inext == 56) inext = 1;
+			if (++inextp == 56) inextp = 1;
+			mj = ma[inext] - ma[inextp];
+			if (mj < mz) mj += mbig;
+			ma[inext] = mj;
+			return mj * fac;
 		}
 	}
 }
