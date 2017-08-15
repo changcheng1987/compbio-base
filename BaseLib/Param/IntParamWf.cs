@@ -11,8 +11,7 @@ namespace BaseLib.Param{
 		public override ParamType Type => ParamType.WinForms;
 
 		public override void SetValueFromControl(){
-			int val;
-			bool s = int.TryParse(control.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out val);
+			bool s = int.TryParse(control.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out int val);
 			if (s){
 				Value = val;
 			}
@@ -22,11 +21,11 @@ namespace BaseLib.Param{
 			if (control == null){
 				return;
 			}
-			control.Text = "" + Value;
+			control.Text = Value.ToString(CultureInfo.InvariantCulture);
 		}
 
 		public override object CreateControl(){
-			control = new TextBox{Text = "" + Value};
+			control = new TextBox{Text = Value.ToString(CultureInfo.InvariantCulture) };
 			control.TextChanged += (sender, e) =>{
 				SetValueFromControl();
 				ValueHasChanged();
