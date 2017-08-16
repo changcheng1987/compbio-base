@@ -404,7 +404,7 @@ namespace BaseLibS.Num {
 		public void InitKnuth(int seed) {
 			//Initialize our seed array.
 			//This algorithm comes from Numerical Recipes in C (2nd Ed.)
-			int subtraction = (seed == Int32.MinValue) ? Int32.MaxValue : Math.Abs(seed);
+			int subtraction = seed == int.MinValue ? int.MaxValue : Math.Abs(seed);
 			int mj = mseed - subtraction;
 			seedArray[55] = mj;
 			int mk = 1;
