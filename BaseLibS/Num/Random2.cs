@@ -399,11 +399,11 @@ namespace BaseLibS.Num {
 		private const long mseed = 161803398;
 		private const long mz = 0;
 		private const float fac = 1.0f / mbig;
-		private static int inext, inextp;
-		private static readonly long[] ma = new long[56];
-		private static int iff;
+		private int inext, inextp;
+		private readonly long[] ma = new long[56];
+		private int iff;
 
-		private static float Ran3(ref long idum) {
+		private float Ran3(ref long idum) {
 			long mj;
 			if (idum < 0 || iff == 0) {
 				iff = 1;
@@ -420,10 +420,11 @@ namespace BaseLibS.Num {
 					mj = ma[ii];
 				}
 				int k;
-				for (k = 1; k <= 4; k++)
-				for (i = 1; i <= 55; i++) {
-					ma[i] -= ma[1 + (i + 30) % 55];
-					if (ma[i] < mz) ma[i] += mbig;
+				for (k = 1; k <= 4; k++) {
+					for (i = 1; i <= 55; i++) {
+						ma[i] -= ma[1 + (i + 30) % 55];
+						if (ma[i] < mz) ma[i] += mbig;
+					}
 				}
 				inext = 0;
 				inextp = 31;
@@ -432,7 +433,9 @@ namespace BaseLibS.Num {
 			if (++inext == 56) inext = 1;
 			if (++inextp == 56) inextp = 1;
 			mj = ma[inext] - ma[inextp];
-			if (mj < mz) mj += mbig;
+			if (mj < mz) {
+				mj += mbig;
+			}
 			ma[inext] = mj;
 			return mj * fac;
 		}
