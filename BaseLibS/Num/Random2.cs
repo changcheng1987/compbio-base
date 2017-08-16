@@ -38,17 +38,14 @@ namespace BaseLibS.Num {
 			}
 		}
 
-		public Random2(int seed) : this(seed, RandomType.Knuth) { }
+		public Random2(int seed) : this(seed, RandomType.Csharp) { }
 
 		/// <summary>
 		/// Returns a random floating-point number that is greater than or equal to 0.0, and less than 1.0.
 		/// </summary>
 		/// <returns>A double-precision floating point number that is greater than or equal to 0.0, and less than 1.0.</returns>
 		public double NextDouble() {
-			if (type == RandomType.Csharp) {
-				return random.NextDouble();
-			}
-			return Ran3(ref seed);
+			return type == RandomType.Csharp ? random.NextDouble() : Ran3(ref seed);
 		}
 
 		/// <summary>

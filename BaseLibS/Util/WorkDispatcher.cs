@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -43,10 +44,9 @@ namespace BaseLibS.Util {
 				}
 			}
 		}
-		public static bool IsRunning(Process process) {
-			if (process == null)
-				return false;
 
+		public static bool IsRunning(Process process) {
+			if (process == null) return false;
 			try {
 				Process.GetProcessById(process.Id);
 			} catch (Exception) {
@@ -54,7 +54,6 @@ namespace BaseLibS.Util {
 			}
 			return true;
 		}
-
 
 		public void Start() {
 			currentIndices = new HashSet<int>();
@@ -111,7 +110,9 @@ namespace BaseLibS.Util {
 			bool isUnix = FileUtils.IsUnix();
 			string cmd = GetCommandFilename();
 			string args = GetLogArgs(taskIndex, taskIndex) + GetCommandArguments(taskIndex);
-			ProcessStartInfo psi = IsRunningOnMono() ? new ProcessStartInfo("mono", cmd + " " + args) : new ProcessStartInfo(cmd, args);
+			ProcessStartInfo psi = IsRunningOnMono()
+				? new ProcessStartInfo("mono", cmd + " " + args)
+				: new ProcessStartInfo(cmd, args);
 			if (isUnix) {
 				psi.WorkingDirectory = Directory.GetDirectoryRoot(cmd);
 			}
@@ -129,12 +130,12 @@ namespace BaseLibS.Util {
 			}
 		}
 
-	    /// <summary>
-	    /// http://www.mono-project.com/docs/gui/winforms/porting-winforms-applications/
-	    /// </summary>
-	    private static bool IsRunningOnMono() => Type.GetType ("Mono.Runtime") != null;
+		/// <summary>
+		/// http://www.mono-project.com/docs/gui/winforms/porting-winforms-applications/
+		/// </summary>
+		private static bool IsRunningOnMono() => Type.GetType("Mono.Runtime") != null;
 
-	    private string GetName(int taskIndex) {
+		private string GetName(int taskIndex) {
 			return GetFilename() + " (" + IntString(taskIndex + 1, nTasks) + "/" + nTasks + ")";
 		}
 
@@ -185,7 +186,14 @@ namespace BaseLibS.Util {
 			string[] args = new string[o.Length + 1];
 			args[0] = $"\"{Id}\"";
 			for (int i = 0; i < o.Length; i++) {
-				args[i + 1] = $"\"{o[i]}\"";
+				object o1 = o[i];
+				string s;
+				if (o1 is IConvertible) {
+					s = ((IConvertible) o1).ToString(CultureInfo.InvariantCulture);
+				} else {
+					s = o1.ToString();
+				}
+				args[i + 1] = "\"" + s + "\"";
 			}
 			return StringUtils.Concat(" ", args);
 		}
