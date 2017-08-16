@@ -7,7 +7,6 @@ namespace BaseLibS.Num {
 	/// </summary>
 	public class Random2 {
 		private readonly RandomType type;
-		private long seed;
 
 		/// <summary>
 		/// Intrinsic random number generator used for samping from uniform distribion.
@@ -32,20 +31,21 @@ namespace BaseLibS.Num {
 		/// <param name="type"></param>
 		public Random2(int seed, RandomType type) {
 			this.type = type;
-			this.seed = seed;
 			if (type == RandomType.Csharp) {
 				random = new Random(seed);
+			} else {
+				InitKnuth(seed);
 			}
 		}
 
-		public Random2(int seed) : this(seed, RandomType.Csharp) { }
+		public Random2(int seed) : this(seed, RandomType.Knuth) { }
 
 		/// <summary>
 		/// Returns a random floating-point number that is greater than or equal to 0.0, and less than 1.0.
 		/// </summary>
 		/// <returns>A double-precision floating point number that is greater than or equal to 0.0, and less than 1.0.</returns>
 		public double NextDouble() {
-			return type == RandomType.Csharp ? random.NextDouble() : Ran3(ref seed);
+			return type == RandomType.Csharp ? random.NextDouble() : Sample();
 		}
 
 		/// <summary>
@@ -395,49 +395,55 @@ namespace BaseLibS.Num {
 			return destination;
 		}
 
-		private const long mbig = 1000000000;
-		private const long mseed = 161803398;
-		private const long mz = 0;
-		private const float fac = 1.0f / mbig;
-		private int inext, inextp;
-		private readonly long[] ma = new long[56];
-		private int iff;
+		private const int mbig = int.MaxValue;
+		private const int mseed = 161803398;
+		private int inext;
+		private int inextp;
+		private readonly int[] seedArray = new int[56];
 
-		private float Ran3(ref long idum) {
-			long mj;
-			if (idum < 0 || iff == 0) {
-				iff = 1;
-				mj = mseed - (idum < 0 ? -idum : idum);
-				mj %= mbig;
-				ma[55] = mj;
-				long mk = 1;
-				int i;
-				for (i = 1; i <= 54; i++) {
-					int ii = (21 * i) % 55;
-					ma[ii] = mk;
-					mk = mj - mk;
-					if (mk < mz) mk += mbig;
-					mj = ma[ii];
-				}
-				int k;
-				for (k = 1; k <= 4; k++) {
-					for (i = 1; i <= 55; i++) {
-						ma[i] -= ma[1 + (i + 30) % 55];
-						if (ma[i] < mz) ma[i] += mbig;
-					}
-				}
-				inext = 0;
-				inextp = 31;
-				idum = 1;
+		public void InitKnuth(int seed) {
+			//Initialize our seed array.
+			//This algorithm comes from Numerical Recipes in C (2nd Ed.)
+			int subtraction = (seed == Int32.MinValue) ? Int32.MaxValue : Math.Abs(seed);
+			int mj = mseed - subtraction;
+			seedArray[55] = mj;
+			int mk = 1;
+			for (int i = 1; i < 55; i++) {
+				//Apparently the range [1..55] is special (Knuth) and so we're wasting the 0'th position.
+				int ii = (21 * i) % 55;
+				seedArray[ii] = mk;
+				mk = mj - mk;
+				if (mk < 0) mk += mbig;
+				mj = seedArray[ii];
 			}
-			if (++inext == 56) inext = 1;
-			if (++inextp == 56) inextp = 1;
-			mj = ma[inext] - ma[inextp];
-			if (mj < mz) {
-				mj += mbig;
+			for (int k = 1; k < 5; k++) {
+				for (int i = 1; i < 56; i++) {
+					seedArray[i] -= seedArray[1 + (i + 30) % 55];
+					if (seedArray[i] < 0) seedArray[i] += mbig;
+				}
 			}
-			ma[inext] = mj;
-			return mj * fac;
+			inext = 0;
+			inextp = 21;
+		}
+
+		private double Sample() {
+			//Including this division at the end gives us significantly improved
+			//random number distribution.
+			return InternalSample() * (1.0 / mbig);
+		}
+
+		private int InternalSample() {
+			int locINext = inext;
+			int locINextp = inextp;
+			if (++locINext >= 56) locINext = 1;
+			if (++locINextp >= 56) locINextp = 1;
+			int retVal = seedArray[locINext] - seedArray[locINextp];
+			if (retVal == mbig) retVal--;
+			if (retVal < 0) retVal += mbig;
+			seedArray[locINext] = retVal;
+			inext = locINext;
+			inextp = locINextp;
+			return retVal;
 		}
 	}
 }
