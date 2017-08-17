@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -187,12 +186,7 @@ namespace BaseLibS.Util {
 			args[0] = $"\"{Id}\"";
 			for (int i = 0; i < o.Length; i++) {
 				object o1 = o[i];
-				string s;
-				if (o1 is IConvertible) {
-					s = ((IConvertible) o1).ToString(CultureInfo.InvariantCulture);
-				} else {
-					s = o1.ToString();
-				}
+				string s = Parser.ToString(o1);
 				args[i + 1] = "\"" + s + "\"";
 			}
 			return StringUtils.Concat(" ", args);

@@ -43,32 +43,11 @@ namespace BaseLibS.Util {
 			return decimal.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out x);
 		}
 
-		public static string ToString(double x) {
-			return x.ToString(CultureInfo.InvariantCulture);
-		}
-
-		public static string ToString(float x) {
-			return x.ToString(CultureInfo.InvariantCulture);
-		}
-
-		public static string ToString(int x) {
-			return x.ToString(CultureInfo.InvariantCulture);
-		}
-
-		public static string ToString(uint x) {
-			return x.ToString(CultureInfo.InvariantCulture);
-		}
-
-		public static string ToString(bool x) {
-			return x.ToString(CultureInfo.InvariantCulture);
-		}
-
-		public static string ToString(DateTime x) {
-			return x.ToString(CultureInfo.InvariantCulture);
-		}
-
-		public static string ToString(char x) {
-			return x.ToString(CultureInfo.InvariantCulture);
+		public static string ToString(object x) {
+			if (x is IConvertible) {
+				return ((IConvertible) x).ToString(CultureInfo.InvariantCulture);
+			}
+			return x.ToString();
 		}
 	}
 }
