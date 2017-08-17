@@ -35,6 +35,14 @@ namespace BaseLibS.Util {
 			return uint.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out x);
 		}
 
+		public static decimal Decimal(string s) {
+			return decimal.Parse(s, NumberStyles.Any, CultureInfo.InvariantCulture);
+		}
+
+		public static bool TryDecimal(string s, out decimal x) {
+			return decimal.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out x);
+		}
+
 		public static string ToString(double x) {
 			return x.ToString(CultureInfo.InvariantCulture);
 		}
