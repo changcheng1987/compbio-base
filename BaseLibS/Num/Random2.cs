@@ -82,7 +82,7 @@ namespace BaseLibS.Num {
 		/// </summary>
 		/// <returns> The Gaussian random number.</returns>
 		public double NextGaussian() {
-			return Gasdev(ref iset, ref gset, this);
+			return NextGaussian(0, 1);
 		}
 
 		public bool NextBoolean() {
@@ -121,7 +121,7 @@ namespace BaseLibS.Num {
 		/// </summary>
 		/// <returns> The Gaussian random number.</returns>
 		public double NextGaussian(double mean, double stddev) {
-			double x = Gasdev(ref iset, ref gset, this);
+			double x = Gasdev();
 			return x * stddev + mean;
 		}
 
@@ -139,12 +139,11 @@ namespace BaseLibS.Num {
 		/// <param name="p">The probability of a single event. This probability should be less than or equal to 0.5.</param>
 		/// <returns>An integer drawn from a binomial distribution with parameters (p, n).</returns>
 		public int NextBinomial(int n, double p) {
-			return Binomial(n, p, this);
+			return Binomial(n, p);
 		}
 
 		public int[] NextMultinomial(double[] source, int n) {
-			int colors = source.Length;
-			return Multinomial(source, n, colors, this);
+			return Multinomial(source, n, source.Length);
 		}
 
 		/// <summary>
@@ -208,14 +207,14 @@ namespace BaseLibS.Num {
 			}
 		}
 
-		private static double Gasdev(ref bool iset, ref double gset, Random2 random) {
+		private double Gasdev() {
 			if (!iset) {
 				double rsq;
 				double v1;
 				double v2;
 				do {
-					v1 = 2.0 * random.NextDouble() - 1.0;
-					v2 = 2.0 * random.NextDouble() - 1.0;
+					v1 = 2.0 * NextDouble() - 1.0;
+					v2 = 2.0 * NextDouble() - 1.0;
 					rsq = v1 * v1 + v2 * v2;
 				} while (rsq >= 1.0 || rsq == 0.0);
 				double fac1 = Math.Sqrt(-2.0 * Math.Log(rsq) / rsq);
@@ -228,13 +227,12 @@ namespace BaseLibS.Num {
 		}
 
 		/// <summary>
-		/// Static routine doing the actual work of drawing from a binomial distribution.
+		/// Method doing the actual work of drawing from a binomial distribution.
 		/// </summary>
 		/// <param name="n">The number of trials.</param>
 		/// <param name="p">The probability of a single event. This probability should be less than or equal to 0.5.</param>
-		/// <param name="random">An instance of the <c>Random</c> class used to generate uniformly distributed random numbers.</param>
 		/// <returns>An integer drawn from a binomial distribution with parameters (p, n).</returns>
-		private static int Binomial(int n, double p, Random2 random) {
+		private int Binomial(int n, double p) {
 			double q = 1 - p;
 			if (n * p < 30.0) {
 				// Algorithm BINV
@@ -242,7 +240,7 @@ namespace BaseLibS.Num {
 				double a = (n + 1) * s;
 				double r = Math.Exp(n * Math.Log(q));
 				int x = 0;
-				double u = random.NextDouble();
+				double u = NextDouble();
 				while (true) {
 					if (u < r) {
 						return x;
@@ -271,8 +269,8 @@ namespace BaseLibS.Num {
 				while (true) {
 					// Step 1
 					int y;
-					double u = random.NextDouble();
-					double v = random.NextDouble();
+					double u = NextDouble();
+					double v = NextDouble();
 					u *= p4;
 					if (u <= p1) {
 						return (int) Math.Floor(xm - p1 * v + u);
@@ -310,7 +308,7 @@ namespace BaseLibS.Num {
 					int k = Math.Abs(y - m);
 					if (k > 20 && k < 0.5 * n * p * q - 1.0) {
 						// Step 5.2
-						double rho = (k / (n * p * q)) * ((k * (k / 3.0 + 0.625) + 0.1666666666666) / (n * p * q) + 0.5);
+						double rho = k / (n * p * q) * ((k * (k / 3.0 + 0.625) + 0.1666666666666) / (n * p * q) + 0.5);
 						double t = -k * k / (2 * n * p * q);
 						double a2 = Math.Log(v);
 						if (a2 < t - rho) {
@@ -358,9 +356,8 @@ namespace BaseLibS.Num {
 		/// <param name="source">An input array containing the probability or fraction of each color in the urn.</param>
 		/// <param name="n">The number of balls drawn from the urn.</param>
 		/// <param name="colors">The number of possible colors.</param>
-		/// <param name="random">The random number generator.</param>
 		/// <returns>The number of balls of each color.</returns>
-		private static int[] Multinomial(IList<double> source, int n, int colors, Random2 random) {
+		private int[] Multinomial(IList<double> source, int n, int colors) {
 			int[] destination = new int[source.Count];
 			double s;
 			double sum;
@@ -385,7 +382,7 @@ namespace BaseLibS.Num {
 			for (i = 0; i < colors - 1; i++) {
 				// generate output by calling binomial (colors-1) times
 				s = source[i];
-				int x = sum <= s ? n : Binomial(n, s / sum, random);
+				int x = sum <= s ? n : Binomial(n, s / sum);
 				n -= x;
 				sum -= s;
 				destination[i] = x;
