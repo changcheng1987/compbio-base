@@ -60,6 +60,43 @@ namespace BaseLibS.Util {
 			}
 		}
 
+		public static string Cancel {
+			get {
+				switch (TwoLettName) {
+					case arabic: return "إلغاء";
+					case bulgarian: return "Отказ";
+					case chinese: return "取消";
+
+					case czech: return "Andromeda";
+					case danish: return "Andromeda";
+					case dutch: return "Andromeda";
+					case estonian: return "Andromeda";
+					case finnish: return "Andromeda";
+					case french: return "Andromeda";
+					case german: return "Andromeda";
+					case greek: return "Ανδρομέδα";
+					case hebrew: return "אנדרומדה";
+					case hindi: return "एंड्रोमेडा";
+					case italian: return "Andromeda";
+					case japanese: return "アンドロメダ";
+					case korean: return "안드로메다";
+					case latvian: return "Andromeda";
+					case lithuanian: return "Andromeda";
+					case norwegian: return "Andromeda";
+					case persian: return "آندرومدا";
+					case polish: return "Andromeda";
+					case portuguese: return "Andrômeda";
+					case romanian: return "Andromeda";
+					case russian: return "Андромеда";
+					case spanish: return "Andrómeda";
+					case swedish: return "Andromeda";
+					case tamil: return "ஆந்த்ரோமெடா";
+					case turkish: return "Andromeda";
+					default: return "Cancel";
+				}
+			}
+		}
+
 		public static string DoYouReallyWantToExit {
 			get {
 				switch (TwoLettName) {
