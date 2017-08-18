@@ -66,32 +66,31 @@ namespace BaseLibS.Util {
 					case arabic: return "إلغاء";
 					case bulgarian: return "Отказ";
 					case chinese: return "取消";
-
-					case czech: return "Andromeda";
-					case danish: return "Andromeda";
-					case dutch: return "Andromeda";
-					case estonian: return "Andromeda";
-					case finnish: return "Andromeda";
-					case french: return "Andromeda";
-					case german: return "Andromeda";
-					case greek: return "Ανδρομέδα";
-					case hebrew: return "אנדרומדה";
-					case hindi: return "एंड्रोमेडा";
-					case italian: return "Andromeda";
-					case japanese: return "アンドロメダ";
-					case korean: return "안드로메다";
-					case latvian: return "Andromeda";
-					case lithuanian: return "Andromeda";
-					case norwegian: return "Andromeda";
-					case persian: return "آندرومدا";
-					case polish: return "Andromeda";
-					case portuguese: return "Andrômeda";
-					case romanian: return "Andromeda";
-					case russian: return "Андромеда";
-					case spanish: return "Andrómeda";
-					case swedish: return "Andromeda";
-					case tamil: return "ஆந்த்ரோமெடா";
-					case turkish: return "Andromeda";
+					case czech: return "Zrušení";
+					case danish: return "Afbestille";
+					case dutch: return "Annuleer";
+					case estonian: return "Tühista";
+					case finnish: return "Peruuttaa";
+					case french: return "Annuler";
+					case german: return "Annulieren";
+					case greek: return "Ματαίωση";
+					case hebrew: return "לְבַטֵל";
+					case hindi: return "रद्द करना";
+					case italian: return "Annulla";
+					case japanese: return "キャンセル";
+					case korean: return "취소";
+					case latvian: return "Atcelt";
+					case lithuanian: return "Atšaukti";
+					case norwegian: return "Avbryt";
+					case persian: return "لغو";
+					case polish: return "Anuluj";
+					case portuguese: return "Cancelar";
+					case romanian: return "Anulare";
+					case russian: return "Отмена";
+					case spanish: return "Cancelar";
+					case swedish: return "Annullera";
+					case tamil: return "ரத்து";
+					case turkish: return "İptal etmek";
 					default: return "Cancel";
 				}
 			}
@@ -282,6 +281,42 @@ namespace BaseLibS.Util {
 				switch (TwoLettName) {
 					case hebrew: return "מקסימום";
 					default: return "MaxQuant";
+				}
+			}
+		}
+
+		public static string Ok {
+			get {
+				switch (TwoLettName) {
+					case arabic: return "حسنا";
+					case bulgarian: return "Добре";
+					case chinese: return "好";
+					case czech: return "OK";
+					case danish: return "Okay";
+					case dutch: return "OK";
+					case estonian: return "Okei";
+					case finnish: return "Kunnossa";
+					case french: return "D'accord";
+					case german: return "OK";
+					case greek: return "Εντάξει";
+					case hebrew: return "בסדר";
+					case hindi: return "ठीक";
+					case italian: return "OK";
+					case japanese: return "オーケー";
+					case korean: return "승인";
+					case latvian: return "Labi";
+					case lithuanian: return "Gerai";
+					case norwegian: return "OK";
+					case persian: return "خوب";
+					case polish: return "OK";
+					case portuguese: return "Está bem";
+					case romanian: return "O.K";
+					case russian: return "ОК";
+					case spanish: return "De acuerdo";
+					case swedish: return "OK";
+					case tamil: return "சரி";
+					case turkish: return "Tamam";
+					default: return "OK";
 				}
 			}
 		}
