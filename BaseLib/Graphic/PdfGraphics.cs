@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing.Drawing2D;
 using System.IO;
 using BaseLibS.Graph;
@@ -14,7 +13,6 @@ namespace BaseLib.Graphic {
 		private readonly float originalHeight;
 		private readonly Document document;
 		private readonly PdfWriter writer;
-		private readonly PdfContentByte content;
 		private readonly PdfTemplate topTemplate;
 		private PdfTemplate template;
 
@@ -30,9 +28,9 @@ namespace BaseLib.Graphic {
 			try {
 				writer = PdfWriter.GetInstance(document, stream);
 				document.Open();
-				content = writer.DirectContent;
+				PdfContentByte content = writer.DirectContent;
 				template = topTemplate = content.CreateTemplate(width, height);
-				content.AddTemplate(template, 0, 0);
+				content.AddTemplate(template, 0, -20);
 			} catch (DocumentException de) {
 				throw new IOException(de.Message);
 			}
@@ -258,7 +256,7 @@ namespace BaseLib.Graphic {
 			SetFont(font);
 			SetBrush(brush);
 			float x = rectangleF.X;
-			float y = rectangleF.Y - 1;
+			float y = Math.Max(0, rectangleF.Y - rectangleF.Height / 2);
 			Size2 size = MeasureString(s, font);
 			if (format != null) {
 				switch (format.Alignment) {
@@ -284,7 +282,7 @@ namespace BaseLib.Graphic {
 						break;
 				}
 			}
-			template.SetTextMatrix(x, currentHeight - y - (font.Height * 0.5f * 1.5f));
+			template.SetTextMatrix(x, currentHeight - y - font.Height * 0.5f * 1.5f);
 			template.ShowText(s.TrimStart().TrimEnd());
 			template.EndText();
 		}
@@ -306,7 +304,7 @@ namespace BaseLib.Graphic {
 			}
 			if (img != null) {
 				img.ScaleAbsolute(width, height);
-				img.SetAbsolutePosition(x, (currentHeight - img.ScaledHeight) - y);
+				img.SetAbsolutePosition(x, currentHeight - img.ScaledHeight - y);
 				template.AddImage(img);
 			}
 		}
@@ -315,7 +313,7 @@ namespace BaseLib.Graphic {
 			// TODO reduce the resolution to fit (?)
 			try {
 				Image img = Image.GetInstance(GraphUtils.ToBitmap(image), System.Drawing.Imaging.ImageFormat.Tiff);
-				img.SetAbsolutePosition(x, (currentHeight - img.ScaledHeight) - y);
+				img.SetAbsolutePosition(x, currentHeight - img.ScaledHeight - y);
 				template.AddImage(img);
 			} catch { }
 		}
