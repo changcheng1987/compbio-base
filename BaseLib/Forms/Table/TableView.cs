@@ -293,6 +293,7 @@ namespace BaseLib.Forms.Table {
 
 		public int RowHeaderWidth {
 			set => tableView.RowHeaderWidth = value;
+			get => tableView.RowHeaderWidth;
 		}
 
 		public int ColumnHeaderHeight {
@@ -300,6 +301,7 @@ namespace BaseLib.Forms.Table {
 				tableViewWf.origColumnHeaderHeight = value;
 				tableView.ColumnHeaderHeight = value;
 			}
+			get => tableView.ColumnHeaderHeight;
 		}
 
 		public int VisibleX {
