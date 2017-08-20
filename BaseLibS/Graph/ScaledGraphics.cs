@@ -9,8 +9,8 @@
 		}
 
 		public SmoothingMode2 SmoothingMode{
-			get { return g.SmoothingMode; }
-			set { g.SmoothingMode = value; }
+			get => g.SmoothingMode;
+			set => g.SmoothingMode = value;
 		}
 
 		public void Dispose(){

@@ -33,7 +33,7 @@ namespace BaseLibS.Param{
 		}
 
 		public override string StringValue{
-			get { return StringUtils.Concat(";", ArrayUtils.SubArray(Values, Value)); }
+			get => StringUtils.Concat(";", ArrayUtils.SubArray(Values, Value));
 			set{
 				if (value.Trim().Length == 0){
 					Value = new int[0];

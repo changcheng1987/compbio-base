@@ -13,13 +13,13 @@ namespace BaseLibS.Table{
 		}
 
 		public object this[int column]{
-			get { return ItemArray[column]; }
-			set { ItemArray[column] = value; }
+			get => ItemArray[column];
+			set => ItemArray[column] = value;
 		}
 
 		public object this[string colName]{
-			get { return ItemArray[nameMapping[colName]]; }
-			set { ItemArray[nameMapping[colName]] = value; }
+			get => ItemArray[nameMapping[colName]];
+			set => ItemArray[nameMapping[colName]] = value;
 		}
 	}
 }

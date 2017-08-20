@@ -178,7 +178,7 @@ namespace BaseLib.Forms{
 		}
 
 		public bool HasMoveButtons{
-			get { return topButton.Visible; }
+			get => topButton.Visible;
 			set{
 				topButton.Visible = value;
 				upButton.Visible = value;

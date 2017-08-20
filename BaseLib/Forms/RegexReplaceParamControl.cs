@@ -42,8 +42,8 @@ namespace BaseLib.Forms
 
         public string Replacement
         {
-            get { return _replacement; }
-            set
+            get => _replacement;
+	        set
             {
                 if (_replacement != value)
                 {
@@ -55,8 +55,8 @@ namespace BaseLib.Forms
 
         public string Pattern
         {
-            get { return _pattern.ToString(); }
-            set
+            get => _pattern.ToString();
+	        set
             {
                 try
                 {

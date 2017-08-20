@@ -24,12 +24,8 @@ namespace BaseLibS.Graph.Image{
 		public int Width { get; }
 		public int Height { get; }
 		public Color2 this[int x, int y]{
-			get{
-				return *(pixelsBase + (y*Width + x));
-			}
-			set{
-				*(pixelsBase + (y*Width + x)) = value;
-			}
+			get => *(pixelsBase + (y*Width + x));
+			set => *(pixelsBase + (y*Width + x)) = value;
 		}
 		public void Dispose(){
 			if (isDisposed){

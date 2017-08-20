@@ -11,7 +11,7 @@ namespace BaseLib.Param{
 		public override ParamType Type => ParamType.WinForms;
 
 		public override string[] Keys{
-			get { return keys; }
+			get => keys;
 			set{
 				keys = value;
 				if (control != null){

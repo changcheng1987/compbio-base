@@ -15,7 +15,7 @@ namespace BaseLib.Forms{
 		internal MultiListSelectorControl MultiListSelectorControl { get; set; }
 
 		internal Func<string[], Parameters> ParameterFuncs{
-			get { return parameterFuncs; }
+			get => parameterFuncs;
 			set{
 				parameterButton.Visible = true;
 				parameterFuncs = value;
@@ -38,8 +38,8 @@ namespace BaseLib.Forms{
 		}
 
 		public string Text1{
-			set { titleLabel.Text = value; }
-			get { return titleLabel.Text; }
+			set => titleLabel.Text = value;
+			get => titleLabel.Text;
 		}
 
 		internal ListBox.ObjectCollection SelectedItems => listBox1.Items;

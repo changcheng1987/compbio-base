@@ -82,8 +82,8 @@ namespace BaseLib.Param{
 		}
 
 		public sealed override string Text{
-			get { return base.Text; }
-			set { base.Text = value; }
+			get => base.Text;
+			set => base.Text = value;
 		}
 
 		public void FocusOkButton(){

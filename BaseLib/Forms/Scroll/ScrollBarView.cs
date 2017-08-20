@@ -24,13 +24,8 @@ namespace BaseLib.Forms.Scroll {
 			this.sfx = sfx;
 		}
 
-		protected int ScrollBarWidth {
-			get { return (int) (GraphUtil.scrollBarWidth * sfx); }
-		}
-
-		protected int MinBarSize {
-			get { return (int) (GraphUtil.minBarSize * sfx); }
-		}
+		protected int ScrollBarWidth => (int) (GraphUtil.scrollBarWidth * sfx);
+		protected int MinBarSize => (int) (GraphUtil.minBarSize * sfx);
 
 		public override void OnResize(EventArgs e, int width, int height) {
 			bar = null;

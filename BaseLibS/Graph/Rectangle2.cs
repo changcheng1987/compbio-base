@@ -28,7 +28,7 @@ namespace BaseLibS.Graph{
 		}
 
 		public Point2 Location{
-			get { return new Point2(X, Y); }
+			get => new Point2(X, Y);
 			set{
 				X = value.X;
 				Y = value.Y;
@@ -36,7 +36,7 @@ namespace BaseLibS.Graph{
 		}
 
 		public Size2 Size{
-			get { return new Size2(Width, Height); }
+			get => new Size2(Width, Height);
 			set{
 				Width = value.Width;
 				Height = value.Height;

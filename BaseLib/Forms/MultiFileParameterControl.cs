@@ -26,7 +26,7 @@ namespace BaseLib.Forms{
 		}
 
 		public string[] Filenames{
-			get { return ToStrings(listBox1.Items); }
+			get => ToStrings(listBox1.Items);
 			set{
 				listBox1.Items.Clear();
 				foreach (string s in value){

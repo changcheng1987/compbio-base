@@ -22,7 +22,7 @@ namespace BaseLibS.Param{
 		}
 
 		public override string StringValue{
-			get { return StringUtils.Concat(",", Value); }
+			get => StringUtils.Concat(",", Value);
 			set{
 				if (value.Trim().Length == 0){
 					Value = new string[0];

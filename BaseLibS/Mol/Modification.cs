@@ -35,7 +35,7 @@ namespace BaseLibS.Mol{
 				}
 				return deltaMass;
 			}
-			set { deltaMass = value; }
+			set => deltaMass = value;
 		}
 
 		[XmlAttribute("composition")]
@@ -65,7 +65,7 @@ namespace BaseLibS.Mol{
 					sitesMap.Add(modificationSite.Aa, modificationSite);
 				}
 			}
-			get { return sites; }
+			get => sites;
 		}
 
 		/// <summary>

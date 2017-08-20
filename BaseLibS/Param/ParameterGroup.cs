@@ -27,8 +27,8 @@ namespace BaseLibS.Param{
 		}
 
 		public bool CollapsedDefault{
-			get { return collapsedDefault; }
-			set { collapsedDefault = value; }
+			get => collapsedDefault;
+			set => collapsedDefault = value;
 		}
 
 		public string[] Markup{
@@ -53,8 +53,8 @@ namespace BaseLibS.Param{
 		}
 
 		public string Name{
-			get { return name; }
-			set { name = value; }
+			get => name;
+			set => name = value;
 		}
 
 		public List<Parameter> ParameterList => parameters;

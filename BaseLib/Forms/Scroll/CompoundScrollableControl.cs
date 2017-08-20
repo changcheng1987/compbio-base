@@ -224,7 +224,7 @@ namespace BaseLib.Forms.Scroll{
 		}
 
 		public int VisibleX{
-			get { return visibleX; }
+			get => visibleX;
 			set{
 				visibleX = value;
 				InvalidateBackgroundImages();
@@ -236,7 +236,7 @@ namespace BaseLib.Forms.Scroll{
 		}
 
 		public int VisibleY{
-			get { return visibleY; }
+			get => visibleY;
 			set{
 				visibleY = value;
 				InvalidateBackgroundImages();
@@ -266,7 +266,7 @@ namespace BaseLib.Forms.Scroll{
 		}
 
 		public int RowHeaderWidth{
-			get { return rowHeaderWidth; }
+			get => rowHeaderWidth;
 			set{
 				rowHeaderWidth = value;
 				tableLayoutPanel2.ColumnStyles[0] = new BasicColumnStyle(BasicSizeType.AbsoluteResizeable, value *sfx * client?.UserSf ?? 1);
@@ -274,7 +274,7 @@ namespace BaseLib.Forms.Scroll{
 		}
 
 		public int RowFooterWidth{
-			get { return rowFooterWidth; }
+			get => rowFooterWidth;
 			set{
 				rowFooterWidth = value;
 				tableLayoutPanel2.ColumnStyles[2] = new BasicColumnStyle(BasicSizeType.AbsoluteResizeable, value * sfx * client?.UserSf ?? 1);
@@ -282,7 +282,7 @@ namespace BaseLib.Forms.Scroll{
 		}
 
 		public int ColumnHeaderHeight{
-			get { return columnHeaderHeight; }
+			get => columnHeaderHeight;
 			set{
 				columnHeaderHeight = value;
 				tableLayoutPanel2.RowStyles[0] = new BasicRowStyle(BasicSizeType.AbsoluteResizeable, value * sfx * client?.UserSf ?? 1);
@@ -290,7 +290,7 @@ namespace BaseLib.Forms.Scroll{
 		}
 
 		public int ColumnFooterHeight{
-			get { return columnFooterHeight; }
+			get => columnFooterHeight;
 			set{
 				columnFooterHeight = value;
 				tableLayoutPanel2.RowStyles[2] = new BasicRowStyle(BasicSizeType.AbsoluteResizeable, value * sfx * client?.UserSf ?? 1);

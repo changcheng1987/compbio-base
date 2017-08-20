@@ -6,8 +6,8 @@
 			data = new int[blockSize];
 		}
 		public int this[int index]{
-			get { return data[index]; }
-			set { data[index] = value; }
+			get => data[index];
+			set => data[index] = value;
 		}
 	}
 }

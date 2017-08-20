@@ -36,8 +36,8 @@ namespace BaseLibS.Graph.Image.Formats.Png.Zlib{
 		};
 		private uint crc;
 		public long Value{
-			get { return crc; }
-			set { crc = (uint) value; }
+			get => crc;
+			set => crc = (uint) value;
 		}
 		public void Reset(){
 			crc = 0;

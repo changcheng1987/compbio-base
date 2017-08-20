@@ -19,7 +19,7 @@ namespace BaseLib.Forms{
 		}
 
 		public string Regex{
-			get { return regex.ToString(); }
+			get => regex.ToString();
 			set{
 				if (value == Regex){
 					return;

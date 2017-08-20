@@ -66,7 +66,7 @@ namespace BaseLib.Forms{
 		private double VisibleMax => ZoomType == AxisZoomType.Zoom ? ZoomMax : TotalMax;
 
 		public double ZeroPoint{
-			get { return zeroPoint; }
+			get => zeroPoint;
 			set{
 				zeroPoint = value;
 				Invalidate();

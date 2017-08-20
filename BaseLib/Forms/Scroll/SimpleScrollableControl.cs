@@ -65,7 +65,7 @@ namespace BaseLib.Forms.Scroll{
 		}
 
 		public int VisibleX{
-			get { return visibleX; }
+			get => visibleX;
 			set{
 				visibleX = value;
 				InvalidateBackgroundImages();
@@ -75,7 +75,7 @@ namespace BaseLib.Forms.Scroll{
 		}
 
 		public int VisibleY{
-			get { return visibleY; }
+			get => visibleY;
 			set{
 				visibleY = value;
 				InvalidateBackgroundImages();

@@ -140,7 +140,7 @@ namespace BaseLibS.Num.Vector{
 		}
 
 		public override double this[int i]{
-			get { return values[i] ? 1 : 0; }
+			get => values[i] ? 1 : 0;
 			set{
 				if (value != 1 && value != 0){
 					throw new Exception("Illegal value.");

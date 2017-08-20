@@ -19,10 +19,8 @@ namespace NumPluginBase.Kernel{
 		public string Name => "Sigmoid";
 
 		public Parameters Parameters{
-			get{
-				return new Parameters(new DoubleParam("Gamma", Gamma){Help = "Coefficient in front of the scalar product."},
-					new DoubleParam("Offset", Offset){Help = "Shift parameter."});
-			}
+			get => new Parameters(new DoubleParam("Gamma", Gamma){Help = "Coefficient in front of the scalar product."},
+				new DoubleParam("Offset", Offset){Help = "Shift parameter."});
 			set{
 				Gamma = value.GetParam<double>("Gamma").Value;
 				Offset = value.GetParam<double>("Offset").Value;

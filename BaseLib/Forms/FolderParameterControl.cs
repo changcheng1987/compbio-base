@@ -16,8 +16,8 @@ namespace BaseLib.Forms{
 		}
 
 		public string Text1{
-			get { return textBox1.Text; }
-			set { textBox1.Text = value; }
+			get => textBox1.Text;
+			set => textBox1.Text = value;
 		}
 	}
 }

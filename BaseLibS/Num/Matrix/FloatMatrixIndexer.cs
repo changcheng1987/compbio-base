@@ -105,8 +105,8 @@ namespace BaseLibS.Num.Matrix{
 		public override int ColumnCount => vals.GetLength(1);
 
 		public override float this[int i, int j]{
-			get { return vals[i, j]; }
-			set { vals[i, j] = value; }
+			get => vals[i, j];
+			set => vals[i, j] = value;
 		}
 
 		public override float Get(int i, int j){

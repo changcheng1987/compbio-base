@@ -73,9 +73,7 @@ namespace BaseLib.Forms {
 			}
 		}
 
-		public int Count {
-			get { return checkBoxes.Count; }
-		}
+		public int Count => checkBoxes.Count;
 
 		public void SetItemChecked(int i, bool b) {
 			checkBoxes[i].Checked = b;

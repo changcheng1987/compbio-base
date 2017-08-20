@@ -28,8 +28,8 @@ namespace BaseLibS.Param{
 		}
 
 		public override string StringValue{
-			get { return Parser.ToString(Value); }
-			set { Value = Parser.Int(value); }
+			get => Parser.ToString(Value);
+			set => Value = Parser.Int(value);
 		}
 
 		public override void ResetSubParamValues(){

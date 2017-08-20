@@ -14,8 +14,8 @@ namespace BaseLibS.Param{
 		public int DefaultValue { get; set; }
 
 		public virtual string[] Keys{
-			get { return keys; }
-			set { keys = value; }
+			get => keys;
+			set => keys = value;
 		}
 
         /// <summary>
@@ -33,8 +33,8 @@ namespace BaseLibS.Param{
 		}
 
 		public override string StringValue{
-			get { return StringUtils.ToString(Value); }
-			set { Value = DictionaryFromString(value); }
+			get => StringUtils.ToString(Value);
+			set => Value = DictionaryFromString(value);
 		}
 
 		public static Dictionary<string, int> DictionaryFromString(string s){

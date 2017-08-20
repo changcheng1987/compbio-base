@@ -12,7 +12,7 @@ namespace BaseLibS.Graph.Base{
 		public int Count => list.Count;
 
 		public BasicRowStyle this[int i]{
-			get { return list[i]; }
+			get => list[i];
 			set{
 				list[i] = value;
 				view.InvalidateSizes();

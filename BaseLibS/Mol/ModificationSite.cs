@@ -4,8 +4,8 @@ namespace BaseLibS.Mol{
 	public class ModificationSite{
 		[XmlAttribute("site")]
 		public string Site{
-			get { return "" + Aa; }
-			set { Aa = value[0]; }
+			get => "" + Aa;
+			set => Aa = value[0];
 		}
 
 		[XmlIgnore]

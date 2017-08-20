@@ -18,12 +18,12 @@ namespace BaseLibS.Table{
 		}
 
 		public object this[int column]{
-			get { return ItemArray[column]; }
-			set { ItemArray[column] = value; }
+			get => ItemArray[column];
+			set => ItemArray[column] = value;
 		}
 
 		public object this[string colName]{
-			get { return ItemArray[nameMapping[colName]]; }
+			get => ItemArray[nameMapping[colName]];
 			set{
 				if (!nameMapping.ContainsKey(colName)){
 					throw new Exception("Unknown column: " + colName);

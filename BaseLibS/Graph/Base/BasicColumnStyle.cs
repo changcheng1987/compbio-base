@@ -6,6 +6,8 @@
 			Width = width;
 		}
 
-		public override float Size { get { return Width; } set { Width = value; } }
+		public override float Size { get => Width;
+			set => Width = value;
+		}
 	}
 }

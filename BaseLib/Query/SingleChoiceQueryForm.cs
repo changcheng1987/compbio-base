@@ -20,7 +20,7 @@ namespace BaseLib.Query{
 		public string SelectedText => comboBox1.Text;
 
 		public string Label{
-			set { label1.Text = value; }
+			set => label1.Text = value;
 		}
 
 		private void TextBox1OnKeyDown(object sender, KeyEventArgs keyEventArgs){

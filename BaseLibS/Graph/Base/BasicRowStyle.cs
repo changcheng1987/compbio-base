@@ -6,6 +6,8 @@
 			Height = height;
 		}
 
-		public override float Size { get { return Height; } set { Height = value; } }
+		public override float Size { get => Height;
+			set => Height = value;
+		}
 	}
 }

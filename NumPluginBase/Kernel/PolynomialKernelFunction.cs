@@ -21,15 +21,12 @@ namespace NumPluginBase.Kernel{
 		public string Name => "Polynomial";
 
 		public Parameters Parameters{
-			get{
-				return
-					new Parameters(
-						new IntParam("Degree", Degree){
-							Help = "The degree of the polynomial. A degree of one will reproduce the linear kernel"
-						},
-						new DoubleParam("Gamma", Gamma){Help = "Coefficient in front of the scalar product."},
-						new DoubleParam("Offset", Offset){Help = "Shift parameter."});
-			}
+			get => new Parameters(
+				new IntParam("Degree", Degree){
+					Help = "The degree of the polynomial. A degree of one will reproduce the linear kernel"
+				},
+				new DoubleParam("Gamma", Gamma){Help = "Coefficient in front of the scalar product."},
+				new DoubleParam("Offset", Offset){Help = "Shift parameter."});
 			set{
 				Degree = value.GetParam<int>("Degree").Value;
 				Gamma = value.GetParam<double>("Gamma").Value;

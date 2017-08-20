@@ -51,7 +51,7 @@ namespace BaseLibS.Mol{
 				}
 				return mass;
 			}
-			set { mass = value; }
+			set => mass = value;
 		}
 
 		[XmlAttribute("composition")]

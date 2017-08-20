@@ -22,18 +22,18 @@ namespace BaseLibS.Num.Space{
 		}
 
 		public float X{
-			get { return x; }
-			set { x = value; }
+			get => x;
+			set => x = value;
 		}
 
 		public float Y{
-			get { return y; }
-			set { y = value; }
+			get => y;
+			set => y = value;
 		}
 
 		public float Z{
-			get { return z; }
-			set { z = value; }
+			get => z;
+			set => z = value;
 		}
 
 		public Vector3F(float a) : this(a, a, a){}

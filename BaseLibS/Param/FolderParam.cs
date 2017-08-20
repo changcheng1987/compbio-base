@@ -17,8 +17,8 @@ namespace BaseLibS.Param{
 		}
 
 		public override string StringValue{
-			get { return Value; }
-			set { Value = value; }
+			get => Value;
+			set => Value = value;
 		}
 
 		public override void Clear(){

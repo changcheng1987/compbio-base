@@ -35,8 +35,8 @@ namespace BaseLibS.Param{
 
         public override string StringValue
         {
-            get { return Value.ToString(); }
-            set { throw new NotImplementedException($"Setting string value for {typeof(RegexReplaceParam)} not implemented"); }
+            get => Value.ToString();
+	        set => throw new NotImplementedException($"Setting string value for {typeof(RegexReplaceParam)} not implemented");
         }
 
 	    public override void ReadXml(XmlReader reader)

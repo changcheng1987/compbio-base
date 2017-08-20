@@ -57,8 +57,8 @@ namespace BaseLibS.Num.Vector{
 		}
 
 		public override double this[int i]{
-			get { return values[i]; }
-			set { values[i] = (float) value; }
+			get => values[i];
+			set => values[i] = (float) value;
 		}
 
 		public override double Dot(BaseVector y){

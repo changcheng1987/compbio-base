@@ -8,11 +8,11 @@ namespace BaseLibS.Graph.Image.Formats.Jpg{
 		private JpegSubsample subsample = JpegSubsample.Ratio420;
 		private bool subsampleSet;
 		public int Quality{
-			get { return quality; }
-			set { quality = NumUtils.Clamp(value,1, 100); }
+			get => quality;
+			set => quality = NumUtils.Clamp(value,1, 100);
 		}
 		public JpegSubsample Subsample{
-			get { return subsample; }
+			get => subsample;
 			set{
 				subsample = value;
 				subsampleSet = true;

@@ -24,8 +24,8 @@ namespace BaseLibS.Param {
 		public override ParamType Type => ParamType.Server;
 
 		public override string StringValue {
-			get { return StringUtils.Concat(",", ";", Value); }
-			set { Value = StringUtils.SplitToInt(',', ';', value); }
+			get => StringUtils.Concat(",", ";", Value);
+			set => Value = StringUtils.SplitToInt(',', ';', value);
 		}
 
 		public override void Clear() {
