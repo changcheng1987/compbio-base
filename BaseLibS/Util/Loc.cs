@@ -132,6 +132,42 @@ namespace BaseLibS.Util {
 			}
 		}
 
+		public static string Exit {
+			get {
+				switch (TwoLettName) {
+					case arabic: return "ىخرج&";
+					case bulgarian: return "&изход";
+					case chinese: return "&出口";
+					case czech: return "&Výstup";
+					case danish: return "&Afslut";
+					case dutch: return "&Uitgang";
+					case estonian: return "&Välju";
+					case finnish: return "&Poistuminen";
+					case french: return "&Sortie";
+					case german: return "&Beenden";
+					case greek: return "&Εξοδος";
+					case hebrew: return "יְצִיאָה&";
+					case hindi: return "&बाहर जाएं";
+					case italian: return "&Uscita";
+					case japanese: return "&出口";
+					case korean: return "&출구";
+					case latvian: return "&Izeja";
+					case lithuanian: return "&Išeiti";
+					case norwegian: return "&Exit";
+					case persian: return "خروج&";
+					case polish: return "&Wyjście";
+					case portuguese: return "&Saída";
+					case romanian: return "&Ieșire";
+					case russian: return "&Выход";
+					case spanish: return "&Salida";
+					case swedish: return "&Utgång";
+					case tamil: return "&வெளியேறு";
+					case turkish: return "&çıkış";
+					default: return "&Exit";
+				}
+			}
+		}
+
 		public static string File {
 			get {
 				switch (TwoLettName) {
