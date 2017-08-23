@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 using BaseLibS.Graph;
 using BaseLibS.Num;
@@ -16,10 +17,29 @@ namespace BaseLib.Forms.Table {
 		private long searchRowIndView = -1;
 		private int[] multipleColumns = new int[0];
 		private readonly TableViewControlModel searchResultsTableView;
+		private StatusStrip statusStrip1;
+		private TableLayoutPanel tableLayoutPanel1;
+		private Panel panel1;
+		private Button cancelButton;
+		private CheckBox matchCaseCheckBox;
+		private TextBox expressionTextBox;
+		private Label label1;
+		private Button findAllButton;
+		private Button findNextButton;
+		private Scroll.CompoundScrollableControl tableView1;
+		private CheckBox matchWholeWordCheckBox;
+		private ComboBox wildcardsComboBox;
+		private ComboBox lookInComboBox;
+		private Label label2;
+		private CheckBox useCheckBox;
+		private CheckBox searchUpCheckBox;
+		private Button columnSelectButton;
+		private Button helpButton;
+		private ToolStripStatusLabel toolStripStatusLabel1;
 
 		public FindForm(TableViewControlModel tableViewWf, ICompoundScrollableControl tableView) {
 			InitializeComponent();
-			Text = Loc.Find;
+			InitializeComponent2();
 			searchResultsTableView = new TableViewControlModel(null);
 			tableView1.Client = searchResultsTableView;
 			searchResultsTableView.origColumnHeaderHeight = 26;
@@ -50,6 +70,261 @@ namespace BaseLib.Forms.Table {
 			expressionTextBox.SelectAll();
 		}
 
+		private void InitializeComponent2() {
+			components = new Container();
+			ComponentResourceManager resources = new ComponentResourceManager(typeof(FindForm));
+			statusStrip1 = new StatusStrip();
+			toolStripStatusLabel1 = new ToolStripStatusLabel();
+			tableLayoutPanel1 = new TableLayoutPanel();
+			panel1 = new Panel();
+			columnSelectButton = new Button();
+			helpButton = new Button();
+			wildcardsComboBox = new ComboBox();
+			lookInComboBox = new ComboBox();
+			label2 = new Label();
+			useCheckBox = new CheckBox();
+			searchUpCheckBox = new CheckBox();
+			matchWholeWordCheckBox = new CheckBox();
+			findAllButton = new Button();
+			findNextButton = new Button();
+			cancelButton = new Button();
+			matchCaseCheckBox = new CheckBox();
+			expressionTextBox = new TextBox();
+			label1 = new Label();
+			tableView1 = new Scroll.CompoundScrollableControl();
+			statusStrip1.SuspendLayout();
+			tableLayoutPanel1.SuspendLayout();
+			panel1.SuspendLayout();
+			SuspendLayout();
+			// 
+			// statusStrip1
+			// 
+			statusStrip1.Items.AddRange(new ToolStripItem[] {toolStripStatusLabel1});
+			statusStrip1.Location = new Point(0, 196);
+			statusStrip1.Name = "statusStrip1";
+			statusStrip1.Size = new Size(336, 22);
+			statusStrip1.TabIndex = 0;
+			statusStrip1.Text = "statusStrip1";
+			// 
+			// toolStripStatusLabel1
+			// 
+			toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+			toolStripStatusLabel1.Size = new Size(0, 17);
+			// 
+			// tableLayoutPanel1
+			// 
+			tableLayoutPanel1.ColumnCount = 1;
+			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+			tableLayoutPanel1.Controls.Add(panel1, 0, 0);
+			tableLayoutPanel1.Controls.Add(tableView1, 0, 1);
+			tableLayoutPanel1.Dock = DockStyle.Fill;
+			tableLayoutPanel1.Location = new Point(0, 0);
+			tableLayoutPanel1.Name = "tableLayoutPanel1";
+			tableLayoutPanel1.RowCount = 2;
+			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 196F));
+			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+			tableLayoutPanel1.Size = new Size(336, 196);
+			tableLayoutPanel1.TabIndex = 1;
+			// 
+			// panel1
+			// 
+			panel1.Controls.Add(columnSelectButton);
+			panel1.Controls.Add(helpButton);
+			panel1.Controls.Add(wildcardsComboBox);
+			panel1.Controls.Add(lookInComboBox);
+			panel1.Controls.Add(label2);
+			panel1.Controls.Add(useCheckBox);
+			panel1.Controls.Add(searchUpCheckBox);
+			panel1.Controls.Add(matchWholeWordCheckBox);
+			panel1.Controls.Add(findAllButton);
+			panel1.Controls.Add(findNextButton);
+			panel1.Controls.Add(cancelButton);
+			panel1.Controls.Add(matchCaseCheckBox);
+			panel1.Controls.Add(expressionTextBox);
+			panel1.Controls.Add(label1);
+			panel1.Dock = DockStyle.Fill;
+			panel1.Location = new Point(3, 3);
+			panel1.Name = "panel1";
+			panel1.Size = new Size(330, 190);
+			panel1.TabIndex = 0;
+			// 
+			// columnSelectButton
+			// 
+			columnSelectButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+			columnSelectButton.Location = new Point(299, 36);
+			columnSelectButton.Name = "columnSelectButton";
+			columnSelectButton.Size = new Size(22, 21);
+			columnSelectButton.TabIndex = 14;
+			columnSelectButton.Text = ">";
+			columnSelectButton.UseVisualStyleBackColor = true;
+			columnSelectButton.Click += ColumnSelectButtonClick;
+			// 
+			// helpButton
+			// 
+			helpButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+			helpButton.Location = new Point(299, 6);
+			helpButton.Name = "helpButton";
+			helpButton.Size = new Size(22, 21);
+			helpButton.TabIndex = 13;
+			helpButton.Text = ">";
+			helpButton.UseVisualStyleBackColor = true;
+			// 
+			// wildcardsComboBox
+			// 
+			wildcardsComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+			wildcardsComboBox.FormattingEnabled = true;
+			wildcardsComboBox.Items.AddRange(new object[] {"Regular expressions", "Wildcards"});
+			wildcardsComboBox.Location = new Point(72, 134);
+			wildcardsComboBox.Name = "wildcardsComboBox";
+			wildcardsComboBox.Size = new Size(249, 21);
+			wildcardsComboBox.TabIndex = 12;
+			// 
+			// lookInComboBox
+			// 
+			lookInComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+			lookInComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+			lookInComboBox.FormattingEnabled = true;
+			lookInComboBox.Location = new Point(72, 36);
+			lookInComboBox.Name = "lookInComboBox";
+			lookInComboBox.Size = new Size(221, 21);
+			lookInComboBox.TabIndex = 11;
+			// 
+			// label2
+			// 
+			label2.AutoSize = true;
+			label2.Location = new Point(10, 39);
+			label2.Name = "label2";
+			label2.Size = new Size(45, 13);
+			label2.TabIndex = 10;
+			label2.Text = "Look in:";
+			// 
+			// useCheckBox
+			// 
+			useCheckBox.AutoSize = true;
+			useCheckBox.Location = new Point(15, 136);
+			useCheckBox.Name = "useCheckBox";
+			useCheckBox.Size = new Size(45, 17);
+			useCheckBox.TabIndex = 9;
+			useCheckBox.Text = "Use";
+			useCheckBox.UseVisualStyleBackColor = true;
+			useCheckBox.CheckedChanged += UseCheckBoxCheckedChanged;
+			// 
+			// searchUpCheckBox
+			// 
+			searchUpCheckBox.AutoSize = true;
+			searchUpCheckBox.Location = new Point(15, 113);
+			searchUpCheckBox.Name = "searchUpCheckBox";
+			searchUpCheckBox.Size = new Size(75, 17);
+			searchUpCheckBox.TabIndex = 8;
+			searchUpCheckBox.Text = "Search up";
+			searchUpCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// matchWholeWordCheckBox
+			// 
+			matchWholeWordCheckBox.AutoSize = true;
+			matchWholeWordCheckBox.Location = new Point(15, 90);
+			matchWholeWordCheckBox.Name = "matchWholeWordCheckBox";
+			matchWholeWordCheckBox.Size = new Size(113, 17);
+			matchWholeWordCheckBox.TabIndex = 7;
+			matchWholeWordCheckBox.Text = "Match whole word";
+			matchWholeWordCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// findAllButton
+			// 
+			findAllButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+			findAllButton.Location = new Point(165, 161);
+			findAllButton.Name = "findAllButton";
+			findAllButton.Size = new Size(75, 23);
+			findAllButton.TabIndex = 5;
+			findAllButton.Text = "Find all";
+			findAllButton.UseVisualStyleBackColor = true;
+			findAllButton.Click += FindAllButtonClick;
+			// 
+			// findNextButton
+			// 
+			findNextButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+			findNextButton.Location = new Point(84, 161);
+			findNextButton.Name = "findNextButton";
+			findNextButton.Size = new Size(75, 23);
+			findNextButton.TabIndex = 4;
+			findNextButton.Text = "Find next";
+			findNextButton.UseVisualStyleBackColor = true;
+			findNextButton.Click += FindNextButtonClick;
+			// 
+			// cancelButton
+			// 
+			cancelButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+			cancelButton.DialogResult = DialogResult.Cancel;
+			cancelButton.Location = new Point(246, 161);
+			cancelButton.Name = "cancelButton";
+			cancelButton.Size = new Size(75, 23);
+			cancelButton.TabIndex = 3;
+			cancelButton.Text = "Cancel";
+			cancelButton.UseVisualStyleBackColor = true;
+			cancelButton.Click += CancelButtonClick;
+			// 
+			// matchCaseCheckBox
+			// 
+			matchCaseCheckBox.AutoSize = true;
+			matchCaseCheckBox.Location = new Point(15, 67);
+			matchCaseCheckBox.Name = "matchCaseCheckBox";
+			matchCaseCheckBox.Size = new Size(82, 17);
+			matchCaseCheckBox.TabIndex = 2;
+			matchCaseCheckBox.Text = "Match case";
+			matchCaseCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// expressionTextBox
+			// 
+			expressionTextBox.Anchor = (AnchorStyles.Top | AnchorStyles.Left) | AnchorStyles.Right;
+			expressionTextBox.Location = new Point(72, 7);
+			expressionTextBox.Name = "expressionTextBox";
+			expressionTextBox.Size = new Size(221, 20);
+			expressionTextBox.TabIndex = 1;
+			// 
+			// label1
+			// 
+			label1.AutoSize = true;
+			label1.Location = new Point(10, 10);
+			label1.Name = "label1";
+			label1.Size = new Size(56, 13);
+			label1.TabIndex = 0;
+			label1.Text = "Find what:";
+			// 
+			// tableView1
+			// 
+			tableView1.ColumnHeaderHeight = 26;
+			tableView1.Dock = DockStyle.Fill;
+			tableView1.Location = new Point(3, 199);
+			tableView1.Name = "tableView1";
+			tableView1.RowHeaderWidth = 70;
+			tableView1.Size = new Size(330, 1);
+			tableView1.TabIndex = 1;
+			tableView1.VisibleX = 0;
+			tableView1.VisibleY = 0;
+			// 
+			// FindForm
+			// 
+			AutoScaleDimensions = new SizeF(6F, 13F);
+			AutoScaleMode = AutoScaleMode.Font;
+			CancelButton = cancelButton;
+			ClientSize = new Size(336, 218);
+			Controls.Add(tableLayoutPanel1);
+			Controls.Add(statusStrip1);
+			Icon = ((Icon) (resources.GetObject("$this.Icon")));
+			MaximizeBox = false;
+			MinimizeBox = false;
+			MinimumSize = new Size(276, 256);
+			Name = "FindForm";
+			Text = Loc.Find;
+			statusStrip1.ResumeLayout(false);
+			statusStrip1.PerformLayout();
+			tableLayoutPanel1.ResumeLayout(false);
+			panel1.ResumeLayout(false);
+			panel1.PerformLayout();
+			ResumeLayout(false);
+			PerformLayout();
+		}
+
 		protected override void OnLoad(EventArgs e) {
 			expressionTextBox.Select();
 		}
@@ -64,8 +339,8 @@ namespace BaseLib.Forms.Table {
 			int[] rows = searchResultsTableView.GetSelectedRows();
 			if (rows.Length > 0) {
 				int row = rows[0];
-				int ind = (int)searchResultsTableView.GetEntry(row, 0) - 1;
-				string cname = (string)searchResultsTableView.GetEntry(row, 1);
+				int ind = (int) searchResultsTableView.GetEntry(row, 0) - 1;
+				string cname = (string) searchResultsTableView.GetEntry(row, 1);
 				tableViewWf.SetSelectedViewIndex(ind);
 				tableViewWf.ScrollToRow(ind);
 				int colInd = tableModel.GetColumnIndex(cname);
@@ -203,8 +478,8 @@ namespace BaseLib.Forms.Table {
 				int modelInd = tableViewWf.GetModelIndex((int) searchRowIndView);
 				if (MatchRow(modelInd, colInds, matchCase, matchWholeWord, searchString, out int[] matchingCols)) {
 					tableViewWf.ClearSelection();
-					tableViewWf.SetSelectedViewIndex((int)searchRowIndView);
-					tableViewWf.ScrollToRow((int)searchRowIndView);
+					tableViewWf.SetSelectedViewIndex((int) searchRowIndView);
+					tableViewWf.ScrollToRow((int) searchRowIndView);
 					int colInd = matchingCols[0];
 					tableViewWf.ScrollToColumn(colInd);
 					tableViewWf.tableView.SwitchOnTextBox();
@@ -227,12 +502,12 @@ namespace BaseLib.Forms.Table {
 				int modelInd = tableViewWf.GetModelIndex((int) searchRowIndView);
 				if (MatchRow(modelInd, colInds, matchCase, matchWholeWord, searchString, out int[] matchingCols)) {
 					tableViewWf.ClearSelection();
-					tableViewWf.SetSelectedViewIndex((int)searchRowIndView);
-					tableViewWf.ScrollToRow((int)searchRowIndView);
+					tableViewWf.SetSelectedViewIndex((int) searchRowIndView);
+					tableViewWf.ScrollToRow((int) searchRowIndView);
 					int colInd = matchingCols[0];
 					tableViewWf.ScrollToColumn(colInd);
 					tableViewWf.tableView.SwitchOnTextBox();
-					object entry = tableViewWf.GetEntry((int)searchRowIndView, colInd);
+					object entry = tableViewWf.GetEntry((int) searchRowIndView, colInd);
 					if (entry != null && !(entry is DBNull)) {
 						tableViewWf.tableView.SetAuxText(entry.ToString());
 					}

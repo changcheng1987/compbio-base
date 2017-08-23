@@ -90,12 +90,8 @@ namespace BaseLibS.Num.Cluster{
 				position[j] = j;
 			}
 			for (int n = nelements; n > 1; n--){
-				int i1;
-				int j1;
-				bool reverse;
-				bool carryOver;
-				result[nelements - n].distance = FindClosestPairLinear(n, matrix, out i1, out j1, position, periodic, out reverse,
-					out carryOver);
+				result[nelements - n].distance = FindClosestPairLinear(n, matrix, out int i1, out int j1, position, periodic, out bool reverse,
+					out bool carryOver);
 				result[nelements - n].left = reverse ? clusterid[j1] : clusterid[i1];
 				result[nelements - n].right = reverse ? clusterid[i1] : clusterid[j1];
 				for (int j = 0; j < j1; j++){
@@ -140,12 +136,8 @@ namespace BaseLibS.Num.Cluster{
 				position[j] = j;
 			}
 			for (int n = nelements; n > 1; n--){
-				int iss;
-				int jss;
-				bool reverse;
-				bool carryOver;
-				result[nelements - n].distance = FindClosestPairLinear(n, matrix, out iss, out jss, position, periodic, out reverse,
-					out carryOver);
+				result[nelements - n].distance = FindClosestPairLinear(n, matrix, out int iss, out int jss, position, periodic, out bool reverse,
+					out bool carryOver);
 				for (int j = 0; j < jss; j++){
 					matrix[jss, j] = Max(matrix[iss, j], matrix[jss, j]);
 				}
@@ -188,12 +180,8 @@ namespace BaseLibS.Num.Cluster{
 				position[j] = j;
 			}
 			for (int n = nelements; n > 1; n--){
-				int iss;
-				int jss;
-				bool reverse;
-				bool carryOver;
-				result[nelements - n].distance = FindClosestPairLinear(n, matrix, out iss, out jss, position, periodic, out reverse,
-					out carryOver);
+				result[nelements - n].distance = FindClosestPairLinear(n, matrix, out int iss, out int jss, position, periodic, out bool reverse,
+					out bool carryOver);
 				for (int j = 0; j < jss; j++){
 					matrix[jss, j] = Min(matrix[iss, j], matrix[jss, j]);
 				}
@@ -226,7 +214,7 @@ namespace BaseLibS.Num.Cluster{
 			return result;
 		}
 
-		private HierarchicalClusterNode[] SingleLinkageCluster(float[,] distMatrix, int nthreads, double defaultDist){
+		private static HierarchicalClusterNode[] SingleLinkageCluster(float[,] distMatrix, int nthreads, double defaultDist){
 			int nelements = distMatrix.GetLength(0);
 			int[] clusterid = new int[nelements];
 			HierarchicalClusterNode[] result = ArrayUtils.FillArray(i => new HierarchicalClusterNode(), nelements - 1);
@@ -234,9 +222,7 @@ namespace BaseLibS.Num.Cluster{
 				clusterid[j] = j;
 			}
 			for (int n = nelements; n > 1; n--){
-				int iss;
-				int jss;
-				result[nelements - n].distance = FindClosestPair(n, distMatrix, out iss, out jss, nthreads, defaultDist);
+				result[nelements - n].distance = FindClosestPair(n, distMatrix, out int iss, out int jss, nthreads, defaultDist);
 				for (int j = 0; j < jss; j++){
 					distMatrix[jss, j] = Min(distMatrix[iss, j], distMatrix[jss, j]);
 				}
@@ -260,7 +246,7 @@ namespace BaseLibS.Num.Cluster{
 			return result;
 		}
 
-		private HierarchicalClusterNode[] MaximumLinkageCluster(float[,] distMatrix, int nthreads, double defaultDist){
+		private static HierarchicalClusterNode[] MaximumLinkageCluster(float[,] distMatrix, int nthreads, double defaultDist){
 			int nelements = distMatrix.GetLength(0);
 			int[] clusterid = new int[nelements];
 			HierarchicalClusterNode[] result = ArrayUtils.FillArray(i => new HierarchicalClusterNode(), nelements - 1);
@@ -268,9 +254,7 @@ namespace BaseLibS.Num.Cluster{
 				clusterid[j] = j;
 			}
 			for (int n = nelements; n > 1; n--){
-				int iss;
-				int jss;
-				result[nelements - n].distance = FindClosestPair(n, distMatrix, out iss, out jss, nthreads, defaultDist);
+				result[nelements - n].distance = FindClosestPair(n, distMatrix, out int iss, out int jss, nthreads, defaultDist);
 				if (iss == -1){
 					iss = 0;
 					jss = 1;
@@ -318,7 +302,7 @@ namespace BaseLibS.Num.Cluster{
 			return Math.Min(m1, m2);
 		}
 
-		private HierarchicalClusterNode[] AverageLinkageCluster(float[,] distMatrix, int nthreads, double defaultDist){
+		private static HierarchicalClusterNode[] AverageLinkageCluster(float[,] distMatrix, int nthreads, double defaultDist){
 			int nelements = distMatrix.GetLength(0);
 			int[] clusterid = new int[nelements];
 			int[] number = new int[nelements];
@@ -328,9 +312,7 @@ namespace BaseLibS.Num.Cluster{
 				clusterid[j] = j;
 			}
 			for (int n = nelements; n > 1; n--){
-				int i1;
-				int j1;
-				double dist = FindClosestPair(n, distMatrix, out i1, out j1, nthreads, defaultDist);
+				double dist = FindClosestPair(n, distMatrix, out int i1, out int j1, nthreads, defaultDist);
 				if (i1 != -1){
 					result[nelements - n].distance = dist;
 					result[nelements - n].left = clusterid[i1];
@@ -446,10 +428,8 @@ namespace BaseLibS.Num.Cluster{
 			double distance = double.MaxValue;
 			for (int i = 0; i < n; i++){
 				for (int j = 0; j < i; j++){
-					bool p;
-					bool c;
-					if (ValidPositions(position[i], position[j], n, periodic, out p, out c)){
-						if (matrix[i, j] < distance){
+					if (ValidPositions(position[i], position[j], n, periodic, out bool p, out bool c)) {
+						if (matrix[i, j] < distance) {
 							distance = matrix[i, j];
 							ip = i;
 							jp = j;
@@ -509,15 +489,7 @@ namespace BaseLibS.Num.Cluster{
 			return access == MatrixAccess.Rows ? data.GetRow(index) : data.GetColumn(index);
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
 		/// <param name="nodes">The cluster nodes serve as input here.</param>
-		/// <param name="sizes"></param>
-		/// <param name="start"></param>
-		/// <param name="end"></param>
-		/// <param name="itemOrder"></param>
-		/// <param name="itemOrderInv"></param>
 		public static void CalcTree(HierarchicalClusterNode[] nodes, out int[] sizes, out int[] start, out int[] end,
 			out int[] itemOrder, out int[] itemOrderInv){
 			if (nodes == null){
@@ -599,7 +571,7 @@ namespace BaseLibS.Num.Cluster{
 		public HierarchicalClusterNode[] TreeClusterKmeans(MatrixIndexer data, MatrixAccess access, IDistance distance,
 			HierarchicalClusterLinkage linkage, bool preserveOrder, bool periodic, int nthreads, int nmeans, int restarts,
 			int maxIter, Action<int> progress){
-			int nelements = (access == MatrixAccess.Rows) ? data.RowCount : data.ColumnCount;
+			int nelements = access == MatrixAccess.Rows ? data.RowCount : data.ColumnCount;
 			if (nelements <= nmeans){
 				return TreeCluster(data, access, distance, linkage, preserveOrder, periodic, nthreads, progress);
 			}
@@ -612,9 +584,7 @@ namespace BaseLibS.Num.Cluster{
 			}
 			float[,] distMatrix = DistanceMatrix(new FloatMatrixIndexer(c), distance, MatrixAccess.Rows);
 			HierarchicalClusterNode[] nodes = TreeCluster(distMatrix, linkage, preserveOrder, periodic, nthreads, progress);
-			Dictionary<int, int[]> clusters;
-			Dictionary<int, int> singletons;
-			RearrangeClusters(inds, c.GetLength(0), out clusters, out singletons);
+			RearrangeClusters(inds, c.GetLength(0), out Dictionary<int, int[]> clusters, out Dictionary<int, int> singletons);
 			HierarchicalClusterNode[] newNodes = new HierarchicalClusterNode[nelements - 1];
 			int fill = nelements - nmeans;
 			Array.Copy(nodes, 0, newNodes, fill, nodes.Length);
