@@ -133,8 +133,12 @@ namespace BaseLibS.Table{
 			return GetAnnotationRowValue(index, GetColumnIndex(colname));
 		}
 
-		public void AddColumn(string colName, int width, ColumnType columnType, string description){
+		public void AddColumn(string colName, int width, ColumnType columnType, string description) {
 			AddColumn(colName, width, columnType, description, null);
+		}
+
+		public void AddColumn(string colName, int width, ColumnType columnType) {
+			AddColumn(colName, width, columnType, null, null);
 		}
 
 		public void AddColumn(string colName, int width, ColumnType columnType, string description, RenderTableCell renderer){

@@ -13,7 +13,6 @@ namespace BaseLib.Forms.Table {
 		public event EventHandler SelectionChanged;
 		private readonly CompoundScrollableControl tableView;
 		private readonly TableViewControlModel tableViewWf;
-		private bool textBoxVisible;
 		private bool hasSelectionAgent;
 		private ITableSelectionAgent selectionAgent;
 		private int selectionAgentColInd = -1;
@@ -29,6 +28,7 @@ namespace BaseLib.Forms.Table {
 		private Panel mainPanel;
 		private ComboBox scaleFactorComboBox;
 		public float sfx;
+		public bool TextBoxIsVisible { get; private set; }
 
 		public TableView() {
 			InitializeComponent();
@@ -36,7 +36,7 @@ namespace BaseLib.Forms.Table {
 			InitializeComponent2();
 			scaleFactorComboBox.SelectedIndex = 3;
 			tableView = new CompoundScrollableControl {Dock = DockStyle.Fill, Margin = new Padding(0)};
-			tableViewWf = new TableViewControlModel();
+			tableViewWf = new TableViewControlModel(this);
 			tableView.Client = tableViewWf;
 			tableViewWf.SelectionChanged += (sender, args) => {
 				SelectionChanged?.Invoke(sender, args);
@@ -257,6 +257,10 @@ namespace BaseLib.Forms.Table {
 		}
 
 		public void SwitchOnTextBox() {
+			if (TextBoxIsVisible) {
+				return;
+			}
+			textButton.Text = @"↓";
 			tableViewWf.SetCellText = s => auxTextBox.Text = s;
 			mainPanel.Controls.Remove(tableView);
 			splitContainer = new SplitContainer();
@@ -267,9 +271,14 @@ namespace BaseLib.Forms.Table {
 			splitContainer.Dock = DockStyle.Fill;
 			splitContainer.Orientation = Orientation.Horizontal;
 			mainPanel.Controls.Add(splitContainer);
+			TextBoxIsVisible = true;
 		}
 
 		public void SwitchOffTextBox() {
+			if (!TextBoxIsVisible) {
+				return;
+			}
+			textButton.Text = @"↑";
 			auxTextBox.Text = "";
 			tableViewWf.SetCellText = null;
 			mainPanel.Controls.Remove(splitContainer);
@@ -277,6 +286,11 @@ namespace BaseLib.Forms.Table {
 			splitContainer.Panel2.Controls.Remove(auxTextBox);
 			splitContainer = null;
 			mainPanel.Controls.Add(tableView);
+			TextBoxIsVisible = false;
+		}
+
+		public void SetAuxText(string text) {
+			auxTextBox.Text = text;
 		}
 
 		public bool MultiSelect {
@@ -395,14 +409,11 @@ namespace BaseLib.Forms.Table {
 		}
 
 		private void TextButton_OnClick(object sender, EventArgs e) {
-			if (textBoxVisible) {
-				textButton.Text = @"↑";
+			if (TextBoxIsVisible) {
 				SwitchOffTextBox();
 			} else {
-				textButton.Text = @"↓";
 				SwitchOnTextBox();
 			}
-			textBoxVisible = !textBoxVisible;
 		}
 
 		public void ClearSelectionFire() {

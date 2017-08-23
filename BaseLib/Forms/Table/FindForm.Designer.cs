@@ -1,4 +1,5 @@
-﻿using BaseLib.Forms.Scroll;
+﻿using System.Windows.Forms;
+using BaseLib.Forms.Scroll;
 
 namespace BaseLib.Forms.Table {
 	partial class FindForm {
@@ -141,6 +142,7 @@ namespace BaseLib.Forms.Table {
 			// 
 			this.lookInComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
+			this.lookInComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.lookInComboBox.FormattingEnabled = true;
 			this.lookInComboBox.Location = new System.Drawing.Point(72, 36);
 			this.lookInComboBox.Name = "lookInComboBox";

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -60,11 +59,14 @@ namespace BaseLib.Forms.Table {
 		private ICompoundScrollableControl control;
 		public float UserSf { get; set; } = 1;
 		private float sfx = 1;
-
 		private int RowHeight => (int) (rowHeight * sfx * UserSf);
-
 		private int ColumnHeaderHeight => (int) (control.ColumnHeaderHeight * sfx * UserSf);
 		private int RowHeaderWidth => (int) (control.RowHeaderWidth * sfx * UserSf);
+		internal TableView tableView;
+
+		public TableViewControlModel(TableView tableView) {
+			this.tableView = tableView;
+		}
 
 		public void UpdateScaling() {
 			bool isUnix = FileUtils.IsUnix();
@@ -972,6 +974,10 @@ namespace BaseLib.Forms.Table {
 			}
 		}
 
+		public void ScrollToColumn(int colInd) {
+			control.VisibleX = colInd > 0 ? columnWidthSums[colInd - 1] : 0;
+		}
+
 		public void ScrollToEnd() {
 			if (RowCount * RowHeight < control.VisibleHeight) {
 				control.VisibleY = 0;
@@ -1065,7 +1071,7 @@ namespace BaseLib.Forms.Table {
 			if (model == null) {
 				return;
 			}
-			using (var findForm = new FindForm(this, control)) {
+			using (FindForm findForm = new FindForm(this, control)) {
 				findForm.ShowDialog();
 			}
 		}
@@ -1306,11 +1312,11 @@ namespace BaseLib.Forms.Table {
 
 		private static string GetStringValue(IGraphics g, object o, int width, Font2 font) {
 			if (o is double) {
-				double x = (double)o;
+				double x = (double) o;
 				o = double.IsNaN(x) ? "NaN" : Parser.ToString(x);
 			}
 			if (o is float) {
-				float x = (float)o;
+				float x = (float) o;
 				o = float.IsNaN(x) ? "NaN" : Parser.ToString(x);
 			}
 			string s = "" + o;

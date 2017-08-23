@@ -14,9 +14,7 @@ namespace BaseLib.Query {
 			ActiveControl = textBox1;
 		}
 
-		public double Value => Parser.TryDouble(textBox1.Text, out double val)
-			? val
-			: double.NaN;
+		public double Value => Parser.TryDouble(textBox1.Text, out double val) ? val : double.NaN;
 
 		private void TextBox1OnKeyDown(object sender, KeyEventArgs keyEventArgs) {
 			if (keyEventArgs.KeyCode == Keys.Return) {
