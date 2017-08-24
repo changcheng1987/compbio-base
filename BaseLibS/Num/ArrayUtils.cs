@@ -1508,7 +1508,15 @@ namespace BaseLibS.Num {
 		public static int[] ToInts(IList<float> doubles) {
 			int[] result = new int[doubles.Count];
 			for (int i = 0; i < result.Length; i++) {
-				result[i] = (int) Math.Round(doubles[i]);
+				result[i] = (int)Math.Round(doubles[i]);
+			}
+			return result;
+		}
+
+		public static int[] ToInts(IList<double> doubles) {
+			int[] result = new int[doubles.Count];
+			for (int i = 0; i < result.Length; i++) {
+				result[i] = (int)Math.Round(doubles[i]);
 			}
 			return result;
 		}

@@ -204,7 +204,6 @@ namespace BaseLibS.Util {
 			}
 		}
 
-		//TODO
 		public static string Find {
 			get {
 				switch (TwoLettName) {
@@ -215,29 +214,40 @@ namespace BaseLibS.Util {
 					case danish: return "Find";
 					case dutch: return "Vind";
 					case estonian: return "Leia";
-
-					case finnish: return "Peruuttaa";
-					case french: return "Annuler";
-					case german: return "Annulieren";
-					case greek: return "Ματαίωση";
-					case hebrew: return "לְבַטֵל";
-					case hindi: return "रद्द करना";
-					case italian: return "Annulla";
-					case japanese: return "キャンセル";
-					case korean: return "취소";
-					case latvian: return "Atcelt";
-					case lithuanian: return "Atšaukti";
-					case norwegian: return "Avbryt";
-					case persian: return "لغو";
-					case polish: return "Anuluj";
-					case portuguese: return "Cancelar";
-					case romanian: return "Anulare";
-					case russian: return "Отмена";
+					case finnish: return "Löytö";
+					case french: return "Trouver";
+					case german: return "Suche";
+					case greek: return "Εύρημα";
+					case hebrew: return "למצוא";
+					case hindi: return "खोज";
+					case italian: return "Trova";
+					case japanese: return "検索";
+					case korean: return "발견";
+					case latvian: return "Atrast";
+					case lithuanian: return "Rasti";
+					case norwegian: return "Finne";
+					case persian: return "پیدا کردن";
+					case polish: return "Odnaleźć";
+					case portuguese: return "Encontrar";
+					case romanian: return "Găsi";
+					case russian: return "найти";
 					case spanish: return "Encontrar";
-					case swedish: return "Annullera";
-					case tamil: return "ரத்து";
-					case turkish: return "İptal etmek";
+					case swedish: return "Hitta";
+					case tamil: return "கண்டுபிடிக்க";
+					case turkish: return "bulmak";
 					default: return "Find";
+				}
+			}
+		}
+
+		public static string FindDots {
+			get {
+				switch (TwoLettName) {
+					case arabic:
+					case hebrew:
+					case persian:
+						return "..." + Find;
+					default: return Find + "...";
 				}
 			}
 		}

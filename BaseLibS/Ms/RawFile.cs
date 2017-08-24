@@ -6,10 +6,8 @@ using BaseLibS.Util;
 
 namespace BaseLibS.Ms{
 	/// <summary>
-	/// Contains data extracted from a raw data file. 
-	/// Implementations are vender dependent.
-	/// Essentially contains two RawFileLayer instances, 
-	/// one for positive ions and one for negative ions.
+	/// Contains data extracted from a raw data file. Implementations are vender dependent. Essentially 
+	/// contains two RawFileLayer instances, one for positive ions and one for negative ions.
 	/// </summary>
 	public abstract class RawFile : IDisposable{
 		/// <summary>
@@ -101,8 +99,8 @@ namespace BaseLibS.Ms{
 		public double Ms2MassMax => Math.Max(posLayer.Ms2MassMax, negLayer.Ms2MassMax);
 		public float MaxIntensity => Math.Max(posLayer.MaxIntensity, negLayer.MaxIntensity);
 		protected internal abstract void GetSpectrum(int scanNumberMin, int scanNumberMax, int imsIndexMin, int imsIndexMax,
-			bool readCentroids, out double[] masses, out float[] intensities, float resolution, double mzMin, double mzMax);
-		protected internal void GetSpectrum(int scanNumber, bool readCentroids, out double[] masses, out float[] intensities){
+			bool readCentroids, out double[] masses, out double[] intensities, double resolution, double mzMin, double mzMax);
+		protected internal void GetSpectrum(int scanNumber, bool readCentroids, out double[] masses, out double[] intensities){
 			GetSpectrum(scanNumber, scanNumber, 0, 0, readCentroids, out masses, out intensities, 0, double.NaN, double.NaN);
 		}
 		/// <summary>

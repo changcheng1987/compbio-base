@@ -93,10 +93,12 @@ namespace BaseLibS.Ms {
 		public int Ms1MassRangeCount { get; protected internal set; }
 		public float MaxIntensity { get; protected internal set; }
 		public double[] massRangesMin;
+
 		protected internal RawFileLayer(RawFile rawFile, bool positive) {
 			this.rawFile = rawFile;
 			this.positive = positive;
 		}
+
 		protected internal RawFileLayer(BinaryReader reader, RawFile rawFile, bool positive) {
 			this.rawFile = rawFile;
 			this.positive = positive;
@@ -207,6 +209,7 @@ namespace BaseLibS.Ms {
 			}
 			Ms2DependentMs3Inds = FileUtils.Read2DInt32Array(reader);
 		}
+
 		public int Ms1Count => Ms1ScanNumbers.Length;
 		public int Ms2Count => Ms2ScanNumbers.Length;
 		public int Ms3Count => Ms3ScanNumbers.Length;
@@ -216,6 +219,7 @@ namespace BaseLibS.Ms {
 		public float EndTime => Math.Max(EndTimeMs1, EndTimeMs2);
 		public float EndTimeMs1 => Ms1Rt.Length < 1 ? 1 : 1.5f * GetMs1Time(Ms1Count - 1) - 0.5f * GetMs1Time(Ms1Count - 2);
 		public float EndTimeMs2 => Ms2Rt.Length < 1 ? 1 : 1.5f * GetMs2Time(Ms2Count - 1) - 0.5f * GetMs2Time(Ms2Count - 2);
+
 		public int[] Ms2FragTypes {
 			get {
 				int[] result = new int[ms2FragmentationTypes.Length];
@@ -225,6 +229,7 @@ namespace BaseLibS.Ms {
 				return result;
 			}
 		}
+
 		public int[] Ms2MassAnalyzers {
 			get {
 				int[] result = new int[ms2Analyzer.Length];
@@ -234,6 +239,7 @@ namespace BaseLibS.Ms {
 				return result;
 			}
 		}
+
 		public int[] Ms2ScanEventNumbers {
 			get {
 				int[] result = new int[ms2FragmentationTypes.Length];
@@ -243,6 +249,7 @@ namespace BaseLibS.Ms {
 				return result;
 			}
 		}
+
 		private int GetMs1CeilIndexFromRt(float rt) {
 			if (rt <= Ms1Rt[0]) {
 				return 0;
@@ -256,6 +263,7 @@ namespace BaseLibS.Ms {
 			}
 			return -a - 1;
 		}
+
 		private int GetMs1FloorIndexFromRt(float rt) {
 			if (rt <= Ms1Rt[0]) {
 				return -1;
@@ -269,6 +277,7 @@ namespace BaseLibS.Ms {
 			}
 			return -a - 2;
 		}
+
 		private int GetMs2CeilIndexFromRt(float rt) {
 			if (rt <= Ms2Rt[0]) {
 				return 0;
@@ -282,6 +291,7 @@ namespace BaseLibS.Ms {
 			}
 			return -a - 1;
 		}
+
 		private int GetMs2FloorIndexFromRt(float rt) {
 			if (rt <= Ms2Rt[0]) {
 				return -1;
@@ -295,30 +305,35 @@ namespace BaseLibS.Ms {
 			}
 			return -a - 2;
 		}
+
 		public float GetMs1Time(int index) {
 			if (index < 0 || index >= Ms1Rt.Length) {
 				return float.NaN;
 			}
 			return Ms1Rt[index];
 		}
+
 		public float GetMs2Time(int index) {
 			if (index < 0 || index >= Ms2Rt.Length) {
 				return float.NaN;
 			}
 			return Ms2Rt[index];
 		}
+
 		public double GetMs2IsolationMax(int index) {
 			if (index >= Ms2IsolationMzMax.Length || index < 0) {
 				return double.NaN;
 			}
 			return Ms2IsolationMzMax[index];
 		}
+
 		public double GetMs2IsolationMin(int index) {
 			if (index >= Ms2IsolationMzMin.Length || index < 0) {
 				return double.NaN;
 			}
 			return Ms2IsolationMzMin[index];
 		}
+
 		public double GetMaxMs2IsolationWidth() {
 			if (Ms2IsolationMzMin == null) {
 				return double.NaN;
@@ -332,9 +347,11 @@ namespace BaseLibS.Ms {
 			}
 			return max;
 		}
+
 		public int GetMasterMs1Index(int index) {
 			return Math.Max(0, ArrayUtils.FloorIndex(Ms1ScanNumbers, Ms2ScanNumbers[index]));
 		}
+
 		public float[] GetMs1TimeSpan(int index) {
 			if (index < 0) {
 				return new float[] {0, 0};
@@ -343,6 +360,7 @@ namespace BaseLibS.Ms {
 			float max = index >= Ms1Rt.Length - 1 ? EndTimeMs1 : 0.5f * (Ms1Rt[index] + Ms1Rt[index + 1]);
 			return new[] {min, max};
 		}
+
 		public float[] GetMs2TimeSpan(int index) {
 			if (index < 0) {
 				return new float[] {0, 0};
@@ -351,6 +369,7 @@ namespace BaseLibS.Ms {
 			float max = index >= Ms2Count - 1 ? EndTimeMs2 : 0.5f * (Ms2Rt[index] + Ms2Rt[index + 1]);
 			return new[] {min, max};
 		}
+
 		public int GetMs1IndexFromRt(float rt) {
 			if (float.IsNaN(rt) || float.IsInfinity(rt)) {
 				return -1;
@@ -376,6 +395,7 @@ namespace BaseLibS.Ms {
 			}
 			return -a - 1;
 		}
+
 		public int GetMs2IndexFromRt(float rt) {
 			if (float.IsNaN(rt) || float.IsInfinity(rt)) {
 				return -1;
@@ -401,42 +421,50 @@ namespace BaseLibS.Ms {
 			}
 			return -a - 1;
 		}
+
 		public int GetScanNumberFromMs1Index(int ms1Index) {
 			return Ms1ScanNumbers[ms1Index];
 		}
+
 		public int GetScanNumberFromMs2Index(int ms2Index) {
 			return Ms2ScanNumbers[ms2Index];
 		}
+
 		public double GetMs2ParentMz(int index, double ms2PrecShift) {
 			if (index < 0 || index >= Ms2Mz.Length) {
 				return double.NaN;
 			}
 			return Ms2Mz[index] + ms2PrecShift;
 		}
+
 		public double GetMs3ParentMz1(int index) {
 			if (index < 0 || index >= Ms3Mz1.Length) {
 				return double.NaN;
 			}
 			return Ms3Mz1[index];
 		}
+
 		public double GetMs3ParentMz2(int index) {
 			if (index < 0 || index >= Ms3Mz2.Length) {
 				return double.NaN;
 			}
 			return Ms3Mz2[index];
 		}
+
 		public double GetMs2IsolationMzMin(int index) {
 			if (index < 0 || index >= Ms2IsolationMzMin.Length) {
 				return double.NaN;
 			}
 			return Ms2IsolationMzMin[index];
 		}
+
 		public double GetMs2IsolationMzMax(int index) {
 			if (index < 0 || index >= Ms2IsolationMzMax.Length) {
 				return double.NaN;
 			}
 			return Ms2IsolationMzMax[index];
 		}
+
 		public int GetMs2IndexFromScanNumber(int scanNumber) {
 			int ind = Array.BinarySearch(Ms2ScanNumbers, scanNumber);
 			if (ind < 0) {
@@ -444,6 +472,7 @@ namespace BaseLibS.Ms {
 			}
 			return ind;
 		}
+
 		public int GetClosestMs1IndexFromScanNumber(int scanNumber) {
 			if (scanNumber <= Ms1ScanNumbers[0]) {
 				return 0;
@@ -460,18 +489,22 @@ namespace BaseLibS.Ms {
 			}
 			return -1 - ind;
 		}
-		public void GetMs2SpectrumArray(int index, bool readCentroids, out double[] masses, out float[] intensities) {
+
+		public void GetMs2SpectrumArray(int index, bool readCentroids, out double[] masses, out double[] intensities) {
 			rawFile.GetSpectrum(Ms2ScanNumbers[index], readCentroids, out masses, out intensities);
 		}
+
 		public void GetMs2SpectrumArray(int index, int imsIndMin, int imsIndMax, bool readCentroids, out double[] masses,
-			out float[] intensities, float resolution, double mzMin, double mzMax) {
+			out double[] intensities, float resolution, double mzMin, double mzMax) {
 			rawFile.GetSpectrum(Ms2ScanNumbers[index], Ms2ScanNumbers[index], imsIndMin, imsIndMax, readCentroids, out masses,
 				out intensities, resolution, mzMin, mzMax);
 		}
-		public void GetMs3SpectrumArray(int index, bool readCentroids, out double[] masses, out float[] intensities) {
+
+		public void GetMs3SpectrumArray(int index, bool readCentroids, out double[] masses, out double[] intensities) {
 			rawFile.GetSpectrum(Ms3ScanNumbers[index], readCentroids, out masses, out intensities);
 		}
-		public void GetMs1SpectrumArray(int index, bool readCentroids, out double[] masses, out float[] intensities) {
+
+		public void GetMs1SpectrumArray(int index, bool readCentroids, out double[] masses, out double[] intensities) {
 			if (index >= Ms1ScanNumbers.Length) {
 				masses = null;
 				intensities = null;
@@ -479,8 +512,9 @@ namespace BaseLibS.Ms {
 			}
 			rawFile.GetSpectrum(Ms1ScanNumbers[index], readCentroids, out masses, out intensities);
 		}
+
 		public void GetMs1SpectrumArray(int index, int imsIndexMin, int imsIndexMax, bool readCentroids, out double[] masses,
-			out float[] intensities, float resolution, double mzMin, double mzMax) {
+			out double[] intensities, float resolution, double mzMin, double mzMax) {
 			if (index >= Ms1ScanNumbers.Length) {
 				masses = null;
 				intensities = null;
@@ -489,8 +523,9 @@ namespace BaseLibS.Ms {
 			rawFile.GetSpectrum(Ms1ScanNumbers[index], Ms1ScanNumbers[index], imsIndexMin, imsIndexMax, readCentroids,
 				out masses, out intensities, resolution, mzMin, mzMax);
 		}
+
 		public void GetMs1SpectrumArray(int indexMin, int indexMax, int imsIndexMin, int imsIndexMax, bool readCentroids,
-			out double[] masses, out float[] intensities, float resolution, double mzMin, double mzMax) {
+			out double[] masses, out double[] intensities, float resolution, double mzMin, double mzMax) {
 			if (indexMax >= Ms1ScanNumbers.Length || indexMax < 0) {
 				masses = null;
 				intensities = null;
@@ -499,8 +534,9 @@ namespace BaseLibS.Ms {
 			rawFile.GetSpectrum(Ms1ScanNumbers[indexMin], Ms1ScanNumbers[indexMax], imsIndexMin, imsIndexMax, readCentroids,
 				out masses, out intensities, resolution, mzMin, mzMax);
 		}
+
 		public void GetMs2SpectrumArray(int indexMin, int indexMax, int imsIndexMin, int imsIndexMax, bool readCentroids,
-			out double[] masses, out float[] intensities, float resolution, double mzMin, double mzMax) {
+			out double[] masses, out double[] intensities, float resolution, double mzMin, double mzMax) {
 			if (indexMax >= Ms2ScanNumbers.Length || indexMax < 0) {
 				masses = null;
 				intensities = null;
@@ -514,9 +550,11 @@ namespace BaseLibS.Ms {
 		public bool HasMs2Centroid(int index) {
 			return ms2HasCentroid[index];
 		}
+
 		public bool HasMs2Profile(int index) {
 			return ms2HasProfile[index];
 		}
+
 		public bool HasMs3Profile(int index) {
 			return ms3HasProfile[index];
 		}
@@ -525,21 +563,26 @@ namespace BaseLibS.Ms {
 		public bool HasMs1Centroid(int index) {
 			return ms1HasCentroid[index];
 		}
+
 		public bool HasMs1Profile(int index) {
 			return ms1HasProfile[index];
 		}
+
 		public MassAnalyzerEnum GetMs2MassAnalyzer(int index) {
 			return ms2Analyzer[index];
 		}
+
 		public MassAnalyzerEnum GetMs3MassAnalyzer(int index) {
 			return ms3Analyzer[index];
 		}
+
 		private MassAnalyzerEnum GetMs1MassAnalyzer(int index) {
 			if (index >= ms1Analyzer.Length) {
 				return MassAnalyzerEnum.Unknown;
 			}
 			return ms1Analyzer[index];
 		}
+
 		public void GetMs1MassRange(int index, out double minMass, out double maxMass) {
 			if (index < 0 || index >= ms1MinMass.Length) {
 				minMass = 200;
@@ -549,6 +592,7 @@ namespace BaseLibS.Ms {
 			minMass = ms1MinMass[index];
 			maxMass = ms1MaxMass[index];
 		}
+
 		public void GetMs2MassRange(int index, out double minMass, out double maxMass) {
 			if (index < 0 || index >= ms2MinMass.Length) {
 				minMass = 200;
@@ -558,31 +602,33 @@ namespace BaseLibS.Ms {
 			minMass = ms2MinMass[index];
 			maxMass = ms2MaxMass[index];
 		}
+
 		public FragmentationTypeEnum GetMs2FragmentationType(int index) {
 			if (index >= ms2FragmentationTypes.Length || index < 0) {
 				return FragmentationTypeEnum.Unknown;
 			}
 			return ms2FragmentationTypes[index];
 		}
+
 		public FragmentationTypeEnum GetMs3FragmentationType(int index) {
 			if (index >= ms3FragmentationTypes.Length || index < 0) {
 				return FragmentationTypeEnum.Unknown;
 			}
 			return ms3FragmentationTypes[index];
 		}
+
 		public double GetMs2MonoisotopicMz(int index) {
 			if (index >= Ms2MonoisotopicMz.Length || index < 0) {
 				return 0;
 			}
 			return Ms2MonoisotopicMz[index];
 		}
+
 		public byte GetMs1MassRangeIndex(int index) {
 			if (!ms1HasProfile[index]) {
 				return 0;
 			}
-			double min;
-			double max;
-			GetMs1MassRange(index, out min, out max);
+			GetMs1MassRange(index, out double min, out double max);
 			for (int i = 0; i < massRangesMin.Length; i++) {
 				if (min == massRangesMin[i]) {
 					return (byte) i;
@@ -590,6 +636,7 @@ namespace BaseLibS.Ms {
 			}
 			return byte.MaxValue;
 		}
+
 		public List<int> GetMs2InRectangle(double minMz, double maxMz, float minRt, float maxRt, double ms2PrecShift) {
 			List<int> result = new List<int>();
 			for (int i = 0; i < Ms2Count; i++) {
@@ -605,6 +652,7 @@ namespace BaseLibS.Ms {
 			}
 			return result;
 		}
+
 		public double[][] GetMs1SpectrumOnGrid(int index, bool readCentroids, double min, double max, int count,
 			int imsIndexMin, int imsIndexMax, float resolution) {
 			Spectrum s;
@@ -615,6 +663,7 @@ namespace BaseLibS.Ms {
 			}
 			return s.Masses == null ? null : CalcBinMinMaxInSpectrum(min, max, count, s);
 		}
+
 		private static double[][] CalcBinMinMaxInSpectrum(double minMass, double maxMass, int mzCount, Spectrum s) {
 			double[] minVals = new double[mzCount];
 			double[] maxVals = new double[mzCount];
@@ -654,9 +703,11 @@ namespace BaseLibS.Ms {
 			}
 			return new[] {minVals, maxVals};
 		}
+
 		public double[][] GetTicOnGrid(float min, float max, int count) {
 			return CalcBinMinMaxInSpectrum(min, max, count, Ms1Rt, Ms1Tic);
 		}
+
 		public static double[][] CalcBinMinMaxInSpectrum(float minX, float maxX, int xCount, float[] sx, float[] sy) {
 			if (sx == null) {
 				return null;
@@ -699,56 +750,50 @@ namespace BaseLibS.Ms {
 			}
 			return new[] {minVals, maxVals};
 		}
+
 		public Spectrum GetMs1Spectrum(int index, bool readCentroids) {
-			double[] masses;
-			float[] intensities;
-			GetMs1SpectrumArray(index, readCentroids, out masses, out intensities);
+			GetMs1SpectrumArray(index, readCentroids, out double[] masses, out double[] intensities);
 			return new Spectrum(masses, intensities);
 		}
+
 		public Spectrum GetMs1Spectrum(int index, int imsIndexMin, int imsIndexMax, bool readCentroids, float resolution,
 			double mzMin, double mzMax) {
-			double[] masses;
-			float[] intensities;
-			GetMs1SpectrumArray(index, imsIndexMin, imsIndexMax, readCentroids, out masses, out intensities, resolution, mzMin,
-				mzMax);
+			GetMs1SpectrumArray(index, imsIndexMin, imsIndexMax, readCentroids, out double[] masses, out double[] intensities,
+				resolution, mzMin, mzMax);
 			return new Spectrum(masses, intensities);
 		}
+
 		public Spectrum GetMs1Spectrum(int indexMin, int indexMax, int imsIndexMin, int imsIndexMax, bool readCentroids,
 			float resolution, double mzMin, double mzMax) {
-			double[] masses;
-			float[] intensities;
-			GetMs1SpectrumArray(indexMin, indexMax, imsIndexMin, imsIndexMax, readCentroids, out masses, out intensities,
-				resolution, mzMin, mzMax);
+			GetMs1SpectrumArray(indexMin, indexMax, imsIndexMin, imsIndexMax, readCentroids, out double[] masses,
+				out double[] intensities, resolution, mzMin, mzMax);
 			return new Spectrum(masses, intensities);
 		}
+
 		public Spectrum GetMs2Spectrum(int index, bool readCentroids) {
-			double[] masses;
-			float[] intensities;
-			GetMs2SpectrumArray(index, readCentroids, out masses, out intensities);
+			GetMs2SpectrumArray(index, readCentroids, out double[] masses, out double[] intensities);
 			return new Spectrum(masses, intensities);
 		}
+
 		public Spectrum GetMs2Spectrum(int index, int imsIndexMin, int imsIndexMax, bool readCentroids, float resoluion,
 			double mzMin, double mzMax) {
-			double[] masses;
-			float[] intensities;
-			GetMs2SpectrumArray(index, imsIndexMin, imsIndexMax, readCentroids, out masses, out intensities, resoluion, mzMin,
-				mzMax);
+			GetMs2SpectrumArray(index, imsIndexMin, imsIndexMax, readCentroids, out double[] masses, out double[] intensities,
+				resoluion, mzMin, mzMax);
 			return new Spectrum(masses, intensities);
 		}
+
 		public Spectrum GetMs2Spectrum(int indexMin, int indexMax, int imsIndexMin, int imsIndexMax, bool readCentroids,
 			float resolution, double mzMin, double mzMax) {
-			double[] masses;
-			float[] intensities;
-			GetMs2SpectrumArray(indexMin, indexMax, imsIndexMin, imsIndexMax, readCentroids, out masses, out intensities,
-				resolution, mzMin, mzMax);
+			GetMs2SpectrumArray(indexMin, indexMax, imsIndexMin, imsIndexMax, readCentroids, out double[] masses,
+				out double[] intensities, resolution, mzMin, mzMax);
 			return new Spectrum(masses, intensities);
 		}
+
 		public Spectrum GetMs3Spectrum(int index, bool readCentroids) {
-			double[] masses;
-			float[] intensities;
-			GetMs3SpectrumArray(index, readCentroids, out masses, out intensities);
+			GetMs3SpectrumArray(index, readCentroids, out double[] masses, out double[] intensities);
 			return new Spectrum(masses, intensities);
 		}
+
 		public int[] GetMs2IndToMs1Ind(int scanOffset) {
 			int[] ms1ScanNumbers = Ms1ScanNumbers;
 			int[] ms2ScanNumbers = Ms2ScanNumbers;
@@ -759,6 +804,7 @@ namespace BaseLibS.Ms {
 			}
 			return ms2IndToMs1Ind;
 		}
+
 		public int GetClosestMs1IndForMs2Ind(int i) {
 			int prevInd = Ms2PrevMs1Index[i];
 			if (prevInd == Ms1Count - 1) {
@@ -770,9 +816,11 @@ namespace BaseLibS.Ms {
 			float rt = Ms2Rt[i];
 			return Math.Abs(rtprev - rt) <= Math.Abs(rtnext - rt) ? prevInd : nextInd;
 		}
+
 		public int GetPreviousMs1IndForMs2Ind(int i) {
 			return Ms2PrevMs1Index[i];
 		}
+
 		public int GetScanEventNumberForMs2Ind(int ms2Ind) {
 			int ms1Ind = Ms2PrevMs1Index[ms2Ind];
 			int ms2ScanNumber = Ms2ScanNumbers[ms2Ind];
@@ -782,6 +830,7 @@ namespace BaseLibS.Ms {
 			}
 			return -1;
 		}
+
 		public void GetMs1DiagnosticData(int index, out double intenseCompFactor, out double emIntenseComp,
 			out double rawOvFtT, out float agcFill) {
 			intenseCompFactor = index >= 0 && index < Ms1IntenseCompFactor.Length ? Ms1IntenseCompFactor[index] : double.NaN;
@@ -789,6 +838,7 @@ namespace BaseLibS.Ms {
 			rawOvFtT = index >= 0 && index < Ms1RawOvFtT.Length ? Ms1RawOvFtT[index] : double.NaN;
 			agcFill = index >= 0 && index < Ms1AgcFill.Length ? Ms1AgcFill[index] : float.NaN;
 		}
+
 		public void GetMs2DiagnosticData(int index, out double intenseCompFactor, out double emIntenseComp,
 			out double rawOvFtT, out float agcFill) {
 			intenseCompFactor = index >= 0 && index < Ms2IntenseCompFactor.Length ? Ms2IntenseCompFactor[index] : double.NaN;
@@ -796,6 +846,7 @@ namespace BaseLibS.Ms {
 			rawOvFtT = index >= 0 && index < Ms2RawOvFtT.Length ? Ms2RawOvFtT[index] : double.NaN;
 			agcFill = index >= 0 && index < Ms2AgcFill.Length ? Ms2AgcFill[index] : float.NaN;
 		}
+
 		internal void Write(BinaryWriter writer) {
 			FileUtils.Write(Ms1ScanNumbers, writer);
 			FileUtils.Write(Ms1NumIms, writer);
@@ -894,6 +945,7 @@ namespace BaseLibS.Ms {
 			}
 			FileUtils.Write(Ms2DependentMs3Inds, writer);
 		}
+
 		public void Dispose() {
 			Ms1ScanNumbers = null;
 			Ms1NumIms = null;
@@ -929,6 +981,7 @@ namespace BaseLibS.Ms {
 			Ms2Resolution = null;
 			rawFile = null;
 		}
+
 		private void SetMs1Data(Ms1Lists ms1Lists) {
 			// scalars
 			Ms1MassMin = ms1Lists.massMin;
@@ -958,8 +1011,7 @@ namespace BaseLibS.Ms {
 			Ms1RawOvFtT = ms1Lists.rawOvFtT.ToArray();
 			Ms1AgcFill = ms1Lists.agcFillList.ToArray();
 			// truncate arrays to portion that is monotonically increasing
-			int startPos;
-			if (!RawFileUtils.IsMonotoneIncreasing(Ms1Rt, out startPos)) {
+			if (!RawFileUtils.IsMonotoneIncreasing(Ms1Rt, out int startPos)) {
 				Ms1ScanNumbers = ArrayUtils.SubArrayFrom(Ms1ScanNumbers, startPos);
 				Ms1Rt = ArrayUtils.SubArrayFrom(Ms1Rt, startPos);
 				Ms1IonInjectionTimes = ArrayUtils.SubArrayFrom(Ms1IonInjectionTimes, startPos);
@@ -978,6 +1030,7 @@ namespace BaseLibS.Ms {
 				Ms1AgcFill = ArrayUtils.SubArray(Ms1AgcFill, startPos);
 			}
 		}
+
 		private static float[] GetMainResolutionValues(float[] ms1Resolution) {
 			Dictionary<float, int> counts = new Dictionary<float, int>();
 			foreach (float f in ms1Resolution) {
@@ -997,6 +1050,7 @@ namespace BaseLibS.Ms {
 			Array.Sort(result);
 			return result;
 		}
+
 		private void SetMs2Data(Ms2Lists ms2Lists) {
 			Ms2MassMin = ms2Lists.massMin;
 			Ms2MassMax = ms2Lists.massMax;
@@ -1027,6 +1081,7 @@ namespace BaseLibS.Ms {
 			Ms2RawOvFtT = ms2Lists.rawOvFtT.ToArray();
 			Ms2AgcFill = ms2Lists.agcFillList.ToArray();
 		}
+
 		private void SetMs3Data(Ms3Lists ms3Lists) {
 			Ms3MassMin = ms3Lists.massMin;
 			Ms3MassMax = ms3Lists.massMax;
@@ -1057,6 +1112,7 @@ namespace BaseLibS.Ms {
 			Ms3RawOvFtT = ms3Lists.rawOvFtT.ToArray();
 			Ms3AgcFill = ms3Lists.agcFillList.ToArray();
 		}
+
 		private static int[][] CreateMs2DependentMs3Inds(int[] ms3PrevMs2Index, int n2) {
 			if (ms3PrevMs2Index.Length == 0) {
 				int[][] result = new int[n2][];
@@ -1080,6 +1136,7 @@ namespace BaseLibS.Ms {
 			}
 			return res;
 		}
+
 		internal void SetData(InfoLists infoLists, float maxIntensity) {
 			SetMs1Data(infoLists.ms1Lists);
 			SetMs2Data(infoLists.ms2Lists);
@@ -1090,6 +1147,7 @@ namespace BaseLibS.Ms {
 			infoLists.allMassRanges.Keys.CopyTo(massRangesMin, 0);
 			Array.Sort(massRangesMin);
 		}
+
 		public bool[] GetMs1SelectionOnGrid(double minRt, double rtStep, int rtCount, int selectedMs1Index) {
 			bool[] values = new bool[rtCount];
 			for (int i = 0; i < rtCount; i++) {
@@ -1113,6 +1171,7 @@ namespace BaseLibS.Ms {
 			}
 			return values;
 		}
+
 		public bool[] GetMs2SelectionOnGrid(double minRt, double rtStep, int rtCount, int selectedMs2Index) {
 			bool[] values = new bool[rtCount];
 			for (int i = 0; i < rtCount; i++) {
@@ -1136,10 +1195,12 @@ namespace BaseLibS.Ms {
 			}
 			return values;
 		}
+
 		public MassAnalyzerEnum GetMasterMassAnalyzer(int index) {
 			int ms1Index = Math.Max(0, ArrayUtils.FloorIndex(Ms1ScanNumbers, Ms2ScanNumbers[index]));
 			return GetMs1MassAnalyzer(ms1Index);
 		}
+
 		public int[] GetMs1IndsForResolution(int resInd) {
 			if (Ms1ResolutionValues.Length == 0) {
 				return new int[0];
@@ -1153,6 +1214,7 @@ namespace BaseLibS.Ms {
 			}
 			return result.ToArray();
 		}
+
 		public int[][] GetConsecutiveSimScans() {
 			List<int[]> result = new List<int[]>();
 			bool inRegion = false;
@@ -1175,14 +1237,19 @@ namespace BaseLibS.Ms {
 			}
 			return result.ToArray();
 		}
+
 		public int PasefMsmsCount => positive ? rawFile.PasefMsmsCount : 0;
+
 		public PasefFrameMsMsInfo GetPasefMsmsInfo(int index) {
 			return positive ? rawFile.GetPasefMsmsInfo(index) : null;
 		}
+
 		public int PasefPrecursorCount => positive ? rawFile.PasefPrecursorCount : 0;
+
 		public PasefPrecursorInfo GetPasefPrecursorInfo(int index) {
 			return positive ? rawFile.GetPasefPrecursorInfo(index) : null;
 		}
+
 		public int[][] GetDiaMs2Indices() {
 			if (Ms2Count == 0) {
 				return new int[0][];

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using BaseLibS.Data;
 using BaseLibS.Num.Func;
@@ -746,7 +745,7 @@ namespace BaseLibS.Num{
 			return cov;
 		}
 
-		public static double[,] CalcCovariance(IList<float>[] data){
+		public static double[,] CalcCovariance(IList<double>[] data){
 			int n = data[0].Count;
 			int p = data.Length;
 			double[] means = new double[p];

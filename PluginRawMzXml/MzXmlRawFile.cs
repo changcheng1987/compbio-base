@@ -51,14 +51,14 @@ namespace PluginRawMzXml {
 		}
 		protected override float MaximumIntensity => maxIntensity;
 		protected override void GetSpectrum(int scanNumberMin, int scanNumberMax, int imsIndexMin, int imsIndexMax,
-			bool readCentroids, out double[] masses, out float[] intensities, float resolution, double mzMin, double mzMax) {
+			bool readCentroids, out double[] masses, out double[] intensities, double resolution, double mzMin, double mzMax) {
 			if (!preInitialized) {
 				PreInit();
 			}
 			double[,] spectrum = mzXml.GetMassListFromScanNum(scanNumberMin);
 			int length = spectrum.Length / 2;
 			masses = new double[length];
-			intensities = new float[length];
+			intensities = new double[length];
 			for (int i = 0; i < length; ++i) {
 				masses[i] = spectrum[0, i];
 				intensities[i] = (float) spectrum[1, i];

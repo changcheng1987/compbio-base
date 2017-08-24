@@ -605,7 +605,7 @@ namespace BaseLib.Forms.Table {
 
 		public void InitContextMenu() {
 			control.InitContextMenu();
-			control.AddContextMenuItem("Find...", (sender, args) => { Find(); });
+			control.AddContextMenuItem(Loc.FindDots, (sender, args) => { Find(); });
 			if (sortable) {
 				control.AddContextMenuItem("Select all", (sender, args) => {
 					SelectAll();

@@ -110,9 +110,7 @@ namespace BaseLibS.Ms {
 		}
 		internal static void InitMassGrid(RawFileLayer layer, IDictionary<int, double> mins) {
 			for (int i = 0; i < layer.Ms1Count; i++) {
-				double[] masses;
-				float[] intensities;
-				layer.GetMs1SpectrumArray(i, false, out masses, out intensities);
+				layer.GetMs1SpectrumArray(i, false, out double[] masses, out double[] _);
 				for (int j = 0; j < masses.Length - 1; j++) {
 					double m1 = masses[j];
 					double m2 = masses[j + 1];
@@ -140,11 +138,11 @@ namespace BaseLibS.Ms {
 			}
 			throw new Exception("Never get here.");
 		}
-		public static double[] GetMzGrid(double minMz, double maxMz, float resolution, float nsigma) {
+		public static double[] GetMzGrid(double minMz, double maxMz, double resolution, double nsigma) {
 			if (resolution == 0) {
 				resolution = 30000;
 			}
-			const float ff = 0.5f;
+			const double ff = 0.5;
 			double dm1 = 0.5 * minMz / resolution;
 			double dm2 = 0.5 * maxMz / resolution;
 			double mzLower = minMz - nsigma * dm1;
