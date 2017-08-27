@@ -91,7 +91,7 @@ namespace BaseLibS.Ms {
 		public double[] Ms3RawOvFtT { get; protected internal set; }
 		public float[] Ms3AgcFill { get; protected internal set; }
 		public int Ms1MassRangeCount { get; protected internal set; }
-		public float MaxIntensity { get; protected internal set; }
+		public double MaxIntensity { get; protected internal set; }
 		public double[] massRangesMin;
 
 		protected internal RawFileLayer(RawFile rawFile, bool positive) {
@@ -147,7 +147,7 @@ namespace BaseLibS.Ms {
 			Ms2MassMax = reader.ReadDouble();
 			Ms2MaxNumIms = reader.ReadInt32();
 			Ms1MassRangeCount = reader.ReadInt32();
-			MaxIntensity = reader.ReadSingle();
+			MaxIntensity = reader.ReadDouble();
 			int len = reader.ReadInt32();
 			ms2FragmentationTypes = new FragmentationTypeEnum[len];
 			for (int i = 0; i < len; i++) {
@@ -213,12 +213,12 @@ namespace BaseLibS.Ms {
 		public int Ms1Count => Ms1ScanNumbers.Length;
 		public int Ms2Count => Ms2ScanNumbers.Length;
 		public int Ms3Count => Ms3ScanNumbers.Length;
-		public float StartTime => Math.Min(StartTimeMs1, StartTimeMs2);
-		public float StartTimeMs1 => Ms1Rt.Length < 1 ? 0 : 1.5f * GetMs1Time(0) - 0.5f * GetMs1Time(1);
-		public float StartTimeMs2 => Ms2Rt.Length < 1 ? 0 : 1.5f * GetMs2Time(0) - 0.5f * GetMs2Time(1);
-		public float EndTime => Math.Max(EndTimeMs1, EndTimeMs2);
-		public float EndTimeMs1 => Ms1Rt.Length < 1 ? 1 : 1.5f * GetMs1Time(Ms1Count - 1) - 0.5f * GetMs1Time(Ms1Count - 2);
-		public float EndTimeMs2 => Ms2Rt.Length < 1 ? 1 : 1.5f * GetMs2Time(Ms2Count - 1) - 0.5f * GetMs2Time(Ms2Count - 2);
+		public double StartTime => Math.Min(StartTimeMs1, StartTimeMs2);
+		public double StartTimeMs1 => Ms1Rt.Length < 1 ? 0 : 1.5f * GetMs1Time(0) - 0.5f * GetMs1Time(1);
+		public double StartTimeMs2 => Ms2Rt.Length < 1 ? 0 : 1.5f * GetMs2Time(0) - 0.5f * GetMs2Time(1);
+		public double EndTime => Math.Max(EndTimeMs1, EndTimeMs2);
+		public double EndTimeMs1 => Ms1Rt.Length < 1 ? 1 : 1.5f * GetMs1Time(Ms1Count - 1) - 0.5f * GetMs1Time(Ms1Count - 2);
+		public double EndTimeMs2 => Ms2Rt.Length < 1 ? 1 : 1.5f * GetMs2Time(Ms2Count - 1) - 0.5f * GetMs2Time(Ms2Count - 2);
 
 		public int[] Ms2FragTypes {
 			get {
@@ -250,72 +250,72 @@ namespace BaseLibS.Ms {
 			}
 		}
 
-		private int GetMs1CeilIndexFromRt(float rt) {
+		private int GetMs1CeilIndexFromRt(double rt) {
 			if (rt <= Ms1Rt[0]) {
 				return 0;
 			}
 			if (rt >= Ms1Rt[Ms1Rt.Length - 1]) {
 				return -1;
 			}
-			int a = Array.BinarySearch(Ms1Rt, rt);
+			int a = Array.BinarySearch(Ms1Rt, (float)rt);
 			if (a >= 0) {
 				return a;
 			}
 			return -a - 1;
 		}
 
-		private int GetMs1FloorIndexFromRt(float rt) {
+		private int GetMs1FloorIndexFromRt(double rt) {
 			if (rt <= Ms1Rt[0]) {
 				return -1;
 			}
 			if (rt >= Ms1Rt[Ms1Rt.Length - 1]) {
 				return Ms1Rt.Length - 1;
 			}
-			int a = Array.BinarySearch(Ms1Rt, rt);
+			int a = Array.BinarySearch(Ms1Rt, (float)rt);
 			if (a >= 0) {
 				return a;
 			}
 			return -a - 2;
 		}
 
-		private int GetMs2CeilIndexFromRt(float rt) {
+		private int GetMs2CeilIndexFromRt(double rt) {
 			if (rt <= Ms2Rt[0]) {
 				return 0;
 			}
 			if (rt >= Ms2Rt[Ms2Rt.Length - 1]) {
 				return -1;
 			}
-			int a = Array.BinarySearch(Ms2Rt, rt);
+			int a = Array.BinarySearch(Ms2Rt, (float)rt);
 			if (a >= 0) {
 				return a;
 			}
 			return -a - 1;
 		}
 
-		private int GetMs2FloorIndexFromRt(float rt) {
+		private int GetMs2FloorIndexFromRt(double rt) {
 			if (rt <= Ms2Rt[0]) {
 				return -1;
 			}
 			if (rt >= Ms2Rt[Ms2Rt.Length - 1]) {
 				return Ms2Rt.Length - 1;
 			}
-			int a = Array.BinarySearch(Ms2Rt, rt);
+			int a = Array.BinarySearch(Ms2Rt, (float)rt);
 			if (a >= 0) {
 				return a;
 			}
 			return -a - 2;
 		}
 
-		public float GetMs1Time(int index) {
+		public double GetMs1Time(int index) {
 			if (index < 0 || index >= Ms1Rt.Length) {
-				return float.NaN;
+				return double.NaN;
 			}
 			return Ms1Rt[index];
 		}
 
-		public float GetMs2Time(int index) {
+		public double GetMs2Time(int index) {
 			if (index < 0 || index >= Ms2Rt.Length) {
-				return float.NaN;
+				return double.NaN;
 			}
 			return Ms2Rt[index];
 		}
@@ -352,26 +352,26 @@ namespace BaseLibS.Ms {
 			return Math.Max(0, ArrayUtils.FloorIndex(Ms1ScanNumbers, Ms2ScanNumbers[index]));
 		}
 
-		public float[] GetMs1TimeSpan(int index) {
+		public double[] GetMs1TimeSpan(int index) {
 			if (index < 0) {
-				return new float[] {0, 0};
+				return new double[] {0, 0};
 			}
-			float min = index <= 0 ? StartTimeMs1 : 0.5f * (Ms1Rt[index] + Ms1Rt[index - 1]);
-			float max = index >= Ms1Rt.Length - 1 ? EndTimeMs1 : 0.5f * (Ms1Rt[index] + Ms1Rt[index + 1]);
+			double min = index <= 0 ? StartTimeMs1 : 0.5f * (Ms1Rt[index] + Ms1Rt[index - 1]);
+			double max = index >= Ms1Rt.Length - 1 ? EndTimeMs1 : 0.5f * (Ms1Rt[index] + Ms1Rt[index + 1]);
 			return new[] {min, max};
 		}
 
-		public float[] GetMs2TimeSpan(int index) {
+		public double[] GetMs2TimeSpan(int index) {
 			if (index < 0) {
-				return new float[] {0, 0};
+				return new double[] {0, 0};
 			}
-			float min = index <= 0 ? StartTimeMs2 : 0.5f * (Ms2Rt[index] + Ms2Rt[index - 1]);
-			float max = index >= Ms2Count - 1 ? EndTimeMs2 : 0.5f * (Ms2Rt[index] + Ms2Rt[index + 1]);
+			double min = index <= 0 ? StartTimeMs2 : 0.5f * (Ms2Rt[index] + Ms2Rt[index - 1]);
+			double max = index >= Ms2Count - 1 ? EndTimeMs2 : 0.5f * (Ms2Rt[index] + Ms2Rt[index + 1]);
 			return new[] {min, max};
 		}
 
-		public int GetMs1IndexFromRt(float rt) {
-			if (float.IsNaN(rt) || float.IsInfinity(rt)) {
+		public int GetMs1IndexFromRt(double rt) {
+			if (double.IsNaN(rt) || double.IsInfinity(rt)) {
 				return -1;
 			}
 			if (Ms1Rt.Length == 0) {
@@ -386,7 +386,7 @@ namespace BaseLibS.Ms {
 			if (rt >= Ms1Rt[Ms1Rt.Length - 1]) {
 				return Ms1Rt.Length - 1;
 			}
-			int a = Array.BinarySearch(Ms1Rt, rt);
+			int a = Array.BinarySearch(Ms1Rt, (float)rt);
 			if (a >= 0) {
 				return a;
 			}
@@ -628,7 +628,7 @@ namespace BaseLibS.Ms {
 			if (!ms1HasProfile[index]) {
 				return 0;
 			}
-			GetMs1MassRange(index, out double min, out double max);
+			GetMs1MassRange(index, out double min, out double _);
 			for (int i = 0; i < massRangesMin.Length; i++) {
 				if (min == massRangesMin[i]) {
 					return (byte) i;
@@ -637,7 +637,7 @@ namespace BaseLibS.Ms {
 			return byte.MaxValue;
 		}
 
-		public List<int> GetMs2InRectangle(double minMz, double maxMz, float minRt, float maxRt, double ms2PrecShift) {
+		public List<int> GetMs2InRectangle(double minMz, double maxMz, double minRt, double maxRt, double ms2PrecShift) {
 			List<int> result = new List<int>();
 			for (int i = 0; i < Ms2Count; i++) {
 				double t = GetMs2Time(i);
@@ -1152,12 +1152,12 @@ namespace BaseLibS.Ms {
 			bool[] values = new bool[rtCount];
 			for (int i = 0; i < rtCount; i++) {
 				double rt = minRt + rtStep * i;
-				int index = GetMs1IndexFromRt((float) rt);
+				int index = GetMs1IndexFromRt(rt);
 				if (index == -1) {
 					values[i] = false;
 				} else {
-					int i1 = GetMs1CeilIndexFromRt((float) rt);
-					int i2 = GetMs1FloorIndexFromRt((float) (rt + rtStep));
+					int i1 = GetMs1CeilIndexFromRt(rt);
+					int i2 = GetMs1FloorIndexFromRt((rt + rtStep));
 					if (i1 >= i2) {
 						values[i] = index == selectedMs1Index;
 					} else {
@@ -1180,8 +1180,8 @@ namespace BaseLibS.Ms {
 				if (index == -1) {
 					values[i] = false;
 				} else {
-					int i1 = GetMs2CeilIndexFromRt((float) rt);
-					int i2 = GetMs2FloorIndexFromRt((float) (rt + rtStep));
+					int i1 = GetMs2CeilIndexFromRt(rt);
+					int i2 = GetMs2FloorIndexFromRt((rt + rtStep));
 					if (i1 >= i2) {
 						values[i] = index == selectedMs2Index;
 					} else {

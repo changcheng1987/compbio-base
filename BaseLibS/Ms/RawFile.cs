@@ -13,7 +13,7 @@ namespace BaseLibS.Ms{
 		/// <summary>
 		/// Counter incremented when format used for index files is changed, to avoid using stale index files.
 		/// </summary>
-		private const int indexVersion = 22;
+		private const int indexVersion = 23;
 		/// <summary>
 		/// Backing field to the Path property.
 		/// </summary>
@@ -91,13 +91,13 @@ namespace BaseLibS.Ms{
 		public virtual PasefPrecursorInfo GetPasefPrecursorInfo(int index) {
 			return null;
 		}
-		public float StartTime => Math.Min(posLayer.StartTime, negLayer.StartTime);
-		public float EndTime => Math.Max(posLayer.EndTime, negLayer.EndTime);
+		public double StartTime => Math.Min(posLayer.StartTime, negLayer.StartTime);
+		public double EndTime => Math.Max(posLayer.EndTime, negLayer.EndTime);
 		public double Ms1MassMin => Math.Min(posLayer.Ms1MassMin, negLayer.Ms1MassMin);
 		public double Ms1MassMax => Math.Max(posLayer.Ms1MassMax, negLayer.Ms1MassMax);
 		public double Ms2MassMin => Math.Min(posLayer.Ms2MassMin, negLayer.Ms2MassMin);
 		public double Ms2MassMax => Math.Max(posLayer.Ms2MassMax, negLayer.Ms2MassMax);
-		public float MaxIntensity => Math.Max(posLayer.MaxIntensity, negLayer.MaxIntensity);
+		public double MaxIntensity => Math.Max(posLayer.MaxIntensity, negLayer.MaxIntensity);
 		protected internal abstract void GetSpectrum(int scanNumberMin, int scanNumberMax, int imsIndexMin, int imsIndexMax,
 			bool readCentroids, out double[] masses, out double[] intensities, double resolution, double mzMin, double mzMax);
 		protected internal void GetSpectrum(int scanNumber, bool readCentroids, out double[] masses, out double[] intensities){
