@@ -10,23 +10,23 @@
 		public bool positiveIonMode;
 		public double min;  // minimum m/z
         public double max;  // minimum m/z
-		public float agcFill;
-		public float ionInjectionTime;
-		public float basepeakIntensity;
-		public float elapsedTime;
+		public double agcFill;
+		public double ionInjectionTime;
+		public double basepeakIntensity;
+		public double elapsedTime;
 		public double ms2MonoMz;
 		public double ms2ParentMz;
 		public double ms3ParentMz;
 		public FragmentationTypeEnum ms2FragType;
-		public float tic;  // total ion current
-		public float rt;  // retention time
+		public double tic;  // total ion current
+		public double rt;  // retention time
 		public int ionMobilityIndex;
 		public double ms2IsolationMin;
 		public double ms2IsolationMax;
         public MassAnalyzerEnum analyzer;
-		public float resolution;
-		public float summations;
-		public float energy;
+		public double resolution;
+		public double summations;
+		public double energy;
 		public double intenseCompFactor;
 		public double emIntenseComp;
 		public double rawOvFtT;

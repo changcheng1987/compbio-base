@@ -38,7 +38,7 @@ namespace BaseLibS.Ms{
 			posLayer = new RawFileLayer(this, true);
 			negLayer = new RawFileLayer(this, false);
 		}
-		protected abstract float MaximumIntensity { get; }
+		protected abstract double MaximumIntensity { get; }
 		/// <summary>
 		/// In the implementations, several methods start with the block if (!preInitialized){ PreInit(); }, 
 		/// and this method normally ends with the statement preInitialized = true;

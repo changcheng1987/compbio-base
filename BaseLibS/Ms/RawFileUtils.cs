@@ -52,7 +52,7 @@ namespace BaseLibS.Ms {
 				default: throw new Exception("Never get here.");
 			}
 		}
-		public static bool IsMonotoneIncreasing(float[] c, out int startPos) {
+		public static bool IsMonotoneIncreasing(double[] c, out int startPos) {
 			for (int i = 0; i < c.Length - 1; i++) {
 				if (c[i] > c[i + 1]) {
 					startPos = i + 1;

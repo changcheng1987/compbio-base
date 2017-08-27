@@ -4,7 +4,6 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
-using System.Globalization;
 using BaseLibS.Ms;
 using BaseLibS.Num;
 using BaseLibS.Util;
@@ -72,7 +71,7 @@ namespace PluginRawMzXml {
 			public int PeaksCount { get; set; }
 
 			/// <summary>The retention time at which this scan was recorded.</summary>
-			public float RetentionTime { get; set; }
+			public double RetentionTime { get; set; }
 
 			/// <summary>The low m/z value.</summary>
 			public double LowMz { get; set; }
@@ -84,10 +83,10 @@ namespace PluginRawMzXml {
 			public double BasePeakMz { get; set; }
 
 			/// <summary>The intensity value for the most intense peak.</summary>
-			public float BasePeakIntensity { get; set; }
+			public double BasePeakIntensity { get; set; }
 
 			/// <summary>The summed intensity.</summary>
-			public float TotalIonCurrent { get; set; }
+			public double TotalIonCurrent { get; set; }
 
 			/// <summary>The type of scan</summary>
 			public string ScanType { get; set; }
@@ -108,10 +107,10 @@ namespace PluginRawMzXml {
 			public int PrecursorCharge { get; set; }
 
 			/// <summary>Tandem-MS specific: the intensity of the precursor.</summary>
-			public float PrecursorIntensity { get; set; }
+			public double PrecursorIntensity { get; set; }
 
 			/// <summary>Tandem-MS specific: the collision energy used.</summary>
-			public float CollisionEnergy { get; set; }
+			public double CollisionEnergy { get; set; }
 
 			/// <summary>Tandem-MS specific: the fragmentation type used.</summary>
 			public FragmentationTypeEnum FragmentationType { get; set; }
@@ -233,13 +232,13 @@ namespace PluginRawMzXml {
 					scanHeader.LowMz = Parser.Double(xmlReader.GetAttribute("lowMz"));
 					scanHeader.HighMz = Parser.Double(xmlReader.GetAttribute("highMz"));
 					scanHeader.BasePeakMz = Parser.Double(xmlReader.GetAttribute("basePeakMz"));
-					scanHeader.BasePeakIntensity = Parser.Float(xmlReader.GetAttribute("basePeakIntensity"));
-					scanHeader.TotalIonCurrent = Parser.Float(xmlReader.GetAttribute("totIonCurrent"));
+					scanHeader.BasePeakIntensity = Parser.Double(xmlReader.GetAttribute("basePeakIntensity"));
+					scanHeader.TotalIonCurrent = Parser.Double(xmlReader.GetAttribute("totIonCurrent"));
 					string str = xmlReader.GetAttribute("retentionTime");
-					scanHeader.RetentionTime = Parser.Float(str.Substring(2, str.IndexOf('S') - 2)) / 60.0f;
+					scanHeader.RetentionTime = Parser.Double(str.Substring(2, str.IndexOf('S') - 2)) / 60.0f;
 					str = xmlReader.GetAttribute("collisionEnergy");
 					if (str != null) {
-						scanHeader.CollisionEnergy = Parser.Float(str);
+						scanHeader.CollisionEnergy = Parser.Double(str);
 					}
 					scanHeader.ScanType = xmlReader.GetAttribute("scanType");
 					scanHeader.Polarity = xmlReader.GetAttribute("polarity");
@@ -252,7 +251,7 @@ namespace PluginRawMzXml {
 					// hack
 					Parser.TryInt(xmlReader.GetAttribute("precursorCharge"), out int precursorCharge);
 					scanHeader.PrecursorCharge = precursorCharge;
-					Parser.TryFloat(xmlReader.GetAttribute("precursorIntensity"), out float precursorIntensity);
+					Parser.TryDouble(xmlReader.GetAttribute("precursorIntensity"), out double precursorIntensity);
 					scanHeader.PrecursorIntensity = precursorIntensity;
 					string fragmentation = xmlReader.GetAttribute("activationMethod");
 					if (fragmentation.Equals("CID")) {
@@ -305,9 +304,7 @@ namespace PluginRawMzXml {
 				}
 				compressionType = xmlReader.GetAttribute("compressionType");
 				string sCompressedLen = xmlReader.GetAttribute("compressedLen");
-				compressedLength = string.IsNullOrEmpty(sCompressedLen)
-					? -1
-					: Parser.Int(sCompressedLen);
+				compressedLength = string.IsNullOrEmpty(sCompressedLen) ? -1 : Parser.Int(sCompressedLen);
 				data = xmlReader.ReadElementContentAsString();
 			}
 			if (byteOrder == null || contentType == null || data == null) {

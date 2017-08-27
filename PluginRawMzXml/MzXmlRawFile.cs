@@ -7,7 +7,7 @@ namespace PluginRawMzXml {
 	/// </summary>
 	public class MzXmlRawFile : RawFile {
 		private MzXml mzXml;
-		private float maxIntensity;
+		private double maxIntensity;
 		public override string Suffix => ".mzxml";
 		public override string Name => "MzXml file";
 		public override MsInstrument DefaultInstrument => null;
@@ -49,7 +49,7 @@ namespace PluginRawMzXml {
 				return mzXml.GetLastSpectrumNumber();
 			}
 		}
-		protected override float MaximumIntensity => maxIntensity;
+		protected override double MaximumIntensity => maxIntensity;
 		protected override void GetSpectrum(int scanNumberMin, int scanNumberMax, int imsIndexMin, int imsIndexMax,
 			bool readCentroids, out double[] masses, out double[] intensities, double resolution, double mzMin, double mzMax) {
 			if (!preInitialized) {
@@ -61,7 +61,7 @@ namespace PluginRawMzXml {
 			intensities = new double[length];
 			for (int i = 0; i < length; ++i) {
 				masses[i] = spectrum[0, i];
-				intensities[i] = (float) spectrum[1, i];
+				intensities[i] = spectrum[1, i];
 			}
 		}
 		protected override ScanInfo GetInfoForScanNumber(int scanNumber) {
