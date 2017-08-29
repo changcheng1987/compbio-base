@@ -171,14 +171,14 @@ namespace BaseLib.Forms{
 			FireColorChanged();
 		}
 
-		public void AdjustMax(float[,] values){
+		public void AdjustMax(double[,] values){
 			if (values == null) {
 				return;
 			}
-			float max = 0;
+		    double max = 0;
 			for (int i = 0; i < values.GetLength(0); i++){
 				for (int j = 0; j < values.GetLength(1); j++){
-					float v = IsLogarithmic ? (float) Math.Log(Math.Max(1, values[i, j])) : values[i, j];
+				    double v = IsLogarithmic ? Math.Log(Math.Max(1, values[i, j])) : values[i, j];
 					if (v > max){
 						max = v;
 					}
@@ -187,15 +187,15 @@ namespace BaseLib.Forms{
 			Max = max;
 		}
 
-		public void Adjust(float[,] values){
+		public void Adjust(double[,] values){
 			if (values == null) {
 				return;
 			}
-			float min = float.MaxValue;
-			float max = -float.MaxValue;
+		    double min = double.MaxValue;
+		    double max = -double.MaxValue;
 			for (int i = 0; i < values.GetLength(0); i++){
 				for (int j = 0; j < values.GetLength(1); j++){
-					float v = IsLogarithmic ? (float) Math.Log(Math.Max(1, values[i, j])) : values[i, j];
+				    double v = IsLogarithmic ? Math.Log(Math.Max(1, values[i, j])) : values[i, j];
 					if (v < min){
 						min = v;
 					}
