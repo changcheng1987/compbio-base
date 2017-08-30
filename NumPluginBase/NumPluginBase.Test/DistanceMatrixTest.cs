@@ -1,5 +1,4 @@
-﻿using System;
-using BaseLibS.Num.Matrix;
+﻿using BaseLibS.Num.Matrix;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NumPluginBase.Distance;
 

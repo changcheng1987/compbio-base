@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using BaseLibS.Parse.Uniprot;
 using BaseLibS.Util;

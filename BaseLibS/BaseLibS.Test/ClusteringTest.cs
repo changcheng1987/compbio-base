@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Runtime.Remoting;
+﻿using System.Linq;
 using BaseLibS.Api;
 using BaseLibS.Num.Cluster;
 using BaseLibS.Num.Matrix;

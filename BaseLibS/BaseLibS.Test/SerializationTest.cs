@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Permissions;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 using BaseLibS.Param;

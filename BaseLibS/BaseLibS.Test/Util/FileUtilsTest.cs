@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using BaseLibS.Util;
+﻿using BaseLibS.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BaseLibS.Test.Util {

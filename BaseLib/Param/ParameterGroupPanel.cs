@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using BaseLib.Forms;
 using BaseLibS.Param;
 using BaseLibS.Util;
 

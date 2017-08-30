@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Xml;
-using System.Xml.Schema;
-using System.Xml.Serialization;
 
 namespace BaseLibS.Param{
 	[Serializable]

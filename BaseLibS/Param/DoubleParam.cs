@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using BaseLibS.Util;
 
 namespace BaseLibS.Param{
