@@ -311,8 +311,8 @@ namespace BaseLibS.Num {
 			long n = 0;
 			for (int i = 0; i < n0; i++) {
 				for (int j = 0; j < n1; j++) {
-					float v = x[i, j];
-					if (!float.IsNaN(v) && !float.IsInfinity(v)) {
+					double v = x[i, j];
+					if (!double.IsNaN(v) && !double.IsInfinity(v)) {
 						sum += v;
 						n++;
 					}
@@ -451,7 +451,7 @@ namespace BaseLibS.Num {
 			float[,] result = new float[floats.RowCount, floats.ColumnCount];
 			for (int i = 0; i < result.GetLength(0); i++) {
 				for (int j = 0; j < result.GetLength(1); j++) {
-					result[i, j] = floats[i, j];
+					result[i, j] = (float)floats[i, j];
 				}
 			}
 			return result;

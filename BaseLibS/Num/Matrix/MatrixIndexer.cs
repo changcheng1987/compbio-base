@@ -12,16 +12,17 @@ namespace BaseLibS.Num.Matrix{
 		/// <summary>
 		/// uncheked
 		/// </summary>
-		public abstract float this[int i, int j] { get; set; }
+		public abstract double this[int i, int j] { get; set; }
 		/// <summary>
 		/// checked
 		/// </summary>
-		public abstract float Get(int i, int j);
+		public abstract double Get(int i, int j);
 		/// <summary>
 		/// checked
 		/// </summary>
-		public abstract void Set(int i, int j, float value);
+		public abstract void Set(int i, int j, double value);
 		public abstract void Set(float[,] value);
+		public abstract void Set(double[,] value);
 		public abstract BaseVector GetRow(int row);
 		public abstract BaseVector GetColumn(int col);
 		public abstract MatrixIndexer ExtractRows(IList<int> rows);

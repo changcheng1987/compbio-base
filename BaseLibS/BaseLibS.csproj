@@ -215,6 +215,7 @@
     <Compile Include="Num\Learning\RegressionWithRanking.cs" />
     <Compile Include="Num\Learning\RegressionWithRankingMultiSizes.cs" />
     <Compile Include="Num\Matrix\BoolMatrixIndexer.cs" />
+    <Compile Include="Num\Matrix\DoubleMatrixIndexer.cs" />
     <Compile Include="Num\Matrix\IBoolMatrixIndexer.cs" />
     <Compile Include="Api\ClassificationFeatureRankingMethod.cs" />
     <Compile Include="Api\ClassificationMethod.cs" />

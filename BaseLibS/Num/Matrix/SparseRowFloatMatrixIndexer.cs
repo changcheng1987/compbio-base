@@ -23,21 +23,41 @@ namespace BaseLibS.Num.Matrix{
 			}
 		}
 
-		public override void Set(float[,] value){
+		public override void Set(float[,] value) {
 			ncolumns = value.GetLength(1);
 			vals = new SparseFloatVector[value.GetLength(0)];
-			for (int i = 0; i < vals.Length; i++){
+			for (int i = 0; i < vals.Length; i++) {
 				List<int> v = new List<int>();
-				for (int j = 0; j < ncolumns; j++){
-					if (value[i, j] == 0){
+				for (int j = 0; j < ncolumns; j++) {
+					if (value[i, j] == 0) {
 						continue;
 					}
 					v.Add(j);
 				}
 				int[] v1 = v.ToArray();
 				float[] x = new float[v1.Length];
-				for (int j = 0; j < v1.Length; j++){
+				for (int j = 0; j < v1.Length; j++) {
 					x[j] = value[i, v1[j]];
+				}
+				vals[i] = new SparseFloatVector(v1, x, ncolumns);
+			}
+		}
+
+		public override void Set(double[,] value) {
+			ncolumns = value.GetLength(1);
+			vals = new SparseFloatVector[value.GetLength(0)];
+			for (int i = 0; i < vals.Length; i++) {
+				List<int> v = new List<int>();
+				for (int j = 0; j < ncolumns; j++) {
+					if (value[i, j] == 0) {
+						continue;
+					}
+					v.Add(j);
+				}
+				int[] v1 = v.ToArray();
+				float[] x = new float[v1.Length];
+				for (int j = 0; j < v1.Length; j++) {
+					x[j] = (float)value[i, v1[j]];
 				}
 				vals[i] = new SparseFloatVector(v1, x, ncolumns);
 			}
@@ -118,16 +138,16 @@ namespace BaseLibS.Num.Matrix{
 		public override int RowCount => vals.Length;
 		public override int ColumnCount => ncolumns;
 
-		public override float this[int i, int j]{
-			get => (float) vals[i][j];
+		public override double this[int i, int j]{
+			get => vals[i][j];
 			set => vals[i][j] = value;
 		}
 
-		public override float Get(int i, int j){
-			return (float)vals[i][j];
+		public override double Get(int i, int j){
+			return vals[i][j];
 		}
 
-		public override void Set(int i, int j, float value){
+		public override void Set(int i, int j, double value){
 			vals[i][j] = value;
 		}
 
