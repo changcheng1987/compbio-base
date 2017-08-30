@@ -37,9 +37,9 @@ namespace BaseLibS.Num.Vector{
 		}
 
 		public override BaseVector Copy(){
-			float[] newValues = new float[Length];
+			double[] newValues = new double[Length];
 			Array.Copy(values, newValues, Length);
-			return new FloatArrayVector(newValues);
+			return new DoubleArrayVector(newValues);
 		}
 
 		public override double this[int i]{

@@ -475,7 +475,7 @@ namespace BaseLibS.Num.Cluster{
 		private static float[,] DistanceMatrix(MatrixIndexer data, IDistance distance, MatrixAccess access){
 			int nrows = data.RowCount;
 			int ncols = data.ColumnCount;
-			int nelements = (access == MatrixAccess.Rows) ? nrows : ncols;
+			int nelements = access == MatrixAccess.Rows ? nrows : ncols;
 			float[,] result = new float[nelements, nelements];
 			for (int i = 0; i < nelements; i++){
 				for (int j = 0; j < i; j++){
