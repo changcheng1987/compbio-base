@@ -28,7 +28,7 @@ namespace BaseLibS.Num.Cluster{
 			if (nelements < 2){
 				return new HierarchicalClusterNode[0];
 			}
-			float[,] distMatrix = DistanceMatrix(data, distance, access);
+			MatrixIndexer distMatrix = DistanceMatrix(data, distance, access);
 			return TreeCluster(distMatrix, linkage, preserveOrder, periodic, nthreads, progress);
 		}
 
@@ -42,7 +42,7 @@ namespace BaseLibS.Num.Cluster{
 		/// <param name="nthreads"></param>
 		/// <param name="progress"></param>
 		/// <returns>An array of cluster nodes defining the resulting tree.</returns>
-		public HierarchicalClusterNode[] TreeCluster(float[,] distMatrix, HierarchicalClusterLinkage linkage,
+		public HierarchicalClusterNode[] TreeCluster(MatrixIndexer distMatrix, HierarchicalClusterLinkage linkage,
 			bool preserveOrder, bool periodic, int nthreads, Action<int> progress){
 			double avDist = CalcAverageDistance(distMatrix);
 			switch (linkage){
@@ -59,17 +59,17 @@ namespace BaseLibS.Num.Cluster{
 						? SingleLinkageClusterLinear(distMatrix, periodic)
 						: SingleLinkageCluster(distMatrix, nthreads, avDist);
 				default:
-					throw new NotImplementedException($"Linkage method {linkage} not implemented");
+					throw new ArgumentException();
 			}
 		}
 
-		private static double CalcAverageDistance(float[,] distMatrix){
+		private static double CalcAverageDistance(MatrixIndexer distMatrix){
 			double result = 0;
 			double count = 0;
-			for (int i = 0; i < distMatrix.GetLength(0); i++){
+			for (int i = 0; i < distMatrix.RowCount; i++){
 				for (int j = 0; j < i; j++){
-					float x = distMatrix[i, j];
-					if (!float.IsNaN(x) && !float.IsInfinity(x)){
+					double x = distMatrix[i, j];
+					if (!double.IsNaN(x) && !double.IsInfinity(x)){
 						result += x;
 						count++;
 					}
@@ -78,8 +78,8 @@ namespace BaseLibS.Num.Cluster{
 			return result/count;
 		}
 
-		private static HierarchicalClusterNode[] AverageLinkageClusterLinear(float[,] matrix, bool periodic){
-			int nelements = matrix.GetLength(0);
+		private static HierarchicalClusterNode[] AverageLinkageClusterLinear(MatrixIndexer matrix, bool periodic){
+			int nelements = matrix.RowCount;
 			int[] clusterid = new int[nelements];
 			int[] number = new int[nelements];
 			int[] position = new int[nelements];
@@ -126,8 +126,8 @@ namespace BaseLibS.Num.Cluster{
 			return result;
 		}
 
-		private static HierarchicalClusterNode[] MaximumLinkageClusterLinear(float[,] matrix, bool periodic){
-			int nelements = matrix.GetLength(0);
+		private static HierarchicalClusterNode[] MaximumLinkageClusterLinear(MatrixIndexer matrix, bool periodic){
+			int nelements = matrix.RowCount;
 			int[] clusterid = new int[nelements];
 			int[] position = new int[nelements];
 			HierarchicalClusterNode[] result = ArrayUtils.FillArray(i => new HierarchicalClusterNode(), nelements - 1);
@@ -170,8 +170,8 @@ namespace BaseLibS.Num.Cluster{
 			return result;
 		}
 
-		private static HierarchicalClusterNode[] SingleLinkageClusterLinear(float[,] matrix, bool periodic){
-			int nelements = matrix.GetLength(0);
+		private static HierarchicalClusterNode[] SingleLinkageClusterLinear(MatrixIndexer matrix, bool periodic){
+			int nelements = matrix.RowCount;
 			int[] clusterid = new int[nelements];
 			int[] position = new int[nelements];
 			HierarchicalClusterNode[] result = ArrayUtils.FillArray(i => new HierarchicalClusterNode(), nelements - 1);
@@ -214,8 +214,8 @@ namespace BaseLibS.Num.Cluster{
 			return result;
 		}
 
-		private static HierarchicalClusterNode[] SingleLinkageCluster(float[,] distMatrix, int nthreads, double defaultDist){
-			int nelements = distMatrix.GetLength(0);
+		private static HierarchicalClusterNode[] SingleLinkageCluster(MatrixIndexer distMatrix, int nthreads, double defaultDist){
+			int nelements = distMatrix.RowCount;
 			int[] clusterid = new int[nelements];
 			HierarchicalClusterNode[] result = ArrayUtils.FillArray(i => new HierarchicalClusterNode(), nelements - 1);
 			for (int j = 0; j < nelements; j++){
@@ -246,8 +246,8 @@ namespace BaseLibS.Num.Cluster{
 			return result;
 		}
 
-		private static HierarchicalClusterNode[] MaximumLinkageCluster(float[,] distMatrix, int nthreads, double defaultDist){
-			int nelements = distMatrix.GetLength(0);
+		private static HierarchicalClusterNode[] MaximumLinkageCluster(MatrixIndexer distMatrix, int nthreads, double defaultDist){
+			int nelements = distMatrix.RowCount;
 			int[] clusterid = new int[nelements];
 			HierarchicalClusterNode[] result = ArrayUtils.FillArray(i => new HierarchicalClusterNode(), nelements - 1);
 			for (int j = 0; j < nelements; j++){
@@ -282,28 +282,28 @@ namespace BaseLibS.Num.Cluster{
 			return result;
 		}
 
-		private static float Max(float m1, float m2){
-			if (float.IsNaN(m1) || float.IsInfinity(m1)){
+		private static double Max(double m1, double m2){
+			if (double.IsNaN(m1) || double.IsInfinity(m1)){
 				return m2;
 			}
-			if (float.IsNaN(m2) || float.IsInfinity(m2)){
+			if (double.IsNaN(m2) || double.IsInfinity(m2)){
 				return m1;
 			}
 			return Math.Max(m1, m2);
 		}
 
-		private static float Min(float m1, float m2){
-			if (float.IsNaN(m1) || float.IsInfinity(m1)){
+		private static double Min(double m1, double m2){
+			if (double.IsNaN(m1) || double.IsInfinity(m1)){
 				return m2;
 			}
-			if (float.IsNaN(m2) || float.IsInfinity(m2)){
+			if (double.IsNaN(m2) || double.IsInfinity(m2)){
 				return m1;
 			}
 			return Math.Min(m1, m2);
 		}
 
-		private static HierarchicalClusterNode[] AverageLinkageCluster(float[,] distMatrix, int nthreads, double defaultDist){
-			int nelements = distMatrix.GetLength(0);
+		private static HierarchicalClusterNode[] AverageLinkageCluster(MatrixIndexer distMatrix, int nthreads, double defaultDist){
+			int nelements = distMatrix.RowCount;
 			int[] clusterid = new int[nelements];
 			int[] number = new int[nelements];
 			HierarchicalClusterNode[] result = ArrayUtils.FillArray(i => new HierarchicalClusterNode(), nelements - 1);
@@ -348,17 +348,17 @@ namespace BaseLibS.Num.Cluster{
 			return result;
 		}
 
-		private static float Av(float m1, int n1, float m2, int n2){
-			if (float.IsNaN(m1) || float.IsInfinity(m1)){
+		private static double Av(double m1, int n1, double m2, int n2){
+			if (double.IsNaN(m1) || double.IsInfinity(m1)){
 				return m2;
 			}
-			if (float.IsNaN(m2) || float.IsInfinity(m2)){
+			if (double.IsNaN(m2) || double.IsInfinity(m2)){
 				return m1;
 			}
 			return (m1*n1 + m2*n2)/(n1 + n2);
 		}
 
-		private static double FindClosestPair(int n, float[,] distMatrix, out int ip, out int jp, int nthreads, double defaultDist){
+		private static double FindClosestPair(int n, MatrixIndexer distMatrix, out int ip, out int jp, int nthreads, double defaultDist){
 			if (nthreads <= 1 || n <= 1000){
 				return FindClosestPair(0, n, distMatrix, out ip, out jp, defaultDist);
 			}
@@ -400,7 +400,7 @@ namespace BaseLibS.Num.Cluster{
 			return distance;
 		}
 
-		private static double FindClosestPair(int nmin, int nmax, float[,] matrix, out int ip, out int jp, double defaultDist){
+		private static double FindClosestPair(int nmin, int nmax, MatrixIndexer matrix, out int ip, out int jp, double defaultDist){
 			ip = -1;
 			jp = -1;
 			double distance = double.MaxValue;
@@ -419,7 +419,7 @@ namespace BaseLibS.Num.Cluster{
 			return distance;
 		}
 
-		private static double FindClosestPairLinear(int n, float[,] matrix, out int ip, out int jp, IList<int> position,
+		private static double FindClosestPairLinear(int n, MatrixIndexer matrix, out int ip, out int jp, IList<int> position,
 			bool periodic, out bool reverse, out bool carryOver){
 			ip = -1;
 			jp = -1;
@@ -472,7 +472,7 @@ namespace BaseLibS.Num.Cluster{
 			return false;
 		}
 
-		private static float[,] DistanceMatrix(MatrixIndexer data, IDistance distance, MatrixAccess access){
+		private static MatrixIndexer DistanceMatrix(MatrixIndexer data, IDistance distance, MatrixAccess access){
 			int nrows = data.RowCount;
 			int ncols = data.ColumnCount;
 			int nelements = access == MatrixAccess.Rows ? nrows : ncols;
@@ -482,7 +482,7 @@ namespace BaseLibS.Num.Cluster{
 					result[i, j] = (float) distance.Get(GetVector(data, i, access), GetVector(data, j, access));
 				}
 			}
-			return result;
+			return new FloatMatrixIndexer(result);
 		}
 
 		private static BaseVector GetVector(MatrixIndexer data, int index, MatrixAccess access){
@@ -582,7 +582,7 @@ namespace BaseLibS.Num.Cluster{
 			} else{
 				KmeansClustering.GenerateClusters(data.Transpose(), nmeans, maxIter, restarts, progress, out c, out inds);
 			}
-			float[,] distMatrix = DistanceMatrix(new FloatMatrixIndexer(c), distance, MatrixAccess.Rows);
+			MatrixIndexer distMatrix = DistanceMatrix(new FloatMatrixIndexer(c), distance, MatrixAccess.Rows);
 			HierarchicalClusterNode[] nodes = TreeCluster(distMatrix, linkage, preserveOrder, periodic, nthreads, progress);
 			RearrangeClusters(inds, c.GetLength(0), out Dictionary<int, int[]> clusters, out Dictionary<int, int> singletons);
 			HierarchicalClusterNode[] newNodes = new HierarchicalClusterNode[nelements - 1];
