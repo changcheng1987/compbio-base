@@ -477,6 +477,42 @@ namespace BaseLibS.Util {
 			}
 		}
 
+		public static string SelectAll {
+			get {
+				switch (TwoLettName) {
+					case arabic: return "اختر الكل";
+					case bulgarian: return "Избери всички";
+					case chinese: return "全选";
+					case czech: return "Vybrat vše";
+					case danish: return "Vælg alle";
+					case dutch: return "Selecteer alles";
+					case estonian: return "Vali kõik";
+					case finnish: return "Valitse kaikki";
+					case french: return "Tout sélectionner";
+					case german: return "Alles auswählen";
+					case greek: return "Επιλογή όλων";
+					case hebrew: return "בחר הכל";
+					case hindi: return "सभी का चयन करे";
+					case italian: return "Seleziona tutto";
+					case japanese: return "すべて選択";
+					case korean: return "모두 선택";
+					case latvian: return "Izvēlēties visus";
+					case lithuanian: return "Pasirinkti viską";
+					case norwegian: return "Velg alle";
+					case persian: return "انتخاب همه";
+					case polish: return "Zaznacz wszystko";
+					case portuguese: return "Selecionar tudo";
+					case romanian: return "Selectează tot";
+					case russian: return "Выбрать все";
+					case spanish: return "Seleccionar todo";
+					case swedish: return "Välj alla";
+					case tamil: return "அனைத்தையும் தெரிவுசெய்";
+					case turkish: return "Hepsini seç";
+					default: return "Select all";
+				}
+			}
+		}
+
 		public static string Selected {
 			get {
 				switch (TwoLettName) {

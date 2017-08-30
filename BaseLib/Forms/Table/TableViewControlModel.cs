@@ -607,7 +607,7 @@ namespace BaseLib.Forms.Table {
 			control.InitContextMenu();
 			control.AddContextMenuItem(Loc.FindDots, (sender, args) => { Find(); });
 			if (sortable) {
-				control.AddContextMenuItem("Select all", (sender, args) => {
+				control.AddContextMenuItem(Loc.SelectAll, (sender, args) => {
 					SelectAll();
 					control.Invalidate(true);
 				});
@@ -1252,20 +1252,6 @@ namespace BaseLib.Forms.Table {
 				writer.WriteLine(line.ToString());
 			}
 			writer.Close();
-		}
-
-		private int[] GetUnselectedRows() {
-			if (model == null) {
-				return new int[0];
-			}
-			CheckSizes();
-			List<int> result = new List<int>();
-			for (int i = 0; i < model.RowCount; i++) {
-				if (!modelRowSel[i]) {
-					result.Add(i);
-				}
-			}
-			return result.ToArray();
 		}
 
 		private void RenderCell(IGraphics g, bool selected, int row, int col, int width, int x1, int y1) {
