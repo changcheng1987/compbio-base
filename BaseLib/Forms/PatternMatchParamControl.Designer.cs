@@ -1,6 +1,6 @@
 ﻿namespace BaseLib.Forms
 {
-    partial class RegexMatchParamControl
+    partial class PatternMatchParamControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -72,7 +72,7 @@
             this.Controls.Add(this.RegexLabel);
             this.Controls.Add(this.RegexTextBox);
             this.Controls.Add(this.PreviewDataGridView);
-            this.Name = "RegexMatchParamControl";
+            this.Name = "PatternMatchParamControl";
             this.Size = new System.Drawing.Size(291, 376);
             this.Load += new System.EventHandler(this.RegexMatchParamControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PreviewDataGridView)).EndInit();

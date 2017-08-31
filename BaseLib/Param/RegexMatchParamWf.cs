@@ -7,7 +7,7 @@ using BaseLibS.Param;
 namespace BaseLib.Param{
 	[Serializable]
 	public class RegexMatchParamWf : RegexMatchParam{
-		[NonSerialized] private RegexMatchParamControl control;
+		[NonSerialized] private PatternMatchParamControl control;
 		public RegexMatchParamWf(string name, Regex value, List<string> replacement) : base(name, value, replacement){}
 		public override ParamType Type => ParamType.WinForms;
 
@@ -23,7 +23,7 @@ namespace BaseLib.Param{
 		public override float Height => 200;
 
 		public override object CreateControl(){
-			control = new RegexMatchParamControl(Value, Previews);
+			control = new PatternMatchParamControl(Value, Previews, pattern => new Regex(pattern));
 			return control;
 		}
 	}
