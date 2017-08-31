@@ -26,10 +26,6 @@ namespace BaseLibS.Num.Matrix{
 			return vals == null ? new FloatMatrixIndexer() : new FloatMatrixIndexer(ArrayUtils.Transpose(vals));
 		}
 
-		public override void Set(float[,] value) {
-			vals = value;
-		}
-
 		public override void Set(double[,] value) {
 			vals = new float[value.GetLength(0),value.GetLength(1)];
 			for (int i = 0; i < value.GetLength(0); i++) {

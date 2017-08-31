@@ -13,7 +13,7 @@ namespace BaseLibS.Num.Learning{
 			this.featureInds = featureInds;
 		}
 
-		public override float Predict(BaseVector x){
+		public override double Predict(BaseVector x){
 			return regressionModel.Predict(x.SubArray(featureInds));
 		}
 	}

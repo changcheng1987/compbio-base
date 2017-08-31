@@ -24,7 +24,7 @@ namespace BaseLibS.Num.Learning{
 			this.rankerParam = rankerParam;
 		}
 
-		public RegressionModel[] Train(BaseVector[] x, float[] y, IGroupDataProvider data){
+		public RegressionModel[] Train(BaseVector[] x, double[] y, IGroupDataProvider data){
 			int[] o = ranker.Rank(x, y, rankerParam, data, 1);
 			int[] sizes = GetSizes(x[0].Length, reductionFactor, maxFeatures);
 			RegressionModel[] result = new RegressionModel[sizes.Length];

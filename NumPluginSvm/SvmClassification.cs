@@ -71,7 +71,7 @@ namespace NumPluginSvm{
 		}
 
 		private static SvmProblem CreateProblem(IList<BaseVector> x, IList<int[]> y, int index, out bool invert){
-			float[] y1 = new float[y.Count];
+			double[] y1 = new double[y.Count];
 			for (int i = 0; i < y.Count; i++){
 				if (Array.BinarySearch(y[i], index) >= 0){
 					y1[i] = 1;

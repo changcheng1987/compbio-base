@@ -439,6 +439,16 @@ namespace BaseLibS.Num {
 			return result;
 		}
 
+		public static double[,] ToDoubles(float[,] floats) {
+			double[,] result = new double[floats.GetLength(0), floats.GetLength(1)];
+			for (int i = 0; i < result.GetLength(0); i++) {
+				for (int j = 0; j < result.GetLength(1); j++) {
+					result[i, j] = floats[i, j];
+				}
+			}
+			return result;
+		}
+
 		public static float[] ToFloats(BaseVector floats) {
 			float[] result = new float[floats.Length];
 			for (int i = 0; i < result.Length; i++) {
@@ -451,7 +461,7 @@ namespace BaseLibS.Num {
 			float[,] result = new float[floats.RowCount, floats.ColumnCount];
 			for (int i = 0; i < result.GetLength(0); i++) {
 				for (int j = 0; j < result.GetLength(1); j++) {
-					result[i, j] = (float)floats[i, j];
+					result[i, j] = (float) floats[i, j];
 				}
 			}
 			return result;
@@ -1508,7 +1518,7 @@ namespace BaseLibS.Num {
 		public static int[] ToInts(IList<float> doubles) {
 			int[] result = new int[doubles.Count];
 			for (int i = 0; i < result.Length; i++) {
-				result[i] = (int)Math.Round(doubles[i]);
+				result[i] = (int) Math.Round(doubles[i]);
 			}
 			return result;
 		}
@@ -1516,7 +1526,7 @@ namespace BaseLibS.Num {
 		public static int[] ToInts(IList<double> doubles) {
 			int[] result = new int[doubles.Count];
 			for (int i = 0; i < result.Length; i++) {
-				result[i] = (int)Math.Round(doubles[i]);
+				result[i] = (int) Math.Round(doubles[i]);
 			}
 			return result;
 		}
@@ -1664,12 +1674,12 @@ namespace BaseLibS.Num {
 			return -1 - a;
 		}
 
-        /// <summary>
-        /// Reverses the order of the values in the array.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="x"></param>
-		public static void Revert<T>(IList<T> x){
+		/// <summary>
+		/// Reverses the order of the values in the array.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="x"></param>
+		public static void Revert<T>(IList<T> x) {
 			int n = x.Count;
 			for (int i = 0; i < n / 2; i++) {
 				T tmp = x[i];

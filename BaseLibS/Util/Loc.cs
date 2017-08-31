@@ -364,6 +364,7 @@ namespace BaseLibS.Util {
 			get {
 				switch (TwoLettName) {
 					case hebrew: return "מקסימום";
+					case spanish: return "MaxiQuanta";
 					default: return "MaxQuant";
 				}
 			}
@@ -473,6 +474,42 @@ namespace BaseLibS.Util {
 					case tamil: return "தயவுசெய்து உறுதிப்படுத்தவும்...";
 					case turkish: return "Lütfen onaylayın...";
 					default: return "Please confirm...";
+				}
+			}
+		}
+
+		public static string RenameSession {
+			get {
+				switch (TwoLettName) {
+					case arabic: return "...إعادة تسمية الجلسة&";
+					case bulgarian: return "&Преименуване на сесията...";
+					case chinese: return "&重命名会话...";
+					case czech: return "&Přejmenovat relaci...";
+					case danish: return "&Omdøb session...";
+					case dutch: return "&Hernoem de sessie...";
+					case estonian: return "&Nimeta seanss ümber...";
+					case finnish: return "&Nimeä istunto uudelleen...";
+					case french: return "&Renommer la session...";
+					case german: return "&Session umbenennen...";
+					case greek: return "&Μετονομασία περιόδου λειτουργίας...";
+					case hebrew: return "...שנה שם של הפעלה&";
+					case hindi: return "&सत्र का नाम बदलें...";
+					case italian: return "&Rinomina sessione...";
+					case japanese: return "&セッションの名前を変更する...";
+					case korean: return "&세션 이름 바꾸기...";
+					case latvian: return "&Pārdēvēt sesiju...";
+					case lithuanian: return "&Pervadinti sesiją...";
+					case norwegian: return "&Gi nytt navn til økten...";
+					case persian: return "...تغییر نام جلسه&";
+					case polish: return "&Zmień nazwę sesji...";
+					case portuguese: return "&Renomear sessão...";
+					case romanian: return "&Redenumiți sesiunea...";
+					case russian: return "&Переименовать сеанс...";
+					case spanish: return "&Renombrar sesión...";
+					case swedish: return "&Byt namn på session...";
+					case tamil: return "&அமர்வுக்கு மறுபெயரிடு...";
+					case turkish: return "&Oturumu yeniden adlandır...";
+					default: return "&Rename session...";
 				}
 			}
 		}

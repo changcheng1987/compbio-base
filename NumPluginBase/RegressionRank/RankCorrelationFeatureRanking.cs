@@ -7,7 +7,7 @@ using BaseLibS.Param;
 
 namespace NumPluginBase.RegressionRank{
 	public class RankCorrelationFeatureRanking : IRegressionFeatureRankingMethod{
-		public int[] Rank(BaseVector[] x, float[] y, Parameters param, IGroupDataProvider data, int nthreads){
+		public int[] Rank(BaseVector[] x, double[] y, Parameters param, IGroupDataProvider data, int nthreads){
 			int nfeatures = x[0].Length;
 			float[] yr = ArrayUtils.RankF(y);
 			double[] s = new double[nfeatures];

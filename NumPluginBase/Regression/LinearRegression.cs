@@ -2,9 +2,12 @@
 using BaseLibS.Num.Vector;
 using BaseLibS.Param;
 
-namespace NumPluginBase.Regression{
-	public class LinearRegression : IRegressionMethod{
-		public RegressionModel Train(BaseVector[] x, float[] y, Parameters param, int nthreads) { throw new System.NotImplementedException(); }
+namespace NumPluginBase.Regression {
+	public class LinearRegression : IRegressionMethod {
+		public RegressionModel Train(BaseVector[] x, double[] y, Parameters param, int nthreads) {
+			throw new System.NotImplementedException();
+		}
+
 		public Parameters Parameters => new Parameters();
 		public string Name => "Linear regression";
 		public string Description => "";
