@@ -252,6 +252,42 @@ namespace BaseLibS.Util {
 			}
 		}
 
+		public static string HorizontalVerticalOrientation {
+			get {
+				switch (TwoLettName) {
+					case arabic: return "اتجاه أفقي / عمودي&";
+					case bulgarian: return "&Хоризонтална / вертикална ориентация";
+					case chinese: return "&水平/垂直方向";
+					case czech: return "&Horizontální / vertikální orientace";
+					case danish: return "&Horisontal / vertikal orientering";
+					case dutch: return "&Horizontale / verticale oriëntatie";
+					case estonian: return "&Horisontaalne / vertikaalne orientatsioon";
+					case finnish: return "&Vaaka- / pystysuora suunta";
+					case french: return "&Orientation horizontale / verticale";
+					case german: return "&Horizontale / vertikale Ausrichtung";
+					case greek: return "&Οριζόντιος / κάθετος προσανατολισμός";
+					case hebrew: return "אופקי / אנכי&";
+					case hindi: return "&क्षैतिज / लंबवत अभिविन्यास";
+					case italian: return "&Orientamento orizzontale / verticale";
+					case japanese: return "&水平/垂直方向";
+					case korean: return "&가로 / 세로 방향";
+					case latvian: return "&Horizontālā / vertikālā orientācija";
+					case lithuanian: return "&Horizontali / vertikali orientacija";
+					case norwegian: return "&Horisontal / vertikal orientering";
+					case persian: return "جهت گیری افقی / عمودی&";
+					case polish: return "&Orientacja pozioma / pionowa";
+					case portuguese: return "&Orientação horizontal / vertical";
+					case romanian: return "&Orientare orizontală / verticală";
+					case russian: return "&Горизонтальная / вертикальная ориентация";
+					case spanish: return "&Orientación horizontal / vertical";
+					case swedish: return "&Horisontell / vertikal orientering";
+					case tamil: return "&கிடைமட்ட / செங்குத்து நோக்குநிலை";
+					case turkish: return "&Yatay / dikey oryantasyon";
+					default: return "&Horizontal / vertical orientation";
+				}
+			}
+		}
+
 		public static string Help {
 			get {
 				switch (TwoLettName) {
