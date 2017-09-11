@@ -102,7 +102,7 @@ namespace BaseLibS.Num.Matrix{
 		}
 
 		public override bool IsNanOrInfRow(int row){
-			return vals[row].IsNanOrInf();
+			return vals[row].IsNaNOrInf();
 		}
 
 		public override bool IsNanOrInfColumn(int column){

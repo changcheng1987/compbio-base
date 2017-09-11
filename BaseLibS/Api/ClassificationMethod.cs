@@ -8,7 +8,8 @@ namespace BaseLibS.Api{
 		/// Create a classification model based on the given training data x with group assignments in y.
 		/// </summary>
 		/// <param name="x">The training data for which the group assignment is known. <code>x.Length</code> 
-		/// is the number of training instances.</param>
+		/// is the number of training instances. All <code>BaseVector</code> instances in the array must have 
+		/// the same length.</param>
 		/// <param name="y">The group assignments. <code>y.Length</code> is the number of training instances.
 		/// In principle each training item can be assigned to multiple groups which is why this is an
 		/// array of arrays. Each item has to be assigned to at least one group.</param>

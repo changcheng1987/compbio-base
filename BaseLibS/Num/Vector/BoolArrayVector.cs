@@ -273,7 +273,7 @@ namespace BaseLibS.Num.Vector{
 			values = null;
 		}
 
-		public override bool IsNanOrInf(){
+		public override bool IsNaNOrInf(){
 			return false;
 		}
 	}

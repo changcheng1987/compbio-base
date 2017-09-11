@@ -112,7 +112,7 @@ namespace BaseLibS.Num.Matrix{
 		}
 
 		public override bool IsNanOrInfColumn(int column){
-			return vals[column].IsNanOrInf();
+			return vals[column].IsNaNOrInf();
 		}
 
 		public override int RowCount => nrows;
