@@ -6,8 +6,8 @@ using BaseLibS.Num.Vector;
 using BaseLibS.Param;
 
 namespace NumPluginBase.RegressionRank {
-	public class CorrelationFeatureRanking : IRegressionFeatureRankingMethod {
-		public int[] Rank(BaseVector[] x, double[] y, Parameters param, IGroupDataProvider data, int nthreads) {
+	public class CorrelationFeatureRanking : RegressionFeatureRankingMethod {
+		public override int[] Rank(BaseVector[] x, double[] y, Parameters param, IGroupDataProvider data, int nthreads) {
 			int nfeatures = x[0].Length;
 			double[] s = new double[nfeatures];
 			for (int i = 0; i < nfeatures; i++) {
@@ -24,13 +24,13 @@ namespace NumPluginBase.RegressionRank {
 			return 1 - Math.Abs(ArrayUtils.Correlation(xx, yy));
 		}
 
-		public Parameters GetParameters(IGroupDataProvider data) {
+		public override Parameters GetParameters(IGroupDataProvider data) {
 			return new Parameters();
 		}
 
-		public string Name => "Abs(Pearson correlation)";
-		public string Description => "";
-		public float DisplayRank => 0;
-		public bool IsActive => true;
+		public override string Name => "Abs(Pearson correlation)";
+		public override string Description => "";
+		public override float DisplayRank => 0;
+		public override bool IsActive => true;
 	}
 }

@@ -7,14 +7,14 @@ using BaseLibS.Param;
 namespace BaseLibS.Num.Learning{
 	[Serializable]
 	public class RegressionWithRankingMultiSizes{
-		private readonly IRegressionMethod classifier;
-		private readonly IRegressionFeatureRankingMethod ranker;
+		private readonly RegressionMethod classifier;
+		private readonly RegressionFeatureRankingMethod ranker;
 		private readonly double reductionFactor;
 		private readonly int maxFeatures;
 		private readonly Parameters classifierParam;
 		private readonly Parameters rankerParam;
 
-		public RegressionWithRankingMultiSizes(IRegressionMethod classifier, IRegressionFeatureRankingMethod ranker,
+		public RegressionWithRankingMultiSizes(RegressionMethod classifier, RegressionFeatureRankingMethod ranker,
 			double reductionFactor, int maxFeatures, Parameters classifierParam, Parameters rankerParam){
 			this.classifier = classifier;
 			this.ranker = ranker;

@@ -17,8 +17,9 @@ namespace NumPluginSvm {
 			"cause the optimizer to look for a larger-margin separating hyperplane, even if that hyperplane misclassifies " +
 			"more points.";
 
-		public override ClassificationModel Train(BaseVector[] x, int[][] y, int ngroups, Parameters param, int nthreads,
+		public override ClassificationModel Train(BaseVector[] x, int[] nominal, int[][] y, int ngroups, Parameters param, int nthreads,
 			Action<double> reportProgress) {
+			x = ToOneHotEncoding(x, nominal);
 			string err = CheckInput(x, y, ngroups);
 			if (err != null) {
 				throw new Exception(err);

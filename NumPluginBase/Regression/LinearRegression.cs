@@ -1,17 +1,18 @@
-﻿using BaseLibS.Api;
+﻿using System;
+using BaseLibS.Api;
 using BaseLibS.Num.Vector;
 using BaseLibS.Param;
 
 namespace NumPluginBase.Regression {
-	public class LinearRegression : IRegressionMethod {
-		public RegressionModel Train(BaseVector[] x, double[] y, Parameters param, int nthreads) {
+	public class LinearRegression : RegressionMethod {
+		public override RegressionModel Train(BaseVector[] x, int[] nominal, double[] y, Parameters param, int nthreads, Action<double> reportProgress) {
 			throw new System.NotImplementedException();
 		}
 
-		public Parameters Parameters => new Parameters();
-		public string Name => "Linear regression";
-		public string Description => "";
-		public float DisplayRank => 1;
-		public bool IsActive => true;
+		public override Parameters Parameters => new Parameters();
+		public override string Name => "Linear regression";
+		public override string Description => "";
+		public override float DisplayRank => 1;
+		public override bool IsActive => true;
 	}
 }
