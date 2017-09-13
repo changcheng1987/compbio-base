@@ -6,6 +6,7 @@ using BaseLibS.Param;
 namespace NumPluginBase.Regression {
 	public class LinearRegression : RegressionMethod {
 		public override RegressionModel Train(BaseVector[] x, int[] nominal, double[] y, Parameters param, int nthreads, Action<double> reportProgress) {
+			x = ClassificationMethod.ToOneHotEncoding(x, nominal);
 			throw new System.NotImplementedException();
 		}
 

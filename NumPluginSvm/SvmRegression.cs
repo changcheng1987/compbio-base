@@ -8,6 +8,7 @@ using NumPluginSvm.Svm;
 namespace NumPluginSvm{
 	public class SvmRegression : RegressionMethod{
 		public override RegressionModel Train(BaseVector[] x, int[] nominal, double[] y, Parameters param, int nthreads, Action<double> reportProgress) {
+			x = ClassificationMethod.ToOneHotEncoding(x, nominal);
 			ParameterWithSubParams<int> kernelParam = param.GetParamWithSubParams<int>("Kernel");
 			SvmParameter sp = new SvmParameter{
 				kernelFunction = KernelFunctions.GetKernelFunction(kernelParam.Value, kernelParam.GetSubParameters()),

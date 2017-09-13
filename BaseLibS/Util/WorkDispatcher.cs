@@ -16,11 +16,13 @@ namespace BaseLibS.Util {
 		protected Stack<int> toBeProcessed;
 		protected readonly string infoFolder;
 		protected readonly bool externalCalculations;
+		protected readonly bool dotNetCore;
 
-		protected WorkDispatcher(int nThreads, int nTasks, string infoFolder, bool externalCalculations) {
+		protected WorkDispatcher(int nThreads, int nTasks, string infoFolder, bool externalCalculations, bool dotNetCore) {
 			this.nThreads = Math.Min(nThreads, nTasks);
 			this.nTasks = nTasks;
 			this.infoFolder = infoFolder;
+			this.dotNetCore = dotNetCore;
 			if (!string.IsNullOrEmpty(infoFolder) && !Directory.Exists(infoFolder)) {
 				Directory.CreateDirectory(infoFolder);
 			}
@@ -109,7 +111,7 @@ namespace BaseLibS.Util {
 			bool isUnix = FileUtils.IsUnix();
 			string cmd = GetCommandFilename();
 			string args = GetLogArgs(taskIndex, taskIndex) + GetCommandArguments(taskIndex);
-			ProcessStartInfo psi = IsRunningOnMono()
+			ProcessStartInfo psi = IsRunningOnMono() && !dotNetCore
 				? new ProcessStartInfo("mono", cmd + " " + args)
 				: new ProcessStartInfo(cmd, args);
 			if (isUnix) {
@@ -171,10 +173,12 @@ namespace BaseLibS.Util {
 		}
 
 		protected string GetCommandFilename() {
-			return "\"" + FileUtils.executablePath + Path.DirectorySeparatorChar + Executable64Bit + "\"";
+			return "\"" + FileUtils.executablePath + Path.DirectorySeparatorChar + (dotNetCore ? ExecutableCore : Executable) + "\"";
 		}
 
-		protected abstract string Executable64Bit { get; }
+		protected abstract string Executable { get; }
+
+		protected abstract string ExecutableCore { get; }
 
 		protected bool ExternalCalculation() {
 			return externalCalculations;
