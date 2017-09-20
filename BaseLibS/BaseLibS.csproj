@@ -197,6 +197,8 @@
     <Compile Include="Ms\ScanInfo.cs" />
     <Compile Include="Ms\SignalType.cs" />
     <Compile Include="Ms\Spectrum.cs" />
+    <Compile Include="Num\BayesianInversion1D.cs" />
+    <Compile Include="Num\BayesianInversion2D.cs" />
     <Compile Include="Num\ByteArray.cs" />
     <Compile Include="Num\Cluster\HierarchicalClusterConstraint.cs" />
     <Compile Include="Num\Cluster\HierarchicalClustering.cs" />

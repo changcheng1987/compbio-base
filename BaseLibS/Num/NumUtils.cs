@@ -1337,25 +1337,22 @@ namespace BaseLibS.Num{
 			return result;
 		}
 
-		public static float Gaussian(float x, float sigma){
-			return (float) Math.Exp(-x*x/(2*sigma*sigma))/(float) (Math.Sqrt(2*Math.PI)*sigma);
+		public static double Gaussian(double x, double sigma){
+			return  Math.Exp(-x*x/(2*sigma*sigma))/ (Math.Sqrt(2*Math.PI)*sigma);
 		}
 
-		public static float SinC(float x){
-			const float epsilon = .00001F;
+		public static double SinC(double x){
+			const double epsilon = .00001F;
 			if (Math.Abs(x) > epsilon){
-				x *= (float) Math.PI;
-				return Clean((float) Math.Sin(x)/x);
+				x *= Math.PI;
+				return Clean(Math.Sin(x)/x);
 			}
 			return 1.0f;
 		}
 
-		private static float Clean(float x){
-			const float epsilon = .00001F;
-			if (Math.Abs(x) < epsilon){
-				return 0F;
-			}
-			return x;
+		private static double Clean(double x) {
+			const double epsilon = .00001F;
+			return Math.Abs(x) < epsilon ? 0F : x;
 		}
 
 		public static int Clamp(int value, int min, int max){
@@ -1363,6 +1360,10 @@ namespace BaseLibS.Num{
 				return max;
 			}
 			return value < min ? min : value;
+		}
+
+		public static double Determinant2X2(double[,] m) {
+			return m[0, 0] * m[1, 1] - m[0, 1] * m[1, 0];
 		}
 	}
 }
