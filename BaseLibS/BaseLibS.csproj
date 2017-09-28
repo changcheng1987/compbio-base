@@ -184,6 +184,7 @@
     <Compile Include="Ms\MassAnalyzerEnum.cs" />
     <Compile Include="Ms\MassGridInfo.cs" />
     <Compile Include="Ms\Ms1Lists.cs" />
+    <Compile Include="Ms\Ms2Key.cs" />
     <Compile Include="Ms\Ms2Lists.cs" />
     <Compile Include="Ms\Ms3Lists.cs" />
     <Compile Include="Ms\MsDataType.cs" />
