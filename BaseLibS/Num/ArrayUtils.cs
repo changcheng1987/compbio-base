@@ -439,6 +439,16 @@ namespace BaseLibS.Num {
 			return result;
 		}
 
+		public static double[,] ToDoubles(float[,] floats) {
+			double[,] result = new double[floats.GetLength(0), floats.GetLength(1)];
+			for (int i = 0; i < result.GetLength(0); i++) {
+				for (int j = 0; j < result.GetLength(1); j++) {
+					result[i, j] = floats[i, j];
+				}
+			}
+			return result;
+		}
+
 		public static float[] ToFloats(BaseVector floats) {
 			float[] result = new float[floats.Length];
 			for (int i = 0; i < result.Length; i++) {
@@ -451,7 +461,7 @@ namespace BaseLibS.Num {
 			float[,] result = new float[floats.RowCount, floats.ColumnCount];
 			for (int i = 0; i < result.GetLength(0); i++) {
 				for (int j = 0; j < result.GetLength(1); j++) {
-					result[i, j] = (float)floats[i, j];
+					result[i, j] = (float) floats[i, j];
 				}
 			}
 			return result;
@@ -1075,6 +1085,60 @@ namespace BaseLibS.Num {
 		/// <summary>
 		///     For the sake of simplicity do all sorting tasks always and ever with these method.
 		/// </summary>
+		/// <typeparam name="T1"></typeparam>
+		/// <typeparam name="T0"></typeparam>
+		/// <param name="x">The input data to be sorted.</param>
+		/// <param name="y">If the same, use this data to sort.</param>
+		/// <returns>
+		///     An array of indices such that if x is accessed with those indices the values are in
+		///     ascending (or to be more precise, non-decending) order.
+		/// </returns>
+		public static int[] Order<T0, T1>(IList<T0> x, IList<T1> y)
+			where T0 : IComparable<T0>
+			where T1 : IComparable<T1> {
+			if (x == null || y == null || x.Count != y.Count) {
+				return null;
+			}
+			int[] order = ConsecutiveInts(x.Count);
+			const int low = 0;
+			int high = order.Length - 1;
+			int[] dummy = new int[order.Length];
+			Array.Copy(order, dummy, order.Length);
+			SortImpl(x, y, order, dummy, low, high);
+			return order;
+		}
+
+		/// <summary>
+		///     For the sake of simplicity do all sorting tasks always and ever with these method.
+		/// </summary>
+		/// <typeparam name="T2"></typeparam>
+		/// <typeparam name="T1"></typeparam>
+		/// <typeparam name="T0"></typeparam>
+		/// <param name="x">The input data to be sorted.</param>
+		/// <param name="y">If the same, use this data to sort.</param>
+		/// <returns>
+		///     An array of indices such that if x is accessed with those indices the values are in
+		///     ascending (or to be more precise, non-decending) order.
+		/// </returns>
+		public static int[] Order<T0, T1, T2>(IList<T0> x, IList<T1> y, IList<T2> z)
+			where T0 : IComparable<T0>
+			where T1 : IComparable<T1>
+			where T2 : IComparable<T2> {
+			if (x == null || y == null || z == null || x.Count != y.Count || x.Count != z.Count) {
+				return null;
+			}
+			int[] order = ConsecutiveInts(x.Count);
+			const int low = 0;
+			int high = order.Length - 1;
+			int[] dummy = new int[order.Length];
+			Array.Copy(order, dummy, order.Length);
+			SortImpl(x, y, z, order, dummy, low, high);
+			return order;
+		}
+
+		/// <summary>
+		///     For the sake of simplicity do all sorting tasks always and ever with these method.
+		/// </summary>
 		/// <param name="x">The input data to be sorted.</param>
 		/// <returns>
 		///     An array of indices such that if x is accessed with those indices the values are in
@@ -1121,6 +1185,111 @@ namespace BaseLibS.Num {
 					orderDest[i] = orderSrc[tLow++];
 				} else {
 					orderDest[i] = orderSrc[tHigh++];
+				}
+			}
+		}
+
+		/// <summary>
+		///     Private class that implements the sorting algorithm.
+		/// </summary>
+		private static void SortImpl<T0, T1>(IList<T0> first, IList<T1> second, int[] orderDest, int[] orderSrc, int low, int high)
+			where T0 : IComparable<T0>
+			where T1 : IComparable<T1> {
+			if (low >= high) {
+				return;
+			}
+			int mid = low + ((high - low) >> 1);
+			SortImpl(first, second, orderSrc, orderDest, low, mid);
+			SortImpl(first, second, orderSrc, orderDest, mid + 1, high);
+			if (first[orderSrc[mid]].CompareTo(first[orderSrc[mid + 1]]) < 0) {
+				Array.Copy(orderSrc, low, orderDest, low, high - low + 1);
+				return;
+			}
+			if (first[orderSrc[low]].CompareTo(first[orderSrc[high]]) > 0) {
+				int m = (high - low) % 2 == 0 ? mid : mid + 1;
+				Array.Copy(orderSrc, low, orderDest, m, mid - low + 1);
+				Array.Copy(orderSrc, mid + 1, orderDest, low, high - mid);
+				return;
+			}
+			int tLow = low;
+			int tHigh = mid + 1;
+			for (int i = low; i <= high; i++) {
+				if (tLow > mid) {
+					orderDest[i] = orderSrc[tHigh++];
+				} else if (tHigh > high) {
+					orderDest[i] = orderSrc[tLow++];
+				} else {
+					switch (first[orderSrc[tLow]].CompareTo(first[orderSrc[tHigh]])) {
+						case -1:
+						orderDest[i] = orderSrc[tLow++];
+						break;
+						case 0:
+						orderDest[i] = second[orderSrc[tLow]].CompareTo(second[orderSrc[tHigh]]) <= 0 ?
+							orderSrc[tLow++] :
+							orderSrc[tHigh++];
+						break;
+						case 1:
+						orderDest[i] = orderSrc[tHigh++];
+						break;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		///     Private class that implements the sorting algorithm.
+		/// </summary>
+		private static void SortImpl<T0, T1, T2>(IList<T0> first, IList<T1> second, IList<T2> third, int[] orderDest, int[] orderSrc, int low, int high)
+			where T0 : IComparable<T0>
+			where T1 : IComparable<T1>
+			where T2 : IComparable<T2> {
+			if (low >= high) {
+				return;
+			}
+			int mid = low + ((high - low) >> 1);
+			SortImpl(first, second, third, orderSrc, orderDest, low, mid);
+			SortImpl(first, second, third, orderSrc, orderDest, mid + 1, high);
+			if (first[orderSrc[mid]].CompareTo(first[orderSrc[mid + 1]]) < 0) {
+				Array.Copy(orderSrc, low, orderDest, low, high - low + 1);
+				return;
+			}
+			if (first[orderSrc[low]].CompareTo(first[orderSrc[high]]) > 0) {
+				int m = (high - low) % 2 == 0 ? mid : mid + 1;
+				Array.Copy(orderSrc, low, orderDest, m, mid - low + 1);
+				Array.Copy(orderSrc, mid + 1, orderDest, low, high - mid);
+				return;
+			}
+			int tLow = low;
+			int tHigh = mid + 1;
+			for (int i = low; i <= high; i++) {
+				if (tLow > mid) {
+					orderDest[i] = orderSrc[tHigh++];
+				} else if (tHigh > high) {
+					orderDest[i] = orderSrc[tLow++];
+				} else {
+					switch (first[orderSrc[tLow]].CompareTo(first[orderSrc[tHigh]])) {
+						case -1:
+						orderDest[i] = orderSrc[tLow++];
+						break;
+						case 0:
+						switch (second[orderSrc[tLow]].CompareTo(second[orderSrc[tHigh]])) {
+							case -1:
+							orderDest[i] = orderSrc[tLow++];
+							break;
+							case 0:
+							orderDest[i] = third[orderSrc[tLow]].CompareTo(third[orderSrc[tHigh]]) <= 0 ?
+								orderSrc[tLow++] :
+								orderSrc[tHigh++];
+							break;
+							case 1:
+							orderDest[i] = orderSrc[tHigh++];
+							break;
+						}
+						break;
+						case 1:
+						orderDest[i] = orderSrc[tHigh++];
+						break;
+					}
 				}
 			}
 		}
@@ -1508,7 +1677,7 @@ namespace BaseLibS.Num {
 		public static int[] ToInts(IList<float> doubles) {
 			int[] result = new int[doubles.Count];
 			for (int i = 0; i < result.Length; i++) {
-				result[i] = (int)Math.Round(doubles[i]);
+				result[i] = (int) Math.Round(doubles[i]);
 			}
 			return result;
 		}
@@ -1516,7 +1685,7 @@ namespace BaseLibS.Num {
 		public static int[] ToInts(IList<double> doubles) {
 			int[] result = new int[doubles.Count];
 			for (int i = 0; i < result.Length; i++) {
-				result[i] = (int)Math.Round(doubles[i]);
+				result[i] = (int) Math.Round(doubles[i]);
 			}
 			return result;
 		}
@@ -1664,12 +1833,12 @@ namespace BaseLibS.Num {
 			return -1 - a;
 		}
 
-        /// <summary>
-        /// Reverses the order of the values in the array.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="x"></param>
-		public static void Revert<T>(IList<T> x){
+		/// <summary>
+		/// Reverses the order of the values in the array.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="x"></param>
+		public static void Revert<T>(IList<T> x) {
 			int n = x.Count;
 			for (int i = 0; i < n / 2; i++) {
 				T tmp = x[i];

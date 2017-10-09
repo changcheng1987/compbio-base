@@ -58,7 +58,7 @@ namespace BaseLibS.Num.Vector{
 		/// <summary>
 		/// True if all entries are NaN or Infinity.
 		/// </summary>
-		public abstract bool IsNanOrInf();
+		public abstract bool IsNaNOrInf();
 
 		/// <summary>
 		/// Unpack the vector elements sinto a double array.

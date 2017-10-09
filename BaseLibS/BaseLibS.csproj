@@ -184,6 +184,7 @@
     <Compile Include="Ms\MassAnalyzerEnum.cs" />
     <Compile Include="Ms\MassGridInfo.cs" />
     <Compile Include="Ms\Ms1Lists.cs" />
+    <Compile Include="Ms\Ms2Key.cs" />
     <Compile Include="Ms\Ms2Lists.cs" />
     <Compile Include="Ms\Ms3Lists.cs" />
     <Compile Include="Ms\MsDataType.cs" />
@@ -197,6 +198,8 @@
     <Compile Include="Ms\ScanInfo.cs" />
     <Compile Include="Ms\SignalType.cs" />
     <Compile Include="Ms\Spectrum.cs" />
+    <Compile Include="Num\BayesianInversion1D.cs" />
+    <Compile Include="Num\BayesianInversion2D.cs" />
     <Compile Include="Num\ByteArray.cs" />
     <Compile Include="Num\Cluster\HierarchicalClusterConstraint.cs" />
     <Compile Include="Num\Cluster\HierarchicalClustering.cs" />
@@ -225,8 +228,8 @@
     <Compile Include="Num\Matrix\MatrixIndexer.cs" />
     <Compile Include="Api\INamedItem.cs" />
     <Compile Include="Api\INamedListItem.cs" />
-    <Compile Include="Api\IRegressionFeatureRankingMethod.cs" />
-    <Compile Include="Api\IRegressionMethod.cs" />
+    <Compile Include="Api\RegressionFeatureRankingMethod.cs" />
+    <Compile Include="Api\RegressionMethod.cs" />
     <Compile Include="Api\RegressionModel.cs" />
     <Compile Include="Data\Cache.cs" />
     <Compile Include="Data\CacheElem.cs" />
@@ -405,7 +408,6 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>

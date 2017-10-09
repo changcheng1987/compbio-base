@@ -23,26 +23,6 @@ namespace BaseLibS.Num.Matrix{
 			}
 		}
 
-		public override void Set(float[,] value) {
-			ncolumns = value.GetLength(1);
-			vals = new SparseFloatVector[value.GetLength(0)];
-			for (int i = 0; i < vals.Length; i++) {
-				List<int> v = new List<int>();
-				for (int j = 0; j < ncolumns; j++) {
-					if (value[i, j] == 0) {
-						continue;
-					}
-					v.Add(j);
-				}
-				int[] v1 = v.ToArray();
-				float[] x = new float[v1.Length];
-				for (int j = 0; j < v1.Length; j++) {
-					x[j] = value[i, v1[j]];
-				}
-				vals[i] = new SparseFloatVector(v1, x, ncolumns);
-			}
-		}
-
 		public override void Set(double[,] value) {
 			ncolumns = value.GetLength(1);
 			vals = new SparseFloatVector[value.GetLength(0)];
@@ -122,7 +102,7 @@ namespace BaseLibS.Num.Matrix{
 		}
 
 		public override bool IsNanOrInfRow(int row){
-			return vals[row].IsNanOrInf();
+			return vals[row].IsNaNOrInf();
 		}
 
 		public override bool IsNanOrInfColumn(int column){

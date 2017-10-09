@@ -11,8 +11,8 @@ namespace BaseLibS.Num.Learning{
 			this.classifiers = classifiers;
 		}
 
-		public override float[] PredictStrength(BaseVector x) {
-			float[] result = new float[classifiers.Length];
+		public override double[] PredictStrength(BaseVector x) {
+			double[] result = new double[classifiers.Length];
 			for (int i = 0; i < result.Length; i++){
 				result[i] = classifiers[i].PredictStrength(x)[0];
 			}

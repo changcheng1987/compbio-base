@@ -484,7 +484,7 @@ namespace BaseLibS.Num.Vector{
 			return sum;
 		}
 
-		public override bool IsNanOrInf(){
+		public override bool IsNaNOrInf(){
 			if (values.Length < length){
 				return false;
 			}

@@ -13,7 +13,7 @@ namespace BaseLibS.Num.Learning{
 			this.featureInds = featureInds;
 		}
 
-		public override float[] PredictStrength(BaseVector x){
+		public override double[] PredictStrength(BaseVector x){
 			return classifier.PredictStrength(x.SubArray(featureInds));
 		}
 	}

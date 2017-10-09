@@ -21,7 +21,6 @@ namespace BaseLibS.Num.Matrix{
 		/// checked
 		/// </summary>
 		public abstract void Set(int i, int j, double value);
-		public abstract void Set(float[,] value);
 		public abstract void Set(double[,] value);
 		public abstract BaseVector GetRow(int row);
 		public abstract BaseVector GetColumn(int col);

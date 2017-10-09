@@ -151,7 +151,7 @@ namespace BaseLibS.Num.Vector{
 			values = null;
 		}
 
-		public override bool IsNanOrInf(){
+		public override bool IsNaNOrInf(){
 			foreach (float value in values){
 				if (!float.IsNaN(value) && !float.IsInfinity(value)){
 					return false;

@@ -181,7 +181,7 @@ namespace BaseLibS.Num.Vector{
 			indices = null;
 		}
 
-		public override bool IsNanOrInf(){
+		public override bool IsNaNOrInf(){
 			return false;
 		}
 

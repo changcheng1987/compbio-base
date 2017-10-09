@@ -30,15 +30,6 @@ namespace BaseLibS.Num.Matrix {
 			vals = value;
 		}
 
-		public override void Set(float[,] value) {
-			vals = new double[value.GetLength(0), value.GetLength(1)];
-			for (int i = 0; i < value.GetLength(0); i++) {
-				for (int j = 0; j < value.GetLength(1); j++) {
-					vals[i, j] = value[i, j];
-				}
-			}
-		}
-
 		public override BaseVector GetRow(int row) {
 			double[] result = new double[ColumnCount];
 			for (int i = 0; i < result.Length; i++) {

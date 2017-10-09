@@ -112,7 +112,7 @@ namespace BaseLibS.Num.Vector{
 			return false;
 		}
 
-		public override bool IsNanOrInf(){
+		public override bool IsNaNOrInf(){
 			foreach (double value in values){
 				if (!double.IsNaN(value) && !double.IsInfinity(value)){
 					return false;

@@ -6,13 +6,13 @@ using BaseLibS.Param;
 namespace BaseLibS.Num.Learning{
 	[Serializable]
 	public class RegressionWithRanking{
-		private readonly IRegressionMethod regressionMethod;
-		private readonly IRegressionFeatureRankingMethod ranker;
+		private readonly RegressionMethod regressionMethod;
+		private readonly RegressionFeatureRankingMethod ranker;
 		private readonly int nfeatures;
 		private readonly Parameters regressionParam;
 		private readonly Parameters rankerParam;
 
-		public RegressionWithRanking(IRegressionMethod regressionMethod, IRegressionFeatureRankingMethod ranker, int nfeatures,
+		public RegressionWithRanking(RegressionMethod regressionMethod, RegressionFeatureRankingMethod ranker, int nfeatures,
 			Parameters regressionParam, Parameters rankerParam){
 			this.regressionMethod = regressionMethod;
 			this.ranker = ranker;
@@ -21,7 +21,7 @@ namespace BaseLibS.Num.Learning{
 			this.rankerParam = rankerParam;
 		}
 
-		public RegressionModel Train(BaseVector[] x, float[] y, IGroupDataProvider data){
+		public RegressionModel Train(BaseVector[] x, double[] y, IGroupDataProvider data){
 			if (ranker == null || nfeatures >= x[0].Length){
 				return regressionMethod.Train(x, y, regressionParam, 1);
 			}

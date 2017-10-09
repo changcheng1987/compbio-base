@@ -252,6 +252,42 @@ namespace BaseLibS.Util {
 			}
 		}
 
+		public static string HorizontalVerticalOrientation {
+			get {
+				switch (TwoLettName) {
+					case arabic: return "اتجاه أفقي / عمودي&";
+					case bulgarian: return "&Хоризонтална / вертикална ориентация";
+					case chinese: return "&水平/垂直方向";
+					case czech: return "&Horizontální / vertikální orientace";
+					case danish: return "&Horisontal / vertikal orientering";
+					case dutch: return "&Horizontale / verticale oriëntatie";
+					case estonian: return "&Horisontaalne / vertikaalne orientatsioon";
+					case finnish: return "&Vaaka- / pystysuora suunta";
+					case french: return "&Orientation horizontale / verticale";
+					case german: return "&Horizontale / vertikale Ausrichtung";
+					case greek: return "&Οριζόντιος / κάθετος προσανατολισμός";
+					case hebrew: return "אופקי / אנכי&";
+					case hindi: return "&क्षैतिज / लंबवत अभिविन्यास";
+					case italian: return "&Orientamento orizzontale / verticale";
+					case japanese: return "&水平/垂直方向";
+					case korean: return "&가로 / 세로 방향";
+					case latvian: return "&Horizontālā / vertikālā orientācija";
+					case lithuanian: return "&Horizontali / vertikali orientacija";
+					case norwegian: return "&Horisontal / vertikal orientering";
+					case persian: return "جهت گیری افقی / عمودی&";
+					case polish: return "&Orientacja pozioma / pionowa";
+					case portuguese: return "&Orientação horizontal / vertical";
+					case romanian: return "&Orientare orizontală / verticală";
+					case russian: return "&Горизонтальная / вертикальная ориентация";
+					case spanish: return "&Orientación horizontal / vertical";
+					case swedish: return "&Horisontell / vertikal orientering";
+					case tamil: return "&கிடைமட்ட / செங்குத்து நோக்குநிலை";
+					case turkish: return "&Yatay / dikey oryantasyon";
+					default: return "&Horizontal / vertical orientation";
+				}
+			}
+		}
+
 		public static string Help {
 			get {
 				switch (TwoLettName) {
@@ -364,6 +400,7 @@ namespace BaseLibS.Util {
 			get {
 				switch (TwoLettName) {
 					case hebrew: return "מקסימום";
+					case spanish: return "MaxiQuanta";
 					default: return "MaxQuant";
 				}
 			}
@@ -473,6 +510,42 @@ namespace BaseLibS.Util {
 					case tamil: return "தயவுசெய்து உறுதிப்படுத்தவும்...";
 					case turkish: return "Lütfen onaylayın...";
 					default: return "Please confirm...";
+				}
+			}
+		}
+
+		public static string RenameSession {
+			get {
+				switch (TwoLettName) {
+					case arabic: return "...إعادة تسمية الجلسة&";
+					case bulgarian: return "&Преименуване на сесията...";
+					case chinese: return "&重命名会话...";
+					case czech: return "&Přejmenovat relaci...";
+					case danish: return "&Omdøb session...";
+					case dutch: return "&Hernoem de sessie...";
+					case estonian: return "&Nimeta seanss ümber...";
+					case finnish: return "&Nimeä istunto uudelleen...";
+					case french: return "&Renommer la session...";
+					case german: return "&Session umbenennen...";
+					case greek: return "&Μετονομασία περιόδου λειτουργίας...";
+					case hebrew: return "...שנה שם של הפעלה&";
+					case hindi: return "&सत्र का नाम बदलें...";
+					case italian: return "&Rinomina sessione...";
+					case japanese: return "&セッションの名前を変更する...";
+					case korean: return "&세션 이름 바꾸기...";
+					case latvian: return "&Pārdēvēt sesiju...";
+					case lithuanian: return "&Pervadinti sesiją...";
+					case norwegian: return "&Gi nytt navn til økten...";
+					case persian: return "...تغییر نام جلسه&";
+					case polish: return "&Zmień nazwę sesji...";
+					case portuguese: return "&Renomear sessão...";
+					case romanian: return "&Redenumiți sesiunea...";
+					case russian: return "&Переименовать сеанс...";
+					case spanish: return "&Renombrar sesión...";
+					case swedish: return "&Byt namn på session...";
+					case tamil: return "&அமர்வுக்கு மறுபெயரிடு...";
+					case turkish: return "&Oturumu yeniden adlandır...";
+					default: return "&Rename session...";
 				}
 			}
 		}
