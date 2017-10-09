@@ -810,8 +810,7 @@ namespace BaseLibS.Util {
 				return false;
 			}
 			string s1 = s.Substring(x + 1);
-			int num;
-			bool succ = Parser.TryInt(s1, out num);
+			bool succ = Parser.TryInt(s1, out int _);
 			return succ;
 		}
 
