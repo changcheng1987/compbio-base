@@ -5,17 +5,17 @@ using BaseLibS.Num.Func;
 
 namespace BaseLibS.Mol{
 	public class ChemElement{
-		public int Z { get; private set; }
+		public int Z { get; }
 		public int[] MainValences { get; }
-		public string Name { get; private set; }
-		public ChemElementType Type { get; private set; }
+		public string Name { get; }
+		public ChemElementType Type { get; }
 		public string Symbol { get; }
-		public string CasRegistryId { get; private set; }
-		public double AtomicWeight { get; private set; }
-		public double MonoIsotopicMass { get; private set; }
-		public bool IsIsotopicLabel { get; private set; }
+		public string CasRegistryId { get; }
+		public double AtomicWeight { get; }
+		public double MonoIsotopicMass { get; }
+		public bool IsIsotopicLabel { get; }
 		public int NaturalVersion { get; internal set; }
-		public int MaxNumDefault { get; private set; }
+		public int MaxNumDefault { get; }
 		private readonly double[] composition;
 		private readonly double[] masses;
 		private readonly Dictionary<int, double[][]> store = new Dictionary<int, double[][]>();
@@ -42,15 +42,26 @@ namespace BaseLibS.Mol{
 		public bool OddValence => MainValences != null && MainValences[0] % 2 != 0;
 		public int Valence => MainValences != null ? Math.Abs(MainValences[0]) :0;
 
-		public double[][] GetIsotopeDistribution(int n){
-			if (store.ContainsKey(n)){
+		public double[][] GetIsotopeDistribution(int n) {
+			if (store.ContainsKey(n)) {
 				return store[n];
 			}
 			double[][] dist = GetIsotopeDistribution(n, masses, composition);
-			if (n <= 100){
+			if (n <= 300) {
 				store.Add(n, dist);
 			}
 			return dist;
+		}
+
+		public double[][] GetIsotopeDistributionAlteredIsotopeContribution(int n, int index, double delta) {
+			double[] c2 = new double[composition.Length];
+			for (int i = 0; i < c2.Length; i++) {
+				c2[i] = composition[i];
+				if (i == index) {
+					c2[i] += delta;
+				}
+			}
+			return GetIsotopeDistribution(n, masses, c2);
 		}
 
 		public static double[][] GetIsotopeDistribution(int n, double[] masses, double[] composition){
@@ -129,6 +140,9 @@ namespace BaseLibS.Mol{
 			return (int) Math.Round(masses[ind]);
 		}
 
+		public bool IsHydrogen() {
+			return Z == 1;
+		}
 		public override string ToString(){
 			return Symbol;
 		}
