@@ -192,8 +192,9 @@ namespace BaseLibS.Parse.Uniprot{
 			return result;
 		}
 
-		public void AddDbEntryProperty(string dbReferenceType, string dbReferenceId, string protertyType, string protertyValue){
-			DbReferenceType type = DbReferenceType.GetDbReferenceType(dbReferenceType);
+		public void AddDbEntryProperty(string dbReferenceType, string dbReferenceId, string protertyType, string protertyValue)
+		{
+		    DbReferenceType type = DbReferenceType.GetDbReferenceType(dbReferenceType);
 			if (type == null) {
 				return;
 			}
