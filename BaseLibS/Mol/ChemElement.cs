@@ -61,6 +61,7 @@ namespace BaseLibS.Mol{
 					c2[i] += delta;
 				}
 			}
+			c2[0] -= delta;
 			return GetIsotopeDistribution(n, masses, c2);
 		}
 

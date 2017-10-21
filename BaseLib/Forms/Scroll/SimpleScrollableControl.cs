@@ -219,7 +219,7 @@ namespace BaseLib.Forms.Scroll{
 			return new Tuple<int, int>(q.X, q.Y);
 		}
 
-		public void QueryFontColor(Font2 fontIn, Color2 colorIn, out Font2 font, out Color2 color){
+		public bool QueryFontColor(Font2 fontIn, Color2 colorIn, out Font2 font, out Color2 color){
 			font = null;
 			color = Color2.Empty;
 			FontDialog fontDialog = new FontDialog{
@@ -227,11 +227,13 @@ namespace BaseLib.Forms.Scroll{
 				Font = GraphUtils.ToFont(fontIn),
 				Color = GraphUtils.ToColor(colorIn)
 			};
-			if (fontDialog.ShowDialog() != DialogResult.Cancel){
+			bool ok = fontDialog.ShowDialog() == DialogResult.OK;
+			if (ok){
 				font = GraphUtils.ToFont2(fontDialog.Font);
 				color = GraphUtils.ToColor2(fontDialog.Color);
 			}
 			fontDialog.Dispose();
+			return ok;
 		}
 
 		protected override bool ProcessCmdKey(ref Message msg, Keys keyData){

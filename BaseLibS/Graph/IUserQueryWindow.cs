@@ -9,7 +9,7 @@ namespace BaseLibS.Graph{
 		void SetClipboardData(object data);
 		void ShowMessage(string text);
 		string GetClipboardText();
-		void QueryFontColor(Font2 fontIn, Color2 colorIn, out Font2 font, out Color2 color);
+		bool QueryFontColor(Font2 fontIn, Color2 colorIn, out Font2 font, out Color2 color);
 		bool SaveFileDialog(out string fileName, string filter);
 		bool IsControlPressed();
 		bool IsShiftPressed();
