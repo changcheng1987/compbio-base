@@ -12,21 +12,19 @@ namespace BaseLib.Param{
 		public override ParamType Type => ParamType.WinForms;
 
 		public override void SetValueFromControl(){
-			FileParameterControl vm = control;
-			Value = vm.FileName;
+			Value = control.FileName;
 		}
 
 		public override void UpdateControlFromValue(){
 			if (control == null){
 				return;
 			}
-			FileParameterControl vm = control;
-			vm.FileName = Value;
-		}
+            control.FileName = Value;            
+        }
 
 		public override object CreateControl(){
 			control = new FileParameterControl(Value, Filter, ProcessFileName, Save);
-			return control;
+            return control;
 		}
 	}
 }
