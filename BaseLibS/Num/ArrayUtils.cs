@@ -612,6 +612,10 @@ namespace BaseLibS.Num {
 			return ConsecutiveInts(0, to);
 		}
 
+		public static short[] ConsecutiveShorts(int to) {
+			return ConsecutiveShorts(0, to);
+		}
+
 		/// <summary>
 		///     Create a list of consecutive integers.
 		/// </summary>
@@ -623,6 +627,21 @@ namespace BaseLibS.Num {
 			int[] result = new int[len];
 			for (int i = 0; i < len; i++) {
 				result[i] = from + i;
+			}
+			return result;
+		}
+
+		/// <summary>
+		///     Create a list of consecutive shorts.
+		/// </summary>
+		/// <param name="from">Start index.</param>
+		/// <param name="to">End (exclusive).</param>
+		/// <returns>The list of consecutive integers.</returns>
+		public static short[] ConsecutiveShorts(int from, int to) {
+			int len = to - from;
+			short[] result = new short[len];
+			for (int i = 0; i < len; i++) {
+				result[i] = (short) (from + i);
 			}
 			return result;
 		}

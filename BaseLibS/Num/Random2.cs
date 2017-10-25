@@ -162,6 +162,17 @@ namespace BaseLibS.Num {
 			return perm;
 		}
 
+		public short[] NextPermutationShort(int n) {
+			short[] perm = ArrayUtils.ConsecutiveShorts(n);
+			for (int i = 0; i < n; i++) {
+				int pos = Next(i, n);
+				short tmp = perm[i];
+				perm[i] = perm[pos];
+				perm[pos] = tmp;
+			}
+			return perm;
+		}
+
 		/// <summary>
 		/// Returns randomized training and test set indices for n-fold cross
 		/// validation.
