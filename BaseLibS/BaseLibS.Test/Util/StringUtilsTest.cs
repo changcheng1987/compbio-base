@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using BaseLibS.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace BaseLibS.Test.Util {
-	[TestClass]
+	[TestFixture]
 	public class StringUtilsTest {
-		[TestMethod]
+		[Test]
 		public void TestConcat() {
 			string[] strings = {"", "b", "c"};
 			string concatList = StringUtils.Concat(",", strings);

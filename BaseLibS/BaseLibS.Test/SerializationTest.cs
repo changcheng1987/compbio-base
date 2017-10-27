@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 using BaseLibS.Param;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace BaseLibS.Test
 {
-    [TestClass]
+    [TestFixture]
     public class SerializationTest
     {
-        [TestMethod]
+        [Test]
         public void TestParamWithNullValue()
         {
             StringParam sparam = new StringParam("myname", null);
@@ -20,7 +20,7 @@ namespace BaseLibS.Test
             Assert.AreEqual(sparam.Name, sparam2.Name);
         }
 
-        [TestMethod]
+        [Test]
         public void TestBoolParam()
         {
             BoolParam sparam = new BoolParam("myname", false);
@@ -29,7 +29,7 @@ namespace BaseLibS.Test
             Assert.AreEqual(sparam.Name, sparam2.Name);
         }
 
-        [TestMethod]
+        [Test]
         public void TestBoolWithSubParams()
         {
             BoolWithSubParams param = new BoolWithSubParams("bws", true)
@@ -45,7 +45,7 @@ namespace BaseLibS.Test
 
         }
 
-        [TestMethod]
+        [Test]
         public void TestDictionaryIntValueParam()
         {
             DictionaryIntValueParam param = new DictionaryIntValueParam("dict", new Dictionary<string, int>() { {"a", 1}, {"b", 2} }, new []{"a", "b"});
@@ -56,7 +56,7 @@ namespace BaseLibS.Test
             Assert.IsTrue(param.Keys.SequenceEqual(param2.Keys));
         }
 
-        [TestMethod]
+        [Test]
         public void TestDoubleParam()
         {
             DoubleParam sparam = new DoubleParam("myname", 42.0);
@@ -65,7 +65,7 @@ namespace BaseLibS.Test
             Assert.AreEqual(sparam.Name, sparam2.Name);
         }
 
-        [TestMethod]
+        [Test]
         public void TestFileParam()
         {
             FileParam sparam = new FileParam("myname", "myvalue");
@@ -74,7 +74,7 @@ namespace BaseLibS.Test
             Assert.AreEqual(sparam.Name, sparam2.Name);
         }
 
-        [TestMethod]
+        [Test]
         public void TestFolderParam()
         {
             FolderParam sparam = new FolderParam("myname", "myvalue");
@@ -83,7 +83,7 @@ namespace BaseLibS.Test
             Assert.AreEqual(sparam.Name, sparam2.Name);
         }
 
-        [TestMethod]
+        [Test]
         public void TestIntParam()
         {
             IntParam sparam = new IntParam("myname", 42);
@@ -92,7 +92,7 @@ namespace BaseLibS.Test
             Assert.AreEqual(sparam.Name, sparam2.Name);
         }
 
-        [TestMethod]
+        [Test]
         public void TestLabelParam()
         {
             LabelParam sparam = new LabelParam("myname", "my\nmultiline\n\n\nvalue");
@@ -101,7 +101,7 @@ namespace BaseLibS.Test
             Assert.AreEqual(sparam.Name, sparam2.Name);
         }
 
-        [TestMethod]
+        [Test]
         public void TestMs1LabelParam()
         {
             Ms1LabelParam sparam = new Ms1LabelParam("myname", new [] { new [] {1,2,3}, new [] {3,4,5} }) { Values = new [] {"a", "b"}, Multiplicity = 12};
@@ -112,7 +112,7 @@ namespace BaseLibS.Test
             Assert.IsTrue(sparam.Values.SequenceEqual(sparam2.Values));
         }
 
-        [TestMethod]
+        [Test]
         public void TestMultiChoiceMultiBinParam()
         {
             MultiChoiceMultiBinParam sparam = new MultiChoiceMultiBinParam("myname", new [] { new [] {1,2,3}, new [] {3,4,5} }) { Values = new [] {"a", "b"}, Bins = new [] {"c", "d"}};
@@ -123,7 +123,7 @@ namespace BaseLibS.Test
             Assert.IsTrue(sparam.Bins.SequenceEqual(sparam2.Bins));
         }
 
-        [TestMethod]
+        [Test]
         public void TestMultiChoiceParam()
         {
             MultiChoiceParam sparam = new MultiChoiceParam("myname", new [] {1,2,3}) { Values = new [] {"a", "b"} , Repeats = true};
@@ -134,7 +134,7 @@ namespace BaseLibS.Test
             Assert.IsTrue(sparam.Values.SequenceEqual(sparam2.Values));
         }
 
-        [TestMethod]
+        [Test]
         public void TestMultiFileParam()
         {
             MultiFileParam sparam = new MultiFileParam("myname", new [] {"file1", "file2"}) { Filter = "somefilter" };
@@ -144,7 +144,7 @@ namespace BaseLibS.Test
             Assert.IsTrue(sparam.Value.SequenceEqual(sparam2.Value));
         }
 
-        [TestMethod]
+        [Test]
         public void TestMultiStringParam()
         {
             MultiStringParam sparam = new MultiStringParam("myname", new[] {"file1", "file2"});
@@ -153,7 +153,7 @@ namespace BaseLibS.Test
             Assert.IsTrue(sparam.Value.SequenceEqual(sparam2.Value));
         }
 
-        [TestMethod]
+        [Test]
         public void TestEmptyParameterGroup()
         {
             ParameterGroup sparam = new ParameterGroup(new Parameter[0], "myname", false);
@@ -164,7 +164,7 @@ namespace BaseLibS.Test
             ParameterGroup sparam2 = (ParameterGroup)serializer.Deserialize(writer2);
             Assert.AreEqual(sparam.Name, sparam2.Name);
         }
-        [TestMethod]
+        [Test]
         public void TestParameterGroup()
         {
             ParameterGroup sparam = new ParameterGroup(new Parameter[] { new IntParam("int", 42), new StringParam("string", "42") }, "myname", false);
@@ -178,7 +178,7 @@ namespace BaseLibS.Test
             Assert.AreEqual("42", ((StringParam)sparam[1]).Value);
         }
 
-        [TestMethod]
+        [Test]
         public void TestParameters()
         {
             Parameters parameters = new Parameters(new StringParam("myname", "myvalue"), new IntParam("some int", 42));
@@ -187,7 +187,7 @@ namespace BaseLibS.Test
             Assert.AreEqual(42, parameters.GetParam<int>("some int").Value);
         }
 
-        [TestMethod]
+        [Test]
         public void TestEmptyParameters()
         {
             Parameters parameters = new Parameters();
@@ -195,7 +195,7 @@ namespace BaseLibS.Test
             Assert.IsNotNull(parameters2);
         }
 
-        [TestMethod]
+        [Test]
         public void TestGroupedParameters()
         {
             Parameters parameters = new Parameters();
@@ -207,7 +207,7 @@ namespace BaseLibS.Test
             Assert.AreEqual("myvalue", parameters2.GetParam<string>("myname").Value);
         }
 
-        [TestMethod]
+        [Test]
         public void TestRegexMatchParam()
         {
             RegexMatchParam parameter = new RegexMatchParam("myname", new Regex(".*"), new List<string>() {"a", "b" });
@@ -217,7 +217,7 @@ namespace BaseLibS.Test
             Assert.IsTrue(parameter.Previews.SequenceEqual(parameter2.Previews));
         }
 
-        [TestMethod]
+        [Test]
         public void TestRegexReplaceParam()
         {
             RegexReplaceParam parameter = new RegexReplaceParam("myname", new Regex(".*"), "asdf", new List<string>() {"a", "b" });
@@ -228,7 +228,7 @@ namespace BaseLibS.Test
             Assert.IsTrue(parameter.Previews.SequenceEqual(parameter2.Previews));
         }
 
-        [TestMethod]
+        [Test]
         public void TestRegexReplaceParamNoPreview()
         {
             RegexReplaceParam parameter = new RegexReplaceParam("myname", new Regex(".*"), "asdf", new List<string>());
@@ -240,7 +240,7 @@ namespace BaseLibS.Test
         }
 
 
-        [TestMethod]
+        [Test]
         public void TestSingleChoiceParam()
         {
             SingleChoiceParam param = new SingleChoiceParam("choice", 1) { Values = new List<string> {"c1", "b2"} };
@@ -250,7 +250,7 @@ namespace BaseLibS.Test
             Assert.IsTrue(param.Values.SequenceEqual(param2.Values));
         }
 
-        [TestMethod]
+        [Test]
         public void TestSingleChoiceWithSubParams()
         {
             SingleChoiceWithSubParams param = new SingleChoiceWithSubParams("choice", 1) { Values = new List<string> {"c1", "b2"}, SubParams = new []
@@ -266,7 +266,7 @@ namespace BaseLibS.Test
             Assert.AreEqual(82, param2.SubParams[1].GetParam<int>("sub2").Value );
         }
 
-        [TestMethod]
+        [Test]
         public void TestSingleChoiceWithSubParamsInParameters()
         {
             SingleChoiceWithSubParams param = new SingleChoiceWithSubParams("choice", 1) { Values = new List<string> {"c1", "b2"}, SubParams = new []
@@ -282,7 +282,7 @@ namespace BaseLibS.Test
             Assert.AreEqual(82, param2.SubParams[1].GetParam<int>("sub2").Value );
         }
 
-        [TestMethod]
+        [Test]
         public void TestStringParam()
         {
             StringParam sparam = new StringParam("myname", "myvalue");

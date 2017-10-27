@@ -1,10 +1,10 @@
 ﻿using BaseLibS.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace BaseLibS.Test.Util {
-	[TestClass]
+	[TestFixture]
 	public class FileUtilsTest {
-		[TestMethod]
+		[Test]
 		public void TestAnnot()
 		{
 		    var executablePath = FileUtils.executablePath;
