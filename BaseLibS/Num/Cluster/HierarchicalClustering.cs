@@ -481,7 +481,7 @@ namespace BaseLibS.Num.Cluster{
 			HierarchicalClusterNode[] nodes = TreeCluster(distMatrix, linkage, preserveOrder, periodic, nthreads, progress);
 			RearrangeClusters(inds, clusterCenters.GetLength(0), out Dictionary<int, int[]> clusters, out Dictionary<int, int> singletons);
 			HierarchicalClusterNode[] newNodes = new HierarchicalClusterNode[nelements - 1];
-			int fill = nelements - nmeans;
+			int fill = nelements - clusterCenters.GetLength(0);
 			Array.Copy(nodes, 0, newNodes, fill, nodes.Length);
 			int pos = 0;
 			for (int i = fill; i < newNodes.Length; i++){

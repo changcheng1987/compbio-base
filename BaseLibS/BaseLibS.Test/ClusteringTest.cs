@@ -67,6 +67,16 @@ namespace BaseLibS.Test
                 2, 1, 1000, i => { });
             Assert.AreEqual(3, clusterNodes.Length);
         }
+        [Test]
+        public void TestKmeansClusteringPreculusteringWithManyDuplicateRows()
+        {
+            HierarchicalClustering hclust = new HierarchicalClustering();
+            var values = new float[,] {{1, 2, 3, 1}, {2, 3, 4, 2}, {2, 3, 4, 2}, {2, 3, 4, 2}, {2, 3, 4, 2}, {3, 4, 5, 2}};
+            FloatMatrixIndexer data = new FloatMatrixIndexer(values);
+            var clusterNodes = hclust.TreeClusterKmeans(data, MatrixAccess.Rows, new EuclideanDistance(), HierarchicalClusterLinkage.Average, false, false, 1,
+                5, 1, 1000, i => { });
+            Assert.AreEqual(5, clusterNodes.Length);
+        }
 
         private static List<float[,]> _data = new List<float[,]>
         {
