@@ -1266,7 +1266,7 @@
       <modification_site site="-">
          <neutralloss_collection />
          <diagnostic_collection>
-            <diagnostic name="131C" shortname="131C" composition="H(15) C(4) Cx(5) N" />
+            <diagnostic name="131C" shortname="131C" composition="H(15) C(3) Cx(5) N" />
          </diagnostic_collection>
       </modification_site>
       <type>IsobaricLabel</type>
@@ -1541,7 +1541,7 @@
       <modification_site site="K">
          <neutralloss_collection />
          <diagnostic_collection>
-            <diagnostic name="131C" shortname="131C" composition="H(15) C(4) Cx(5) N" />
+            <diagnostic name="131C" shortname="131C" composition="H(15) C(3) Cx(5) N" />
          </diagnostic_collection>
       </modification_site>
       <type>IsobaricLabel</type>
