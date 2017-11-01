@@ -8,15 +8,15 @@ using System.Threading;
 
 namespace BaseLibS.Util {
 	public abstract class WorkDispatcher {
-		protected HashSet<int> currentIndices = new HashSet<int>();
-		public int nThreads;
-		public int nTasks;
-		protected Thread[] workThreads;
-		protected Process[] externalProcesses;
-		protected Stack<int> toBeProcessed;
-		protected readonly string infoFolder;
-		protected readonly bool externalCalculations;
-		protected readonly bool dotNetCore;
+		private const int initialDelay = 6;
+		public readonly int nThreads;
+		private readonly int nTasks;
+		private Thread[] workThreads;
+		private Process[] externalProcesses;
+		private Stack<int> toBeProcessed;
+		private readonly string infoFolder;
+		private readonly bool externalCalculations;
+		private readonly bool dotNetCore;
 
 		protected WorkDispatcher(int nThreads, int nTasks, string infoFolder, bool externalCalculations, bool dotNetCore) {
 			this.nThreads = Math.Min(nThreads, nTasks);
@@ -57,7 +57,6 @@ namespace BaseLibS.Util {
 		}
 
 		public void Start() {
-			currentIndices = new HashSet<int>();
 			toBeProcessed = new Stack<int>();
 			for (int index = nTasks - 1; index >= 0; index--) {
 				toBeProcessed.Push(index);
@@ -67,6 +66,7 @@ namespace BaseLibS.Util {
 			for (int i = 0; i < nThreads; i++) {
 				workThreads[i] = new Thread(Work) {Name = "Thread " + i + " of " + GetType().Name};
 				workThreads[i].Start(i);
+				Thread.Sleep(initialDelay);
 			}
 			while (true) {
 				Thread.Sleep(1000);
