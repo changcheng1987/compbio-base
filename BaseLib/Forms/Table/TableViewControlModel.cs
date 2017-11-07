@@ -677,9 +677,11 @@ namespace BaseLib.Forms.Table {
 				if (model == null) {
 					return;
 				}
-				control.QueryFontColor(textFont, textColor, out textFont, out textColor);
-				textBrush = new Brush2(textColor);
-				control.Invalidate(true);
+				bool ok = control.QueryFontColor(textFont, textColor, out textFont, out textColor);
+				if (ok) {
+					textBrush = new Brush2(textColor);
+					control.Invalidate(true);
+				}
 			});
 			control.AddContextMenuItem("Monospace font", (sender, args) => {
 				textFont = new Font2("Courier New", 9);

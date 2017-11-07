@@ -232,6 +232,7 @@
     <Compile Include="Graphic\ExportGraphics.cs" />
     <Compile Include="Graphic\GraphUtils.cs" />
     <Compile Include="Graphic\PdfGraphics.cs" />
+    <Compile Include="Graphic\PdfGraphicUtils.cs" />
     <Compile Include="Graphic\Svg.cs" />
     <Compile Include="Graphic\SvgGraphics.cs" />
     <Compile Include="Graphic\WindowsBasedGraphics.cs" />

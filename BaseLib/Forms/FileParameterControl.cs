@@ -6,9 +6,19 @@ namespace BaseLib.Forms{
 		private readonly string filter;
 		private readonly bool save;
 		private readonly Func<string, string> processFileName;
-		public string FileName { get; set; }
+        private string fileName;
+		
+        public string FileName
+        {
+            get => textBox1.Text;
+            set
+            {
+                fileName = value;
+                textBox1.Text = value;
+            }
+        }
 
-		public FileParameterControl(string fileName, string filter, Func<string, string> processFileName, bool save){
+        public FileParameterControl(string fileName, string filter, Func<string, string> processFileName, bool save){
 			InitializeComponent();
 			FileName = fileName;
 		    textBox1.Text = fileName;

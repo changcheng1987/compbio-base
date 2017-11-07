@@ -20,11 +20,8 @@ namespace BaseLibS.Num.Cluster {
 		/// <param name="clusterIndices"></param>
 		public static void GenerateClusters(MatrixIndexer data, int k, int maxIter, int restarts, Action<int> progress,
 			out float[,] clusterCenters, out int[] clusterIndices) {
-			Dictionary<EquatableArray<double>, List<int>> rowIndexMap;
-			double[][] reducedData;
-			ExtractUniqueRows(data, out rowIndexMap, out reducedData);
-			int[] uniqueClusterIndices;
-			GenerateClustersImpl(reducedData, k, maxIter, restarts, progress, out clusterCenters, out uniqueClusterIndices);
+		    ExtractUniqueRows(data, out var rowIndexMap, out var reducedData);
+		    GenerateClustersImpl(reducedData, k, maxIter, restarts, progress, out clusterCenters, out var uniqueClusterIndices);
 			clusterIndices = new int[data.RowCount];
 			RestoreRowIndices(rowIndexMap, uniqueClusterIndices, clusterIndices);
 		}

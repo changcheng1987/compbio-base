@@ -196,7 +196,7 @@ namespace BaseLib.Graphic {
 
 		public Size2 MeasureString(string text, Font2 font) {
 			SetFont(font);
-			Chunk chunk = new Chunk(text, GetFont(font));
+			Chunk chunk = new Chunk(text, PdfGraphicUtils.GetFont(font));
 			return new Size2(chunk.GetWidthPoint() * 1.5f, font.Height * 0.5f * 1.5f);
 		}
 
@@ -319,38 +319,11 @@ namespace BaseLib.Graphic {
 		}
 
 		private void SetFont(Font2 font) {
-			Font f = GetFont(font);
+			Font f = PdfGraphicUtils.GetFont(font);
 			template.SetFontAndSize(f.BaseFont, font.Size);
 		}
 
-		private static Font GetFont(Font2 font) {
-			Font f = FontFactory.GetFont("c:/windows/fonts/arial.ttf", BaseFont.CP1252, BaseFont.EMBEDDED,
-				font.Size * 0.667f, font.Bold ? 1 : 0);
-			try {
-				string file;
-				switch (font.Name) {
-					case "Lucida Sans Unicode":
-						file = "c:/windows/fonts/L_10646.TTF";
-						f = FontFactory.GetFont(file, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, font.Size * 0.667f, font.Bold ? 1 : 0);
-						break;
-					case "Arial Unicode MS":
-						file = "c:/windows/fonts/ARIALUNI.TTF";
-						f = FontFactory.GetFont(file, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, font.Size * 0.667f, font.Bold ? 1 : 0);
-						break;
-					default:
-						file = $"c:/windows/fonts/{font.Name}.ttf";
-						if (File.Exists(file)) {
-							f = FontFactory.GetFont(file, BaseFont.CP1252, BaseFont.EMBEDDED, font.Size * 0.667f, font.Bold ? 1 : 0);
-						}
-						break;
-				}
-			} catch (Exception) {
-				// do nothing
-			}
-			return f;
-		}
-
-		private void SetPen(Pen2 pen) {
+	    private void SetPen(Pen2 pen) {
 			template.SetRGBColorStroke(pen.Color.R, pen.Color.G, pen.Color.B);
 			template.SetLineWidth(pen.Width);
 			switch (pen.DashCap) {

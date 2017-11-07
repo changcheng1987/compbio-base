@@ -810,8 +810,7 @@ namespace BaseLibS.Util {
 				return false;
 			}
 			string s1 = s.Substring(x + 1);
-			int num;
-			bool succ = Parser.TryInt(s1, out num);
+			bool succ = Parser.TryInt(s1, out int _);
 			return succ;
 		}
 
@@ -832,7 +831,7 @@ namespace BaseLibS.Util {
 			"names", "proteins", "positions within proteins", "leading proteins", "leading razor protein", "md sequence",
 			"md proteins", "md gene names", "md protein names", "dp base sequence", "dp probabilities", "dp proteins",
 			"dp gene names", "dp protein names", "name", "dn sequence", "title", "volume", "number", "pages",
-			"modified sequence", "formula", "formula2"
+			"modified sequence", "formula", "formula2", "geneid", "chr"
 		});
 
 		public static readonly HashSet<string> numericColDefaultNames = new HashSet<string>(new[] {
@@ -868,7 +867,7 @@ namespace BaseLibS.Util {
 			"max frame number", "ion mobility index", "ion mobility index length", "ion mobility index length (fwhm)",
 			"isotope correlation", "peptides", "razor + unique peptides", "unique peptides", "sequence coverage [%]",
 			"unique sequence coverage [%]", "unique + razor sequence coverage [%]", "mol. weight [kda]", "dm [mda]", "dm [ppm]",
-			"time [sec]", "du", "isotope index"
+			"time [sec]", "du", "isotope index", "start", "end"
 		});
 
 		public static readonly HashSet<string> multiNumericColDefaultNames = new HashSet<string>(new[]

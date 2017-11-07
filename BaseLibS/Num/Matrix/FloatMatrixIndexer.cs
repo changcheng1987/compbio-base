@@ -106,8 +106,8 @@ namespace BaseLibS.Num.Matrix{
 			return true;
 		}
 
-		public override int RowCount => vals.GetLength(0);
-		public override int ColumnCount => vals.GetLength(1);
+		public override int RowCount => vals?.GetLength(0) ?? 0;
+		public override int ColumnCount => vals?.GetLength(1) ?? 0;
 
 		public override double this[int i, int j]{
 			get => vals[i, j];
