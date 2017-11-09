@@ -261,12 +261,23 @@ namespace BaseLibS.Util{
 			}
 		}
 
-		public static Dictionary<string, int> ReadDictionaryStringInt(BinaryReader reader){
+		public static Dictionary<string, int> ReadDictionaryStringInt(BinaryReader reader) {
 			int len = reader.ReadInt32();
 			Dictionary<string, int> result = new Dictionary<string, int>();
-			for (int i = 0; i < len; i++){
+			for (int i = 0; i < len; i++) {
 				string key = reader.ReadString();
 				int value = reader.ReadInt32();
+				result.Add(key, value);
+			}
+			return result;
+		}
+
+		public static Dictionary<string, string> ReadDictionaryStringString(BinaryReader reader) {
+			int len = reader.ReadInt32();
+			Dictionary<string, string> result = new Dictionary<string, string>();
+			for (int i = 0; i < len; i++) {
+				string key = reader.ReadString();
+				string value = reader.ReadString();
 				result.Add(key, value);
 			}
 			return result;
@@ -698,15 +709,23 @@ namespace BaseLibS.Util{
 			}
 		}
 
-		public static void Write(Dictionary<string, int> x, BinaryWriter writer){
+		public static void Write(IDictionary<string, int> x, BinaryWriter writer) {
 			writer.Write(x.Count);
-			foreach (string key in x.Keys){
+			foreach (string key in x.Keys) {
 				writer.Write(key);
 				writer.Write(x[key]);
 			}
 		}
 
-		public static void Write(Dictionary<int, int> x, BinaryWriter writer){
+		public static void Write(IDictionary<string, string> x, BinaryWriter writer) {
+			writer.Write(x.Count);
+			foreach (string key in x.Keys) {
+				writer.Write(key);
+				writer.Write(x[key]);
+			}
+		}
+
+		public static void Write(IDictionary<int, int> x, BinaryWriter writer){
 			writer.Write(x.Count);
 			foreach (int key in x.Keys){
 				writer.Write(key);
