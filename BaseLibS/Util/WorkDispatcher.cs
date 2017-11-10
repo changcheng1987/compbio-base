@@ -112,7 +112,7 @@ namespace BaseLibS.Util {
 			string cmd = GetCommandFilename();
 			string args = GetLogArgs(taskIndex, taskIndex) + GetCommandArguments(taskIndex);
 			ProcessStartInfo psi = IsRunningOnMono() && !dotNetCore
-				? new ProcessStartInfo("mono", cmd + " " + args)
+				? new ProcessStartInfo("mono", " --optimize=all,float32 --server " + cmd + " " + args)
 				: new ProcessStartInfo(cmd, args);
 			if (isUnix) {
 				psi.WorkingDirectory = Directory.GetDirectoryRoot(cmd);
