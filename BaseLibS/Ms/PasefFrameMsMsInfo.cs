@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace BaseLibS.Ms {
 	[Serializable]
@@ -20,6 +21,26 @@ namespace BaseLibS.Ms {
 			TriggerMass = triggerMass;
 			IsolationWidth = isolationWidth;
 			CollisionEnergy = collisionEnergy;
+		}
+
+		public PasefFrameMsMsInfo(BinaryReader reader) {
+			CollisionEnergy = reader.ReadDouble();
+			Frame = reader.ReadInt32();
+			IsolationWidth = reader.ReadDouble();
+			Precursor = reader.ReadInt32();
+			ScanNumBegin = reader.ReadInt32();
+			ScanNumEnd = reader.ReadInt32();
+			TriggerMass = reader.ReadDouble();
+		}
+
+		public void Write(BinaryWriter writer) {
+			writer.Write(CollisionEnergy);
+			writer.Write(Frame);
+			writer.Write(IsolationWidth);
+			writer.Write(Precursor);
+			writer.Write(ScanNumBegin);
+			writer.Write(ScanNumEnd);
+			writer.Write(TriggerMass);
 		}
 	}
 }
