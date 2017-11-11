@@ -15,7 +15,6 @@ namespace BaseLibS.Util {
 		private Process[] externalProcesses;
 		private Stack<int> toBeProcessed;
 		private readonly string infoFolder;
-		private readonly bool externalCalculations;
 		private readonly bool dotNetCore;
 
 		protected WorkDispatcher(int nThreads, int nTasks, string infoFolder, bool externalCalculations, bool dotNetCore) {
@@ -26,7 +25,7 @@ namespace BaseLibS.Util {
 			if (!string.IsNullOrEmpty(infoFolder) && !Directory.Exists(infoFolder)) {
 				Directory.CreateDirectory(infoFolder);
 			}
-			this.externalCalculations = externalCalculations;
+			ExternalCalculation = externalCalculations;
 		}
 
 		public void Abort() {
@@ -35,7 +34,7 @@ namespace BaseLibS.Util {
 					t.Abort();
 				}
 			}
-			if (ExternalCalculation() && externalProcesses != null) {
+			if (ExternalCalculation && externalProcesses != null) {
 				foreach (Process process in externalProcesses) {
 					if (process != null && IsRunning(process)) {
 						try {
@@ -99,8 +98,8 @@ namespace BaseLibS.Util {
 			}
 		}
 
-		protected void DoWork(int taskIndex, int threadIndex) {
-			if (ExternalCalculation()) {
+		private void DoWork(int taskIndex, int threadIndex) {
+			if (ExternalCalculation) {
 				ProcessSingleRunExternal(taskIndex, threadIndex);
 			} else {
 				InternalCalculation(taskIndex);
@@ -162,7 +161,7 @@ namespace BaseLibS.Util {
 				$"\"{infoFolder}\" \"{GetFilename()}\" \"{id}\" \"{GetName(taskIndex)}\" \"{GetComment(taskIndex)}\" \"Process\" ";
 		}
 
-		protected string GetFilename() {
+		private string GetFilename() {
 			return GetMessagePrefix().Trim().Replace("/", "").Replace("(", "_").Replace(")", "_").Replace(" ", "_");
 		}
 
@@ -172,7 +171,7 @@ namespace BaseLibS.Util {
 			return "";
 		}
 
-		protected string GetCommandFilename() {
+		private string GetCommandFilename() {
 			return "\"" + FileUtils.executablePath + Path.DirectorySeparatorChar + (dotNetCore ? ExecutableCore : Executable) + "\"";
 		}
 
@@ -180,11 +179,9 @@ namespace BaseLibS.Util {
 
 		protected abstract string ExecutableCore { get; }
 
-		protected bool ExternalCalculation() {
-			return externalCalculations;
-		}
+		private bool ExternalCalculation { get; }
 
-		protected string GetCommandArguments(int taskIndex) {
+		private string GetCommandArguments(int taskIndex) {
 			object[] o = GetArguments(taskIndex);
 			string[] args = new string[o.Length + 1];
 			args[0] = $"\"{Id}\"";
@@ -196,7 +193,7 @@ namespace BaseLibS.Util {
 			return StringUtils.Concat(" ", args);
 		}
 
-		protected void InternalCalculation(int taskIndex) {
+		private void InternalCalculation(int taskIndex) {
 			Calculation(GetStringArgs(taskIndex));
 		}
 
