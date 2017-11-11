@@ -83,6 +83,10 @@ namespace BaseLibS.Util {
 			}
 		}
 
+		public string GetMessagePrefix() {
+			return MessagePrefix + " ";
+		}
+
 		public abstract void Calculation(string[] args);
 		public virtual bool IsFallbackPosition => true;
 
@@ -196,10 +200,6 @@ namespace BaseLibS.Util {
 				args[i + 1] = "\"" + s + "\"";
 			}
 			return StringUtils.Concat(" ", args);
-		}
-
-		private string GetMessagePrefix() {
-			return MessagePrefix + " ";
 		}
 
 		private string[] GetStringArgs(int taskIndex) {
