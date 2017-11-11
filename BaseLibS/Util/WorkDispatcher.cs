@@ -9,7 +9,6 @@ using System.Threading;
 namespace BaseLibS.Util {
 	public abstract class WorkDispatcher {
 		private const int initialDelay = 6;
-		public readonly int nThreads;
 		private readonly int nTasks;
 		private Thread[] workThreads;
 		private Process[] externalProcesses;
@@ -18,7 +17,7 @@ namespace BaseLibS.Util {
 		private readonly bool dotNetCore;
 
 		protected WorkDispatcher(int nThreads, int nTasks, string infoFolder, bool externalCalculations, bool dotNetCore) {
-			this.nThreads = Math.Min(nThreads, nTasks);
+			Nthreads = Math.Min(nThreads, nTasks);
 			this.nTasks = nTasks;
 			this.infoFolder = infoFolder;
 			this.dotNetCore = dotNetCore;
@@ -27,6 +26,8 @@ namespace BaseLibS.Util {
 			}
 			ExternalCalculation = externalCalculations;
 		}
+
+		public int Nthreads { get; }
 
 		public void Abort() {
 			if (workThreads != null) {
@@ -60,9 +61,9 @@ namespace BaseLibS.Util {
 			for (int index = nTasks - 1; index >= 0; index--) {
 				toBeProcessed.Push(index);
 			}
-			workThreads = new Thread[nThreads];
-			externalProcesses = new Process[nThreads];
-			for (int i = 0; i < nThreads; i++) {
+			workThreads = new Thread[Nthreads];
+			externalProcesses = new Process[Nthreads];
+			for (int i = 0; i < Nthreads; i++) {
 				workThreads[i] = new Thread(Work) {Name = "Thread " + i + " of " + GetType().Name};
 				workThreads[i].Start(i);
 				Thread.Sleep(initialDelay);
@@ -70,7 +71,7 @@ namespace BaseLibS.Util {
 			while (true) {
 				Thread.Sleep(1000);
 				bool busy = false;
-				for (int i = 0; i < nThreads; i++) {
+				for (int i = 0; i < Nthreads; i++) {
 					if (workThreads[i].IsAlive) {
 						busy = true;
 						break;
@@ -82,7 +83,20 @@ namespace BaseLibS.Util {
 			}
 		}
 
-		public void Work(object threadIndex) {
+		public abstract void Calculation(string[] args);
+		public virtual bool IsFallbackPosition => true;
+
+		protected virtual string GetComment(int taskIndex) {
+			return "";
+		}
+
+		protected abstract string Executable { get; }
+		protected abstract string ExecutableCore { get; }
+		protected abstract object[] GetArguments(int taskIndex);
+		protected abstract int Id { get; }
+		protected abstract string MessagePrefix { get; }
+
+		private void Work(object threadIndex) {
 			while (toBeProcessed.Count > 0) {
 				int x;
 				lock (this) {
@@ -102,7 +116,7 @@ namespace BaseLibS.Util {
 			if (ExternalCalculation) {
 				ProcessSingleRunExternal(taskIndex, threadIndex);
 			} else {
-				InternalCalculation(taskIndex);
+				Calculation(GetStringArgs(taskIndex));
 			}
 		}
 
@@ -165,19 +179,10 @@ namespace BaseLibS.Util {
 			return GetMessagePrefix().Trim().Replace("/", "").Replace("(", "_").Replace(")", "_").Replace(" ", "_");
 		}
 
-		public virtual bool IsFallbackPosition => true;
-
-		protected virtual string GetComment(int taskIndex) {
-			return "";
-		}
-
 		private string GetCommandFilename() {
-			return "\"" + FileUtils.executablePath + Path.DirectorySeparatorChar + (dotNetCore ? ExecutableCore : Executable) + "\"";
+			return "\"" + FileUtils.executablePath + Path.DirectorySeparatorChar + (dotNetCore ? ExecutableCore : Executable) +
+			       "\"";
 		}
-
-		protected abstract string Executable { get; }
-
-		protected abstract string ExecutableCore { get; }
 
 		private bool ExternalCalculation { get; }
 
@@ -193,11 +198,7 @@ namespace BaseLibS.Util {
 			return StringUtils.Concat(" ", args);
 		}
 
-		private void InternalCalculation(int taskIndex) {
-			Calculation(GetStringArgs(taskIndex));
-		}
-
-		public string GetMessagePrefix() {
+		private string GetMessagePrefix() {
 			return MessagePrefix + " ";
 		}
 
@@ -209,10 +210,5 @@ namespace BaseLibS.Util {
 			}
 			return args;
 		}
-
-		public abstract void Calculation(string[] args);
-		protected abstract object[] GetArguments(int taskIndex);
-		protected abstract int Id { get; }
-		protected abstract string MessagePrefix { get; }
 	}
 }
