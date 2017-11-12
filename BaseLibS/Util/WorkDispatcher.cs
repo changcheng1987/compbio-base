@@ -16,7 +16,7 @@ namespace BaseLibS.Util {
 		private readonly string infoFolder;
 		private readonly bool dotNetCore;
 
-		protected WorkDispatcher(int nThreads, int nTasks, string infoFolder, bool externalCalculations, bool dotNetCore) {
+		protected WorkDispatcher(int nThreads, int nTasks, string infoFolder, CalculationType calculationType, bool dotNetCore) {
 			Nthreads = Math.Min(nThreads, nTasks);
 			this.nTasks = nTasks;
 			this.infoFolder = infoFolder;
@@ -24,7 +24,7 @@ namespace BaseLibS.Util {
 			if (!string.IsNullOrEmpty(infoFolder) && !Directory.Exists(infoFolder)) {
 				Directory.CreateDirectory(infoFolder);
 			}
-			ExternalCalculation = externalCalculations;
+			CalculationType = calculationType;
 		}
 
 		public int Nthreads { get; }
@@ -35,7 +35,7 @@ namespace BaseLibS.Util {
 					t.Abort();
 				}
 			}
-			if (ExternalCalculation && externalProcesses != null) {
+			if (CalculationType == CalculationType.ExternalProcess && externalProcesses != null) {
 				foreach (Process process in externalProcesses) {
 					if (process != null && IsRunning(process)) {
 						try {
@@ -117,14 +117,25 @@ namespace BaseLibS.Util {
 		}
 
 		private void DoWork(int taskIndex, int threadIndex) {
-			if (ExternalCalculation) {
-				ProcessSingleRunExternal(taskIndex, threadIndex);
-			} else {
-				Calculation(GetStringArgs(taskIndex));
+			switch (CalculationType) {
+				case CalculationType.ExternalProcess:
+					ProcessSingleRunExternalProcess(taskIndex, threadIndex);
+					break;
+				case CalculationType.Thread:
+					Calculation(GetStringArgs(taskIndex));
+					break;
+				case CalculationType.Queueing:
+					ProcessSingleRunQueueing(taskIndex, threadIndex);
+					break;
 			}
 		}
 
-		private void ProcessSingleRunExternal(int taskIndex, int threadIndex) {
+		private void ProcessSingleRunQueueing(int taskIndex, int threadIndex) {
+			throw new NotImplementedException();
+			//Submit to queue and block until finished.
+		}
+
+		private void ProcessSingleRunExternalProcess(int taskIndex, int threadIndex) {
 			bool isUnix = FileUtils.IsUnix();
 			string cmd = GetCommandFilename();
 			string args = GetLogArgs(taskIndex, taskIndex) + GetCommandArguments(taskIndex);
@@ -188,7 +199,7 @@ namespace BaseLibS.Util {
 			       "\"";
 		}
 
-		private bool ExternalCalculation { get; }
+		private CalculationType CalculationType { get; }
 
 		private string GetCommandArguments(int taskIndex) {
 			object[] o = GetArguments(taskIndex);
