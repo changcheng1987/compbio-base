@@ -342,6 +342,11 @@ namespace BaseLib.Forms.Table {
 				int ind = (int) searchResultsTableView.GetEntry(row, 0) - 1;
 				string cname = (string) searchResultsTableView.GetEntry(row, 1);
 				tableViewWf.SetSelectedViewIndex(ind);
+				for (int i = 1; i < rows.Length; i++) {
+					int row1 = rows[i];
+					int ind1 = (int)searchResultsTableView.GetEntry(row1, 0) - 1;
+					tableViewWf.SetSelectedViewIndex(ind1);
+				}
 				tableViewWf.ScrollToRow(ind);
 				int colInd = tableModel.GetColumnIndex(cname);
 				tableViewWf.ScrollToColumn(colInd);
