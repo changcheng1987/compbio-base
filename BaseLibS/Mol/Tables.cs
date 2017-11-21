@@ -304,39 +304,47 @@ namespace BaseLibS.Mol{
 			return result.ToArray();
 		}
 
-		public static Modification[] ReadModificationList(string filename){
-			if (!File.Exists(filename)){
-				return new Modification[0];
-			}
-			ModificationList list = (ModificationList) XmlSerialization.DeserializeObject(filename, typeof (ModificationList));
-			return list != null ? list.Modifications : new Modification[0];
-		}
+        public static Modification[] ReadModificationList(string filename)
+        {
+            if (!File.Exists(filename))
+            {
+                return new Modification[0];
+            }
+            ModificationList list = (ModificationList)XmlSerialization.DeserializeObject(filename, typeof(ModificationList));
+            return list != null ? list.Modifications : new Modification[0];
+        }
 
-		private static Dictionary<string, CrossLinker> ReadCrossLinks(){
-			Dictionary<string, CrossLinker> crossLinkers1 = new Dictionary<string, CrossLinker>();
-			CrossLinker[] prot = ReadCrossLinkList();
-			if (prot != null){
-				foreach (CrossLinker enzyme in prot){
-					crossLinkers1.Add(enzyme.Name, enzyme);
-				}
-			}
-			return crossLinkers1;
-		}
+        private static Dictionary<string, CrossLinker> ReadCrossLinks()
+        {
+            Dictionary<string, CrossLinker> crosslinkers = new Dictionary<string, CrossLinker>();
+            CrossLinker[] crosslinkerList = ReadCrossLinkList();
+            if (crosslinkerList != null)
+            {
+                foreach (CrossLinker crosslinker in crosslinkerList)
+                {
+                    crosslinkers.Add(crosslinker.Name, crosslinker);
+                }
+            }
+            return crosslinkers;
+        }
 
-		public static CrossLinker[] ReadCrossLinkList(){
-			string filename = Path.Combine(FileUtils.GetConfigPath(), "crosslinks.xml");
-			if (!File.Exists(filename)){
-				return new CrossLinker[0];
-			}
-			CrossLinkerList prot = (CrossLinkerList) XmlSerialization.DeserializeObject(filename, typeof (CrossLinkerList));
-			CrossLinker[] result = prot != null ? prot.Crosslinks : new CrossLinker[0];
-			for (int i = 0; i < result.Length; i++){
-				result[i].Index = (ushort) i;
-			}
-			return result;
-		}
+        public static CrossLinker[] ReadCrossLinkList()
+        {
+            string filename = Path.Combine(FileUtils.GetConfigPath(), "crosslinks.xml");
+            if (!File.Exists(filename))
+            {
+                return new CrossLinker[0];
+            }
+            CrossLinkerList cllist = (CrossLinkerList)XmlSerialization.DeserializeObject(filename, typeof(CrossLinkerList));
+            CrossLinker[] clArr = cllist != null ? cllist.Crosslinks : new CrossLinker[0];
+            for (int i = 0; i < clArr.Length; i++)
+            {
+                clArr[i].Index = (ushort)i;
+            }
+            return clArr;
+        }
 
-		private static Dictionary<string, Enzyme> ReadProteases(){
+        private static Dictionary<string, Enzyme> ReadProteases(){
 			Dictionary<string, Enzyme> proteases = new Dictionary<string, Enzyme>();
 			foreach (Enzyme enzyme in ReadProteaseList()){
 				proteases.Add(enzyme.Name, enzyme);
