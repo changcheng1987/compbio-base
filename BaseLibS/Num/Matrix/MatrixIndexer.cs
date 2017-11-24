@@ -4,8 +4,9 @@ using BaseLibS.Num.Vector;
 
 namespace BaseLibS.Num.Matrix{
 	[Serializable]
-	public abstract class MatrixIndexer : ICloneable, IDisposable {
-		public abstract void Init(int nrows, int ncols);
+    public abstract class MatrixIndexer : ICloneable, IDisposable, IEquatable<MatrixIndexer>
+    {
+        public abstract void Init(int nrows, int ncols);
 		public abstract bool IsInitialized();
 		public abstract int RowCount { get; }
 		public abstract int ColumnCount { get; }
@@ -47,5 +48,32 @@ namespace BaseLibS.Num.Matrix{
 
 		public abstract object Clone();
 		public abstract void Dispose();
+
+        public bool Equals(MatrixIndexer other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (!IsInitialized() && !other.IsInitialized())
+            {
+                return true;
+            }
+            if (!other.IsInitialized())
+            {
+                return false;
+            }
+            for (int i = 0; i < RowCount; i++)
+            {
+                for (int j = 0; j < ColumnCount; j++)
+                {
+                    if (this[i, j] != other[i, j])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
 	}
 }

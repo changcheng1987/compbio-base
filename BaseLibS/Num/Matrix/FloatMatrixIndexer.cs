@@ -4,8 +4,9 @@ using BaseLibS.Num.Vector;
 
 namespace BaseLibS.Num.Matrix{
 	[Serializable]
-	public class FloatMatrixIndexer : MatrixIndexer{
-		private float[,] vals;
+    public class FloatMatrixIndexer : MatrixIndexer
+    {
+        private float[,] vals;
 		public FloatMatrixIndexer(){}
 
 		public FloatMatrixIndexer(float[,] vals){
@@ -132,5 +133,6 @@ namespace BaseLibS.Num.Matrix{
 		public override object Clone(){
 			return vals == null ? new FloatMatrixIndexer(null) : new FloatMatrixIndexer((float[,]) vals.Clone());
 		}
-	}
+
+    }
 }
