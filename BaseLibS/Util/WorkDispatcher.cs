@@ -15,9 +15,15 @@ namespace BaseLibS.Util {
 		private Stack<int> toBeProcessed;
 		private readonly string infoFolder;
 		private readonly bool dotNetCore;
+		private readonly int numInternalThreads;
 
-		protected WorkDispatcher(int nThreads, int nTasks, string infoFolder, CalculationType calculationType, bool dotNetCore) {
+		protected WorkDispatcher(int nThreads, int nTasks, string infoFolder, CalculationType calculationType,
+			bool dotNetCore) : this(nThreads, nTasks, infoFolder, calculationType, dotNetCore, 1) { }
+
+		protected WorkDispatcher(int nThreads, int nTasks, string infoFolder, CalculationType calculationType,
+			bool dotNetCore, int numInternalThreads) {
 			Nthreads = Math.Min(nThreads, nTasks);
+			this.numInternalThreads = numInternalThreads;
 			this.nTasks = nTasks;
 			this.infoFolder = infoFolder;
 			this.dotNetCore = dotNetCore;
@@ -125,12 +131,12 @@ namespace BaseLibS.Util {
 					Calculation(GetStringArgs(taskIndex));
 					break;
 				case CalculationType.Queueing:
-					ProcessSingleRunQueueing(taskIndex, threadIndex);
+					ProcessSingleRunQueueing(taskIndex, threadIndex, numInternalThreads);
 					break;
 			}
 		}
 
-		private void ProcessSingleRunQueueing(int taskIndex, int threadIndex) {
+		private void ProcessSingleRunQueueing(int taskIndex, int threadIndex, int numInternalThreads) {
 			throw new NotImplementedException();
 			//Submit to queue and block until finished.
 		}
