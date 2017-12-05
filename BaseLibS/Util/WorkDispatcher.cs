@@ -33,6 +33,8 @@ namespace BaseLibS.Util {
 			CalculationType = calculationType;
 		}
 
+		public int MaxHeapSizeGb { get; set; } 
+
 		public int Nthreads { get; }
 
 		public void Abort() {
@@ -150,6 +152,9 @@ namespace BaseLibS.Util {
 				: new ProcessStartInfo(cmd, args);
 			if (isUnix) {
 				psi.WorkingDirectory = Directory.GetDirectoryRoot(cmd);
+				if (MaxHeapSizeGb > 0) {
+					psi.EnvironmentVariables["MONO_GC_PARAMS"] = "max-heap-size=" + MaxHeapSizeGb + "g";
+				}
 			}
 			psi.WindowStyle = ProcessWindowStyle.Hidden;
 			externalProcesses[threadIndex] = new Process {StartInfo = psi};
