@@ -11,7 +11,7 @@ namespace BaseLib.Param {
 		public override ParamType Type => ParamType.WinForms;
 
 		public override void SetValueFromControl() {
-			if (control == null) {
+			if (control == null || control.IsDisposed) {
 				return;
 			}
 			ComboBox cb = (ComboBox) control.Controls[0];
@@ -24,7 +24,7 @@ namespace BaseLib.Param {
 		}
 
 		public override void UpdateControlFromValue() {
-			if (control == null) {
+			if (control == null || control.IsDisposed) {
 				return;
 			}
 			ComboBox cb = (ComboBox) control.Controls[0];

@@ -11,6 +11,9 @@ namespace BaseLib.Param{
 		public override ParamType Type => ParamType.WinForms;
 
 		public override void SetValueFromControl(){
+			if (control == null || control.IsDisposed) {
+				return;
+			}
 			bool s = Parser.TryInt(control.Text, out int val);
 			if (s){
 				Value = val;
@@ -18,7 +21,7 @@ namespace BaseLib.Param{
 		}
 
 		public override void UpdateControlFromValue(){
-			if (control == null){
+			if (control == null || control.IsDisposed) {
 				return;
 			}
 			control.Text = Parser.ToString(Value);

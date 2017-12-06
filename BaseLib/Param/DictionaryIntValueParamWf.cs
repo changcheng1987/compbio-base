@@ -21,11 +21,14 @@ namespace BaseLib.Param{
 		}
 
 		public override void SetValueFromControl(){
+			if (control == null || control.IsDisposed) {
+				return;
+			}
 			Value = control.Value;
 		}
 
 		public override void UpdateControlFromValue(){
-			if (control == null){
+			if (control == null || control.IsDisposed) {
 				return;
 			}
 			control.Value = Value;

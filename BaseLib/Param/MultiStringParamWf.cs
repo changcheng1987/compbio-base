@@ -13,6 +13,9 @@ namespace BaseLib.Param{
 		public override ParamType Type => ParamType.WinForms;
 
 		public override void SetValueFromControl(){
+			if (control == null || control.IsDisposed) {
+				return;
+			}
 			string text = control.Text;
 			string[] b = text.Split('\n');
 			List<string> result = new List<string>();
@@ -26,7 +29,7 @@ namespace BaseLib.Param{
 		}
 
 		public override void UpdateControlFromValue(){
-			if (control == null){
+			if (control == null || control.IsDisposed) {
 				return;
 			}
 			control.Text = StringUtils.Concat("\n", Value);
