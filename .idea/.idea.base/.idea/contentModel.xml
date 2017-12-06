@@ -1,5 +1,1049 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/Library/Caches/Rider2017.2/resharper-host/local/Transient/ReSharperHost/v10/SolutionCaches/_base.284416292.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="base.sln" t="IncludeFlat" />
+      <e p="BaseLib" t="IncludeRecursive">
+        <e p="BaseLib.csproj" t="IncludeRecursive" />
+        <e p="BaseLib.Test" t="IncludeRecursive">
+          <e p="BaseLib.Test.csproj" t="IncludeRecursive" />
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="FontTest.cs" t="Include" />
+          <e p="obj" t="ExcludeRecursive" />
+          <e p="packages.config" t="Include" />
+          <e p="Properties" t="Include">
+            <e p="AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Forms" t="Include">
+          <e p="Base" t="Include">
+            <e p="BasicControl.cs" t="Include" />
+            <e p="BasicImageFormat.cs" t="Include" />
+            <e p="BasicUserControl.cs" t="Include" />
+            <e p="FormUtil.cs" t="Include" />
+            <e p="Printing.cs" t="Include" />
+          </e>
+          <e p="CheckedListControl.cs" t="Include" />
+          <e p="CheckedListControl.Designer.cs" t="Include" />
+          <e p="CheckedListControl.resx" t="Include" />
+          <e p="ColorScale.cs" t="Include" />
+          <e p="ColorScale.Designer.cs" t="Include" />
+          <e p="ColorScale.resx" t="Include" />
+          <e p="ColorsForm.cs" t="Include" />
+          <e p="ColorsForm.Designer.cs" t="Include" />
+          <e p="ColorsForm.resx" t="Include" />
+          <e p="ColorStripView.cs" t="Include" />
+          <e p="DictionaryIntValueControl.cs" t="Include" />
+          <e p="DictionaryIntValueControl.Designer.cs" t="Include" />
+          <e p="DictionaryIntValueControl.resx" t="Include" />
+          <e p="DictionaryIntValueForm.cs" t="Include" />
+          <e p="DictionaryIntValueForm.Designer.cs" t="Include" />
+          <e p="DictionaryIntValueForm.resx" t="Include" />
+          <e p="FileParameterControl.cs" t="Include" />
+          <e p="FileParameterControl.Designer.cs" t="Include" />
+          <e p="FileParameterControl.resx" t="Include" />
+          <e p="FilterForm.cs" t="Include" />
+          <e p="FilterForm.Designer.cs" t="Include" />
+          <e p="FilterForm.resx" t="Include" />
+          <e p="FolderParameterControl.cs" t="Include" />
+          <e p="FolderParameterControl.Designer.cs" t="Include" />
+          <e p="FolderParameterControl.resx" t="Include" />
+          <e p="FormUtils.cs" t="Include" />
+          <e p="ListSelectorControl.cs" t="Include" />
+          <e p="ListSelectorControl.Designer.cs" t="Include" />
+          <e p="ListSelectorControl.resx" t="Include" />
+          <e p="Ms1LabelPanel.cs" t="Include" />
+          <e p="Ms1LabelPanel.Designer.cs" t="Include" />
+          <e p="MultiFileParameterControl.cs" t="Include" />
+          <e p="MultiFileParameterControl.Designer.cs" t="Include" />
+          <e p="MultiFileParameterControl.resx" t="Include" />
+          <e p="MultiListSelectorControl.cs" t="Include" />
+          <e p="MultiListSelectorControl.Designer.cs" t="Include" />
+          <e p="NumericAxisPropertiesForm.cs" t="Include" />
+          <e p="NumericAxisPropertiesForm.Designer.cs" t="Include" />
+          <e p="NumericAxisPropertiesForm.resx" t="Include" />
+          <e p="NumericAxisView.cs" t="Include" />
+          <e p="PatternMatchParamControl.cs" t="Include" />
+          <e p="PatternMatchParamControl.Designer.cs" t="Include" />
+          <e p="PatternMatchParamControl.resx" t="Include" />
+          <e p="PlanePropertiesForm.cs" t="Include" />
+          <e p="PlanePropertiesForm.Designer.cs" t="Include" />
+          <e p="PlanePropertiesForm.resx" t="Include" />
+          <e p="RegexReplaceParamControl.cs" t="Include" />
+          <e p="RegexReplaceParamControl.Designer.cs" t="Include" />
+          <e p="RegexReplaceParamControl.resx" t="Include" />
+          <e p="Scroll" t="Include">
+            <e p="CompoundScrollableControl.cs" t="Include" />
+            <e p="HorizontalScrollBarView.cs" t="Include" />
+            <e p="ScrollableControlColumnFooterView.cs" t="Include" />
+            <e p="ScrollableControlColumnHeaderView.cs" t="Include" />
+            <e p="ScrollableControlColumnSpacerView.cs" t="Include" />
+            <e p="ScrollableControlCornerView.cs" t="Include" />
+            <e p="ScrollableControlMainView.cs" t="Include" />
+            <e p="ScrollableControlMiddleCornerView.cs" t="Include" />
+            <e p="ScrollableControlRowFooterView.cs" t="Include" />
+            <e p="ScrollableControlRowHeaderView.cs" t="Include" />
+            <e p="ScrollableControlRowSpacerView.cs" t="Include" />
+            <e p="ScrollableControlSmallCornerView.cs" t="Include" />
+            <e p="ScrollBarState.cs" t="Include" />
+            <e p="ScrollBarView.cs" t="Include" />
+            <e p="ScrollComponentView.cs" t="Include" />
+            <e p="SimpleScrollableControl.cs" t="Include" />
+            <e p="SimpleScrollableControlMainView.cs" t="Include" />
+            <e p="VerticalScrollBarView.cs" t="Include" />
+          </e>
+          <e p="SubSelectionControl.cs" t="Include" />
+          <e p="SubSelectionControl.Designer.cs" t="Include" />
+          <e p="SubSelectionControl.resx" t="Include" />
+          <e p="Table" t="Include">
+            <e p="FindForm.cs" t="Include" />
+            <e p="FindForm.Designer.cs" t="Include" />
+            <e p="FindForm.resx" t="Include" />
+            <e p="HelpLabel.cs" t="Include" />
+            <e p="HelpLabel.Designer.cs" t="Include" />
+            <e p="HelpLabel.resx" t="Include" />
+            <e p="ITableSelectionAgent.cs" t="Include" />
+            <e p="ListSelector.cs" t="Include" />
+            <e p="ListSelector.Designer.cs" t="Include" />
+            <e p="ListSelector.resx" t="Include" />
+            <e p="PasteSelectionForm.cs" t="Include" />
+            <e p="PasteSelectionForm.Designer.cs" t="Include" />
+            <e p="PasteSelectionForm.resx" t="Include" />
+            <e p="SelectColumnsForm.cs" t="Include" />
+            <e p="SelectColumnsForm.Designer.cs" t="Include" />
+            <e p="SelectColumnsForm.resx" t="Include" />
+            <e p="TableView.cs" t="Include" />
+            <e p="TableView.Designer.cs" t="Include" />
+            <e p="TableView.resx" t="Include" />
+            <e p="TableViewControlModel.cs" t="Include" />
+            <e p="TableViewSelectionAgentForm.cs" t="Include" />
+            <e p="TableViewSelectionAgentForm.Designer.cs" t="Include" />
+            <e p="TableViewSelectionAgentForm.resx" t="Include" />
+          </e>
+          <e p="UnsafeBitmap.cs" t="Include" />
+        </e>
+        <e p="Graphic" t="Include">
+          <e p="BaseDrawControl.cs" t="Include" />
+          <e p="BitmapGraphics.cs" t="Include" />
+          <e p="CGraphics.cs" t="Include" />
+          <e p="ExportGraphics.cs" t="Include" />
+          <e p="GraphUtils.cs" t="Include" />
+          <e p="PdfGraphics.cs" t="Include" />
+          <e p="PdfGraphicUtils.cs" t="Include" />
+          <e p="Svg.cs" t="Include" />
+          <e p="SvgGraphics.cs" t="Include" />
+          <e p="WindowsBasedGraphics.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Param" t="Include">
+          <e p="BoolParamWf.cs" t="Include" />
+          <e p="BoolWithSubParamsWf.cs" t="Include" />
+          <e p="DictionaryIntValueParamWf.cs" t="Include" />
+          <e p="DoubleParamWf.cs" t="Include" />
+          <e p="FileParamWf.cs" t="Include" />
+          <e p="FolderParamWf.cs" t="Include" />
+          <e p="IntParamWf.cs" t="Include" />
+          <e p="LabelParamWf.cs" t="Include" />
+          <e p="Ms1LabelParamWf.cs" t="Include" />
+          <e p="MultiChoiceMultiBinParamWf.cs" t="Include" />
+          <e p="MultiChoiceParamWf.cs" t="Include" />
+          <e p="MultiFileParamWf.cs" t="Include" />
+          <e p="MultiStringParamWf.cs" t="Include" />
+          <e p="ParameterForm.cs" t="Include" />
+          <e p="ParameterForm.Designer.cs" t="Include" />
+          <e p="ParameterForm.resx" t="Include" />
+          <e p="ParameterGroupPanel.cs" t="Include" />
+          <e p="ParameterGroupPanel.resx" t="Include" />
+          <e p="ParameterPanel.cs" t="Include" />
+          <e p="RegexMatchParamWf.cs" t="Include" />
+          <e p="RegexReplaceParamWf.cs" t="Include" />
+          <e p="ServerParameterFactory.cs" t="Include" />
+          <e p="SingleChoiceParamWf.cs" t="Include" />
+          <e p="SingleChoiceWithSubParamsWf.cs" t="Include" />
+          <e p="StringParamWf.cs" t="Include" />
+          <e p="WinFormsParameterFactory.cs" t="Include" />
+        </e>
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+        </e>
+        <e p="Query" t="Include">
+          <e p="DoubleQueryForm.cs" t="Include" />
+          <e p="DoubleQueryForm.Designer.cs" t="Include" />
+          <e p="DoubleQueryForm.resx" t="Include" />
+          <e p="FolderQueryForm.cs" t="Include" />
+          <e p="FolderQueryForm.Designer.cs" t="Include" />
+          <e p="FolderQueryForm.resx" t="Include" />
+          <e p="IntMinMaxQueryForm.cs" t="Include" />
+          <e p="IntMinMaxQueryForm.Designer.cs" t="Include" />
+          <e p="IntMinMaxQueryForm.resx" t="Include" />
+          <e p="IntQueryForm.cs" t="Include" />
+          <e p="IntQueryForm.Designer.cs" t="Include" />
+          <e p="IntQueryForm.resx" t="Include" />
+          <e p="SingleChoiceQueryForm.cs" t="Include" />
+          <e p="SingleChoiceQueryForm.Designer.cs" t="Include" />
+          <e p="SingleChoiceQueryForm.resx" t="Include" />
+          <e p="StringQueryForm.cs" t="Include" />
+          <e p="StringQueryForm.Designer.cs" t="Include" />
+          <e p="StringQueryForm.resx" t="Include" />
+          <e p="SymbolTypeQueryForm.cs" t="Include" />
+          <e p="SymbolTypeQueryForm.Designer.cs" t="Include" />
+          <e p="SymbolTypeQueryForm.resx" t="Include" />
+        </e>
+        <e p="Resources" t="Include">
+          <e p="question12.png" t="Include" />
+        </e>
+      </e>
+      <e p="BaseLibS" t="IncludeRecursive">
+        <e p="Api" t="Include">
+          <e p="ClassificationFeatureRankingMethod.cs" t="Include" />
+          <e p="ClassificationMethod.cs" t="Include" />
+          <e p="ClassificationModel.cs" t="Include" />
+          <e p="IDistance.cs" t="Include" />
+          <e p="IDistanceMatrix.cs" t="Include" />
+          <e p="IGroupDataProvider.cs" t="Include" />
+          <e p="IKernelFunction.cs" t="Include" />
+          <e p="INamedItem.cs" t="Include" />
+          <e p="INamedListItem.cs" t="Include" />
+          <e p="MatrixAccess.cs" t="Include" />
+          <e p="RegressionFeatureRankingMethod.cs" t="Include" />
+          <e p="RegressionMethod.cs" t="Include" />
+          <e p="RegressionModel.cs" t="Include" />
+        </e>
+        <e p="BaseLibS.csproj" t="IncludeRecursive" />
+        <e p="BaseLibS.Test" t="IncludeRecursive">
+          <e p="BaseLibS.Test.csproj" t="IncludeRecursive" />
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="ClusteringTest.cs" t="Include" />
+          <e p="obj" t="ExcludeRecursive" />
+          <e p="packages.config" t="Include" />
+          <e p="Properties" t="Include">
+            <e p="AssemblyInfo.cs" t="Include" />
+          </e>
+          <e p="SerializationTest.cs" t="Include" />
+          <e p="TestUtils.cs" t="Include" />
+          <e p="Util" t="Include">
+            <e p="FileUtilsTest.cs" t="Include" />
+            <e p="StringUtilsTest.cs" t="Include" />
+          </e>
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Calc" t="Include">
+          <e p="Const" t="Include">
+            <e p="ConstE.cs" t="Include" />
+            <e p="ConstEuler.cs" t="Include" />
+            <e p="ConstInteger.cs" t="Include" />
+            <e p="ConstNegativeInfinity.cs" t="Include" />
+            <e p="ConstPi.cs" t="Include" />
+            <e p="ConstPositiveInfinity.cs" t="Include" />
+            <e p="ConstRational.cs" t="Include" />
+          </e>
+          <e p="Except" t="Include">
+            <e p="CannotCalculateDerivativeException.cs" t="Include" />
+            <e p="CannotCalculateDomainException.cs" t="Include" />
+            <e p="CannotCalculateImaginaryPartException.cs" t="Include" />
+            <e p="CannotCalculateIndefiniteIntegralException.cs" t="Include" />
+            <e p="CannotCalculateNthDerivativeException.cs" t="Include" />
+            <e p="CannotCalculateRealPartException.cs" t="Include" />
+            <e p="CannotEvaluateComplexDoubleException.cs" t="Include" />
+            <e p="CannotEvaluateDoubleException.cs" t="Include" />
+          </e>
+          <e p="F0I1" t="Include">
+            <e p="Func0I1EulerNumbers.cs" t="Include" />
+            <e p="Func0I1Factorial.cs" t="Include" />
+            <e p="Func0I1FibonacciNumbers.cs" t="Include" />
+            <e p="Func0I1Indicator.cs" t="Include" />
+            <e p="Func0I1IndicatorEven.cs" t="Include" />
+            <e p="Func0I1IndicatorGreaterEqual.cs" t="Include" />
+            <e p="Func0I1IndicatorKronecker.cs" t="Include" />
+            <e p="Func0I1IndicatorLessEqual.cs" t="Include" />
+            <e p="Func0I1IndicatorOdd.cs" t="Include" />
+            <e p="Func0I1PrimeNumbers.cs" t="Include" />
+          </e>
+          <e p="F0I2" t="Include">
+            <e p="Func0I2BinomCoeff.cs" t="Include" />
+          </e>
+          <e p="F1" t="Include">
+            <e p="Func1Abs.cs" t="Include" />
+            <e p="Func1Acos.cs" t="Include" />
+            <e p="Func1Acosh.cs" t="Include" />
+            <e p="Func1Acot.cs" t="Include" />
+            <e p="Func1Acoth.cs" t="Include" />
+            <e p="Func1Acsc.cs" t="Include" />
+            <e p="Func1Acsch.cs" t="Include" />
+            <e p="Func1Asec.cs" t="Include" />
+            <e p="Func1Asech.cs" t="Include" />
+            <e p="Func1Asin.cs" t="Include" />
+            <e p="Func1Asinh.cs" t="Include" />
+            <e p="Func1Atan.cs" t="Include" />
+            <e p="Func1Atanh.cs" t="Include" />
+            <e p="Func1Ceiling.cs" t="Include" />
+            <e p="Func1Conjugate.cs" t="Include" />
+            <e p="Func1Cos.cs" t="Include" />
+            <e p="Func1Cosh.cs" t="Include" />
+            <e p="Func1Cot.cs" t="Include" />
+            <e p="Func1Coth.cs" t="Include" />
+            <e p="Func1Csc.cs" t="Include" />
+            <e p="Func1Csch.cs" t="Include" />
+            <e p="Func1Dirac.cs" t="Include" />
+            <e p="Func1DiracComb.cs" t="Include" />
+            <e p="Func1Erf.cs" t="Include" />
+            <e p="Func1Exp.cs" t="Include" />
+            <e p="Func1Floor.cs" t="Include" />
+            <e p="Func1Gamma.cs" t="Include" />
+            <e p="Func1Gauss.cs" t="Include" />
+            <e p="Func1Heavyside.cs" t="Include" />
+            <e p="Func1Inverse.cs" t="Include" />
+            <e p="Func1Log.cs" t="Include" />
+            <e p="Func1Log10.cs" t="Include" />
+            <e p="Func1Log2.cs" t="Include" />
+            <e p="Func1Minus.cs" t="Include" />
+            <e p="Func1Round.cs" t="Include" />
+            <e p="Func1Sec.cs" t="Include" />
+            <e p="Func1Sech.cs" t="Include" />
+            <e p="Func1Sign.cs" t="Include" />
+            <e p="Func1Sin.cs" t="Include" />
+            <e p="Func1Sinh.cs" t="Include" />
+            <e p="Func1Sqrt.cs" t="Include" />
+            <e p="Func1Tan.cs" t="Include" />
+            <e p="Func1Tanh.cs" t="Include" />
+          </e>
+          <e p="F1I1" t="Include">
+            <e p="Func1I1HermitePoly.cs" t="Include" />
+          </e>
+          <e p="F2" t="Include">
+            <e p="Func2Atan.cs" t="Include" />
+            <e p="Func2Diff.cs" t="Include" />
+            <e p="Func2Log.cs" t="Include" />
+            <e p="Func2Max.cs" t="Include" />
+            <e p="Func2Min.cs" t="Include" />
+            <e p="Func2Pow.cs" t="Include" />
+            <e p="Func2Product.cs" t="Include" />
+            <e p="Func2Ratio.cs" t="Include" />
+            <e p="Func2Sum.cs" t="Include" />
+          </e>
+          <e p="FN" t="Include">
+            <e p="FuncNMax.cs" t="Include" />
+            <e p="FuncNMin.cs" t="Include" />
+            <e p="FuncNProduct.cs" t="Include" />
+            <e p="FuncNSum.cs" t="Include" />
+          </e>
+          <e p="Func" t="Include">
+            <e p="Constant.cs" t="Include" />
+            <e p="Func0I1.cs" t="Include" />
+            <e p="Func0I2.cs" t="Include" />
+            <e p="Func1.cs" t="Include" />
+            <e p="Func1I1.cs" t="Include" />
+            <e p="Func2.cs" t="Include" />
+            <e p="FuncN.cs" t="Include" />
+            <e p="GenericFunc.cs" t="Include" />
+            <e p="Variable.cs" t="Include" />
+          </e>
+          <e p="Function.cs" t="Include" />
+          <e p="Relation.cs" t="Include" />
+          <e p="RelationType.cs" t="Include" />
+          <e p="Util" t="Include">
+            <e p="BigComplex.cs" t="Include" />
+            <e p="BigRational.cs" t="Include" />
+            <e p="FuncUtils.cs" t="Include" />
+            <e p="ReturnType.cs" t="Include" />
+            <e p="Topic.cs" t="Include" />
+            <e p="TreeNode.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Data" t="Include">
+          <e p="Cache.cs" t="Include" />
+          <e p="CacheElem.cs" t="Include" />
+          <e p="EquatableArray.cs" t="Include" />
+          <e p="ICache.cs" t="Include" />
+          <e p="IndexedBitMatrix.cs" t="Include" />
+          <e p="NeighbourList.cs" t="Include" />
+          <e p="NeighbourListBipartite.cs" t="Include" />
+          <e p="NeighbourListDirected.cs" t="Include" />
+          <e p="ThreadSafeArray.cs" t="Include" />
+          <e p="ThreadSafeCache.cs" t="Include" />
+          <e p="ThreadSafeDictionary.cs" t="Include" />
+          <e p="ThreadSafeHashSet.cs" t="Include" />
+        </e>
+        <e p="Genome" t="Include">
+          <e p="DnaFastaParser.cs" t="Include" />
+          <e p="DnaSequence.cs" t="Include" />
+          <e p="GeneticCode.cs" t="Include" />
+        </e>
+        <e p="Graph" t="Include">
+          <e p="Axis" t="Include">
+            <e p="AxisMouseMode.cs" t="Include" />
+            <e p="AxisPositioning.cs" t="Include" />
+            <e p="AxisZoomType.cs" t="Include" />
+          </e>
+          <e p="Base" t="Include">
+            <e p="BasicColumnStyle.cs" t="Include" />
+            <e p="BasicColumnStyles.cs" t="Include" />
+            <e p="BasicRowStyle.cs" t="Include" />
+            <e p="BasicRowStyles.cs" t="Include" />
+            <e p="BasicSizeType.cs" t="Include" />
+            <e p="BasicTableLayoutStyle.cs" t="Include" />
+            <e p="BasicTableLayoutView.cs" t="Include" />
+            <e p="BasicView.cs" t="Include" />
+            <e p="GridType.cs" t="Include" />
+          </e>
+          <e p="BasicMouseEventArgs.cs" t="Include" />
+          <e p="Bitmap2.cs" t="Include" />
+          <e p="Bitmap2Graphics.cs" t="Include" />
+          <e p="Brush2.cs" t="Include" />
+          <e p="Brushes2.cs" t="Include" />
+          <e p="Chars.cs" t="Include" />
+          <e p="Color2.cs" t="Include" />
+          <e p="Cursors2.cs" t="Include" />
+          <e p="DashCap2.cs" t="Include" />
+          <e p="DashStyle2.cs" t="Include" />
+          <e p="Ellipse2.cs" t="Include" />
+          <e p="Font2.cs" t="Include" />
+          <e p="FontStyle2.cs" t="Include" />
+          <e p="GenericFontFamilies2.cs" t="Include" />
+          <e p="GraphicsPath2.cs" t="Include" />
+          <e p="GraphUtil.cs" t="Include" />
+          <e p="ICompoundScrollableControl.cs" t="Include" />
+          <e p="ICompoundScrollableControlModel.cs" t="Include" />
+          <e p="IGraphics.cs" t="Include" />
+          <e p="Image" t="Include">
+            <e p="Bootstrapper.cs" t="Include" />
+            <e p="ColorPixelAccessor.cs" t="Include" />
+            <e p="Formats" t="Include">
+              <e p="Bmp" t="Include">
+                <e p="BmpBitsPerPixel.cs" t="Include" />
+                <e p="BmpCompression.cs" t="Include" />
+                <e p="BmpDecoder.cs" t="Include" />
+                <e p="BmpDecoderCore.cs" t="Include" />
+                <e p="BmpEncoder.cs" t="Include" />
+                <e p="BmpEncoderCore.cs" t="Include" />
+                <e p="BmpFileHeader.cs" t="Include" />
+                <e p="BmpFormat.cs" t="Include" />
+                <e p="BmpInfoHeader.cs" t="Include" />
+              </e>
+              <e p="Gif" t="Include">
+                <e p="DisposalMethod.cs" t="Include" />
+                <e p="GifConstants.cs" t="Include" />
+                <e p="GifDecoder.cs" t="Include" />
+                <e p="GifDecoderCore.cs" t="Include" />
+                <e p="GifEncoder.cs" t="Include" />
+                <e p="GifEncoderCore.cs" t="Include" />
+                <e p="GifFormat.cs" t="Include" />
+                <e p="LzwDecoder.cs" t="Include" />
+                <e p="LzwEncoder.cs" t="Include" />
+                <e p="PackedField.cs" t="Include" />
+                <e p="Sections" t="Include">
+                  <e p="GifGraphicsControlExtension.cs" t="Include" />
+                  <e p="GifImageDescriptor.cs" t="Include" />
+                  <e p="GifLogicalScreenDescriptor.cs" t="Include" />
+                </e>
+              </e>
+              <e p="IImageDecoder.cs" t="Include" />
+              <e p="IImageEncoder.cs" t="Include" />
+              <e p="IImageFormat.cs" t="Include" />
+              <e p="Jpg" t="Include">
+                <e p="Block.cs" t="Include" />
+                <e p="FDCT.cs" t="Include" />
+                <e p="IDCT.cs" t="Include" />
+                <e p="JpegConstants.cs" t="Include" />
+                <e p="JpegDecoder.cs" t="Include" />
+                <e p="JpegDecoderCore.cs" t="Include" />
+                <e p="JpegEncoder.cs" t="Include" />
+                <e p="JpegEncoderCore.cs" t="Include" />
+                <e p="JpegFormat.cs" t="Include" />
+                <e p="JpegSubsample.cs" t="Include" />
+              </e>
+              <e p="Png" t="Include">
+                <e p="GrayscaleReader.cs" t="Include" />
+                <e p="IColorReader.cs" t="Include" />
+                <e p="PaletteIndexReader.cs" t="Include" />
+                <e p="PngChunk.cs" t="Include" />
+                <e p="PngChunkTypes.cs" t="Include" />
+                <e p="PngColorTypeInformation.cs" t="Include" />
+                <e p="PngDecoder.cs" t="Include" />
+                <e p="PngDecoderCore.cs" t="Include" />
+                <e p="PngEncoder.cs" t="Include" />
+                <e p="PngEncoderCore.cs" t="Include" />
+                <e p="PngFormat.cs" t="Include" />
+                <e p="PngHeader.cs" t="Include" />
+                <e p="TrueColorReader.cs" t="Include" />
+                <e p="Zlib" t="Include">
+                  <e p="Adler32.cs" t="Include" />
+                  <e p="Crc32.cs" t="Include" />
+                  <e p="IChecksum.cs" t="Include" />
+                  <e p="ZlibDeflateStream.cs" t="Include" />
+                  <e p="ZlibInflateStream.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="IImageBase.cs" t="Include" />
+            <e p="Image2.cs" t="Include" />
+            <e p="ImageBase.cs" t="Include" />
+            <e p="ImageFrame.cs" t="Include" />
+            <e p="ImageProperty.cs" t="Include" />
+            <e p="IPixelAccessor.cs" t="Include" />
+            <e p="Quantizers" t="Include">
+              <e p="Box.cs" t="Include" />
+              <e p="IQuantizer.cs" t="Include" />
+              <e p="OctreeQuantizer.cs" t="Include" />
+              <e p="PaletteQuantizer.cs" t="Include" />
+              <e p="Quantization.cs" t="Include" />
+              <e p="Quantize.cs" t="Include" />
+              <e p="QuantizedImage.cs" t="Include" />
+              <e p="Quantizer.cs" t="Include" />
+              <e p="WuQuantizer.cs" t="Include" />
+            </e>
+          </e>
+          <e p="IPdfGraphics.cs" t="Include" />
+          <e p="IPrintable.cs" t="Include" />
+          <e p="IScrollableControl.cs" t="Include" />
+          <e p="IScrollableControlModel.cs" t="Include" />
+          <e p="ISimpleScrollableControl.cs" t="Include" />
+          <e p="ISimpleScrollableControlModel.cs" t="Include" />
+          <e p="IUserQueryWindow.cs" t="Include" />
+          <e p="Keys2.cs" t="Include" />
+          <e p="KnownColor.cs" t="Include" />
+          <e p="KnownColorTable.cs" t="Include" />
+          <e p="MoveButtonState.cs" t="Include" />
+          <e p="NavigatorData.cs" t="Include" />
+          <e p="PathPointType2.cs" t="Include" />
+          <e p="Pen2.cs" t="Include" />
+          <e p="Pens2.cs" t="Include" />
+          <e p="Point2.cs" t="Include" />
+          <e p="PointI2.cs" t="Include" />
+          <e p="Rectangle2.cs" t="Include" />
+          <e p="RectangleI2.cs" t="Include" />
+          <e p="ScaledGraphics.cs" t="Include" />
+          <e p="Size2.cs" t="Include" />
+          <e p="SizeI2.cs" t="Include" />
+          <e p="SmoothingMode2.cs" t="Include" />
+          <e p="StringAlignment2.cs" t="Include" />
+          <e p="StringFormat2.cs" t="Include" />
+          <e p="YCbCr2.cs" t="Include" />
+          <e p="ZoomButtonState.cs" t="Include" />
+        </e>
+        <e p="img" t="Include">
+          <e p="A1.png" t="Include" />
+          <e p="arrowCorner.png" t="Include" />
+          <e p="arrowDown1.png" t="Include" />
+          <e p="arrowUp1.png" t="Include" />
+          <e p="bottom1.png" t="Include" />
+          <e p="C1.png" t="Include" />
+          <e p="char0.bmp" t="Include" />
+          <e p="char1.bmp" t="Include" />
+          <e p="char2.bmp" t="Include" />
+          <e p="char3.bmp" t="Include" />
+          <e p="char4.bmp" t="Include" />
+          <e p="char5.bmp" t="Include" />
+          <e p="char6.bmp" t="Include" />
+          <e p="char7.bmp" t="Include" />
+          <e p="char8.bmp" t="Include" />
+          <e p="char9.bmp" t="Include" />
+          <e p="char_a.bmp" t="Include" />
+          <e p="char_asterisk.bmp" t="Include" />
+          <e p="char_b.bmp" t="Include" />
+          <e p="char_backslash.bmp" t="Include" />
+          <e p="char_c.bmp" t="Include" />
+          <e p="char_colon.bmp" t="Include" />
+          <e p="char_d.bmp" t="Include" />
+          <e p="char_e.bmp" t="Include" />
+          <e p="char_equal.bmp" t="Include" />
+          <e p="char_exclamation.bmp" t="Include" />
+          <e p="char_f.bmp" t="Include" />
+          <e p="char_fullstop.bmp" t="Include" />
+          <e p="char_g.bmp" t="Include" />
+          <e p="char_h.bmp" t="Include" />
+          <e p="char_hash.bmp" t="Include" />
+          <e p="char_i.bmp" t="Include" />
+          <e p="char_j.bmp" t="Include" />
+          <e p="char_k.bmp" t="Include" />
+          <e p="char_l.bmp" t="Include" />
+          <e p="char_m.bmp" t="Include" />
+          <e p="char_minus.bmp" t="Include" />
+          <e p="char_n.bmp" t="Include" />
+          <e p="char_o.bmp" t="Include" />
+          <e p="char_p.bmp" t="Include" />
+          <e p="char_percent.bmp" t="Include" />
+          <e p="char_plus.bmp" t="Include" />
+          <e p="char_q.bmp" t="Include" />
+          <e p="char_question.bmp" t="Include" />
+          <e p="char_r.bmp" t="Include" />
+          <e p="char_s.bmp" t="Include" />
+          <e p="char_slash.bmp" t="Include" />
+          <e p="char_t.bmp" t="Include" />
+          <e p="char_tilde.bmp" t="Include" />
+          <e p="char_u.bmp" t="Include" />
+          <e p="char_underscore.bmp" t="Include" />
+          <e p="char_v.bmp" t="Include" />
+          <e p="char_w.bmp" t="Include" />
+          <e p="char_x.bmp" t="Include" />
+          <e p="char_y.bmp" t="Include" />
+          <e p="char_z.bmp" t="Include" />
+          <e p="chara.bmp" t="Include" />
+          <e p="charb.bmp" t="Include" />
+          <e p="charc.bmp" t="Include" />
+          <e p="chard.bmp" t="Include" />
+          <e p="chare.bmp" t="Include" />
+          <e p="charf.bmp" t="Include" />
+          <e p="charg.bmp" t="Include" />
+          <e p="charh.bmp" t="Include" />
+          <e p="chari.bmp" t="Include" />
+          <e p="charj.bmp" t="Include" />
+          <e p="chark.bmp" t="Include" />
+          <e p="charl.bmp" t="Include" />
+          <e p="charm.bmp" t="Include" />
+          <e p="charn.bmp" t="Include" />
+          <e p="charo.bmp" t="Include" />
+          <e p="charp.bmp" t="Include" />
+          <e p="charq.bmp" t="Include" />
+          <e p="charr.bmp" t="Include" />
+          <e p="chars.bmp" t="Include" />
+          <e p="chart.bmp" t="Include" />
+          <e p="charu.bmp" t="Include" />
+          <e p="charv.bmp" t="Include" />
+          <e p="charw.bmp" t="Include" />
+          <e p="charx.bmp" t="Include" />
+          <e p="chary.bmp" t="Include" />
+          <e p="charz.bmp" t="Include" />
+          <e p="D1.png" t="Include" />
+          <e p="dice.png" t="Include" />
+          <e p="down1.png" t="Include" />
+          <e p="E1.png" t="Include" />
+          <e p="exit.png" t="Include" />
+          <e p="F1.png" t="Include" />
+          <e p="filter2.png" t="Include" />
+          <e p="G1.png" t="Include" />
+          <e p="H1.png" t="Include" />
+          <e p="help.png" t="Include" />
+          <e p="I1.png" t="Include" />
+          <e p="info.png" t="Include" />
+          <e p="K1.png" t="Include" />
+          <e p="L1.png" t="Include" />
+          <e p="left.png" t="Include" />
+          <e p="M1.png" t="Include" />
+          <e p="merge.png" t="Include" />
+          <e p="minMaxRibbon.png" t="Include" />
+          <e p="minus-icon.png" t="Include" />
+          <e p="minus1.bmp" t="Include" />
+          <e p="monitors.png" t="Include" />
+          <e p="N1.png" t="Include" />
+          <e p="new.png" t="Include" />
+          <e p="open.png" t="Include" />
+          <e p="open_in_new_window.png" t="Include" />
+          <e p="P1.png" t="Include" />
+          <e p="pdf.png" t="Include" />
+          <e p="Perseus.jpg" t="Include" />
+          <e p="plus-icon.png" t="Include" />
+          <e p="plus1.bmp" t="Include" />
+          <e p="Q1.png" t="Include" />
+          <e p="question11.png" t="Include" />
+          <e p="question12.png" t="Include" />
+          <e p="question2.png" t="Include" />
+          <e p="R1.png" t="Include" />
+          <e p="right.png" t="Include" />
+          <e p="rotate.png" t="Include" />
+          <e p="S1.png" t="Include" />
+          <e p="Save-icon.png" t="Include" />
+          <e p="save.png" t="Include" />
+          <e p="save_as.png" t="Include" />
+          <e p="sheepButton.Image.png" t="Include" />
+          <e p="T1.png" t="Include" />
+          <e p="tools.png" t="Include" />
+          <e p="top1.png" t="Include" />
+          <e p="up1.png" t="Include" />
+          <e p="upload64.png" t="Include" />
+          <e p="V1.png" t="Include" />
+          <e p="W1.png" t="Include" />
+          <e p="Y1.png" t="Include" />
+        </e>
+        <e p="Mol" t="Include">
+          <e p="AaSequence.cs" t="Include" />
+          <e p="AminoAcid.cs" t="Include" />
+          <e p="AminoAcidLabel.cs" t="Include" />
+          <e p="AminoAcids.cs" t="Include" />
+          <e p="ChemElement.cs" t="Include" />
+          <e p="ChemElements.cs" t="Include" />
+          <e p="ChemElementType.cs" t="Include" />
+          <e p="CrossLinker.cs" t="Include" />
+          <e p="CrossLinkerList.cs" t="Include" />
+          <e p="DiagnosticPeak.cs" t="Include" />
+          <e p="Enzyme.cs" t="Include" />
+          <e p="EnzymeList.cs" t="Include" />
+          <e p="EnzymeMode.cs" t="Include" />
+          <e p="LabelModification.cs" t="Include" />
+          <e p="Modification.cs" t="Include" />
+          <e p="Modification2.cs" t="Include" />
+          <e p="ModificationList.cs" t="Include" />
+          <e p="ModificationPosition.cs" t="Include" />
+          <e p="ModificationSite.cs" t="Include" />
+          <e p="ModificationSiteType.cs" t="Include" />
+          <e p="ModificationType.cs" t="Include" />
+          <e p="Molecule.cs" t="Include" />
+          <e p="NeutralLoss.cs" t="Include" />
+          <e p="NewTerminusType.cs" t="Include" />
+          <e p="PeptideModificationCounts.cs" t="Include" />
+          <e p="PeptideModificationState.cs" t="Include" />
+          <e p="ProteinAnnotation.cs" t="Include" />
+          <e p="SequenceDatabase.cs" t="Include" />
+          <e p="SequenceDatabaseList.cs" t="Include" />
+          <e p="SiteMotif.cs" t="Include" />
+          <e p="StorableItem.cs" t="Include" />
+          <e p="Tables.cs" t="Include" />
+          <e p="TaxonomyItem.cs" t="Include" />
+          <e p="TaxonomyItems.cs" t="Include" />
+          <e p="TaxonomyNameType.cs" t="Include" />
+          <e p="TaxonomyRank.cs" t="Include" />
+          <e p="TaxonomyRanks.cs" t="Include" />
+          <e p="TerminalLabel.cs" t="Include" />
+        </e>
+        <e p="Ms" t="Include">
+          <e p="CentroidApproach.cs" t="Include" />
+          <e p="FragmentationTypeEnum.cs" t="Include" />
+          <e p="InfoLists.cs" t="Include" />
+          <e p="IntensityDetermination.cs" t="Include" />
+          <e p="MassAnalyzerEnum.cs" t="Include" />
+          <e p="MassGridInfo.cs" t="Include" />
+          <e p="Ms1Lists.cs" t="Include" />
+          <e p="Ms2Key.cs" t="Include" />
+          <e p="Ms2Lists.cs" t="Include" />
+          <e p="Ms3Lists.cs" t="Include" />
+          <e p="MsDataType.cs" t="Include" />
+          <e p="MsInstrument.cs" t="Include" />
+          <e p="MsLevel.cs" t="Include" />
+          <e p="PasefFrameMsMsInfo.cs" t="Include" />
+          <e p="PasefPrecursorInfo.cs" t="Include" />
+          <e p="RawFile.cs" t="Include" />
+          <e p="RawFileLayer.cs" t="Include" />
+          <e p="RawFileUtils.cs" t="Include" />
+          <e p="ScanInfo.cs" t="Include" />
+          <e p="SignalType.cs" t="Include" />
+          <e p="Spectrum.cs" t="Include" />
+        </e>
+        <e p="Num" t="Include">
+          <e p="ArrayUtils.cs" t="Include" />
+          <e p="BayesianInversion1D.cs" t="Include" />
+          <e p="BayesianInversion2D.cs" t="Include" />
+          <e p="Bootstrap.cs" t="Include" />
+          <e p="ByteArray.cs" t="Include" />
+          <e p="Cluster" t="Include">
+            <e p="HierarchicalClusterConstraint.cs" t="Include" />
+            <e p="HierarchicalClustering.cs" t="Include" />
+            <e p="HierarchicalClusterLinkage.cs" t="Include" />
+            <e p="HierarchicalClusterNode.cs" t="Include" />
+            <e p="KmeansClustering.cs" t="Include" />
+            <e p="KmedoidClustering.cs" t="Include" />
+          </e>
+          <e p="Combination.cs" t="Include" />
+          <e p="CubicSpline.cs" t="Include" />
+          <e p="DensityEstimation.cs" t="Include" />
+          <e p="Distrib" t="Include">
+            <e p="Normal.cs" t="Include" />
+            <e p="StudentsT.cs" t="Include" />
+          </e>
+          <e p="Func" t="Include">
+            <e p="Factorial.cs" t="Include" />
+            <e p="Gamma.cs" t="Include" />
+            <e p="IncompleteBeta.cs" t="Include" />
+          </e>
+          <e p="Learning" t="Include">
+            <e p="ClassificationOnSubFeatures.cs" t="Include" />
+            <e p="ClassificationWithRanking.cs" t="Include" />
+            <e p="ClassificationWithRankingMultiSizes.cs" t="Include" />
+            <e p="GroupWiseClassifier.cs" t="Include" />
+            <e p="RegressionOnSubFeatures.cs" t="Include" />
+            <e p="RegressionWithRanking.cs" t="Include" />
+            <e p="RegressionWithRankingMultiSizes.cs" t="Include" />
+          </e>
+          <e p="LinearInterpolator.cs" t="Include" />
+          <e p="Matrix" t="Include">
+            <e p="BoolMatrixIndexer.cs" t="Include" />
+            <e p="DoubleMatrixIndexer.cs" t="Include" />
+            <e p="FloatMatrixIndexer.cs" t="Include" />
+            <e p="IBoolMatrixIndexer.cs" t="Include" />
+            <e p="MatrixIndexer.cs" t="Include" />
+            <e p="SparseColumnFloatMatrixIndexer.cs" t="Include" />
+            <e p="SparseRowFloatMatrixIndexer.cs" t="Include" />
+          </e>
+          <e p="MatrixUtils.cs" t="Include" />
+          <e p="NumConstants.cs" t="Include" />
+          <e p="NumRecipes.cs" t="Include" />
+          <e p="NumUtils.cs" t="Include" />
+          <e p="Random2.cs" t="Include" />
+          <e p="RandomType.cs" t="Include" />
+          <e p="Space" t="Include">
+            <e p="AxisVector3F.cs" t="Include" />
+            <e p="Matrix3x3F.cs" t="Include" />
+            <e p="Quat.cs" t="Include" />
+            <e p="Vector2F.cs" t="Include" />
+            <e p="Vector3D.cs" t="Include" />
+            <e p="Vector3F.cs" t="Include" />
+            <e p="Vector3I.cs" t="Include" />
+            <e p="Vector4F.cs" t="Include" />
+          </e>
+          <e p="Test" t="Include">
+            <e p="FisherExactTest.cs" t="Include" />
+            <e p="PearsonCorrelationTest.cs" t="Include" />
+            <e p="SpearmanCorrelationTest.cs" t="Include" />
+            <e p="TestSide.cs" t="Include" />
+            <e p="TestTruncation.cs" t="Include" />
+            <e p="Univariate" t="Include">
+              <e p="NSamples" t="Include">
+                <e p="KruskalWallisTest.cs" t="Include" />
+                <e p="MultipleSamplesTest.cs" t="Include" />
+                <e p="OneWayAnovaTest.cs" t="Include" />
+              </e>
+              <e p="UnivariateTest.cs" t="Include" />
+            </e>
+          </e>
+          <e p="TukeyBiweightCalc.cs" t="Include" />
+          <e p="Vector" t="Include">
+            <e p="BaseVector.cs" t="Include" />
+            <e p="BoolArrayVector.cs" t="Include" />
+            <e p="DoubleArrayVector.cs" t="Include" />
+            <e p="FloatArrayVector.cs" t="Include" />
+            <e p="SparseBoolVector.cs" t="Include" />
+            <e p="SparseFloatVector.cs" t="Include" />
+          </e>
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Param" t="Include">
+          <e p="BoolParam.cs" t="Include" />
+          <e p="BoolWithSubParams.cs" t="Include" />
+          <e p="DictionaryIntValueParam.cs" t="Include" />
+          <e p="DoubleParam.cs" t="Include" />
+          <e p="FileParam.cs" t="Include" />
+          <e p="FolderParam.cs" t="Include" />
+          <e p="IntParam.cs" t="Include" />
+          <e p="LabelParam.cs" t="Include" />
+          <e p="Ms1LabelParam.cs" t="Include" />
+          <e p="MultiChoiceMultiBinParam.cs" t="Include" />
+          <e p="MultiChoiceParam.cs" t="Include" />
+          <e p="MultiFileParam.cs" t="Include" />
+          <e p="MultiStringParam.cs" t="Include" />
+          <e p="Parameter.cs" t="Include" />
+          <e p="ParameterGroup.cs" t="Include" />
+          <e p="Parameters.cs" t="Include" />
+          <e p="ParameterWithSubParams.cs" t="Include" />
+          <e p="ParamType.cs" t="Include" />
+          <e p="ParamUtils.cs" t="Include" />
+          <e p="RegexMatchParam.cs" t="Include" />
+          <e p="RegexReplaceParam.cs" t="Include" />
+          <e p="SerializableDictionary.cs" t="Include" />
+          <e p="SerializationHelper.cs" t="Include" />
+          <e p="SingleChoiceParam.cs" t="Include" />
+          <e p="SingleChoiceWithSubParams.cs" t="Include" />
+          <e p="StringParam.cs" t="Include" />
+        </e>
+        <e p="Parse" t="Include">
+          <e p="Endian" t="Include">
+            <e p="BigEndianBitConverter.cs" t="Include" />
+            <e p="EndianBinaryReader.cs" t="Include" />
+            <e p="EndianBinaryWriter.cs" t="Include" />
+            <e p="EndianBitConverter.cs" t="Include" />
+            <e p="LittleEndianBitConverter.cs" t="Include" />
+          </e>
+          <e p="Misc" t="Include">
+            <e p="MiniProteinAnnotation.cs" t="Include" />
+            <e p="PhosphoSitePlusParser.cs" t="Include" />
+          </e>
+          <e p="TabSep.cs" t="Include" />
+          <e p="Uniprot" t="Include">
+            <e p="DbReferenceType.cs" t="Include" />
+            <e p="FeatureType.cs" t="Include" />
+            <e p="UniprotDbReference.cs" t="Include" />
+            <e p="UniprotEntry.cs" t="Include" />
+            <e p="UniprotFeature.cs" t="Include" />
+            <e p="UniprotParser.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+        </e>
+        <e p="Resources" t="Include">
+          <e p="names.dmp.gz" t="Include" />
+          <e p="nodes.dmp.gz" t="Include" />
+        </e>
+        <e p="Symbol" t="Include">
+          <e p="DashStyles.cs" t="Include" />
+          <e p="LineProperties.cs" t="Include" />
+          <e p="Symbol3DProperties.cs" t="Include" />
+          <e p="SymbolLineProperties.cs" t="Include" />
+          <e p="SymbolProperties.cs" t="Include" />
+          <e p="SymbolType.cs" t="Include" />
+          <e p="SymbolTypeCircle.cs" t="Include" />
+          <e p="SymbolTypeCross.cs" t="Include" />
+          <e p="SymbolTypeDiagonalCross.cs" t="Include" />
+          <e p="SymbolTypeDiamond.cs" t="Include" />
+          <e p="SymbolTypeFilledCircle.cs" t="Include" />
+          <e p="SymbolTypeFilledDiamond.cs" t="Include" />
+          <e p="SymbolTypeFilledSquare.cs" t="Include" />
+          <e p="SymbolTypeFilledTriangle.cs" t="Include" />
+          <e p="SymbolTypeHorizontalDash.cs" t="Include" />
+          <e p="SymbolTypeSquare.cs" t="Include" />
+          <e p="SymbolTypeStar.cs" t="Include" />
+          <e p="SymbolTypeTriangle.cs" t="Include" />
+        </e>
+        <e p="Table" t="Include">
+          <e p="ColumnType.cs" t="Include" />
+          <e p="DataAnnotationRow.cs" t="Include" />
+          <e p="DataRow2.cs" t="Include" />
+          <e p="DataTable2.cs" t="Include" />
+          <e p="DataTable2Col.cs" t="Include" />
+          <e p="DataTable2Ser.cs" t="Include" />
+          <e p="IDataTable.cs" t="Include" />
+          <e p="ITable.cs" t="Include" />
+          <e p="ITableModel.cs" t="Include" />
+          <e p="SortState.cs" t="Include" />
+          <e p="SubTableModel.cs" t="Include" />
+          <e p="TableModelImpl.cs" t="Include" />
+          <e p="VirtualDataTable.cs" t="Include" />
+          <e p="VirtualDataTable2.cs" t="Include" />
+        </e>
+        <e p="Util" t="Include">
+          <e p="CalculationType.cs" t="Include" />
+          <e p="ComparableList.cs" t="Include" />
+          <e p="DocumentType.cs" t="Include" />
+          <e p="FileUtils.cs" t="Include" />
+          <e p="GlobalConstants.cs" t="Include" />
+          <e p="Loc.cs" t="Include" />
+          <e p="LockFile.cs" t="Include" />
+          <e p="Parser.cs" t="Include" />
+          <e p="StreamBackwardReader.cs" t="Include" />
+          <e p="StringUtils.cs" t="Include" />
+          <e p="ThreadDistributor.cs" t="Include" />
+          <e p="ThreadDistributorTriangularMatrix.cs" t="Include" />
+          <e p="TwoLetterLanguageCode.cs" t="Include" />
+          <e p="WorkDispatcher.cs" t="Include" />
+          <e p="XmlSerialization.cs" t="Include" />
+        </e>
+      </e>
+      <e p="DrmaaNet" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Drmaa" t="Include">
+          <e p="DrmaaExecutor.cs" t="Include" />
+          <e p="DrmaaWrapper.cs" t="Include" />
+          <e p="JobTemplate.cs" t="Include" />
+          <e p="Session.cs" t="Include" />
+        </e>
+        <e p="DrmaaNet.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="NumPluginBase" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Classification" t="Include">
+          <e p="ClassificationMethods.cs" t="Include" />
+          <e p="FisherLdaClassification.cs" t="Include" />
+          <e p="FisherLdaClassificationModel.cs" t="Include" />
+          <e p="KnnClassification.cs" t="Include" />
+          <e p="KnnClassificationModel.cs" t="Include" />
+        </e>
+        <e p="ClassificationRank" t="Include">
+          <e p="AnovaFeatureRanking.cs" t="Include" />
+          <e p="ClassificationFeatureRankingMethods.cs" t="Include" />
+          <e p="GolubFeatureRanking.cs" t="Include" />
+        </e>
+        <e p="Distance" t="Include">
+          <e p="CanberraDistance.cs" t="Include" />
+          <e p="CosineDistance.cs" t="Include" />
+          <e p="Distances.cs" t="Include" />
+          <e p="EuclideanDistance.cs" t="Include" />
+          <e p="GenericDistanceMatrix.cs" t="Include" />
+          <e p="L1Distance.cs" t="Include" />
+          <e p="LpDistance.cs" t="Include" />
+          <e p="MaximumDistance.cs" t="Include" />
+          <e p="PearsonCorrelationDistance.cs" t="Include" />
+          <e p="SpearmanCorrelationDistance.cs" t="Include" />
+        </e>
+        <e p="Kernel" t="Include">
+          <e p="KernelFunctions.cs" t="Include" />
+          <e p="LinearKernelFunction.cs" t="Include" />
+          <e p="PolynomialKernelFunction.cs" t="Include" />
+          <e p="RbfKernelFunction.cs" t="Include" />
+          <e p="SigmoidKernelFunction.cs" t="Include" />
+        </e>
+        <e p="NumPluginBase.csproj" t="IncludeRecursive" />
+        <e p="NumPluginBase.Test" t="IncludeRecursive">
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="DistanceMatrixTest.cs" t="Include" />
+          <e p="NumPluginBase.Test.csproj" t="IncludeRecursive" />
+          <e p="obj" t="ExcludeRecursive" />
+          <e p="packages.config" t="Include" />
+          <e p="Properties" t="Include">
+            <e p="AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+        <e p="NumPluginUtils.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="Regression" t="Include">
+          <e p="KnnRegression.cs" t="Include" />
+          <e p="KnnRegressionModel.cs" t="Include" />
+          <e p="LinearRegression.cs" t="Include" />
+          <e p="LinearRegressionModel.cs" t="Include" />
+          <e p="RegressionMethods.cs" t="Include" />
+        </e>
+        <e p="RegressionRank" t="Include">
+          <e p="CorrelationFeatureRanking.cs" t="Include" />
+          <e p="RankCorrelationFeatureRanking.cs" t="Include" />
+          <e p="RegressionFeatureRankingMethods.cs" t="Include" />
+        </e>
+      </e>
+      <e p="NumPluginSvm" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="LinearSvmFeatureRanking.cs" t="Include" />
+        <e p="LinearSvmRfeFeatureRanking.cs" t="Include" />
+        <e p="NumPluginSvm.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="Svm" t="Include">
+          <e p="OneClassQ.cs" t="Include" />
+          <e p="SvcQ.cs" t="Include" />
+          <e p="SvmCache.cs" t="Include" />
+          <e p="SvmKernel.cs" t="Include" />
+          <e p="SvmMain.cs" t="Include" />
+          <e p="SvmMatrix.cs" t="Include" />
+          <e p="SvmModel.cs" t="Include" />
+          <e p="SvmParameter.cs" t="Include" />
+          <e p="SvmProblem.cs" t="Include" />
+          <e p="SvmSolver.cs" t="Include" />
+          <e p="SvmSolverNu.cs" t="Include" />
+          <e p="SvmType.cs" t="Include" />
+          <e p="SvrQ.cs" t="Include" />
+        </e>
+        <e p="SvmClassification.cs" t="Include" />
+        <e p="SvmClassificationModel.cs" t="Include" />
+        <e p="SvmRegression.cs" t="Include" />
+        <e p="SvmRegressionModel.cs" t="Include" />
+      </e>
+      <e p="packages" t="ExcludeRecursive">
+        <e p="MSTest.TestAdapter.1.1.11/build/_common/Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" t="Include" />
+        <e p="MSTest.TestAdapter.1.1.11/build/_common/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" t="Include" />
+        <e p="MSTest.TestAdapter.1.1.11/build/_common/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll" t="Include" />
+      </e>
+      <e p="PluginRawMzXml" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="MzXml.cs" t="Include" />
+        <e p="MzXmlRawFile.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="PluginRawMzXml.csproj" t="IncludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+    </e>
+  </component>
   <component name="RiderRiderContentModelStore">
     <excludedPaths />
   </component>
