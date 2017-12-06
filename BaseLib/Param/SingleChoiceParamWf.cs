@@ -12,7 +12,7 @@ namespace BaseLib.Param{
 		public override ParamType Type => ParamType.WinForms;
 
 		public override void SetValueFromControl(){
-			if (control == null){
+			if (control == null || control.IsDisposed) {
 				return;
 			}
 			int val = control.SelectedIndex;
@@ -20,6 +20,9 @@ namespace BaseLib.Param{
 		}
 
 		public override void UpdateControlFromValue(){
+			if (control == null || control.IsDisposed) {
+				return;
+			}
 			if (control != null && Value >= 0 && Value < Values.Count){
 				control.SelectedIndex = Value;
 			}

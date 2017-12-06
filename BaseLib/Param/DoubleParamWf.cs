@@ -11,13 +11,16 @@ namespace BaseLib.Param{
 		public override ParamType Type => ParamType.WinForms;
 
 		public override void SetValueFromControl(){
+			if (control == null || control.IsDisposed) {
+				return;
+			}
 			bool success = Parser.TryDouble(control.Text, out double val);
 			val = success ? val : double.NaN;
 			Value = val;
 		}
 
 		public override void UpdateControlFromValue(){
-			if (control == null){
+			if (control == null || control.IsDisposed) {
 				return;
 			}
 			control.Text = Parser.ToString(Value);

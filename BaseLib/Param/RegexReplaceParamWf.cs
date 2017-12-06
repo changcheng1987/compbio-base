@@ -15,7 +15,15 @@ namespace BaseLib.Param{
 		public override ParamType Type => ParamType.WinForms;
 
 		public override void SetValueFromControl(){
+			if (control == null || control.IsDisposed) {
+				return;
+			}
 			Value = control?.GetValue();
+		}
+
+		//TODO
+		public override void UpdateControlFromValue() {
+			base.UpdateControlFromValue();
 		}
 
 		public override float Height => 200;
