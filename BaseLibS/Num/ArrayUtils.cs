@@ -600,7 +600,43 @@ namespace BaseLibS.Num {
 			return max;
 		}
 
-		public static List<T> SubList<T>(List<T> list, int[] indices) {
+        /// <summary>
+        /// Create a sublist by indexing with an indicator. If the indicator is longer than the values,
+        /// superfluous entries will be ignored.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="values"></param>
+        /// <param name="indicator"></param>
+        /// <returns></returns>
+	    public static List<T> SubList<T>(this IEnumerable<T> values, IEnumerable<bool> indicator)
+	    {
+	        var result = new List<T>();
+	        using (var valueIter = values.GetEnumerator())
+	        using (var indIter = indicator.GetEnumerator())
+	        {
+	            while (valueIter.MoveNext() && indIter.MoveNext())
+	            {
+	                if (indIter.Current)
+	                {
+	                    result.Add(valueIter.Current);
+	                }
+	            }
+                if (valueIter.MoveNext())
+                {
+                    throw new ArgumentException($"{nameof(indicator)} was exhausted before all values were enumerated.");
+                }
+	        }
+	        return result;
+	    }
+
+        /// <summary>
+        /// Create a sublist by extracting all provided indices.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="indices"></param>
+        /// <returns></returns>
+		public static List<T> SubList<T>(this IList<T> list, int[] indices) {
 			List<T> result = new List<T>();
 			foreach (int index in indices) {
 				result.Add(list[index]);
@@ -715,15 +751,15 @@ namespace BaseLibS.Num {
 			return result;
 		}
 
-		/// <summary>
-		///     Extracts the subarrry from the position <code>startIndex</code> to the position <code>stopIndex</code> (exclusive).
-		/// </summary>
-		/// <typeparam name="T">Arbitrary type of the array elements.</typeparam>
-		/// <param name="array">The input array.</param>
-		/// <param name="startIndex">Start position of the output array.</param>
-		/// <param name="stopIndex">Exclusive stop position of the output array.</param>
-		/// <returns>The subarrry.</returns>
-		public static T[] SubArray<T>(IList<T> array, int startIndex, int stopIndex) {
+        /// <summary>
+        /// Extracts the subarray from the position <code>startIndex</code> to the position <code>stopIndex</code> (exclusive).
+        /// </summary>
+        /// <typeparam name="T">Arbitrary type of the array elements.</typeparam>
+        /// <param name="array">The input array.</param>
+        /// <param name="startIndex">Start position of the output array.</param>
+        /// <param name="stopIndex">Exclusive stop position of the output array.</param>
+        /// <returns>The subarrry.</returns>
+        public static T[] SubArray<T>(IList<T> array, int startIndex, int stopIndex) {
 			int len = stopIndex - startIndex;
 			T[] result = new T[len];
 			for (int i = 0; i < len; i++) {
