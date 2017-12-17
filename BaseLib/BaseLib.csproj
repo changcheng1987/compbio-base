@@ -83,6 +83,12 @@
     <Compile Include="Forms\DictionaryIntValueForm.Designer.cs">
       <DependentUpon>DictionaryIntValueForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FastaFilesParamControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\FastaFilesParamControl.Designer.cs">
+      <DependentUpon>FastaFilesParamControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FileParameterControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -240,6 +246,7 @@
     <Compile Include="Param\BoolWithSubParamsWf.cs" />
     <Compile Include="Param\DictionaryIntValueParamWf.cs" />
     <Compile Include="Param\DoubleParamWf.cs" />
+    <Compile Include="Param\FastaFilesParamWf.cs" />
     <Compile Include="Param\FileParamWf.cs" />
     <Compile Include="Param\FolderParamWf.cs" />
     <Compile Include="Param\IntParamWf.cs" />
@@ -341,6 +348,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DictionaryIntValueForm.resx">
       <DependentUpon>DictionaryIntValueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FastaFilesParamControl.resx">
+      <DependentUpon>FastaFilesParamControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FileParameterControl.resx">
       <DependentUpon>FileParameterControl.cs</DependentUpon>

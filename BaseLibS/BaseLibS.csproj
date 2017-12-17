@@ -417,6 +417,7 @@
     <Compile Include="Param\BoolWithSubParams.cs" />
     <Compile Include="Param\DictionaryIntValueParam.cs" />
     <Compile Include="Param\DoubleParam.cs" />
+    <Compile Include="Param\FastaFilesParam.cs" />
     <Compile Include="Param\FileParam.cs" />
     <Compile Include="Param\FolderParam.cs" />
     <Compile Include="Param\IntParam.cs" />

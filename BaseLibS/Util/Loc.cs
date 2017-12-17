@@ -550,6 +550,78 @@ namespace BaseLibS.Util {
 			}
 		}
 
+		public static string Save {
+			get {
+				switch (TwoLettName) {
+					case arabic: return "حفظ";
+					case bulgarian: return "Запази";
+					case chinese: return "保存";
+					case czech: return "Uložit";
+					case danish: return "Gem";
+					case dutch: return "Opslaan";
+					case estonian: return "Salvesta";
+					case finnish: return "Tallenna";
+					case french: return "Enregistrer";
+					case german: return "Speichern";
+					case greek: return "αποθήκευση";
+					case hebrew: return "שמור";
+					case hindi: return "बचाना";
+					case italian: return "Salva";
+					case japanese: return "セーブ";
+					case korean: return "구하다";
+					case latvian: return "Saglabāt";
+					case lithuanian: return "Išsaugoti";
+					case norwegian: return "lagre";
+					case persian: return "ذخیره به";
+					case polish: return "Zapisz";
+					case portuguese: return "Salvar";
+					case romanian: return "Salvează";
+					case russian: return "сохранить";
+					case spanish: return "guardar";
+					case swedish: return "Spara";
+					case tamil: return "காப்பாற்ற";
+					case turkish: return "Farklı";
+					default: return "Save";
+				}
+			}
+		}
+
+		public static string SaveAs {
+			get {
+				switch (TwoLettName) {
+					case arabic: return "حفظ كما";
+					case bulgarian: return "Запази като";
+					case chinese: return "另存为";
+					case czech: return "Uložit jako";
+					case danish: return "Gem som";
+					case dutch: return "Opslaan als";
+					case estonian: return "Salvesta kui";
+					case finnish: return "Tallenna nimellä";
+					case french: return "Enregistrer sous";
+					case german: return "Speichern als";
+					case greek: return "αποθήκευση ως";
+					case hebrew: return "שמור כ";
+					case hindi: return "के रूप रक्षित करें";
+					case italian: return "Salva come";
+					case japanese: return "別名で保存";
+					case korean: return "다른 이름으로 저장";
+					case latvian: return "Saglabāt kā";
+					case lithuanian: return "Išsaugoti kaip";
+					case norwegian: return "lagre som";
+					case persian: return "ذخیره به عنوان";
+					case polish: return "Zapisz jako";
+					case portuguese: return "Salvar como";
+					case romanian: return "Salvează ca";
+					case russian: return "сохранить как";
+					case spanish: return "guardar como";
+					case swedish: return "Spara som";
+					case tamil: return "சேமி";
+					case turkish: return "Farklı kaydet";
+					default: return "Save as";
+				}
+			}
+		}
+
 		public static string SelectAll {
 			get {
 				switch (TwoLettName) {
