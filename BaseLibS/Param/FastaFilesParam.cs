@@ -44,7 +44,7 @@ namespace BaseLibS.Param {
 			Value = new string[0][];
 		}
 
-		public override float Height => 150f;
+		public override float Height => 200f;
 		public override ParamType Type => ParamType.Server;
 	}
 }

@@ -514,6 +514,42 @@ namespace BaseLibS.Util {
 			}
 		}
 
+		public static string PleaseSelectSomeRows {
+			get {
+				switch (TwoLettName) {
+					case arabic: return ".يرجى تحديد بعض الصفوف";
+					case bulgarian: return "Моля, изберете някои редове.";
+					case chinese: return "请选择一些行。";
+					case czech: return "Vyberte prosím některé řádky.";
+					case danish: return "Vælg venligst nogle rækker.";
+					case dutch: return "Selecteer enkele rijen.";
+					case estonian: return "Palun valige mõni rida.";
+					case finnish: return "Valitse joitain rivejä.";
+					case french: return "Veuillez sélectionner quelques lignes.";
+					case german: return "Bitte wählen Sie einige Zeilen aus.";
+					case greek: return "Επιλέξτε ορισμένες σειρές.";
+					case hebrew: return ".בחר כמה שורות";
+					case hindi: return "कृपया कुछ पंक्तियों का चयन करें";
+					case italian: return "Si prega di selezionare alcune righe.";
+					case japanese: return "いくつかの行を選択してください。";
+					case korean: return "일부 행을 선택하십시오.";
+					case latvian: return "Lūdzu, atlasiet dažas rindas.";
+					case lithuanian: return "Pasirinkite eilutes.";
+					case norwegian: return "Vennligst velg noen rader.";
+					case persian: return "لطفا چند ردیف را انتخاب کنید";
+					case polish: return "Wybierz kilka wierszy.";
+					case portuguese: return "Selecione algumas linhas.";
+					case romanian: return "Selectați câteva rânduri.";
+					case russian: return "Выберите несколько строк.";
+					case spanish: return "Por favor seleccione algunas filas.";
+					case swedish: return "Var god välj några rader.";
+					case tamil: return "சில வரிசைகளைத் தேர்ந்தெடுக்கவும்.";
+					case turkish: return "Lütfen bazı satırları seçin.";
+					default: return "Please select some rows.";
+				}
+			}
+		}
+
 		public static string RenameSession {
 			get {
 				switch (TwoLettName) {

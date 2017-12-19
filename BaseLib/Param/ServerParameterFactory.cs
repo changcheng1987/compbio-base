@@ -186,20 +186,33 @@ namespace BaseLib.Param{
 				}
 				return b;
 			}
-			if (p is MultiFileParamWf){
-				MultiFileParamWf q = (MultiFileParamWf) p;
-				MultiFileParam b = new MultiFileParam(q.Name, q.Value){
-					Help = q.Help,
-					Visible = q.Visible,
-					Filter = q.Filter,
-					Default = q.Default,
-					Url = q.Url
-				};
-				foreach (ValueChangedHandler act in q.GetPropertyChangedHandlers()){
-					b.ValueChanged += act;
-				}
-				return b;
-			}
+	        if (p is MultiFileParamWf) {
+		        MultiFileParamWf q = (MultiFileParamWf)p;
+		        MultiFileParam b = new MultiFileParam(q.Name, q.Value) {
+			        Help = q.Help,
+			        Visible = q.Visible,
+			        Filter = q.Filter,
+			        Default = q.Default,
+			        Url = q.Url
+		        };
+		        foreach (ValueChangedHandler act in q.GetPropertyChangedHandlers()) {
+			        b.ValueChanged += act;
+		        }
+		        return b;
+	        }
+	        if (p is FastaFilesParamWf) {
+		        FastaFilesParamWf q = (FastaFilesParamWf)p;
+		        FastaFilesParam b = new FastaFilesParam(q.Name, q.Value) {
+			        Help = q.Help,
+			        Visible = q.Visible,
+			        Default = q.Default,
+			        Url = q.Url
+		        };
+		        foreach (ValueChangedHandler act in q.GetPropertyChangedHandlers()) {
+			        b.ValueChanged += act;
+		        }
+		        return b;
+	        }
 			if (p is MultiStringParamWf){
 				MultiStringParamWf q = (MultiStringParamWf) p;
 				MultiStringParam b = new MultiStringParam(q.Name, q.Value){

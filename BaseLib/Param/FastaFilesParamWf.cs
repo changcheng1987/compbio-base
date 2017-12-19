@@ -14,18 +14,17 @@ namespace BaseLib.Param {
 			if (control == null || control.IsDisposed) {
 				return;
 			}
-			//TODO
+			Value = control.Value;
 		}
 
 		public override void UpdateControlFromValue() {
 			if (control == null || control.IsDisposed) {
 				return;
 			}
-			//TODO
+			control.Value = Value;
 		}
 
 		public override object CreateControl() {
-			//TODO
 			return control = new FastaFilesParamControl();
 		}
 	}

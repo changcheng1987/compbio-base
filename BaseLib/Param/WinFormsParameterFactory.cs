@@ -183,16 +183,29 @@ namespace BaseLib.Param{
 				}
 				return b;
 			}
-			if (p is MultiFileParam){
-				MultiFileParam q = (MultiFileParam) p;
-				MultiFileParamWf b = new MultiFileParamWf(q.Name, q.Value){
+			if (p is MultiFileParam) {
+				MultiFileParam q = (MultiFileParam)p;
+				MultiFileParamWf b = new MultiFileParamWf(q.Name, q.Value) {
 					Help = q.Help,
 					Visible = q.Visible,
 					Filter = q.Filter,
 					Default = q.Default,
 					Url = q.Url
 				};
-				foreach (ValueChangedHandler act in q.GetPropertyChangedHandlers()){
+				foreach (ValueChangedHandler act in q.GetPropertyChangedHandlers()) {
+					b.ValueChanged += act;
+				}
+				return b;
+			}
+			if (p is FastaFilesParam) {
+				FastaFilesParam q = (FastaFilesParam)p;
+				FastaFilesParamWf b = new FastaFilesParamWf(q.Name, q.Value) {
+					Help = q.Help,
+					Visible = q.Visible,
+					Default = q.Default,
+					Url = q.Url
+				};
+				foreach (ValueChangedHandler act in q.GetPropertyChangedHandlers()) {
 					b.ValueChanged += act;
 				}
 				return b;
