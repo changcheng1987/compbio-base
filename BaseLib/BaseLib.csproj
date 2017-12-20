@@ -83,6 +83,18 @@
     <Compile Include="Forms\DictionaryIntValueForm.Designer.cs">
       <DependentUpon>DictionaryIntValueForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\EditParseRuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditParseRuleForm.Designer.cs">
+      <DependentUpon>EditParseRuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditTaxonomyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditTaxonomyForm.Designer.cs">
+      <DependentUpon>EditTaxonomyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FastaFilesParamControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -229,6 +241,12 @@
     <Compile Include="Forms\Table\TableViewSelectionAgentForm.Designer.cs">
       <DependentUpon>TableViewSelectionAgentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TestParseRuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TestParseRuleForm.Designer.cs">
+      <DependentUpon>TestParseRuleForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UnsafeBitmap.cs" />
     <Compile Include="Graphic\BaseDrawControl.cs">
       <SubType>UserControl</SubType>
@@ -349,6 +367,12 @@
     <EmbeddedResource Include="Forms\DictionaryIntValueForm.resx">
       <DependentUpon>DictionaryIntValueForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditParseRuleForm.resx">
+      <DependentUpon>EditParseRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditTaxonomyForm.resx">
+      <DependentUpon>EditTaxonomyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FastaFilesParamControl.resx">
       <DependentUpon>FastaFilesParamControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -407,6 +431,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Table\TableViewSelectionAgentForm.resx">
       <DependentUpon>TableViewSelectionAgentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TestParseRuleForm.resx">
+      <DependentUpon>TestParseRuleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Param\ParameterForm.resx">
       <DependentUpon>ParameterForm.cs</DependentUpon>

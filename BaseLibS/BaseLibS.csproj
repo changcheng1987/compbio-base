@@ -445,6 +445,7 @@
     <Compile Include="Parse\Endian\EndianBinaryWriter.cs" />
     <Compile Include="Parse\Endian\EndianBitConverter.cs" />
     <Compile Include="Parse\Endian\LittleEndianBitConverter.cs" />
+    <Compile Include="Parse\Misc\FastaParser.cs" />
     <Compile Include="Parse\Misc\MiniProteinAnnotation.cs" />
     <Compile Include="Parse\Misc\PhosphoSitePlusParser.cs" />
     <Compile Include="Parse\TabSep.cs" />
