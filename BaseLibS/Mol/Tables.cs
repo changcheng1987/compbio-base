@@ -449,42 +449,42 @@ namespace BaseLibS.Mol{
 			return result;
 		}
 
-		public static string[] GetIdentifierParseRules(string[] fastaFiles){
+		public static string[] GetIdentifierParseRules(FastaFileInfo[] fastaFiles){
 			string[] parseRules = new string[fastaFiles.Length];
 			for (int j = 0; j < parseRules.Length; j++){
-				parseRules[j] = GetIdentifierParseRule(fastaFiles[j]);
+				parseRules[j] = fastaFiles[j].identifierParseRule;
 			}
 			return parseRules;
 		}
 
-		public static string[] GetDescriptionParseRules(string[] fastaFiles){
+		public static string[] GetDescriptionParseRules(FastaFileInfo[] fastaFiles){
 			string[] parseRules = new string[fastaFiles.Length];
 			for (int j = 0; j < parseRules.Length; j++){
-				parseRules[j] = GetDescriptionParseRule(fastaFiles[j]);
+				parseRules[j] = fastaFiles[j].descriptionParseRule;
 			}
 			return parseRules;
 		}
 
-		public static string[] GetTaxonomyParseRules(string[] fastaFiles){
+		public static string[] GetTaxonomyParseRules(FastaFileInfo[] fastaFiles){
 			string[] parseRules = new string[fastaFiles.Length];
 			for (int j = 0; j < parseRules.Length; j++){
-				parseRules[j] = GetTaxonomyParseRule(fastaFiles[j]);
+				parseRules[j] = fastaFiles[j].taxonomyParseRule;
 			}
 			return parseRules;
 		}
 
-		public static string[] GetVariationParseRules(string[] fastaFiles){
+		public static string[] GetVariationParseRules(FastaFileInfo[] fastaFiles){
 			string[] parseRules = new string[fastaFiles.Length];
 			for (int j = 0; j < parseRules.Length; j++){
-				parseRules[j] = GetVariationParseRule(fastaFiles[j]);
+				parseRules[j] = fastaFiles[j].variationParseRule;
 			}
 			return parseRules;
 		}
 
-		public static string[] GetModificationParseRules(string[] fastaFiles){
+		public static string[] GetModificationParseRules(FastaFileInfo[] fastaFiles){
 			string[] parseRules = new string[fastaFiles.Length];
 			for (int j = 0; j < parseRules.Length; j++){
-				parseRules[j] = GetModificationParseRule(fastaFiles[j]);
+				parseRules[j] = fastaFiles[j].modificationParseRule;
 			}
 			return parseRules;
 		}

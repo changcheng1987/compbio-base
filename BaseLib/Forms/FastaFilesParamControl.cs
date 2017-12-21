@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
+using BaseLibS.Mol;
 using BaseLibS.Table;
 using BaseLibS.Util;
 
@@ -51,8 +53,15 @@ namespace BaseLib.Forms {
 				MessageBox.Show(Loc.PleaseSelectSomeRows);
 				return;
 			}
-			EditParseRuleForm f = new EditParseRuleForm(new string[0], new string[0]);
+			int colInd = table.GetColumnIndex("Taxonomy rule");
+			EditParseRuleForm f = new EditParseRuleForm("taxonomy", GetMostFrequentValue(colInd), new string[0], new string[0]);
 			f.ShowDialog();
+			if (f.DialogResult == DialogResult.OK) {
+				foreach (int i in sel) {
+					table.SetEntry(i, colInd, f.ParseRule);
+				}
+				tableView1.Invalidate(true);
+			}
 		}
 
 		private void DescriptionRuleButtonOnClick(object sender, EventArgs eventArgs) {
@@ -61,8 +70,16 @@ namespace BaseLib.Forms {
 				MessageBox.Show(Loc.PleaseSelectSomeRows);
 				return;
 			}
-			EditParseRuleForm f = new EditParseRuleForm(new string[0], new string[0]);
+			int colInd = table.GetColumnIndex("Description rule");
+			EditParseRuleForm f =
+				new EditParseRuleForm("description", GetMostFrequentValue(colInd), new string[0], new string[0]);
 			f.ShowDialog();
+			if (f.DialogResult == DialogResult.OK) {
+				foreach (int i in sel) {
+					table.SetEntry(i, colInd, f.ParseRule);
+				}
+				tableView1.Invalidate(true);
+			}
 		}
 
 		private void IdentifierRuleButtonOnClick(object sender, EventArgs eventArgs) {
@@ -71,14 +88,43 @@ namespace BaseLib.Forms {
 				MessageBox.Show(Loc.PleaseSelectSomeRows);
 				return;
 			}
-			string[] parseRules = { @">.*\|(.*)\|", @">(gi\|[0-9]*)", @">IPI:([^\| .]*)", @">(.*)", @">([^ ]*)", @">([^\t]*)" };
+			int colInd = table.GetColumnIndex("Identifier rule");
+			string[] parseRules = {@">.*\|(.*)\|", @">(gi\|[0-9]*)", @">IPI:([^\| .]*)", @">(.*)", @">([^ ]*)", @">([^\t]*)"};
 			string[] descriptions = {
 				"Uniprot identifier", "NCBI accession", "IPI accession", "Everything after “>”", "Up to first space",
 				"Up to first tab character"
 			};
-
-			EditParseRuleForm f = new EditParseRuleForm(parseRules, descriptions);
+			EditParseRuleForm f = new EditParseRuleForm("identifier", GetMostFrequentValue(colInd), parseRules, descriptions);
 			f.ShowDialog();
+			if (f.DialogResult == DialogResult.OK) {
+				foreach (int i in sel) {
+					table.SetEntry(i, colInd, f.ParseRule);
+				}
+				tableView1.Invalidate(true);
+			}
+		}
+
+		private string GetMostFrequentValue(int colInd) {
+			Dictionary<string, int> counts = new Dictionary<string, int>();
+			for (int i = 0; i < table.RowCount; i++) {
+				string s = (string) table.GetEntry(i, colInd);
+				if (string.IsNullOrEmpty(s)) {
+					continue;
+				}
+				if (!counts.ContainsKey(s)) {
+					counts.Add(s, 0);
+				}
+				counts[s]++;
+			}
+			int max = -1;
+			string maxVal = "";
+			foreach (KeyValuePair<string, int> pair in counts) {
+				if (pair.Value > max) {
+					max = pair.Value;
+					maxVal = pair.Key;
+				}
+			}
+			return maxVal;
 		}
 
 		private DataTable2 CreateTable() {
@@ -113,14 +159,15 @@ namespace BaseLib.Forms {
 			}
 		}
 
-		private void AddFastaFile(string fileName) {
-			GuessRules(fileName, out string identifierRule, out string descriptionRule, out string taxonomyRule,
+		private void AddFastaFile(string filePath) {
+			GuessRules(filePath, out string identifierRule, out string descriptionRule, out string taxonomyRule,
 				out string taxonomyId);
-			AddFastaFile(fileName, identifierRule, descriptionRule, taxonomyRule, taxonomyId);
+			AddFastaFile(filePath, identifierRule, descriptionRule, taxonomyRule, taxonomyId);
 		}
 
-		private void GuessRules(string fileName, out string identifierRule, out string descriptionRule,
+		private void GuessRules(string filePath, out string identifierRule, out string descriptionRule,
 			out string taxonomyRule, out string taxonomyId) {
+			string fileName = Path.GetFileName(filePath);
 			descriptionRule = @">(.*)";
 			taxonomyRule = "";
 			if (LooksLikeUniprot(fileName)) {
@@ -149,7 +196,7 @@ namespace BaseLib.Forms {
 			return !ok ? "" : s;
 		}
 
-		private bool LooksLikeUniprot(string fileName) {
+		private static bool LooksLikeUniprot(string fileName) {
 			if (!fileName.ToUpper().EndsWith(".FASTA")) {
 				return false;
 			}
@@ -169,6 +216,11 @@ namespace BaseLib.Forms {
 			row["Taxonomy rule"] = taxonomyRule;
 			row["Taxonomy ID"] = taxonomyId;
 			row["Organism"] = "";
+			bool success = int.TryParse(taxonomyId, out int taxId);
+			if (success && TaxonomyItems.taxId2Item.ContainsKey(taxId)) {
+				string n = TaxonomyItems.taxId2Item[taxId].GetScientificName();
+				row["Organism"] = n;
+			}
 			table.AddRow(row);
 		}
 

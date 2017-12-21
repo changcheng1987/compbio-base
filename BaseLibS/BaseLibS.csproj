@@ -137,6 +137,7 @@
     <Compile Include="Calc\Util\ReturnType.cs" />
     <Compile Include="Calc\Util\Topic.cs" />
     <Compile Include="Calc\Util\TreeNode.cs" />
+    <Compile Include="Mol\FastaFileInfo.cs" />
     <Compile Include="Data\NeighbourListDirected.cs" />
     <Compile Include="Data\NeighbourListBipartite.cs" />
     <Compile Include="Graph\Axis\AxisMouseMode.cs" />
