@@ -23,6 +23,10 @@ namespace BaseLibS.Param {
 			}
 		}
 
+		public bool HasVariationData { get; set; }
+
+		public bool HasModifications { get; set; }
+
 		public override string StringValue {
 			get => StringUtils.Concat(";", ",", Value);
 			set {

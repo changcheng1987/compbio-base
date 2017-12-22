@@ -4,10 +4,10 @@ using BaseLibS.Param;
 
 namespace BaseLib.Param {
 	[Serializable]
-	public class FastaFilesParamWf : FastaFilesParam{
+	public class FastaFilesParamWf : FastaFilesParam {
 		[NonSerialized] private FastaFilesParamControl control;
-		internal FastaFilesParamWf(string name) : base(name){ }
-		internal FastaFilesParamWf(string name, string[][] value) : base(name, value){ }
+		internal FastaFilesParamWf(string name) : base(name) { }
+		internal FastaFilesParamWf(string name, string[][] value) : base(name, value) { }
 		public override ParamType Type => ParamType.WinForms;
 
 		public override void SetValueFromControl() {
@@ -25,7 +25,7 @@ namespace BaseLib.Param {
 		}
 
 		public override object CreateControl() {
-			return control = new FastaFilesParamControl();
+			return control = new FastaFilesParamControl(HasVariationData, HasModifications);
 		}
 	}
 }
