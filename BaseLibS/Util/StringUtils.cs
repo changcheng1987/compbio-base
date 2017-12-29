@@ -822,7 +822,7 @@ namespace BaseLibS.Util {
 			"type", "amino acid", "raw file", "experiment", "charge", "modifications", "md modification", "dp aa", "dp decoy",
 			"dp modification", "fraction", "dp cluster index", "authors", "publication", "year", "publisher", "geography",
 			"geography id", "identified", "fragmentation", "mass analyzer", "labeling state", "ion mode", "mode", "composition",
-			"isotope cluster index"
+			"isotope cluster index", "flagged", "from chebi", "completed"
 		});
 
 		public static readonly HashSet<string> textualColDefaultNames = new HashSet<string>(new[] {
