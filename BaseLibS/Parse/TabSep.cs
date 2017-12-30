@@ -41,6 +41,10 @@ namespace BaseLibS.Parse {
 			return GetDoubleColumn(columnName, filename, double.NaN, 0, separator);
 		}
 
+		public static bool[] GetBoolColumn(string columnName, string filename, char separator) {
+			return GetBoolColumn(columnName, filename, false, 0, separator);
+		}
+
 		public static double[] GetDoubleColumn(string columnName, string filename, int nskip, char separator) {
 			return GetDoubleColumn(columnName, filename, double.NaN, nskip, separator);
 		}
@@ -51,6 +55,16 @@ namespace BaseLibS.Parse {
 			double[] d = new double[x.Length];
 			for (int i = 0; i < d.Length; i++) {
 				d[i] = Parser.TryDouble(x[i], out double w) ? w : defaultValue;
+			}
+			return d;
+		}
+
+		public static bool[] GetBoolColumn(string columnName, string filename, bool defaultValue, int nskip,
+			char separator) {
+			string[] x = GetColumn(columnName, filename, nskip, separator);
+			bool[] d = new bool[x.Length];
+			for (int i = 0; i < d.Length; i++) {
+				d[i] = bool.TryParse(x[i], out bool w) ? w : defaultValue;
 			}
 			return d;
 		}

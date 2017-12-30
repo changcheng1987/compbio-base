@@ -244,8 +244,7 @@ namespace BaseLibS.Mol {
 			}
 		}
 
-		public Molecule NaturalVersion {
-			get {
+		public Molecule GetUnlabeledVersion() {
 				Dictionary<int, int> w = new Dictionary<int, int>();
 				for (int i = 0; i < AtomType.Length; i++) {
 					w.Add(AtomType[i], AtomCount[i]);
@@ -269,7 +268,6 @@ namespace BaseLibS.Mol {
 					newCounts[i] = w[newTypes[i]];
 				}
 				return new Molecule(newTypes, newCounts);
-			}
 		}
 
 		public bool IsEmpty {

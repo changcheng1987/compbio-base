@@ -196,8 +196,8 @@ namespace BaseLibS.Mol{
 				if (!labelingDiff1.IsIsotopicLabel && !labelingDiff2.IsIsotopicLabel){
 					return false;
 				}
-				Molecule d1 = labelingDiff1.NaturalVersion;
-				Molecule d2 = labelingDiff2.NaturalVersion;
+				Molecule d1 = labelingDiff1.GetUnlabeledVersion();
+				Molecule d2 = labelingDiff2.GetUnlabeledVersion();
 				Tuple<Molecule, Molecule> d = Molecule.GetDifferences(d1, d2);
 				return d.Item1.IsEmpty && d.Item2.IsEmpty;
 			}

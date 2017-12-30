@@ -843,7 +843,7 @@ namespace BaseLibS.Num {
 				double w = x[i] - mean;
 				var += w * w;
 			}
-			var /= (n - 1);
+			var /= n - 1;
 			return var;
 		}
 
