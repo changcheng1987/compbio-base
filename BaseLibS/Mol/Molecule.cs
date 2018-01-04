@@ -245,29 +245,29 @@ namespace BaseLibS.Mol {
 		}
 
 		public Molecule GetUnlabeledVersion() {
-				Dictionary<int, int> w = new Dictionary<int, int>();
-				for (int i = 0; i < AtomType.Length; i++) {
-					w.Add(AtomType[i], AtomCount[i]);
-				}
-				foreach (int t in AtomType) {
-					ChemElement el = ChemElements.Elements[t];
-					if (el.IsIsotopicLabel) {
-						int c = w[t];
-						w.Remove(t);
-						int n = el.NaturalVersion;
-						if (!w.ContainsKey(n)) {
-							w.Add(n, 0);
-						}
-						w[n] += c;
+			Dictionary<int, int> w = new Dictionary<int, int>();
+			for (int i = 0; i < AtomType.Length; i++) {
+				w.Add(AtomType[i], AtomCount[i]);
+			}
+			foreach (int t in AtomType) {
+				ChemElement el = ChemElements.Elements[t];
+				if (el.IsIsotopicLabel) {
+					int c = w[t];
+					w.Remove(t);
+					int n = el.NaturalVersion;
+					if (!w.ContainsKey(n)) {
+						w.Add(n, 0);
 					}
+					w[n] += c;
 				}
-				int[] newTypes = w.Keys.ToArray();
-				Array.Sort(newTypes);
-				int[] newCounts = new int[newTypes.Length];
-				for (int i = 0; i < newCounts.Length; i++) {
-					newCounts[i] = w[newTypes[i]];
-				}
-				return new Molecule(newTypes, newCounts);
+			}
+			int[] newTypes = w.Keys.ToArray();
+			Array.Sort(newTypes);
+			int[] newCounts = new int[newTypes.Length];
+			for (int i = 0; i < newCounts.Length; i++) {
+				newCounts[i] = w[newTypes[i]];
+			}
+			return new Molecule(newTypes, newCounts);
 		}
 
 		public bool IsEmpty {
@@ -407,6 +407,30 @@ namespace BaseLibS.Mol {
 			}
 			Array.Resize(ref masses, size);
 			Array.Resize(ref weights, size);
+		}
+
+		public static Tuple<Molecule, Molecule> GetDifferences(string composition1, string composition2) {
+			Molecule c11;
+			Molecule c12;
+			if (composition1.Contains("-")) {
+				int index = composition1.IndexOf("-", StringComparison.InvariantCulture);
+				c11 = new Molecule(composition1.Substring(0, index));
+				c12 = new Molecule(composition1.Substring(index + 1));
+			} else {
+				c11 = new Molecule(composition1);
+				c12 = new Molecule();
+			}
+			Molecule c21;
+			Molecule c22;
+			if (composition2.Contains("-")) {
+				int index = composition2.IndexOf("-", StringComparison.InvariantCulture);
+				c21 = new Molecule(composition2.Substring(0, index));
+				c22 = new Molecule(composition2.Substring(index + 1));
+			} else {
+				c21 = new Molecule(composition2);
+				c22 = new Molecule();
+			}
+			return GetDifferences(Sum(c11, c22), Sum(c21, c12));
 		}
 
 		public static Tuple<Molecule, Molecule> GetDifferences(Molecule molecule1, Molecule molecule2) {
