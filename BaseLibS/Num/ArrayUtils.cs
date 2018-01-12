@@ -2149,7 +2149,13 @@ namespace BaseLibS.Num {
 			if (b == 0) {
 				return b;
 			}
-			if (array[b] - value < value - array[b - 1]) {
+			if (b >= array.Length) {
+				return -1;
+			}
+			if (b >= n) {
+				return n - 1;
+			}
+			if (array[b] < 2 * value - array[b - 1]) {
 				return b;
 			}
 			return b - 1;
@@ -2211,7 +2217,10 @@ namespace BaseLibS.Num {
 			if (b == 0) {
 				return b;
 			}
-			if (array[b] - value < value - array[b - 1]) {
+			if (b >= n) {
+				return n - 1;
+			}
+			if (array[b] < 2 * value - array[b - 1]) {
 				return b;
 			}
 			return b - 1;
