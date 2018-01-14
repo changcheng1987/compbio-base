@@ -2149,11 +2149,8 @@ namespace BaseLibS.Num {
 			if (b == 0) {
 				return b;
 			}
-			if (b >= array.Length) {
+			if (b >= n) { //can only happen if the array contains NaNs
 				return -1;
-			}
-			if (b >= n) {
-				return n - 1;
 			}
 			if (array[b] < 2 * value - array[b - 1]) {
 				return b;
@@ -2186,8 +2183,8 @@ namespace BaseLibS.Num {
 			if (b == 0) {
 				return b;
 			}
-			if (b >= n) {
-				return n - 1;
+			if (b >= n) { //can only happen if the array contains NaNs
+				return -1;
 			}
 			if (array[b] < 2 * value - array[b - 1]) {
 				return b;
@@ -2216,9 +2213,6 @@ namespace BaseLibS.Num {
 			int b = -1 - a;
 			if (b == 0) {
 				return b;
-			}
-			if (b >= n) {
-				return n - 1;
 			}
 			if (array[b] < 2 * value - array[b - 1]) {
 				return b;
