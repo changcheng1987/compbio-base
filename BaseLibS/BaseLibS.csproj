@@ -137,6 +137,13 @@
     <Compile Include="Calc\Util\ReturnType.cs" />
     <Compile Include="Calc\Util\Topic.cs" />
     <Compile Include="Calc\Util\TreeNode.cs" />
+    <Compile Include="Graph\Network\IDrawOptions.cs" />
+    <Compile Include="Graph\Network\NetworkGraphContainer.cs" />
+    <Compile Include="Graph\Network\NetworkGraphDragType.cs" />
+    <Compile Include="Graph\Network\NetworkGraphEdge.cs" />
+    <Compile Include="Graph\Network\NetworkGraphModel.cs" />
+    <Compile Include="Graph\Network\NetworkGraphNode.cs" />
+    <Compile Include="Graph\Network\NetworkGraphPanelModel.cs" />
     <Compile Include="Mol\FastaFileInfo.cs" />
     <Compile Include="Data\NeighbourListDirected.cs" />
     <Compile Include="Data\NeighbourListBipartite.cs" />
