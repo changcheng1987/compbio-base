@@ -191,6 +191,12 @@
     </Compile>
     <Compile Include="Forms\Scroll\SimpleScrollableControlMainView.cs" />
     <Compile Include="Forms\Scroll\VerticalScrollBarView.cs" />
+    <Compile Include="Forms\SliderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\SliderControl.Designer.cs">
+      <DependentUpon>SliderControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SubSelectionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -403,6 +409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RegexReplaceParamControl.resx">
       <DependentUpon>RegexReplaceParamControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SliderControl.resx">
+      <DependentUpon>SliderControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SubSelectionControl.resx">
       <DependentUpon>SubSelectionControl.cs</DependentUpon>
