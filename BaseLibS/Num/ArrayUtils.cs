@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using BaseLibS.Num.Matrix;
 using BaseLibS.Num.Vector;
 
@@ -2870,6 +2871,36 @@ namespace BaseLibS.Num {
 						x[j] = values[inds[inds.Length - 1] + j];
 					}
 					data[inds.Length - 1] = x;
+				}
+			}
+			return data;
+		}
+
+		public static void PackArrayOfStrings(string[] data, out string value, out int[] ind) {
+			StringBuilder values = new StringBuilder();
+			List<int> inds = new List<int>();
+			foreach (string d in data) {
+				inds.Add(values.Length);
+				if (d != null) {
+					values.Append(d);
+				}
+			}
+			value = values.ToString();
+			ind = inds.ToArray();
+		}
+
+		public static string[] UnpackArrayOfStrings(string values, int[] inds) {
+			string[] data = new string[inds.Length];
+			for (int i = 0; i < inds.Length - 1; i++) {
+				int len = inds[i + 1] - inds[i];
+				if (len > 0) {
+					data[i] = values.Substring(inds[i], len);
+				}
+			}
+			{
+				int len = values.Length - 1 - inds[inds.Length - 1];
+				if (len > 0) {
+					data[inds.Length - 1] = values.Substring(inds[inds.Length - 1], len);
 				}
 			}
 			return data;
