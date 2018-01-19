@@ -2895,12 +2895,16 @@ namespace BaseLibS.Num {
 				int len = inds[i + 1] - inds[i];
 				if (len > 0) {
 					data[i] = values.Substring(inds[i], len);
+				} else {
+					data[i] = "";
 				}
 			}
 			{
 				int len = values.Length - 1 - inds[inds.Length - 1];
 				if (len > 0) {
 					data[inds.Length - 1] = values.Substring(inds[inds.Length - 1], len);
+				} else {
+					data[inds.Length - 1] = "";
 				}
 			}
 			return data;
