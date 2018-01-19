@@ -190,8 +190,17 @@ namespace BaseLibS.Mol{
 			return result;
 		}
 
+		public static double CalcMonoisotopicMass(string sequence, string[] mods) {
+			Modification[] modifications = Tables.ToModifications(mods);
+			return CalcMonoisotopicMass(sequence, modifications);
+		}
+
+		public static double CalcMonoisotopicMass(string sequence, Modification[] modifications) {
+			return CalcMonoisotopicMass(sequence, modifications, false, false);
+		}
+
 		public static double CalcMonoisotopicMass(string sequence, Modification[] modifications, bool isProteinNterm,
-			bool isProteinCterm){
+				bool isProteinCterm) {
 			double m = CalcMonoisotopicMass(sequence);
 			m += GetFixedModificationMass(sequence, modifications, isProteinNterm, isProteinCterm);
 			return m;
