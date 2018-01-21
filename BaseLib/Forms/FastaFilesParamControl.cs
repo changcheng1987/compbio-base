@@ -103,10 +103,10 @@ namespace BaseLib.Forms {
 				nbuttons++;
 			}
 			tableLayoutPanel2.ColumnCount = 2 * nbuttons;
-			tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 240F));
+			tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
 			for (int i = 0; i < nbuttons - 1; i++) {
-				tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
-				tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 240F));
+				tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 4F));
+				tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
 			}
 			tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
 			tableLayoutPanel2.Controls.Add(addButton, 0, 0);
