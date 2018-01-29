@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Globalization;
 using BaseLibS.Ms;
 using BaseLibS.Num;
 using BaseLibS.Util;
@@ -392,7 +393,12 @@ namespace PluginRawMzXml {
 			return header1.Substring(headerStart,
 				       (header1.IndexOf("<scan ", StringComparison.InvariantCulture) - 1) - headerStart) + "</msRun>";
 		}
+		
+		private static long Long(string s) {
+			return long.Parse(s, NumberStyles.Any, CultureInfo.InvariantCulture);
+		}
 
+		
 		private string GetIndexData() {
 			// with the backward reader we can quickly locate the origin of the <indexOffset>
 			string line = null;
@@ -417,7 +423,7 @@ namespace PluginRawMzXml {
 				line += s.ReadLine();
 			}
 			s.Close();
-			long indexOffset = Parser.Uint(regexInteger.Match(line).Groups[1].ToString());
+			long indexOffset = Long(regexInteger.Match(line).Groups[1].ToString());
 			// load the offset table
 			StreamReader stream = new StreamReader(filename);
 			stream.BaseStream.Seek(indexOffset, SeekOrigin.Begin);
