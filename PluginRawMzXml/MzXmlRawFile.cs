@@ -52,6 +52,11 @@ namespace PluginRawMzXml {
 		protected override double MaximumIntensity => maxIntensity;
 		protected override void GetSpectrum(int scanNumberMin, int scanNumberMax, int imsIndexMin, int imsIndexMax,
 			bool readCentroids, out double[] masses, out double[] intensities, double resolution, double mzMin, double mzMax) {
+			// TODO: Rename to more specific exception
+			if (readCentroids) // throw an error if readCentroids == true. Centroid mode is not supported
+			{
+				throw new Exception("Centroid mode is not supported");
+			}
 			if (!preInitialized) {
 				PreInit();
 			}

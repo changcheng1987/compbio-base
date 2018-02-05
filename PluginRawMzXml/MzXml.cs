@@ -117,6 +117,10 @@ namespace PluginRawMzXml {
 			public FragmentationTypeEnum FragmentationType { get; set; }
 		}
 
+		public MzXml()
+		{
+			
+		}
 		/// <summary>
 		/// Constructs a new mz-xml File parser for the given filename. In the constructor it is
 		/// attempted to read both the header and the index-table. When one of these cannot be
