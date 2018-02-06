@@ -2864,7 +2864,7 @@ namespace BaseLibS.Num {
 				}
 			}
 			{
-				int len = values.Length - 1 - inds[inds.Length - 1];
+				int len = values.Length - inds[inds.Length - 1];
 				if (len > 0) {
 					T[] x = new T[len];
 					for (int j = 0; j < len; j++) {
