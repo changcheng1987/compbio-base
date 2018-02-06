@@ -2900,7 +2900,7 @@ namespace BaseLibS.Num {
 				}
 			}
 			{
-				int len = values.Length - 1 - inds[inds.Length - 1];
+				int len = values.Length - inds[inds.Length - 1];
 				if (len > 0) {
 					data[inds.Length - 1] = values.Substring(inds[inds.Length - 1], len);
 				} else {
