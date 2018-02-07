@@ -50,6 +50,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Num\ArrayUtilsTest.cs" />
     <Compile Include="SerializationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ClusteringTest.cs" />
