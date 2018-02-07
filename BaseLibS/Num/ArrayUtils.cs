@@ -2891,6 +2891,10 @@ namespace BaseLibS.Num {
 
 		public static string[] UnpackArrayOfStrings(string values, int[] inds) {
 			string[] data = new string[inds.Length];
+		    if (string.IsNullOrEmpty(values))
+		    {
+		        return data;
+		    }
 			for (int i = 0; i < inds.Length - 1; i++) {
 				int len = inds[i + 1] - inds[i];
 				if (len > 0) {

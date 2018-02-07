@@ -30,5 +30,14 @@ namespace BaseLibS.Test.Num
             var arr2 = ArrayUtils.UnpackArrayOfStrings(value, ind);
             CollectionAssert.AreEqual(arr, arr2);
         }
+
+        [Test]
+        public void TestPackAndUnpackEmptyArrayOfStrings()
+        {
+            var arr = new string[0];
+            ArrayUtils.PackArrayOfStrings(arr, out var value, out var ind);
+            var arr2 = ArrayUtils.UnpackArrayOfStrings(value, ind);
+            CollectionAssert.AreEqual(arr, arr2);
+        }
     }
 }
