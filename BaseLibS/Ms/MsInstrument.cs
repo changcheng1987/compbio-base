@@ -36,7 +36,8 @@ namespace BaseLibS.Ms {
 		public abstract IntensityDetermination GetIntensityDeterminationDefault(MsDataType dataType);
 		public abstract bool CutPeaksDefault { get; }
 		public abstract int GapScansDefault { get; }
-		public abstract bool CheckMassDeficitDefault { get; }
+		public bool CheckMassDeficitDefault => false;
+
 		public override string ToString() {
 			return Name;
 		}

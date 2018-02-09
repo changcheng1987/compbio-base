@@ -29,8 +29,9 @@ namespace PluginRawMzXml {
 				}
 				preInitialized = true;
 			} catch (Exception e) {
-				System.Diagnostics.Debug.WriteLine(e.Message);
-				System.Diagnostics.Debug.WriteLine(e.StackTrace);
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.StackTrace);
+				throw;
 			}
 		}
 		public override int FirstScanNumber {
