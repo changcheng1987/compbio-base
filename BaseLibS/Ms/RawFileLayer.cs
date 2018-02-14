@@ -1250,6 +1250,16 @@ namespace BaseLibS.Ms {
 			return positive ? rawFile.GetPasefPrecursorInfo(index) : null;
 		}
 
+		public void GetDiaRanges(out double[] mzMin, out double[] mzMax) {
+			int[][] inds = GetDiaMs2Indices();
+			mzMin = new double[inds.Length];
+			mzMax = new double[inds.Length];
+			for (int i = 0; i < inds.Length; i++) {
+				mzMin[i] = Ms2IsolationMzMin[inds[i][0]];
+				mzMax[i] = Ms2IsolationMzMax[inds[i][0]];
+			}
+		}
+
 		public int[][] GetDiaMs2Indices() {
 			if (Ms2Count == 0) {
 				return new int[0][];
