@@ -1,9 +1,5 @@
-﻿using System.Xml;
-using System.Xml.Schema;
-using System.Xml.Serialization;
-
-namespace BaseLibS.Mol {
-	public class FastaFileInfo : IXmlSerializable {
+﻿namespace BaseLibS.Mol {
+	public class FastaFileInfo {
 		public string fastaFilePath;
 		public string identifierParseRule;
 		public string descriptionParseRule;
@@ -11,8 +7,6 @@ namespace BaseLibS.Mol {
 		public string variationParseRule;
 		public string modificationParseRule;
 		public string taxonomyId;
-
-		public FastaFileInfo() { }
 
 		public FastaFileInfo(string fastaFilePath) : this(fastaFilePath, Tables.GetIdentifierParseRule(fastaFilePath),
 			Tables.GetDescriptionParseRule(fastaFilePath), Tables.GetTaxonomyParseRule(fastaFilePath),
@@ -48,41 +42,6 @@ namespace BaseLibS.Mol {
 
 		public override string ToString() {
 			return fastaFilePath;
-		}
-
-		public XmlSchema GetSchema() => null;
-		
-		private const string ElementName = "fastaFileInfo";
-		private const string FastaFilePathName = "fastaFile";
-		private const string IdentifierParseRuleName = "identifierParseRule";
-		private const string DescriptionParseRuleName = "descriptionParseRule";
-		private const string TaxonomyParseRuleName = "taxonomyParseRule";
-		private const string VariationParseRuleName = "variationParseRule";
-		private const string ModificationParseRuleName = "modificationParseRule";
-		private const string TaxonomyIdName = "taxonomyId";
-
-		public void ReadXml(XmlReader reader) {
-			reader.ReadStartElement();
-			fastaFilePath = reader.ReadElementContentAsString(FastaFilePathName, "");
-			identifierParseRule = reader.ReadElementContentAsString(IdentifierParseRuleName, "");
-			descriptionParseRule = reader.ReadElementContentAsString(DescriptionParseRuleName, "");
-			taxonomyParseRule = reader.ReadElementContentAsString(TaxonomyParseRuleName, "");
-			variationParseRule = reader.ReadElementContentAsString(VariationParseRuleName, "");
-			modificationParseRule = reader.ReadElementContentAsString(ModificationParseRuleName, "");
-			taxonomyId = reader.ReadElementContentAsString(TaxonomyIdName, "");
-			reader.ReadEndElement();
-		}
-
-		public void WriteXml(XmlWriter writer) {
-			writer.WriteStartElement(ElementName);
-			writer.WriteElementString(FastaFilePathName, fastaFilePath);
-			writer.WriteElementString(IdentifierParseRuleName, identifierParseRule);
-			writer.WriteElementString(DescriptionParseRuleName, descriptionParseRule);
-			writer.WriteElementString(TaxonomyParseRuleName, taxonomyParseRule);
-			writer.WriteElementString(VariationParseRuleName, variationParseRule);
-			writer.WriteElementString(ModificationParseRuleName, modificationParseRule);
-			writer.WriteElementString(TaxonomyIdName, taxonomyId);
-			writer.WriteEndElement();
 		}
 	}
 }
