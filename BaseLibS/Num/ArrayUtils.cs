@@ -492,12 +492,16 @@ namespace BaseLibS.Num {
 			return result;
 		}
 
+        /// <summary>
+        /// Set of all ints in [0, length] not contained in present
+        /// </summary>
 		public static int[] Complement(IList<int> present, int length) {
-			HashSet<int> dummy = new HashSet<int>();
-			dummy.UnionWith(present);
-			return Complement(dummy, length);
+			return Complement(new HashSet<int>(present), length);
 		}
 
+        /// <summary>
+        /// Set of all ints in [0, length] not contained in present
+        /// </summary>
 		public static int[] Complement(HashSet<int> present, int length) {
 			List<int> result = new List<int>();
 			for (int i = 0; i < length; i++) {
@@ -2068,9 +2072,6 @@ namespace BaseLibS.Num {
 		}
 
 		public static double Cosine(IList<double> x, IList<double> y) {
-			if (x.Count < 3) {
-				return 0;
-			}
 			double xx = 0;
 			double yy = 0;
 			double xy = 0;
@@ -2089,9 +2090,6 @@ namespace BaseLibS.Num {
 		}
 
 		public static float Cosine(IList<float> x, IList<float> y) {
-			if (x.Count < 3) {
-				return 0;
-			}
 			float xx = 0;
 			float yy = 0;
 			float xy = 0;
