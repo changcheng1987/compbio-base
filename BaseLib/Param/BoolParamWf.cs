@@ -25,7 +25,10 @@ namespace BaseLib.Param{
 		}
 
 		public override object CreateControl(){
-			return control = new CheckBox{Checked = Value};
+			control = new CheckBox{Checked = Value};
+            control.CheckedChanged += (sender, e) => {SetValueFromControl();};
+		    return control;
 		}
-	}
+
+    }
 }
