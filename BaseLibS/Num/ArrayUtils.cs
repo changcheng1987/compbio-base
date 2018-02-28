@@ -1809,6 +1809,13 @@ namespace BaseLibS.Num {
 			}
 		}
 
+        /// <summary>
+        /// Index of last element &gt; value in sorted array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
 		public static int FloorIndex<T>(T[] array, T value) where T : IComparable<T> {
 			int n = array.Length;
 			if (n == 0) {
@@ -1830,6 +1837,13 @@ namespace BaseLibS.Num {
 			return -2 - a;
 		}
 
+        /// <summary>
+        /// Index of first element &lt; value in sorted array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
 		public static int CeilIndex<T>(T[] array, T value) where T : IComparable<T> {
 			int n = array.Length;
 			if (n == 0) {
@@ -1851,6 +1865,13 @@ namespace BaseLibS.Num {
 			return -1 - a;
 		}
 
+        /// <summary>
+        /// Index of last element &gt; value in sorted array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
 		public static int FloorIndex<T>(List<T> array, T value) where T : IComparable<T> {
 			int n = array.Count;
 			if (n == 0) {
@@ -1872,6 +1893,13 @@ namespace BaseLibS.Num {
 			return -2 - a;
 		}
 
+        /// <summary>
+        /// Index of first element &lt; value in sorted array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
 		public static int CeilIndex<T>(List<T> array, T value) where T : IComparable<T> {
 			int n = array.Count;
 			if (n == 0) {
@@ -1891,6 +1919,44 @@ namespace BaseLibS.Num {
 				return a;
 			}
 			return -1 - a;
+		}
+
+        /// <summary>
+        /// Index of last element &gt; value in sorted array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ilist"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+		public static int FloorIndex<T>(IList<T> ilist, T value) where T : IComparable<T> {
+            if (ilist is T[] array)
+            {
+                return FloorIndex(array, value);
+            }
+            if (ilist is List<T> list)
+            {
+                return FloorIndex(list, value);
+            }
+            return FloorIndex(ilist.ToArray(), value);
+        }
+
+        /// <summary>
+        /// Index of first element &lt; value in sorted array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ilist"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+		public static int CeilIndex<T>(IList<T> ilist, T value) where T : IComparable<T> {
+            if (ilist is T[] array)
+            {
+                return CeilIndex(array, value);
+            }
+            if (ilist is List<T> list)
+            {
+                return CeilIndex(list, value);
+            }
+            return CeilIndex(ilist.ToArray(), value);
 		}
 
 		/// <summary>

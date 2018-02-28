@@ -102,5 +102,45 @@ namespace BaseLibS.Test.Num
             CollectionAssert.AreEqual(new [] {0, 4, 5, 6}, complement);
             CollectionAssert.AreEqual(new [] {0, 4, 5, 6}, Enumerable.Range(0, 7).Except(arr));
         }
+
+        [Test]
+        public void TestCeilIndexWithSimpleList()
+        {
+            var arr = new[] {1, 2, 3};
+            var index = ArrayUtils.CeilIndex(arr, 2);
+            Assert.AreEqual(1, index);
+        }
+
+        [Test]
+        public void TestCeilIndexWithDuplicateList()
+        {
+            var arr = new[] {0, 1, 1, 1, 3, 3, 3, 3, 5};
+            var index = ArrayUtils.CeilIndex(arr, 2);
+            Assert.AreEqual(4, index);
+        }
+
+        [Test]
+        public void TestCeilIndexWithDuplicateList2()
+        {
+            var arr = new[] {0, 1, 1, 1, 3, 3, 3, 3, 5};
+            var index = ArrayUtils.CeilIndex(arr, 3);
+            Assert.AreEqual(4, index);
+        }
+
+        [Test]
+        public void TestFloorIndexWithDuplicateList()
+        {
+            var arr = new[] {0, 1, 1, 1, 3, 3, 3, 3, 5};
+            var index = ArrayUtils.FloorIndex(arr, 2);
+            Assert.AreEqual(3, index);
+        }
+
+        [Test]
+        public void TestFloorIndexWithDuplicateList2()
+        {
+            var arr = new[] {0, 1, 1, 1, 3, 3, 3, 3, 5};
+            var index = ArrayUtils.FloorIndex(arr, 3);
+            Assert.AreEqual(7, index);
+        }
     }
 }
