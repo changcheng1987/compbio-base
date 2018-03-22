@@ -492,12 +492,16 @@ namespace BaseLibS.Num {
 			return result;
 		}
 
+        /// <summary>
+        /// Set of all ints in [0, length] not contained in present
+        /// </summary>
 		public static int[] Complement(IList<int> present, int length) {
-			HashSet<int> dummy = new HashSet<int>();
-			dummy.UnionWith(present);
-			return Complement(dummy, length);
+			return Complement(new HashSet<int>(present), length);
 		}
 
+        /// <summary>
+        /// Set of all ints in [0, length] not contained in present
+        /// </summary>
 		public static int[] Complement(HashSet<int> present, int length) {
 			List<int> result = new List<int>();
 			for (int i = 0; i < length; i++) {
@@ -1805,6 +1809,13 @@ namespace BaseLibS.Num {
 			}
 		}
 
+        /// <summary>
+        /// Index of last element &gt; value in sorted array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
 		public static int FloorIndex<T>(T[] array, T value) where T : IComparable<T> {
 			int n = array.Length;
 			if (n == 0) {
@@ -1826,6 +1837,13 @@ namespace BaseLibS.Num {
 			return -2 - a;
 		}
 
+        /// <summary>
+        /// Index of first element &lt; value in sorted array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
 		public static int CeilIndex<T>(T[] array, T value) where T : IComparable<T> {
 			int n = array.Length;
 			if (n == 0) {
@@ -1847,6 +1865,13 @@ namespace BaseLibS.Num {
 			return -1 - a;
 		}
 
+        /// <summary>
+        /// Index of last element &gt; value in sorted array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
 		public static int FloorIndex<T>(List<T> array, T value) where T : IComparable<T> {
 			int n = array.Count;
 			if (n == 0) {
@@ -1868,6 +1893,13 @@ namespace BaseLibS.Num {
 			return -2 - a;
 		}
 
+        /// <summary>
+        /// Index of first element &lt; value in sorted array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
 		public static int CeilIndex<T>(List<T> array, T value) where T : IComparable<T> {
 			int n = array.Count;
 			if (n == 0) {
@@ -1887,6 +1919,44 @@ namespace BaseLibS.Num {
 				return a;
 			}
 			return -1 - a;
+		}
+
+        /// <summary>
+        /// Index of last element &gt; value in sorted array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ilist"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+		public static int FloorIndex<T>(IList<T> ilist, T value) where T : IComparable<T> {
+            if (ilist is T[] array)
+            {
+                return FloorIndex(array, value);
+            }
+            if (ilist is List<T> list)
+            {
+                return FloorIndex(list, value);
+            }
+            return FloorIndex(ilist.ToArray(), value);
+        }
+
+        /// <summary>
+        /// Index of first element &lt; value in sorted array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ilist"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+		public static int CeilIndex<T>(IList<T> ilist, T value) where T : IComparable<T> {
+            if (ilist is T[] array)
+            {
+                return CeilIndex(array, value);
+            }
+            if (ilist is List<T> list)
+            {
+                return CeilIndex(list, value);
+            }
+            return CeilIndex(ilist.ToArray(), value);
 		}
 
 		/// <summary>
@@ -2068,9 +2138,6 @@ namespace BaseLibS.Num {
 		}
 
 		public static double Cosine(IList<double> x, IList<double> y) {
-			if (x.Count < 3) {
-				return 0;
-			}
 			double xx = 0;
 			double yy = 0;
 			double xy = 0;
@@ -2089,9 +2156,6 @@ namespace BaseLibS.Num {
 		}
 
 		public static float Cosine(IList<float> x, IList<float> y) {
-			if (x.Count < 3) {
-				return 0;
-			}
 			float xx = 0;
 			float yy = 0;
 			float xy = 0;
@@ -2864,7 +2928,7 @@ namespace BaseLibS.Num {
 				}
 			}
 			{
-				int len = values.Length - 1 - inds[inds.Length - 1];
+				int len = values.Length - inds[inds.Length - 1];
 				if (len > 0) {
 					T[] x = new T[len];
 					for (int j = 0; j < len; j++) {
@@ -2891,6 +2955,10 @@ namespace BaseLibS.Num {
 
 		public static string[] UnpackArrayOfStrings(string values, int[] inds) {
 			string[] data = new string[inds.Length];
+		    if (string.IsNullOrEmpty(values))
+		    {
+		        return data;
+		    }
 			for (int i = 0; i < inds.Length - 1; i++) {
 				int len = inds[i + 1] - inds[i];
 				if (len > 0) {
@@ -2900,7 +2968,7 @@ namespace BaseLibS.Num {
 				}
 			}
 			{
-				int len = values.Length - 1 - inds[inds.Length - 1];
+				int len = values.Length - inds[inds.Length - 1];
 				if (len > 0) {
 					data[inds.Length - 1] = values.Substring(inds[inds.Length - 1], len);
 				} else {

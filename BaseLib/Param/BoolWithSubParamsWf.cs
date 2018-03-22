@@ -52,6 +52,7 @@ namespace BaseLib.Param{
 			cb.CheckedChanged += (sender, e) =>{
 				panelFalse.Visible = !cb.Checked;
 				panelTrue.Visible = cb.Checked;
+			    Value = cb.Checked;
 			};
 			tlp.PerformLayout();
 			control = tlp;
