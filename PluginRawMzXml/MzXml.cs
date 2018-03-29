@@ -254,6 +254,11 @@ namespace PluginRawMzXml {
 					Parser.TryDouble(xmlReader.GetAttribute("precursorIntensity"), out double precursorIntensity);
 					scanHeader.PrecursorIntensity = precursorIntensity;
 					string fragmentation = xmlReader.GetAttribute("activationMethod");
+					if (fragmentation == null)
+					{
+						fragmentation = "";
+					}
+					
 					if (fragmentation.Equals("CID")) {
 						scanHeader.FragmentationType = FragmentationTypeEnum.Cid;
 					} else if (fragmentation.Equals("HCD")) {

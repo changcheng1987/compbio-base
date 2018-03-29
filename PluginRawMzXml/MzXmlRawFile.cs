@@ -19,7 +19,7 @@ namespace PluginRawMzXml {
 		public override bool HasIms => false;
 		protected override void PreInit() {
 			preInitialized = false;
-			try {
+//			try {
 				// open the link to the File
 				mzXml = new MzXml(Path);
 				// retrieve basic information
@@ -28,11 +28,11 @@ namespace PluginRawMzXml {
 					maxIntensity = Math.Max(maxIntensity, mzXml.GetScanHeader(scanNumber).BasePeakIntensity);
 				}
 				preInitialized = true;
-			} catch (Exception e) {
-				Console.WriteLine(e.Message);
-				Console.WriteLine(e.StackTrace);
-				throw;
-			}
+//			} catch (Exception e) {
+//				Console.WriteLine(e.Message);
+//				Console.WriteLine(e.StackTrace);
+//				throw;
+//			}
 		}
 		public override int FirstScanNumber {
 			get {
