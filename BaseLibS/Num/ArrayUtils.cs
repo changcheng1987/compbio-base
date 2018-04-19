@@ -2747,7 +2747,21 @@ namespace BaseLibS.Num {
 			if (data.Count == 0) {
 				return double.NaN;
 			}
-			Histogram(data, out double[] x, out double[] y, false, false);
+			if (data.Count == 1) {
+				return 0;
+			}
+			double q1 = FirstQuartile(data);
+			double q3 = FirstQuartile(data);
+			double d = q3 - q1;
+			double min = q1 - d;
+			double max = q3 + d;
+			List<double> data1 = new List<double>();
+			foreach (double w in data) {
+				if (w >= min && w <= max) {
+					data1.Add(w);
+				}
+			}
+			Histogram(data1, out double[] x, out double[] y, false, false);
 			int maxInd = MaxInd(y);
 			double max2 = y[maxInd]*0.5;
 			int leftInd = maxInd;
