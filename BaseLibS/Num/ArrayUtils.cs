@@ -2734,13 +2734,44 @@ namespace BaseLibS.Num {
 			return StandardDeviation(x) / Mean(x);
 		}
 
-		public static double MeanAbsoluteDeviation(IList<double> x) {
+		public static double MedianAbsoluteDeviation(IList<double> x) {
 			double median = Median(x);
 			List<double> w = new List<double>();
 			foreach (double t in x) {
 				w.Add(Math.Abs(median - t));
 			}
 			return Median(w.ToArray());
+		}
+
+		public static double FullWidthHalfMaximum(IList<double> data) {
+			if (data.Count == 0) {
+				return double.NaN;
+			}
+			Histogram(data, out double[] x, out double[] y, false, false);
+			int maxInd = MaxInd(y);
+			double max2 = y[maxInd]*0.5;
+			int leftInd = maxInd;
+			while (y[leftInd] > max2) {
+				if (leftInd == 0) {
+					return double.NaN;
+				}
+				leftInd--;
+			}
+			int rightInd = maxInd;
+			while (y[rightInd] > max2) {
+				if (rightInd == y.Length-1) {
+					return double.NaN;
+				}
+				rightInd++;
+			}
+			double leftX = GetXval(x[leftInd], y[leftInd], x[leftInd+1], y[leftInd+1], max2);
+			double rightX = GetXval(x[rightInd - 1], y[rightInd - 1], x[rightInd], y[rightInd], max2);
+			return rightX - leftX;
+
+		}
+
+		private static double GetXval(double x1, double y1, double x2, double y2, double y) {
+			return x1 +(x2-x1)/(y2-y1)* (y - y1);
 		}
 
 		public static HashSet<T> ToHashSet<T>(IEnumerable<T> x) {

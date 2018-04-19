@@ -59,7 +59,7 @@ namespace BaseLibS.Mol{
 		[XmlElement("modification_site")]
 		public ModificationSite[] Sites{
 			set{
-				sites = value;
+				sites = value ?? new ModificationSite[0];
 				sitesMap = new Dictionary<char, ModificationSite>();
 				foreach (ModificationSite modificationSite in sites){
 					sitesMap.Add(modificationSite.Aa, modificationSite);
