@@ -41,6 +41,16 @@ namespace BaseLibS.Test.Num
         }
 
         [Test]
+        public void TestHistogram()
+        {
+            // create some fake data
+            // run the histogram function
+            // assert correctness
+            // CollectionAssert.AreEqual();
+            // Assert.AreEqual();
+        }
+
+        [Test]
         // Tested against Python 'from sklearn.metrics.pairwise import cosine_similarity'
         public void TestCosineSimilarity()
         {
