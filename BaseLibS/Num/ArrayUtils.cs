@@ -2751,7 +2751,7 @@ namespace BaseLibS.Num {
 				return 0;
 			}
 			double q1 = FirstQuartile(data);
-			double q3 = FirstQuartile(data);
+			double q3 = ThirdQuartile(data);
 			double d = q3 - q1;
 			double min = q1 - d;
 			double max = q3 + d;
