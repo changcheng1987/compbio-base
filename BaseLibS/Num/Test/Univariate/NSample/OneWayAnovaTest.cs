@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using BaseLibS.Num.Func;
 
-namespace BaseLibS.Num.Test.Univariate.NSamples{
-	public class OneWayAnovaTest : MultipleSamplesTest{
+namespace BaseLibS.Num.Test.Univariate.NSample{
+	public class OneWayAnovaTest : MultipleSampleTest{
 		public override double Test(double[][] data, out double statistic, double s0, out double pvalS0, out double[] gmeans){
 			return TestImpl(data, out statistic, s0, out pvalS0, out gmeans);
 		}

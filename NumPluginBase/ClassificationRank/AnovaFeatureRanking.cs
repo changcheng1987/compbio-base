@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using BaseLibS.Api;
 using BaseLibS.Num;
-using BaseLibS.Num.Test.Univariate.NSamples;
+using BaseLibS.Num.Test.Univariate.NSample;
 using BaseLibS.Num.Vector;
 using BaseLibS.Param;
 

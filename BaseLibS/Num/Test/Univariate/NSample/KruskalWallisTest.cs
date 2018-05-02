@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BaseLibS.Num.Test.Univariate.NSamples{
-	public class KruskalWallisTest : MultipleSamplesTest{
+namespace BaseLibS.Num.Test.Univariate.NSample{
+	public class KruskalWallisTest : MultipleSampleTest{
 		public override double Test(double[][] data, out double statistic, double s0, out double pvalS0, out double[] gmeans){
 			pvalS0 = 1;
 			gmeans = null;

@@ -411,9 +411,12 @@
     <Compile Include="Num\Test\SpearmanCorrelationTest.cs" />
     <Compile Include="Num\Test\TestSide.cs" />
     <Compile Include="Num\Test\TestTruncation.cs" />
-    <Compile Include="Num\Test\Univariate\NSamples\KruskalWallisTest.cs" />
-    <Compile Include="Num\Test\Univariate\NSamples\MultipleSamplesTest.cs" />
-    <Compile Include="Num\Test\Univariate\NSamples\OneWayAnovaTest.cs" />
+    <Compile Include="Num\Test\Univariate\NSample\KruskalWallisTest.cs" />
+    <Compile Include="Num\Test\Univariate\NSample\MultipleSampleTest.cs" />
+    <Compile Include="Num\Test\Univariate\NSample\MultipleSampleTests.cs" />
+    <Compile Include="Num\Test\Univariate\NSample\OneWayAnovaTest.cs" />
+    <Compile Include="Num\Test\Univariate\OneSample\OneSampleTest.cs" />
+    <Compile Include="Num\Test\Univariate\TwoSample\TwoSampleTest.cs" />
     <Compile Include="Num\Test\Univariate\UnivariateTest.cs" />
     <Compile Include="Num\TukeyBiweightCalc.cs" />
     <Compile Include="Num\Vector\BaseVector.cs" />
