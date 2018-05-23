@@ -453,6 +453,14 @@ namespace BaseLibS.Mol {
 			return result;
 		}
 
+		public static bool[] ContainsDatabases(FastaFileInfo[] fastaFiles) {
+			bool[] result = new bool[fastaFiles.Length];
+			for (int j = 0; j < result.Length; j++) {
+				result[j] = ContainsDatabase(fastaFiles[j].fastaFilePath);
+			}
+			return result;
+		}
+
 		public static string[] GetIdentifierParseRules(FastaFileInfo[] fastaFiles) {
 			string[] parseRules = new string[fastaFiles.Length];
 			for (int j = 0; j < parseRules.Length; j++) {
