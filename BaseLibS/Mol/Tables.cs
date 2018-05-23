@@ -100,10 +100,6 @@ namespace BaseLibS.Mol {
 			string s = path.Contains(Path.DirectorySeparatorChar)
 				? path.Substring(path.LastIndexOf(Path.DirectorySeparatorChar) + 1)
 				: path;
-			string pr = ReadParseRuleFromFile(path);
-			if (pr != null) {
-				return pr;
-			}
 			return !Databases.ContainsKey(s) ? ">(.*)" : Databases[s].IdentifierParseRule;
 		}
 
@@ -140,23 +136,6 @@ namespace BaseLibS.Mol {
 				? path.Substring(path.LastIndexOf(Path.DirectorySeparatorChar) + 1)
 				: path;
 			return !Databases.ContainsKey(s) ? "" : Databases[s].Taxid;
-		}
-
-		public static bool FileContainsParseRule(string fastaFile) {
-			StreamReader reader = new StreamReader(fastaFile);
-			string line = reader.ReadLine();
-			reader.Close();
-			return line != null && line.StartsWith("#");
-		}
-
-		public static string ReadParseRuleFromFile(string fastaFile) {
-			StreamReader reader = new StreamReader(fastaFile);
-			string line = reader.ReadLine();
-			reader.Close();
-			if (line == null || !line.StartsWith("#")) {
-				return null;
-			}
-			return line.Substring(1);
 		}
 
 		public static string[] GetEnzymes() {

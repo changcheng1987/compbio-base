@@ -15,6 +15,7 @@ namespace BaseLibS.Util {
 		public abstract bool IsArray { get; }
 		public abstract string ElementTypeName { get; }
 		public abstract object DefaultValue { get; }
+		public abstract bool IsFastaFileInfo { get; }
 	}
 
 	public class InputParameter<T> : InputParameter {
@@ -25,13 +26,13 @@ namespace BaseLibS.Util {
 		}
 
 		public InputParameter(string name, string variableName) : this(name, variableName, default(T)) { }
-		public override bool IsArray => typeof(T).IsArray;
+		public override bool IsArray => Type.IsArray;
 		public override Type Type => typeof(T);
 		public override object DefaultValue => defaultValue;
 
 		public override string ElementTypeName {
 			get {
-				Type t = typeof(T).GetElementType();
+				Type t = Type.GetElementType();
 				if (t == typeof(string)) {
 					return "string";
 				}
@@ -48,6 +49,15 @@ namespace BaseLibS.Util {
 					return "FastaFileInfo";
 				}
 				throw new Exception("Unknown type: " + t);
+			}
+		}
+
+		public override bool IsFastaFileInfo {
+			get {
+				if (IsArray) {
+					return Type.GetElementType() == typeof(FastaFileInfo);
+				}
+				return Type == typeof(FastaFileInfo);
 			}
 		}
 	}
