@@ -1,5 +1,27 @@
-﻿namespace BaseLibS.Mol {
+﻿using System.Collections.Generic;
+using BaseLibS.Util;
+
+namespace BaseLibS.Mol {
 	public class FastaFileInfo {
+		public readonly List<InputParameter> vals = new List<InputParameter> {
+			new InputParameter<string>("fastaFilePath", "fastaFilePath"),
+			new InputParameter<string>("identifierParseRule", "identifierParseRule"),
+			new InputParameter<string>("descriptionParseRule", "descriptionParseRule"),
+			new InputParameter<string>("taxonomyParseRule", "taxonomyParseRule"),
+			new InputParameter<string>("variationParseRule", "variationParseRule"),
+			new InputParameter<string>("modificationParseRule", "modificationParseRule"),
+			new InputParameter<string>("taxonomyId", "taxonomyId")
+		};
+
+		public readonly Dictionary<string, InputParameter> map;
+
+		public FastaFileInfo() {
+			map = new Dictionary<string, InputParameter>();
+			foreach (InputParameter val in vals) {
+				map.Add(val.Name, val);
+			}
+		}
+
 		public string fastaFilePath;
 		public string identifierParseRule;
 		public string descriptionParseRule;
@@ -14,7 +36,7 @@
 			Tables.GetTaxonomyId(fastaFilePath)) { }
 
 		public FastaFileInfo(string fastaFilePath, string identifierParseRule, string descriptionParseRule,
-			string taxonomyParseRule, string variationParseRule, string modificationParseRule, string taxonomyId) {
+			string taxonomyParseRule, string variationParseRule, string modificationParseRule, string taxonomyId) : this() {
 			this.fastaFilePath = fastaFilePath;
 			this.identifierParseRule = identifierParseRule;
 			this.descriptionParseRule = descriptionParseRule;
