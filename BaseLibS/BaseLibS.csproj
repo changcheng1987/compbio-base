@@ -513,6 +513,7 @@
     <Compile Include="Util\ComparableList.cs" />
     <Compile Include="Util\DocumentType.cs" />
     <Compile Include="Util\FileUtils.cs" />
+    <Compile Include="Util\InputParameter.cs" />
     <Compile Include="Util\Loc.cs" />
     <Compile Include="Util\Parser.cs" />
     <Compile Include="Util\StreamBackwardReader.cs" />
