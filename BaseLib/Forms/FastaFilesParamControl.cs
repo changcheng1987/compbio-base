@@ -430,7 +430,7 @@ namespace BaseLib.Forms {
 					} else {
 						result[i][5] = "";
 					}
-					if (hasVariationData) {
+					if (hasModifications) {
 						result[i][6] = (string)table.GetEntry(i, "Modification rule");
 					} else {
 						result[i][6] = "";
