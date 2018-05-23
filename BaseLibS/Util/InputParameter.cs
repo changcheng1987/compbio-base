@@ -1,4 +1,5 @@
 ﻿using System;
+using BaseLibS.Mol;
 
 namespace BaseLibS.Util {
 	public abstract class InputParameter {
@@ -42,6 +43,9 @@ namespace BaseLibS.Util {
 				}
 				if (t == typeof(int)) {
 					return "int";
+				}
+				if (t == typeof(FastaFileInfo)) {
+					return "FastaFileInfo";
 				}
 				throw new Exception("Unknown type: " + t);
 			}
