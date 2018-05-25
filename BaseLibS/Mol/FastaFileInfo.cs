@@ -52,15 +52,15 @@ namespace BaseLibS.Mol {
 			identifierParseRule = s[1];
 			descriptionParseRule = s[2];
 			taxonomyParseRule = s[3];
-			variationParseRule = s[4];
-			modificationParseRule = s[5];
-			taxonomyId = s[6];
+			taxonomyId = s[4];
+			variationParseRule = s[5];
+			modificationParseRule = s[6];
 		}
 
 		public string[] ToStringArray() {
 			return new[] {
-				fastaFilePath, identifierParseRule, descriptionParseRule, taxonomyParseRule, variationParseRule,
-				modificationParseRule, taxonomyId
+				fastaFilePath, identifierParseRule, descriptionParseRule, taxonomyParseRule, taxonomyId, variationParseRule,
+				modificationParseRule
 			};
 		}
 

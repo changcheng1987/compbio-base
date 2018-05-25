@@ -32,7 +32,7 @@ namespace BaseLib.Forms {
 			removeButton.Click += RemoveButton_OnClick;
 			identifierRuleButton.Click += (sender, args) => {
 				ParseRuleButtonClick("Identifier",
-					new[] { @">.*\|(.*)\|", @">(gi\|[0-9]*)", @">IPI:([^\| .]*)", @">(.*)", @">([^ ]*)", @">([^\t]*)" },
+					new[] {@">.*\|(.*)\|", @">(gi\|[0-9]*)", @">IPI:([^\| .]*)", @">(.*)", @">([^ ]*)", @">([^\t]*)"},
 					new[] {
 						"Uniprot identifier", "NCBI accession", "IPI accession", "Everything after “>”", "Up to first space",
 						"Up to first tab character"
@@ -41,15 +41,11 @@ namespace BaseLib.Forms {
 			descriptionRuleButton.Click += (sender, args) => {
 				ParseRuleButtonClick("Description", new string[0], new string[0]);
 			};
-			taxonomyRuleButton.Click += (sender, args) => {
-				ParseRuleButtonClick("Taxonomy", new string[0], new string[0]);
-			};
+			taxonomyRuleButton.Click += (sender, args) => { ParseRuleButtonClick("Taxonomy", new string[0], new string[0]); };
 			taxonomyIdButton.Click += TaxonomyIdButtonOnClick;
 			testButton.Click += TestButtonOnClick;
 			if (hasVariationData) {
-				variationRuleButton.Click += (sender, args) => {
-					ParseRuleButtonClick("Variation", new string[0], new string[0]);
-				};
+				variationRuleButton.Click += (sender, args) => { ParseRuleButtonClick("Variation", new string[0], new string[0]); };
 			}
 			if (hasModifications) {
 				modificationRuleButton.Click += (sender, args) => {
@@ -426,12 +422,12 @@ namespace BaseLib.Forms {
 						result[i][j] = (string) table.GetEntry(i, j);
 					}
 					if (hasVariationData) {
-						result[i][5] = (string)table.GetEntry(i, "Variation rule");
+						result[i][5] = (string) table.GetEntry(i, "Variation rule");
 					} else {
 						result[i][5] = "";
 					}
 					if (hasModifications) {
-						result[i][6] = (string)table.GetEntry(i, "Modification rule");
+						result[i][6] = (string) table.GetEntry(i, "Modification rule");
 					} else {
 						result[i][6] = "";
 					}
