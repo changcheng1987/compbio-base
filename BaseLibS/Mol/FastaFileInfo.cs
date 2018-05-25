@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BaseLibS.Util;
 
 namespace BaseLibS.Mol {
-	public class FastaFileInfo {
+	public class FastaFileInfo : IComparable<FastaFileInfo> {
 		public readonly List<InputParameter> vals = new List<InputParameter> {
 			new InputParameter<string>("fastaFilePath", "fastaFilePath"),
 			new InputParameter<string>("identifierParseRule", "identifierParseRule"),
@@ -60,6 +61,10 @@ namespace BaseLibS.Mol {
 				result[i] = new FastaFileInfo(filePaths[i]);
 			}
 			return result;
+		}
+
+		public int CompareTo(FastaFileInfo other) {
+			return String.Compare(fastaFilePath, other.fastaFilePath, StringComparison.InvariantCulture);
 		}
 
 		public override string ToString() {
