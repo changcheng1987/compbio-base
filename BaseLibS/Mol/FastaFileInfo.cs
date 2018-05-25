@@ -27,17 +27,17 @@ namespace BaseLibS.Mol {
 		public string identifierParseRule;
 		public string descriptionParseRule;
 		public string taxonomyParseRule;
+		public string taxonomyId;
 		public string variationParseRule;
 		public string modificationParseRule;
-		public string taxonomyId;
 
 		public FastaFileInfo(string fastaFilePath) : this(fastaFilePath, Tables.GetIdentifierParseRule(fastaFilePath),
 			Tables.GetDescriptionParseRule(fastaFilePath), Tables.GetTaxonomyParseRule(fastaFilePath),
-			Tables.GetVariationParseRule(fastaFilePath), Tables.GetModificationParseRule(fastaFilePath),
-			Tables.GetTaxonomyId(fastaFilePath)) { }
+			Tables.GetTaxonomyId(fastaFilePath), Tables.GetVariationParseRule(fastaFilePath),
+			Tables.GetModificationParseRule(fastaFilePath)) { }
 
 		public FastaFileInfo(string fastaFilePath, string identifierParseRule, string descriptionParseRule,
-			string taxonomyParseRule, string variationParseRule, string modificationParseRule, string taxonomyId) : this() {
+			string taxonomyParseRule, string taxonomyId, string variationParseRule, string modificationParseRule) : this() {
 			this.fastaFilePath = fastaFilePath;
 			this.identifierParseRule = identifierParseRule;
 			this.descriptionParseRule = descriptionParseRule;
