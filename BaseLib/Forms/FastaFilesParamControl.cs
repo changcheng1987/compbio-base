@@ -255,6 +255,19 @@ namespace BaseLib.Forms {
 			}
 			EditTaxonomyForm f = new EditTaxonomyForm();
 			f.ShowDialog();
+			if (f.DialogResult == DialogResult.OK) {
+				int colInd = table.GetColumnIndex("Taxonomy ID");
+				int colInd2 = table.GetColumnIndex("Organism");
+				string org = "";
+				if (TaxonomyItems.taxId2Item.ContainsKey(f.Id)) {
+					org = TaxonomyItems.taxId2Item[f.Id].GetScientificName();
+				}
+				foreach (int i in sel) {
+					table.SetEntry(i, colInd, "" + f.Id);
+					table.SetEntry(i, colInd2, org);
+				}
+				tableView1.Invalidate(true);
+			}
 		}
 
 		private string GetMostFrequentValue(int colInd) {
