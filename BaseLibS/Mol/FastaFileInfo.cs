@@ -47,6 +47,23 @@ namespace BaseLibS.Mol {
 			this.taxonomyId = taxonomyId;
 		}
 
+		public FastaFileInfo(string[] s) : this() {
+			fastaFilePath = s[0];
+			identifierParseRule = s[1];
+			descriptionParseRule = s[2];
+			taxonomyParseRule = s[3];
+			variationParseRule = s[4];
+			modificationParseRule = s[5];
+			taxonomyId = s[6];
+		}
+
+		public string[] ToStringArray() {
+			return new[] {
+				fastaFilePath, identifierParseRule, descriptionParseRule, taxonomyParseRule, variationParseRule,
+				modificationParseRule, taxonomyId
+			};
+		}
+
 		public static string[] ToString(FastaFileInfo[] filePaths) {
 			string[] result = new string[filePaths.Length];
 			for (int i = 0; i < result.Length; i++) {
