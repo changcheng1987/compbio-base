@@ -46,7 +46,7 @@ namespace BaseLibS.Util {
 					return "int";
 				}
 				if (t == typeof(FastaFileInfo)) {
-					return "FastaFileInfo";
+					return "fastaFileInfo";
 				}
 				throw new Exception("Unknown type: " + t);
 			}
