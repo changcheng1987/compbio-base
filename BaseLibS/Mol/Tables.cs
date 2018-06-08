@@ -16,7 +16,7 @@ namespace BaseLibS.Mol {
 		private static Dictionary<string, Modification> isobaricLabelModifications;
 		private static List<Modification> neucodeModificationList;
 		private static Modification[] modificationList;
-		public static Dictionary<string, SequenceDatabase> Databases => databases ?? (databases = ReadDatabases());
+		internal static Dictionary<string, SequenceDatabase> Databases => databases ?? (databases = ReadDatabases());
 		public static Dictionary<string, Enzyme> Enzymes => enzymes ?? (enzymes = ReadProteases());
 		public static Dictionary<string, CrossLinker> CrossLinkers => crossLinkers ?? (crossLinkers = ReadCrossLinks());
 
@@ -424,22 +424,6 @@ namespace BaseLibS.Mol {
 			return result;
 		}
 
-		internal static bool[] ContainsDatabases(string[] fastaFiles) {
-			bool[] result = new bool[fastaFiles.Length];
-			for (int j = 0; j < result.Length; j++) {
-				result[j] = ContainsDatabase(fastaFiles[j]);
-			}
-			return result;
-		}
-
-		internal static bool[] ContainsDatabases(FastaFileInfo[] fastaFiles) {
-			bool[] result = new bool[fastaFiles.Length];
-			for (int j = 0; j < result.Length; j++) {
-				result[j] = ContainsDatabase(fastaFiles[j].fastaFilePath);
-			}
-			return result;
-		}
-
 		public static string[] GetIdentifierParseRules(FastaFileInfo[] fastaFiles) {
 			string[] parseRules = new string[fastaFiles.Length];
 			for (int j = 0; j < parseRules.Length; j++) {
@@ -476,14 +460,6 @@ namespace BaseLibS.Mol {
 			string[] parseRules = new string[fastaFiles.Length];
 			for (int j = 0; j < parseRules.Length; j++) {
 				parseRules[j] = fastaFiles[j].modificationParseRule;
-			}
-			return parseRules;
-		}
-
-		internal static string[] GetTaxonomyIds(string[] fastaFiles) {
-			string[] parseRules = new string[fastaFiles.Length];
-			for (int j = 0; j < parseRules.Length; j++) {
-				parseRules[j] = GetTaxonomyId(fastaFiles[j]);
 			}
 			return parseRules;
 		}
